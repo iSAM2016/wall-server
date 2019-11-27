@@ -2,14 +2,15 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
-// 系统配置
-import { ConfigService } from '../config/config.service';
 import { ConfigModule } from './config/config.module';
+// 系统配置
+// import { ConfigService } from '../config/config.service';
+// import { ConfigModule } from './config/config.module';
 
 //  拆分成独立可用的模块
 
 @Module({
-  imports: [ConfigModule, CatsModule], //导入此模块中所需的提供程序的模块列表。
+  imports: [ConfigModule.register({ foder: './config' })], //导入此模块中所需的提供程序的模块列表。
   controllers: [AppController], //存放创建的一组控制器。
   providers: [
     // 由Nest注入器实例化的服务，可以在这个模块之间共享。
@@ -21,7 +22,7 @@ import { ConfigModule } from './config/config.module';
     //   ),
     // },
   ],
-  exports: [ConfigService], //导出这个模块可以其他模块享用providers里的服务。
+  // exports: [ConfigService], //导出这个模块可以其他模块享用providers里的服务。
 })
 export class AppModule {}
 // AppModule 根模块
