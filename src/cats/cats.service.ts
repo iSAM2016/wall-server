@@ -5,7 +5,7 @@ import { Cat } from './interfaces/cat.interface';
  */
 @Injectable()
 export class CatsService {
-  private readonly cats: Cat[] = [];
+  private readonly cats: Cat[] = [{ name: 'ui', age: 124, breed: 'io' }];
 
   public create(cat: Cat) {
     console.log(cat);
@@ -13,7 +13,6 @@ export class CatsService {
   }
 
   findAll(): Cat[] {
-    console.log(1);
     return this.cats;
   }
 }

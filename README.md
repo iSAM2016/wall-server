@@ -7,8 +7,8 @@
 5. NGINX redis mysql  
 6. cli 
 7. 架构研究
-8. ssm  连接池   orm
-9. pojo
+8. ssm  连接池  
+
   
 
 ## 配置
