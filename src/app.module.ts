@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 // 系统配置
-import { ConfigModule } from '../config/config.module';
+import { ConfigModule } from './config/config.module';
 import { PhotoModule } from './photo/photo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
