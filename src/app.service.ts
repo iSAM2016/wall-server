@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from './config/config.service';
+import { ConfigService } from '../config/config.service';
 @Injectable()
 export class AppService {
   private isAuthEnabled: boolean;
@@ -9,7 +9,7 @@ export class AppService {
     this.isAuthEnabled = config.get('IS_AUTH_ENABLED') === 'true';
   }
   getHello(): string {
-    console.log(0);
+    console.log(1);
     return 'Hello Worldss!';
   }
 }

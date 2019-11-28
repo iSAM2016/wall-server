@@ -8,7 +8,6 @@ export class CatsService {
   private readonly cats: Cat[] = [{ name: 'ui', age: 124, breed: 'io' }];
 
   public create(cat: Cat) {
-    console.log(cat);
     this.cats.push(cat);
   }
 
