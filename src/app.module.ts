@@ -2,29 +2,39 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
-import { ConfigModule } from './config/config.module';
 // 系统配置
-// import { ConfigService } from '../config/config.service';
-// import { ConfigModule } from './config/config.module';
-
-//  拆分成独立可用的模块
+import { ConfigModule } from '../config/config.module';
+import { PhotoModule } from './photo/photo.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+import { Photo } from './photo/photo.entity';
 
 @Module({
-  imports: [ConfigModule.register({ foder: './config' })], //导入此模块中所需的提供程序的模块列表。
+  imports: [
+    CatsModule,
+    ConfigModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: '127.0.0.1',
+      port: 3306,
+      username: 'root',
+      password: 'abc123456',
+      database: 'nest',
+      entities: [Photo],
+      synchronize: true,
+    }),
+    PhotoModule,
+  ], //导入此模块中所需的提供程序的模块列表。
   controllers: [AppController], //存放创建的一组控制器。
   providers: [
     // 由Nest注入器实例化的服务，可以在这个模块之间共享。
     AppService,
-    // {
-    //   provide: ConfigService,
-    //   useValue: new ConfigService(
-    //     `${process.env.NODE_ENV || 'development'}.env`,
-    //   ),
-    // },
   ],
-  // exports: [ConfigService], //导出这个模块可以其他模块享用providers里的服务。
+  exports: [], //导出这个模块可以其他模块享用providers里的服务。
 })
-export class AppModule {}
+export class AppModule {
+  // constructor(private readonly connection: Connection) {}
+}
 // AppModule 根模块
 
 // CoreModule 核心模块（注册中间件，过滤器，管道，守卫，拦截器，装饰器等）
