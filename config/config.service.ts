@@ -46,7 +46,7 @@ export class ConfigService<T = EnvConfig> {
     }
   }
   /**
-   *校验env 文件
+   * 校验env 文件
    * @private
    * @memberof ConfigService
    */
@@ -58,6 +58,13 @@ export class ConfigService<T = EnvConfig> {
       PORT: Joi.number().default(3000),
       DATABASE_USER: Joi.string().required(),
       DATABASE_PASSWORD: Joi.string().required(),
+      MYSQL_PORT: Joi.number().required(),
+      MYSQL_HOST: Joi.string().required(),
+      MYSQL_USERNAME: Joi.string().required(),
+      MYSQL_PASSWORD: Joi.string().required(),
+      MYSQL_DATABASE: Joi.string().required(),
+      MYSQL_SYNCHRONIZE: Joi.bool().required(),
+
       // API_AUTH_ENABLED: Joi.boolean().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
@@ -82,6 +89,7 @@ export class ConfigService<T = EnvConfig> {
    * @param defaultVal
    */
   get(key: string, defaultVal?: any): string {
+    console.log(this.envConfig);
     return process.env[key] || this.envConfig[key] || defaultVal;
   }
   /**
@@ -94,20 +102,7 @@ export class ConfigService<T = EnvConfig> {
       return obj;
     }, {});
   }
-  /**
-   * 获取数字
-   * @param key
-   */
-  getNumber(key: string): number {
-    return Number(this.get(key));
-  }
-  /**
-   * 获取布尔
-   * @param key
-   */
-  getBoolean(key: string): boolean {
-    return Boolean(this.get(key));
-  }
+
   /**
    * 获取字典对象和数组
    * @param key
@@ -126,7 +121,6 @@ export class ConfigService<T = EnvConfig> {
   has(key: string): boolean {
     return this.get(key) !== undefined;
   }
-
   /** 开发模式 */
   get isDevelopment(): boolean {
     return this.get('NODE_ENV') === 'development';
