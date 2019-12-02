@@ -96,21 +96,7 @@ spring 是一个ioc(DI) 和AOP 容器框架
  * ApplicationContext在初始上下文时就实例化所有单例的Bean
   
   
-3. 注入属性值细节
-   * a.字面值；可用字符串表示的值可以通过`<value>` 元素标签或value 进行注入  例如  	`<constructor-arg  index="3"><value>30</value></constructor-arg>`
-   * b. 引用
-     * -- 在 Bean 的配置文件中, 可以通过`<ref>`元素或`ref`属性为`Bean`的属性或构造器参数指定对 Bean 的引用.
-     * --也可以在属性或构造器里包含 Bean 的声明, 这样的 Bean 称为内部 Bean
-   * c. 集合属性
-     * --1.在spring中可以通过一组内置的xml标签 例如list set map 来配置集合属性
-     * --2. list 标签 在标签里，list 可以包含简单的元素 
-        * value 配置简单的值
-        * ref 对bean 的引用
-     * --3. map 集合
-        * map 标签里可以使用多个<entry> 作为子标签 每个条目都包含一个键和一个值
-          * 必须在key 里面包含键
-          * 因为键和值的类型没有限制 所有可以自由的为他们制制定value,ref bean. null
-          * 可以将 Map 的键和值作为 <entry> 的属性定义: 简单常量使用 key 和 value 来定义; Bean 引用通过 key-ref 和 value-ref 属性定义使用 <props> 定义 java.util.Properties, 该标签使用多个 <prop> 作为子标签. 每个 <prop> 标签必须定义 key 属性
+
  
 ## AOP
 
@@ -158,29 +144,7 @@ spring 是一个ioc(DI) 和AOP 容器框架
     * ii: 在方法前加入@Before 注解
   * d. 可以在通知方法中声明一个类型为JointPoint 的参数然后就能访问链接细节 入方法名称和参数值
 
-### bean 的作用域
+## 模块
 
-###  通过工厂方式配置Bean 略
-
-### bean 的生命周期 略
-
-### factoryBean 配置Bean 略
-
-### 通过注解配置bean
-
-在classpath 中扫描组件,特定组件包括
-
-* @Component
-* @Respository
-* @service
-* @Controller
-
-当组件类上使用了特定的注解以后 还需要在spring 的配置文件中声明`<contextcomponent-scan>`
-
-
-### bean 和bean 的关联关系
-
-使用@autowired 自动装配Bean自动装配具有兼容类型的单个Bean属性 
-* 构造器 普通字段-即使是非public 一切具有参数的方法都可以应用@Autowired注解
-* 默认情况下 所有使用@autowired 注解的属性都是 需要被设置 
-* 默认情况下 当IOC 容器里存在多个类型加农的Bean 时 通过类型的自动装配 将无法工作 此时可以在
+创建全局模块，全局模块不需要在注入到该模块，就能使用该模块导出的服务。 //TODO://不明白
+创建动态模块，动态模块可以创建可定制的模块，动态做依赖注入关系。

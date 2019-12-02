@@ -1,22 +1,25 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as Joi from '@hapi/joi';
+import { Injectable } from '@nestjs/common';
 import { isAbsolute, resolve, dirname } from 'path';
 // 缺少环境变量的名称和类型（无智能感知）
 // 缺少提供对 .env 文件的验证
 // env文件将布尔值/作为string ('true'),提供，因此每次都必须将它们转换为 boolean
 import { EnvConfig, ConfigOptions } from './config.interface';
-
+// @Injectable()
 export class ConfigService<T = EnvConfig> {
-  private readonly envConfig: T;
+  private readonly envConfig: EnvConfig;
   // 文件路径
   private rootPath: string;
+
   constructor(filePath: string) {
     let config: ConfigOptions;
     if (this.isFileExist(filePath)) {
       config = dotenv.parse(fs.readFileSync(filePath));
     }
     this.envConfig = this.validateInpt(config);
+    console.log(this.envConfig);
   }
 
   /**
@@ -50,7 +53,7 @@ export class ConfigService<T = EnvConfig> {
    * @private
    * @memberof ConfigService
    */
-  private validateInpt(envConfig: ConfigOptions): T {
+  private validateInpt(envConfig: ConfigOptions): EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       NODE_ENV: Joi.string()
         .valid('development', 'production', 'test', 'provision')
@@ -89,7 +92,6 @@ export class ConfigService<T = EnvConfig> {
    * @param defaultVal
    */
   get(key: string, defaultVal?: any): string {
-    console.log(this.envConfig);
     return process.env[key] || this.envConfig[key] || defaultVal;
   }
   /**
