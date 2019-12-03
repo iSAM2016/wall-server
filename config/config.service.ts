@@ -3,25 +3,24 @@ import * as fs from 'fs';
 import * as Joi from '@hapi/joi';
 import { Injectable } from '@nestjs/common';
 import { isAbsolute, resolve, dirname } from 'path';
+import { get } from 'lodash';
 // 缺少环境变量的名称和类型（无智能感知）
 // 缺少提供对 .env 文件的验证
 // env文件将布尔值/作为string ('true'),提供，因此每次都必须将它们转换为 boolean
 import { EnvConfig, ConfigOptions } from './config.interface';
 // @Injectable()
-export class ConfigService<T = EnvConfig> {
-  private readonly envConfig: EnvConfig;
+export class ConfigService {
+  private static envConfig: EnvConfig;
   // 文件路径
   private rootPath: string;
-
   constructor(filePath: string) {
     let config: ConfigOptions;
     if (this.isFileExist(filePath)) {
       config = dotenv.parse(fs.readFileSync(filePath));
     }
-    this.envConfig = this.validateInpt(config);
-    console.log(this.envConfig);
+    ConfigService.envConfig = this.validateInpt(config);
+    console.log(ConfigService.envConfig);
   }
-
   /**
    *  检测文件是否存在
    * @param startPath
@@ -67,6 +66,9 @@ export class ConfigService<T = EnvConfig> {
       MYSQL_PASSWORD: Joi.string().required(),
       MYSQL_DATABASE: Joi.string().required(),
       MYSQL_SYNCHRONIZE: Joi.bool().required(),
+      REDIS_HOST: Joi.string().required(),
+      REDIS_PORT: Joi.string().required(),
+      REDIS_DB: Joi.string().required(),
 
       // API_AUTH_ENABLED: Joi.boolean().required(),
     });
@@ -87,12 +89,25 @@ export class ConfigService<T = EnvConfig> {
     return resolve(rootPath, dir);
   }
   /**
+   * 获取问价配置
+   * @param key
+   * @param defaultVal
+   */
+  static get(key: string | string[], defaultValue?: any): string | number {
+    const configValue = get(ConfigService.envConfig, key);
+    console.log(configValue);
+    if (configValue === undefined) {
+      return defaultValue;
+    }
+    return configValue;
+  }
+  /**
    * 获取配置
    * @param key
    * @param defaultVal
    */
   get(key: string, defaultVal?: any): string {
-    return process.env[key] || this.envConfig[key] || defaultVal;
+    return process.env[key] || ConfigService.envConfig[key] || defaultVal;
   }
   /**
    * 获取系统配置

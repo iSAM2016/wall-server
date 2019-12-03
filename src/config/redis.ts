@@ -3,7 +3,7 @@ export interface RedisConfig {
   port: number;
   password: string;
   db: number;
-  getConfig(): () => Pick<RedisConfig, 'getConfig'>; // 只需要getconfig
+  getConfig(): () => Pick<RedisConfig, 'getConfig'>; //TODO 只需要getconfig
 }
 
 export default {

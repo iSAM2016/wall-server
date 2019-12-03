@@ -6,8 +6,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 
 @Module({
-  // exports: [CatsService],
-  //   exports: [SharedModule],
+  // import: [CatsService],
   providers: [AuthService],
   controllers: [AuthController],
 })

@@ -3,6 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '../../config/config.module';
 import { ConfigService } from '../../config/config.service';
 // import { ConfigValidate } from './config.validate';
+/**
+ * 核心模块，只会注入到AppModule，不会注入到feature和shared模块里面，
+ * 专门做初始化配置工作，不需要导出任何模块。
+ */
 @Module({
   imports: [
     ConfigModule,
