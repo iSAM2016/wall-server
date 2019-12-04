@@ -1,25 +1,34 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as Joi from '@hapi/joi';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { isAbsolute, resolve, dirname } from 'path';
 import { get } from 'lodash';
-// 缺少环境变量的名称和类型（无智能感知）
-// 缺少提供对 .env 文件的验证
-// env文件将布尔值/作为string ('true'),提供，因此每次都必须将它们转换为 boolean
+// // 缺少环境变量的名称和类型（无智能感知）
+// // 缺少提供对 .env 文件的验证
+// // env文件将布尔值/作为string ('true'),提供，因此每次都必须将它们转换为 boolean
 import { EnvConfig, ConfigOptions } from './config.interface';
-// @Injectable()
+import { CONFIG_OPTIONS } from './constants';
+
+@Injectable()
 export class ConfigService {
   private static envConfig: EnvConfig;
   // 文件路径
   private rootPath: string;
-  constructor(filePath: string) {
+
+  constructor(@Inject(CONFIG_OPTIONS) private options) {
     let config: ConfigOptions;
-    if (this.isFileExist(filePath)) {
-      config = dotenv.parse(fs.readFileSync(filePath));
+    const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
+    const envFile: string = resolve(
+      __dirname,
+      '../../',
+      options.folder,
+      filePath,
+    );
+    if (this.isFileExist(envFile)) {
+      config = dotenv.parse(fs.readFileSync(envFile));
     }
     ConfigService.envConfig = this.validateInpt(config);
-    console.log(ConfigService.envConfig);
   }
   /**
    *  检测文件是否存在
@@ -57,9 +66,7 @@ export class ConfigService {
       NODE_ENV: Joi.string()
         .valid('development', 'production', 'test', 'provision')
         .default('development'),
-      PORT: Joi.number().default(3000),
-      DATABASE_USER: Joi.string().required(),
-      DATABASE_PASSWORD: Joi.string().required(),
+      SYSTEM_SECRET: Joi.string().default('ism2017'),
       MYSQL_PORT: Joi.number().required(),
       MYSQL_HOST: Joi.string().required(),
       MYSQL_USERNAME: Joi.string().required(),
@@ -95,7 +102,6 @@ export class ConfigService {
    */
   static get(key: string | string[], defaultValue?: any): string | number {
     const configValue = get(ConfigService.envConfig, key);
-    console.log(configValue);
     if (configValue === undefined) {
       return defaultValue;
     }

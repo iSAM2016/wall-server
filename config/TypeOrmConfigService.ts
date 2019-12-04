@@ -1,3 +1,4 @@
+// TODO: 不同
 // import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 // import { ConfigService } from '../../config/config.service';
 // import { DatabaseType } from 'typeorm';

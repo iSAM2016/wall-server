@@ -12,13 +12,13 @@ import {
   All,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { RegisterEntity } from './entity/register.entity';
-@Controller()
+import { Register } from './entity/register.entity';
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/register')
-  async register(@Body() register: RegisterEntity) {
-    return await this.authService.register(register);
+  async register(@Body() register: Register) {
+    // return await this.authService.register(register);
   }
 }

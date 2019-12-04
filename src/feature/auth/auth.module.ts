@@ -3,10 +3,12 @@ import { Module } from '@nestjs/common';
 // import { SharedModule } from 'shared';
 // 引入控制和服务进行在模块注册
 import { AuthService } from './auth.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthController } from './auth.controller';
+import { Register } from './entity/register.entity';
 
 @Module({
-  // import: [CatsService],
+  imports: [TypeOrmModule.forFeature([Register])],
   providers: [AuthService],
   controllers: [AuthController],
 })

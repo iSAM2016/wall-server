@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '../../config/config.module';
-import { ConfigService } from '../../config/config.service';
+import { ConfigModule } from './configure/config.module';
+import { ConfigService } from './configure/config.service';
 // import { ConfigValidate } from './config.validate';
 /**
  * 核心模块，只会注入到AppModule，不会注入到feature和shared模块里面，
@@ -9,7 +9,7 @@ import { ConfigService } from '../../config/config.service';
  */
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.register({ folder: '../../config' }),
 
     // TODO: 使用了useClass
     // TypeOrmModule.forRootAsync({

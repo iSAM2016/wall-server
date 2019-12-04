@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class RegisterEntity {
+export class Register {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,9 +14,9 @@ export class RegisterEntity {
   @Column()
   pass: string;
 
-  @Column('int')
-  re_pass: number;
+  // @Column('int')
+  // re_pass: number;
 
   @Column()
-  email: boolean;
+  email: string;
 }

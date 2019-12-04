@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
-// import { ConfigService } from './core/config/config.service';
+import { ConfigService } from './core/configure/config.service';
 @Injectable()
 export class AppService {
-  private isAuthEnabled: boolean;
-  constructor() {
-    // Please take note that this check is case sensitive!
-    // console.log(config);
-    // this.isAuthEnabled = config.get('IS_AUTH_ENABLED') === 'true';
+  private helloMessage: string;
+  constructor(configService: ConfigService) {
+    this.helloMessage = configService.get('MYSQL_SYNCHRONIZE');
+    console.log(this.helloMessage);
   }
   getHello(): string {
     console.log(1);
-    return 'Hello World!';
+    return 'Hello Worlss!';
   }
 }
