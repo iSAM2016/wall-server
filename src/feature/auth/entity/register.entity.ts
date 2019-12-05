@@ -5,18 +5,15 @@ export class Register {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
+  @Column({})
   name: string;
 
-  @Column('text')
+  @Column({})
   loginname: string;
 
-  @Column()
+  @Column({})
   pass: string;
 
-  // @Column('int')
-  // re_pass: number;
-
-  @Column()
+  @Column({})
   email: string;
 }

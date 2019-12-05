@@ -76,7 +76,10 @@ export class ConfigService {
       REDIS_HOST: Joi.string().required(),
       REDIS_PORT: Joi.string().required(),
       REDIS_DB: Joi.string().required(),
-
+      MAIL_HOST: Joi.string().required(),
+      MAIL_PORT: Joi.number().required(),
+      MAIL_USER: Joi.string().required(),
+      MAIL_PASS: Joi.string().required(),
       // API_AUTH_ENABLED: Joi.boolean().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
