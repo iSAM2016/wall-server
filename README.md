@@ -93,22 +93,6 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
 - spring 容器，在 spring IOC 容器读取 Bean 配置创建 Bean 之前 必须对他进行实例化 只有在容器实例化后 才可以从 IOC 容器里获取 Bean 实例并且使用
 - ApplicationContext 在初始上下文时就实例化所有单例的 Bean
 
-3. 注入属性值细节
-   - a.字面值；可用字符串表示的值可以通过`<value>` 元素标签或 value 进行注入 例如 `<constructor-arg index="3"><value>30</value></constructor-arg>`
-   - b. 引用
-     - -- 在 Bean 的配置文件中, 可以通过`<ref>`元素或`ref`属性为`Bean`的属性或构造器参数指定对 Bean 的引用.
-     - --也可以在属性或构造器里包含 Bean 的声明, 这样的 Bean 称为内部 Bean
-   - c. 集合属性
-     - --1.在 spring 中可以通过一组内置的 xml 标签 例如 list set map 来配置集合属性
-     - --2. list 标签 在标签里，list 可以包含简单的元素
-       - value 配置简单的值
-       - ref 对 bean 的引用
-     - --3. map 集合
-       - map 标签里可以使用多个<entry> 作为子标签 每个条目都包含一个键和一个值
-         - 必须在 key 里面包含键
-         - 因为键和值的类型没有限制 所有可以自由的为他们制制定 value,ref bean. null
-         - 可以将 Map 的键和值作为 <entry> 的属性定义: 简单常量使用 key 和 value 来定义; Bean 引用通过 key-ref 和 value-ref 属性定义使用 <props> 定义 java.util.Properties, 该标签使用多个 <prop> 作为子标签. 每个 <prop> 标签必须定义 key 属性
-
 ## AOP
 
 需求 1-日志：在程序执行期间追踪正在发生的活动
@@ -153,53 +137,7 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
     - ii: 在方法前加入@Before 注解
   - d. 可以在通知方法中声明一个类型为 JointPoint 的参数然后就能访问链接细节 入方法名称和参数值
 
-### bean 的作用域
+## 模块
 
-### 通过工厂方式配置 Bean 略
-
-### bean 的生命周期 略
-
-### factoryBean 配置 Bean 略
-
-### 通过注解配置 bean
-
-在 classpath 中扫描组件,特定组件包括
-
-- @Component
-- @Respository
-- @service
-- @Controller
-
-当组件类上使用了特定的注解以后 还需要在 spring 的配置文件中声明`<contextcomponent-scan>`
-
-### bean 和 bean 的关联关系
-
-使用@autowired 自动装配 Bean 自动装配具有兼容类型的单个 Bean 属性
-
-- 构造器 普通字段-即使是非 public 一切具有参数的方法都可以应用@Autowired 注解
-- 默认情况下 所有使用@autowired 注解的属性都是 需要被设置
-- 默认情况下 当 IOC 容器里存在多个类型加农的 Bean 时 通过类型的自动装配 将无法工作 此时可以在
-
-SDK 关于捕获错误的需求列表
-
-- 提供’面包屑‘记录当前错误发生之前用户行为，将当前 error 和之前的用户行为上报
-
-- 面包屑提供自定义错误日志 addBreadcrumb
-  - message 描述信息的字符串
-  - data 数据源
-  - category 类别
-  - level 级别
-    - fatal
-    - error
-    - warning
-    - info
-
-前端错误数据采集
-
-1. 资源加载错误
-2. js 执行错误
-3. promise 错误
-
-4. 通过 addEventListener("error",callback,true) 在捕获阶段捕捉资源加载失败错误
-5. 通过 winsow.error 捕获 js
-6. addEventListerer("unhandledrejection",callback) 捕获 promise 错误
+创建全局模块，全局模块不需要在注入到该模块，就能使用该模块导出的服务。 //TODO://不明白
+创建动态模块，动态模块可以创建可定制的模块，动态做依赖注入关系。

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
-import { CatsModule } from './cats/cats.module';
+import { CatsModule } from './cat/cats.module';
 import { PhotoModule } from './photo/photo.module';
 
 @Module({

@@ -1,24 +1,35 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as Joi from '@hapi/joi';
+import { Injectable, Inject } from '@nestjs/common';
 import { isAbsolute, resolve, dirname } from 'path';
-// 缺少环境变量的名称和类型（无智能感知）
-// 缺少提供对 .env 文件的验证
-// env文件将布尔值/作为string ('true'),提供，因此每次都必须将它们转换为 boolean
+import { get } from 'lodash';
+// // 缺少环境变量的名称和类型（无智能感知）
+// // 缺少提供对 .env 文件的验证
+// // env文件将布尔值/作为string ('true'),提供，因此每次都必须将它们转换为 boolean
 import { EnvConfig, ConfigOptions } from './config.interface';
+import { CONFIG_OPTIONS } from './constants';
 
-export class ConfigService<T = EnvConfig> {
-  private readonly envConfig: T;
+@Injectable()
+export class ConfigService {
+  private static envConfig: EnvConfig;
   // 文件路径
   private rootPath: string;
-  constructor(filePath: string) {
-    let config: ConfigOptions;
-    if (this.isFileExist(filePath)) {
-      config = dotenv.parse(fs.readFileSync(filePath));
-    }
-    this.envConfig = this.validateInpt(config);
-  }
 
+  constructor(@Inject(CONFIG_OPTIONS) private options) {
+    let config: ConfigOptions;
+    const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
+    const envFile: string = resolve(
+      __dirname,
+      '../../',
+      options.folder,
+      filePath,
+    );
+    if (this.isFileExist(envFile)) {
+      config = dotenv.parse(fs.readFileSync(envFile));
+    }
+    ConfigService.envConfig = this.validateInpt(config);
+  }
   /**
    *  检测文件是否存在
    * @param startPath
@@ -46,18 +57,29 @@ export class ConfigService<T = EnvConfig> {
     }
   }
   /**
-   *校验env 文件
+   * 校验env 文件
    * @private
    * @memberof ConfigService
    */
-  private validateInpt(envConfig: ConfigOptions): T {
+  private validateInpt(envConfig: ConfigOptions): EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       NODE_ENV: Joi.string()
         .valid('development', 'production', 'test', 'provision')
         .default('development'),
-      PORT: Joi.number().default(3000),
-      DATABASE_USER: Joi.string().required(),
-      DATABASE_PASSWORD: Joi.string().required(),
+      SYSTEM_SECRET: Joi.string().default('ism2017'),
+      MYSQL_PORT: Joi.number().required(),
+      MYSQL_HOST: Joi.string().required(),
+      MYSQL_USERNAME: Joi.string().required(),
+      MYSQL_PASSWORD: Joi.string().required(),
+      MYSQL_DATABASE: Joi.string().required(),
+      MYSQL_SYNCHRONIZE: Joi.bool().required(),
+      REDIS_HOST: Joi.string().required(),
+      REDIS_PORT: Joi.string().required(),
+      REDIS_DB: Joi.string().required(),
+      MAIL_HOST: Joi.string().required(),
+      MAIL_PORT: Joi.number().required(),
+      MAIL_USER: Joi.string().required(),
+      MAIL_PASS: Joi.string().required(),
       // API_AUTH_ENABLED: Joi.boolean().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
@@ -77,12 +99,24 @@ export class ConfigService<T = EnvConfig> {
     return resolve(rootPath, dir);
   }
   /**
+   * 获取问价配置
+   * @param key
+   * @param defaultVal
+   */
+  static get(key: string | string[], defaultValue?: any): string | number {
+    const configValue = get(ConfigService.envConfig, key);
+    if (configValue === undefined) {
+      return defaultValue;
+    }
+    return configValue;
+  }
+  /**
    * 获取配置
    * @param key
    * @param defaultVal
    */
   get(key: string, defaultVal?: any): string {
-    return process.env[key] || this.envConfig[key] || defaultVal;
+    return process.env[key] || ConfigService.envConfig[key] || defaultVal;
   }
   /**
    * 获取系统配置
@@ -94,20 +128,7 @@ export class ConfigService<T = EnvConfig> {
       return obj;
     }, {});
   }
-  /**
-   * 获取数字
-   * @param key
-   */
-  getNumber(key: string): number {
-    return Number(this.get(key));
-  }
-  /**
-   * 获取布尔
-   * @param key
-   */
-  getBoolean(key: string): boolean {
-    return Boolean(this.get(key));
-  }
+
   /**
    * 获取字典对象和数组
    * @param key
@@ -126,7 +147,6 @@ export class ConfigService<T = EnvConfig> {
   has(key: string): boolean {
     return this.get(key) !== undefined;
   }
-
   /** 开发模式 */
   get isDevelopment(): boolean {
     return this.get('NODE_ENV') === 'development';

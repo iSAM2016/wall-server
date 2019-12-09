@@ -28,7 +28,14 @@
     "@nestjs/typeorm": "^6.2.0",
     "@nestjs/websockets": "^6.10.8",
     "@sentry/browser": "^5.9.1",
+    "connect-redis": "^4.0.3",
+    "cookie-parser": "^1.4.4",
+    "csurf": "^1.10.0",
+    "nodemailer": "^6.3.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "dotenv": "^8.2.0",
+    "express-session": "^1.17.0",
+    "lodash": "^4.17.15",
     "mysql": "^2.17.1",
     "raven-js": "^3.27.2",
     "reflect-metadata": "^0.1.13",
@@ -47,6 +54,9 @@
     "@types/node": "^12.7.5",
     "@types/socket.io": "^2.1.4",
     "@types/supertest": "^2.0.8",
+    "@types/nodemailer": "^4.6.2",
+    "bcryptjs": "^2.4.3",
+    "futility": "^1.1.2",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "supertest": "^4.0.2",
@@ -55,7 +65,8 @@
     "ts-node": "^8.4.1",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "utility": "^1.16.3"
   },
   "jest": {
     "moduleFileExtensions": [
