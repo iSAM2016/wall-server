@@ -4,7 +4,6 @@ import { ConfigModule } from './configure/config.module';
 import { ConfigService } from './configure/config.service';
 import { MailerModule } from './mailer/mailer.module';
 import { SMTPTransportOptions } from './mailer/mailer.interface';
-import { async } from 'rxjs/internal/scheduler/async';
 // import { ConfigValidate } from './config.validate';
 /**
  * 核心模块，只会注入到AppModule，不会注入到feature和shared模块里面，
@@ -13,18 +12,6 @@ import { async } from 'rxjs/internal/scheduler/async';
 @Module({
   imports: [
     ConfigModule.register({ folder: '../../config' }),
-
-    // TODO: 使用了useClass
-    // TypeOrmModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   inject: [
-    //     // 宣告哪个provider或是service需要被注入
-    //     ConfigService,
-    //   ],
-    //   // 指定用TypeOrmConfigService，作为载入TypeOrmOptions
-    //   // Options就是数据库连接信息等
-    //   useClass: TypeOrmConfigService,
-    // }),
 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
