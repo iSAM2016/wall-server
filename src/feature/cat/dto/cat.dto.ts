@@ -1,8 +1,31 @@
 // 相当于java 中的pojo
 // mapper 是一个接口文件
-export abstract class CreateCatDto {
+import {
+  validate,
+  validateOrReject,
+  Contains,
+  IsInt,
+  Length,
+  IsEmail,
+  IsFQDN,
+  IsDate,
+  IsString,
+  Min,
+  Max,
+} from 'class-validator';
+
+import { ApiProperty } from '@nestjs/swagger';
+export class CreateCatDto {
+  @ApiProperty({})
+  @IsString()
   readonly name: string;
+
+  @ApiProperty({ type: Number })
+  @IsInt()
   readonly age: number;
+
+  @ApiProperty()
+  @IsString()
   readonly breed: string;
 }
 

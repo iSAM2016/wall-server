@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { CreateCatDto } from './dto/cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './cat.interface';
+import { ValidationPipe } from 'src/core/pipes/validation.pipe';
 
 @Controller('cats')
 export class CatsController {
@@ -14,7 +15,7 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  async create(@Body() createCatDto: CreateCatDto) {
+  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
 
