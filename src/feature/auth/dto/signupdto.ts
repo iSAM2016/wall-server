@@ -16,8 +16,9 @@ import {
   Min,
   Max,
 } from 'class-validator';
+import { User } from 'src/entity';
 
-export class SignUpDto {
+export class SignUpDto extends User {
   @IsNotEmpty({
     message: '邮箱不能为空',
   })

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { verify } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 import { Request, Response } from 'express';
-import { User } from 'src/feature/auth/entity';
+import { User } from 'src/entity';
 import { ConfigService } from '../configure/config.service';
 
 @Injectable()

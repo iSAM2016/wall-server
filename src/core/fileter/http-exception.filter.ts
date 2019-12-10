@@ -16,36 +16,47 @@ interface ResponseIterface {
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
+  private response: Response;
+  private request: Request;
+  private status: number;
+  private errorResponse;
+
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-    const response: Response = ctx.getResponse<Response>();
-    const request: Request = ctx.getRequest<Request>();
-    const status: number = exception.getStatus();
-    const errorResponse = exception.getResponse();
-    const responseMessage: ResponseIterface = {
-      statusCode: status,
+    this.status = exception.getStatus();
+    this.response = ctx.getResponse<Response>();
+    this.request = ctx.getRequest<Request>();
+    this.errorResponse = exception.getResponse();
+    this.response.status(this.status).json(this.getMregeresponseMessage());
+  }
+  /**
+   * 得到返回信息
+   * @param status
+   */
+  getMregeresponseMessage(): ResponseIterface {
+    let responseMessage: ResponseIterface = {
+      statusCode: this.status,
       timestamp: new Date().getTime().toString(),
     };
-    switch (status) {
+    switch (this.status) {
       case HttpStatus.UNAUTHORIZED: // 如果错误码 401 就需要退出了
-        response.status(status).json({
+        return {
           ...{
             message: '非法用户',
             path: '/login',
           },
           ...responseMessage,
-        });
+        };
         // response.redirect('/login');
         break;
-
       default:
-        response.status(status).json({
+        return {
           ...{
-            message: (errorResponse as any).message,
-            path: request.url,
+            message: (this.errorResponse as any).message,
+            path: this.request.url,
           },
           ...responseMessage,
-        });
+        };
         break;
     }
   }

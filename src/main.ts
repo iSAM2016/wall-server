@@ -6,6 +6,7 @@ import { NestFactory } from '@nestjs/core';
 import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
 import * as cookieParser from 'cookie-parser';
+import { WsAdapter } from '@nestjs/platform-ws';
 import { ConfigService } from './core/configure/config.service';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { HttpExceptionFilter, RolesGuard } from './core/';
@@ -25,7 +26,7 @@ async function bootstrap() {
       store: new RedisStore({
         client: redis.createClient({
           // 本地存储session（文本文件，也可以选择其他store，比如redis的）
-          host: ConfigService.get('REDIS_HOST'),
+          host: String(ConfigService.get('REDIS_HOST')),
           port: +ConfigService.get('REDIS_PORT') || 6379,
           password: '' || undefined,
           db: ConfigService.get('REDIS_DB'),
@@ -38,6 +39,8 @@ async function bootstrap() {
       },
     }),
   );
+  // ws
+  app.useWebSocketAdapter(new WsAdapter(app));
   // 注册cookies中间件
   app.use(cookieParser(secret));
 

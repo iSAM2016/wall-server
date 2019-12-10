@@ -1,6 +1,6 @@
 import { Entity, JoinColumn, ManyToOne } from 'typeorm';
 
-import { Todo, User } from './';
+import { Todo, User } from '.';
 
 @Entity()
 export class Favorite {

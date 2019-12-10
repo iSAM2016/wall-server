@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { CoreModule } from './core/core.module';
 import { FeatureModule } from './feature/feature.module';
 import { LoggerMiddleware } from './core/middleware/logger.middleware';
+import { ApplicationGateway } from './app.gateway';
 @Module({
   //导入此模块中所需的提供程序的模块列表。
   // SharedModule 共享模块（注册服务，mongodb，redis等）模块不需要引入 shared 模块，shared 模式给业务模块引用的，
@@ -21,7 +22,8 @@ import { LoggerMiddleware } from './core/middleware/logger.middleware';
     // 由Nest注入器实例化的服务，可以在这个模块之间共享。
     AppService,
   ],
-  exports: [], //导出这个模块可以其他模块享用providers里的服务。
+  components: [ApplicationGateway],
+  exports: [ApplicationGateway], //导出这个模块可以其他模块享用providers里的服务。
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

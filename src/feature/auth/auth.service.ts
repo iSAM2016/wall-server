@@ -5,7 +5,7 @@ import { SignUpDto, SignInDto } from './dto';
 import { MailService } from 'src/shared/services';
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash, hashSync } from 'bcryptjs';
-import { Register, Role, User, Profile } from './entity';
+import { Register, Role, User, Profile } from '../../entity';
 import { ConfigService } from '../../core/configure/config.service';
 import {
   Logger,

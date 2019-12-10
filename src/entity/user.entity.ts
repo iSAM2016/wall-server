@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Favorite, Profile, Role, Todo } from './';
+import { Favorite, Profile, Role, Todo } from '.';
 
 @Entity()
 export class User {

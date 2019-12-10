@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { PhotoService } from './photo.service';
-import { Photo } from './photo.entity';
+import { Photo } from '../../entity/photo.entity';
 
 @Controller('photo')
 export class PhotoController {

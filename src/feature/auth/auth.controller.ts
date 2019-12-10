@@ -15,7 +15,7 @@ import {
 import { compare } from 'bcryptjs';
 import { Request } from 'express';
 import { sign } from 'jsonwebtoken';
-import { Register, User } from './entity';
+import { Register, User } from '../../entity';
 import { ApiTags, ApiProperty } from '@nestjs/swagger';
 import { SignUpDto, SignInDto } from './dto';
 import { AuthService } from './auth.service';
