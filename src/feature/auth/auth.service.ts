@@ -1,6 +1,6 @@
 import * as utility from 'utility';
 import { Repository } from 'typeorm';
-import appConfig from '../../config/app';
+import appConfig from '../../../config/app';
 import { SignUpDto, SignInDto } from './dto';
 import { MailService } from 'src/shared/services';
 import { InjectRepository } from '@nestjs/typeorm';

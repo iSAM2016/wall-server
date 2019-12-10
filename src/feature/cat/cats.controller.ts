@@ -3,7 +3,15 @@ import { CreateCatDto } from './dto/cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './cat.interface';
 import { ValidationPipe } from 'src/core/pipes/validation.pipe';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('cats')
 @Controller('cats')
 export class CatsController {
   // providers 相当于bean
@@ -15,11 +23,18 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create cat' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
 
   @Get()
+  @ApiResponse({
+    status: 200,
+    description: 'The found record',
+    type: Cat,
+  })
   async findAll(): Promise<Cat[]> {
     return this.catsService.findAll();
   }

@@ -8,7 +8,7 @@ import {
 
 import * as utility from 'utility';
 import { Repository } from 'typeorm';
-import appConfig from '../../config/app';
+import appConfig from '../../../config/app';
 import { MailService } from 'src/shared/services';
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash, hashSync } from 'bcryptjs';
