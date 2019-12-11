@@ -4,8 +4,9 @@ import appConfig from '../../../config/app';
 import { SignUpDto, SignInDto } from './dto';
 import { MailService } from 'src/shared/services';
 import { InjectRepository } from '@nestjs/typeorm';
-import { genSalt, hash, hashSync } from 'bcryptjs';
+import { genSalt, hash, hashSync, compare } from 'bcryptjs';
 import { Register, Role, User, Profile } from '../../entity';
+import { sign } from 'jsonwebtoken';
 import { ConfigService } from '../../core/configure/config.service';
 import {
   Logger,
@@ -86,12 +87,30 @@ export class AuthService {
     }
   }
   // 登录
-  async signIn(body: SignInDto) {
+  async signIn(body: SignInDto): Promise<any> {
     const user: User = await this.userRepository.findOne({
       email: body.email,
       // relations: ['profile', 'role'],
     });
     if (!user) throw new BadRequestException('Email address does not exits');
-    return user;
+    const isCorrectPassword = await compare(body.password, user.password);
+    if (!isCorrectPassword) {
+      throw new BadRequestException('Password is not correct.');
+    }
+    const accessToken: string = await sign(
+      {
+        id: user.id,
+        email: user.email,
+      },
+      this.config.get('SYSTEM_SECRET'),
+      {
+        expiresIn: +this.config.get('MAXAGE_MS'),
+        issuer: 'API League Team',
+      },
+    );
+    return {
+      ...user,
+      accessToken,
+    };
   }
 }

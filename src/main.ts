@@ -17,6 +17,8 @@ async function bootstrap() {
   const secret = ConfigService.get('SYSTEM_SECRET');
   let RedisStore = connectRedis(session);
 
+  // 注册cookies中间件
+  app.use(cookieParser());
   //  注册session中间件
   app.use(
     session({
@@ -35,14 +37,13 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false, // 是否自动保存未初始化的会话，建议false
       cookie: {
-        maxAge: 24 * 3600 * 1000, // 秒
+        maxAge: +ConfigService.get('MAXAGE_MS'), // 毫秒
+        httpOnly: true,
       },
     }),
   );
   // ws
-  app.useWebSocketAdapter(new WsAdapter(app));
-  // 注册cookies中间件
-  app.use(cookieParser(secret));
+  // app.useWebSocketAdapter(new WsAdapter(app));
 
   // 防止跨站请求伪造
   // app.use(csurf({ cookie: true }));

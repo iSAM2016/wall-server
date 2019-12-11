@@ -12,9 +12,7 @@ import {
   Controller,
   BadRequestException,
 } from '@nestjs/common';
-import { compare } from 'bcryptjs';
-import { Request } from 'express';
-import { sign } from 'jsonwebtoken';
+import { Request, Response } from 'express';
 import { Register, User } from '../../entity';
 import { ApiTags, ApiProperty } from '@nestjs/swagger';
 import { SignUpDto, SignInDto } from './dto';
@@ -52,27 +50,18 @@ export class AuthController {
    */
   @ApiProperty()
   @Post('sign-in')
-  async signIn(@Body() body: SignInDto, @Req() req: Request) {
-    let user: User = await this.authService.signIn(body);
-    const isCorrectPassword = await compare(body.password, user.password);
-    if (!isCorrectPassword) {
-      throw new BadRequestException('Password is not correct.');
-    }
-    const accessToken = await sign(
-      {
-        id: user.id,
-        email: user.email,
-      },
-      this.config.get('SYSTEM_SECRET'),
-      {
-        expiresIn: '24 hours',
-        issuer: 'API League Team',
-      },
-    );
-    const response = (req.session.authUser = {
-      ...user,
-      accessToken,
+  async signIn(
+    @Body() body: SignInDto,
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
+    let cookieInfo: any = await this.authService.signIn(body);
+    const response = (req.session.authUser = cookieInfo);
+    res.cookie('authUser', cookieInfo, {
+      maxAge: +this.config.get('MAXAGE_MS'),
+      signed: true,
     });
+
     delete response.password;
     return response;
   }

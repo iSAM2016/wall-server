@@ -75,6 +75,7 @@ export class ConfigService {
       REDIS_DB: Joi.string().required(),
       MAIL_HOST: Joi.string().required(),
       MAIL_PORT: Joi.number().required(),
+      MAXAGE_MS: Joi.number().required(),
       MAIL_USER: Joi.string().required(),
       MAIL_PASS: Joi.string().required(),
 

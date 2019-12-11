@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req } from '@nestjs/common';
 import { CreateCatDto } from './dto/cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './cat.interface';
-import { ValidationPipe } from 'src/core/pipes/validation.pipe';
+import { Request } from 'express';
+import { ValidationPipe } from '../../core/pipes/validation.pipe';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -35,7 +36,8 @@ export class CatsController {
     description: 'The found record',
     type: Cat,
   })
-  async findAll(): Promise<Cat[]> {
+  async findAll(@Req() req: Request): Promise<Cat[]> {
+    console.log(req.cookies);
     return this.catsService.findAll();
   }
 }

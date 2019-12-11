@@ -80,6 +80,7 @@ export class RolesGuard implements CanActivate {
       token,
       ConfigService.get('SYSTEM_SECRET'),
     ).catch(e => {
+      console.log(e.message);
       if (this.required) throw new UnauthorizedException(e.message);
     });
 
