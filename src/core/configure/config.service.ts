@@ -63,10 +63,7 @@ export class ConfigService {
    */
   private validateInpt(envConfig: ConfigOptions): EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
-      NODE_ENV: Joi.string()
-        .valid('development', 'production', 'test', 'provision')
-        .default('development'),
-      SYSTEM_SECRET: Joi.string().default('ism2017'),
+      SYSTEM_SECRET: Joi.string().required(),
       MYSQL_PORT: Joi.number().required(),
       MYSQL_HOST: Joi.string().required(),
       MYSQL_USERNAME: Joi.string().required(),
@@ -80,6 +77,7 @@ export class ConfigService {
       MAIL_PORT: Joi.number().required(),
       MAIL_USER: Joi.string().required(),
       MAIL_PASS: Joi.string().required(),
+
       // API_AUTH_ENABLED: Joi.boolean().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
