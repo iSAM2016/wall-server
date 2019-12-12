@@ -42,7 +42,6 @@ async function bootstrap() {
       },
     }),
   );
-  console.log(process.env);
   // ws
   // app.useWebSocketAdapter(new WsAdapter(app));
 

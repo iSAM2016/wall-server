@@ -6,12 +6,14 @@ import { AuthController } from './auth.controller';
 import { Register, Role, Profile, User } from '../../entity';
 // 引入共享模块 访问user数据库
 import { SharedModule } from 'src/shared/shared.module';
+import { AuthGateway } from './auth.gateway';
+
 @Module({
   imports: [
     SharedModule,
     TypeOrmModule.forFeature([Register, Role, Profile, User]),
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGateway],
   controllers: [AuthController],
 })
 export class AuthModule {}

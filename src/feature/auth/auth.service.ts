@@ -1,3 +1,10 @@
+import {
+  Logger,
+  Injectable,
+  HttpStatus,
+  InternalServerErrorException,
+  BadRequestException,
+} from '@nestjs/common';
 import * as utility from 'utility';
 import { Repository } from 'typeorm';
 import appConfig from '../../../config/app';
@@ -8,14 +15,7 @@ import { genSalt, hash, hashSync, compare } from 'bcryptjs';
 import { Register, Role, User, Profile } from '../../entity';
 import { sign } from 'jsonwebtoken';
 import { ConfigService } from '../../core/configure/config.service';
-import {
-  Logger,
-  Injectable,
-  UnauthorizedException,
-  InternalServerErrorException,
-  BadRequestException,
-} from '@nestjs/common';
-
+import { HttpException } from '@nestjs/common/exceptions/http.exception';
 function encryptMD5(key: string): string {
   return utility.md5(key);
 }
@@ -64,12 +64,23 @@ export class AuthService {
   }
   // 注册
   async signUP(body: SignUpDto) {
-    const userRole = await this.roleRepository.findOne({ name: 'user' });
+    const { email, firstName } = body;
+    const userRole = await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.username = :username', { firstName })
+      .orWhere('user.email = :email', { email });
+    if (userRole) {
+      const errors = { username: 'Username and email must be unique.' };
+      throw new HttpException(
+        { message: 'Input data validation failed', errors },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
 
     const user = new User();
     user.email = body.email;
     user.password = await genSalt().then(s => hash(body.password, s));
-    user.role = userRole;
+    // user.role = userRole;
 
     const profile = new Profile();
     profile.firstName = body.firstName;
