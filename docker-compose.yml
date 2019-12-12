@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  # cli:
+  #   image: nestjs/cli
+  #   volumes:
+  #       - ./:/workspace
+  #   tty: true
+
+  nest:
+    image: node:${NODE_VERSION}
+    working_dir: /home/node/app
+    command: npm config set registry https://registry.npm.taobao.org
+    command: npm run start:dev
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - ${APP_PORT}:3000
+
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  redis:
+    image: redis:4
+    ports:
+      - 6379:6379
+    # volumes:
+    #   # 目录映射
+    #   - "${REDIS_DIR}/conf:/usr/local/etc/redis"
+    #   - "${REDIS_DIR}/data:/data"
+    command:
+      redis-server
