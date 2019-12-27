@@ -7,6 +7,6 @@ export class AppService {
     this.helloMessage = configService.get('MYSQL_SYNCHRONIZE');
   }
   getHello(): string {
-    return 'Hello Worls!';
+    return 'Hello Worlss!';
   }
 }

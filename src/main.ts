@@ -1,3 +1,4 @@
+import cors from 'cors';
 import { format } from 'path';
 import * as csurf from 'csurf';
 import * as redis from 'redis';
@@ -19,6 +20,15 @@ async function bootstrap() {
 
   // 注册cookies中间件
   app.use(cookieParser());
+
+  // // 支持跨域
+  // app.use(
+  //   cors({
+  //     origin: true,
+  //     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  //     credentials: true,
+  //   }),
+  // );
   //  注册session中间件
   app.use(
     session({
@@ -69,3 +79,8 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+
+//TODO: 不清楚
+// process.on('uncaughtException', function(err) {
+//   console.log('你好');
+// });

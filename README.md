@@ -148,7 +148,14 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
 
 ## docker-compose
 
-1. docker-compose 常用命令
+## todo
+
+//TODO:
+
+1. process 的具体用法
+2. 在 controller 总添加 trycatch
+
+3. docker-compose 常用命令
 
    docker-compose up [options][service...]
 

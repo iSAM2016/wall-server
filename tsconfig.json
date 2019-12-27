@@ -8,8 +8,18 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".", // 可以相对这个目录 import 文件
+    "paths": {
+      "@app/*": [
+        "src/*"
+      ],
+      "@entity/*": [
+        "src/entity/"
+      ]
+    }
+
+
   },
   "exclude": ["node_modules", "dist"]
 }
