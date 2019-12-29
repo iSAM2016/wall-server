@@ -11,6 +11,7 @@ export class Favorite {
   )
   @JoinColumn()
   user: User;
+
   @ManyToOne(
     type => Todo,
     todo => todo.favorites,
