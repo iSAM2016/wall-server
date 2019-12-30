@@ -7,6 +7,8 @@ import {
   Request,
   HttpStatus,
   Delete,
+  Query,
+  Param,
 } from '@nestjs/common';
 import { AddProjectItemDto, ProjectItemDto, ProjectItemListDto } from './dto';
 import { ProjectService } from './project.service';
@@ -15,7 +17,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiTags('project')
-@Controller('project')
+@Controller('/api/project')
 export class ProjectController {
   constructor(private readonly ProjectService: ProjectService) {}
 
@@ -70,12 +72,9 @@ export class ProjectController {
     });
   }
 
-  @Get('/itemlist')
-  async getItemList(
-    @Body() projectItemList: ProjectItemListDto,
-    @Request() req,
-    @Response() res,
-  ) {
+  @Get('/item/list')
+  async getItemList(@Query() projectItemList, @Request() req, @Response() res) {
+    console.log(projectItemList);
     let userId = req.userId;
     let result = await this.ProjectService.getProjectItemList(
       projectItemList,

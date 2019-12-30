@@ -14,7 +14,7 @@ export class MailerModule implements MailerModuleInterface {
    * 同步引导邮箱模块
    *
    */
-  static forRoot<T>(options: T): DynamicModule {
+  static forRoo<T>(options: T): DynamicModule {
     return {
       module: MailerModule,
       providers: [

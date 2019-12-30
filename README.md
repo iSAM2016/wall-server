@@ -154,8 +154,12 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
 
 1. process 的具体用法
 2. 在 controller 总添加 trycatch
+3. 基本实现思路
+   1. 错误监控，
+   2. 性能监控，
+   3. 数据监控 跑批任务
 
-3. docker-compose 常用命令
+4) docker-compose 常用命令
 
    docker-compose up [options][service...]
 

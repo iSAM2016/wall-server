@@ -32,7 +32,7 @@ export interface MailerModuleAsyncOptions<T>
 }
 
 // mailerModuler类的interface
-interface MailerConstructor {
+export interface MailerConstructor {
   new (): MailerModuleInterface;
   forRoot<T>(options?: MailerOptionsFactory<T>): DynamicModule;
   forRootAsync<T>(options?: MailerModuleAsyncOptions<T>): DynamicModule;
