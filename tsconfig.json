@@ -12,8 +12,8 @@
     "baseUrl": ".", // 可以相对这个目录 import 文件
     "paths": {
       "@app/entity": ["src/entity"],
-      "@commands/": ["src/commands"],
-      "@commands/utils": ["src/commands/utils"]
+      "@commands/": ["commands"],
+      "@commands/utils": ["commands/utils"]
     }
   },
   "exclude": ["node_modules", "dist"]

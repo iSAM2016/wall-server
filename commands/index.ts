@@ -2,10 +2,11 @@
  * @Author: isam2016
  * @Date: 2019-12-30 16:00:39
  * @Last Modified by: isam2016
- * @Last Modified time: 2019-12-30 16:55:28
+ * @Last Modified time: 2019-12-31 17:59:17
  */
 
 import * as ace from '@adonisjs/ace';
+// import configLoad from './utils/configLoad';
 
 const registedCommandList = [
   './demo', //  命令demo
@@ -52,12 +53,14 @@ const registedCommandList = [
   //   './commands/utils/testUC',
 ];
 
-console.log(require('./demo'));
 // register commands
 for (let command of registedCommandList) {
   ace.addCommand(require(command)['default']);
 }
 ace.onError(function(error, commandName) {
+  // Alert.sendMessage(WatchIdList.WATCH_UCID_LIST_DEFAULT, e.stack);
+  this.log('catch error');
+  // this.log(e.stack);
   console.log(`${commandName} reported ${error.message}`);
   // process.exit(1);//TODO: 是否退出
 });

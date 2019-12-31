@@ -41,11 +41,15 @@
     "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "log4js": "^6.1.0",
+    "md5": "^2.2.1",
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "nestjs-extensions": "^0.29.0",
     "nodemailer": "^6.3.1",
     "nodemailer-smtp-transport": "^2.7.4",
+    "os": "^0.1.1",
+    "query-string": "^6.9.0",
     "redis": "^2.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
@@ -53,6 +57,7 @@
     "socket.io-redis": "5.2.0",
     "swagger-ui-express": "^4.1.2",
     "typeorm": "^0.2.20",
+    "typescript-ioc": "^1.2.5",
     "ws": "7.2.0"
   },
   "devDependencies": {
