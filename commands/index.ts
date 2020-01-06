@@ -58,9 +58,6 @@ for (let command of registedCommandList) {
   ace.addCommand(require(command)['default']);
 }
 ace.onError(function(error, commandName) {
-  // Alert.sendMessage(WatchIdList.WATCH_UCID_LIST_DEFAULT, e.stack);
-  this.log('catch error');
-  // this.log(e.stack);
   console.log(`${commandName} reported ${error.message}`);
   // process.exit(1);//TODO: 是否退出
 });

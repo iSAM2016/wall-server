@@ -8,7 +8,7 @@ export interface CommondInterface {
 
 export interface CommonModuleInterface {
   log(); // 打印日志
-  handle(args, options);
+  execute(args: any, options: any): Promise<any>;
 }
 
 export interface EnvConfig {

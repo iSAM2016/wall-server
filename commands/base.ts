@@ -1,35 +1,36 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import Alert from './feature/alert';
 import Logger from './feature/logger';
 import { Command } from '@adonisjs/ace';
-import { CommondInterface } from './interface';
 import { DISPLAY_BY_MILLSECOND } from './config/date_format';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
-// import Alert from './feature/alert';
-// import WatchIdList from '~/src/configs/alarm';
+import ConfigService from './utils/configLoad';
 
 class Base extends Command {
   @Inject
   private logger: Logger;
+  @Inject
+  private alert: Alert;
+  @Inject
+  private config: ConfigService;
 
-  static get signature(): string {
-    return `
-     Parse:Base
-     {--onlyFlag:[必传]flag,只有true/false两个值}
-     {--logName=@value:[必传]日志文件名}
-     {--isTest?=@value:[可选]是否处于测试环境}
-     `;
-  }
-  static get description(): string {
-    return '解析nginx日志, Base';
+  async handle(args, options) {
+    await this.execute(args, options).catch(e => {
+      this.alert.sendMessage(
+        String(this.config.get('ALERT_WATCH_UCID_LIST')),
+        e.stack,
+      );
+      this.log('catch error');
+      this.log(e.stack);
+    });
   }
 
-  // async execute(args, options) {}
+  async execute(args, options) {}
   /**
    * logger-log
    */
   async log(...arg) {
-    console.log(arg);
     let message = '';
     arg.forEach(rawMessage => {
       if (_.isString(rawMessage) === false) {

@@ -22,24 +22,19 @@ class CommandDemo extends Base implements CommonModuleInterface {
     return '解析kafka日志, 分析pv';
   }
 
-  async handle(args, options) {
-    this.log('command start');
+  async execute(args, options) {
+    this.log('Command:Demo start');
+    // throw Error('testEror');
     let { user, name } = args;
     let { onlyFlag, logName, isTest } = options;
 
-    console.log(args);
+    // console.log(args);
     this.log('user =>', user);
     // this.log(`CommandDemo, name=> ${name}`);
     // this.log(`CommandDemo, onlyFlag=> ${onlyFlag}`);
     // this.log(`CommandDemo, logName=> ${logName}`);
     // this.log(`CommandDemo, isTest=> ${isTest}`);
-    // let i = 0
-    // while (1) {
-    //   i++
-    //   await sleep(1)
-    //   this.log(`第${i}条日志`)
-    // }
-    this.log('command finish');
+    this.log('Command:Demo finish');
   }
 }
 
