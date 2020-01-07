@@ -9,11 +9,11 @@ import ConfigService from './utils/configLoad';
 
 class Base extends Command {
   @Inject
-  private logger: Logger;
+  public logger: Logger;
   @Inject
-  private alert: Alert;
+  public alert: Alert;
   @Inject
-  private config: ConfigService;
+  public config: ConfigService;
 
   async handle(args, options) {
     await this.execute(args, options).catch(e => {
@@ -26,7 +26,7 @@ class Base extends Command {
     });
   }
 
-  async execute(args, options) {}
+  async execute(args, options): Promise<any> {}
   /**
    * logger-log
    */

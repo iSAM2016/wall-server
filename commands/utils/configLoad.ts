@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2019-12-31 12:23:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2019-12-31 12:37:57
+ * @Last Modified time: 2020-01-06 17:38:00
  */
 
 import * as fs from 'fs';
@@ -18,7 +18,6 @@ export default class ConfigService {
   private rootPath: string;
 
   constructor() {
-    console.log('配置文件加载');
     let config: ConfigOptions;
     const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const envFile: string = resolve(

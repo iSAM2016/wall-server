@@ -2,17 +2,89 @@
  * @Author: isam2016
  * @Date: 2019-12-30 16:00:39
  * @Last Modified by: isam2016
- * @Last Modified time: 2019-12-31 17:59:17
+ * @Last Modified time: 2020-01-07 14:24:14
  */
+
+import 'reflect-metadata';
 
 import * as ace from '@adonisjs/ace';
 // import configLoad from './utils/configLoad';
+
+@modifyClass('new Prop')
+class A {
+  @modifyProp type: string;
+  name: string;
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  @modifyMethod
+  say(@modifyParam word) {
+    // let str = Reflect.getMetadata(key, this);
+    // console.log(str);
+  }
+}
+
+// 在装饰类的装饰器上获得target(类)是类本身
+// 在装饰属性、方法、入参上获得的target的是类的原型target(属性、方法、入参) === target(类).prototype
+function modifyClass(name) {
+  return target => {
+    target.prototype.extra = name;
+  };
+}
+
+function modifyProp(target, propertyKey) {
+  // 修改属性
+  // console.log(target);
+  // console.log(propertyKey);
+  // console.log('99');
+  target[propertyKey] = 'modfiyed by decorator';
+}
+
+// 我们在 ts 版本的 vuex 装饰器中看到的 @state('key') key 等价于
+// function state (key) {
+//   return (target, propertyKey) => {
+//     target[propertyKey] = target.$store.state[key]
+//   }
+// }
+
+// 修饰方法
+// descriptor对象原来的值如下
+// {
+//   value: specifiedFunction,
+//   enumerable: false,
+//   configurable: true,
+//   writable: true
+// };
+function modifyMethod(target, propertyKey, descriptor) {
+  console.log(99);
+  Reflect.defineMetadata(propertyKey, 'Hello Reflect', target);
+  const fun = descriptor.value;
+  descriptor.value = function() {
+    console.log(this); // 运行时确定因此这里是的 this 指向实例的。如果这里是箭头函数，this则指向undefined
+    return fun.apply(this, arguments);
+  };
+}
+
+// 修饰入参
+// index 是这个参数的顺序
+function modifyParam(target, propertyKey, index) {
+  console.log(target);
+  console.log(propertyKey);
+  console.log(index);
+}
+let a = new A('isam217');
+
+console.log('a.name is');
+console.log(JSON.stringify(a));
+console.log(A);
 
 const registedCommandList = [
   './demo', //  命令demo
 
   // 解析日志
-  // './commands/parse/uv', //  解析uv
+  './commands/parse/uv', //  解析uv
   //   './commands/parse/time_on_site', // 解析用户停留时长
   //   './commands/parse/device', //  解析device
   //   './commands/parse/monitor', //  解析错误报警
@@ -54,14 +126,14 @@ const registedCommandList = [
 ];
 
 // register commands
-for (let command of registedCommandList) {
-  ace.addCommand(require(command)['default']);
-}
-ace.onError(function(error, commandName) {
-  console.log(`${commandName} reported ${error.message}`);
-  // process.exit(1);//TODO: 是否退出
-});
+// for (let command of registedCommandList) {
+//   ace.addCommand(require(command)['default']);
+// }
+// ace.onError(function(error, commandName) {
+//   console.log(`${commandName} reported ${error.message}`);
+//   // process.exit(1);//TODO: 是否退出
+// });
 
-// Boot ace to execute commands
-ace.wireUpWithCommander();
-ace.invoke();
+// // Boot ace to execute commands
+// ace.wireUpWithCommander();
+// ace.invoke();

@@ -32,14 +32,15 @@ export default class Alert {
     this.checkUcidList(rawUcidList);
     this.formatMessage(message);
     this.sendList.forEach(content => {
-      http.post(
-        String(this.config.get('ALERT_WXADDR')),
-        JSON.stringify({
-          app: 'wx', // via 平台fe
-          content: content, // 报警内容
-          user: this.ucidList.join('|'), // | 分隔
-        }),
-      );
+      // TODO: 需要promise
+      // http.post(
+      //   String(this.config.get('ALERT_WXADDR')),
+      //   JSON.stringify({
+      //     app: 'wx', // via 平台fe
+      //     content: content, // 报警内容
+      //     user: this.ucidList.join('|'), // | 分隔
+      //   }),
+      // );
     });
     return true;
   }

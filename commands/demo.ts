@@ -36,6 +36,7 @@ class CommandDemo extends Base implements CommonModuleInterface {
     // this.log(`CommandDemo, isTest=> ${isTest}`);
     this.log('Command:Demo finish');
   }
+  saveToDB() {}
 }
 
 export default CommandDemo;
