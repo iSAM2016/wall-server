@@ -28,7 +28,6 @@ export class AuthGatewayMiddleware {
         );
         // const user = await this.userRepository.findByEmail(decodedJWT.email);
         // if (!user) return next(new Error('User was not found.'));
-        console.log(909090);
         next();
       } catch (error) {
         next(error);

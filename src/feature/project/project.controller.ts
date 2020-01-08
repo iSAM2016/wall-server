@@ -74,7 +74,6 @@ export class ProjectController {
 
   @Get('/item/list')
   async getItemList(@Query() projectItemList, @Request() req, @Response() res) {
-    console.log(projectItemList);
     let userId = req.userId;
     let result = await this.ProjectService.getProjectItemList(
       projectItemList,

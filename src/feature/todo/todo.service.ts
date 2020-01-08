@@ -8,13 +8,13 @@ import {
 
 import * as utility from 'utility';
 import { Repository } from 'typeorm';
+import { Todo, User } from '../../entity';
 import appConfig from '../../../config/app';
-import { MailService } from 'src/shared/services';
 import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash, hashSync } from 'bcryptjs';
-import { ConfigService } from '../../core/configure/config.service';
+import { MailService } from '../../shared/services';
 import { CreateTodoDto } from './dto/createTodo.dto';
-import { Todo, User } from 'src/entity';
+import { ConfigService } from '../../core/configure/config.service';
 
 @Injectable()
 export class TodoService {

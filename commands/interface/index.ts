@@ -7,9 +7,8 @@ export interface CommondInterface {
 }
 
 export interface CommonModuleInterface {
-  log(); // 打印日志
-  saveToDB(); // 将日志文件存在数据库中
-  execute(args: any, options: any): Promise<any>;
+  projectMap: any;
+  handle(args: any, options: any): Promise<any>;
 }
 
 export interface EnvConfig {

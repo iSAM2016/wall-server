@@ -1,10 +1,12 @@
 import Base from './base';
 import { Command } from '@adonisjs/ace';
+import { Catcherror } from './annotation';
 import { CommonModuleInterface } from './interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 // import Util from '~/src/library/utils/modules/util'
 
 class CommandDemo extends Base implements CommonModuleInterface {
+  projectMap = new Map();
   static get signature() {
     return `
     Command:Demo
@@ -21,19 +23,17 @@ class CommandDemo extends Base implements CommonModuleInterface {
   static get description() {
     return '解析kafka日志, 分析pv';
   }
-
-  async execute(args, options) {
+  @Catcherror()
+  async handle(args, options) {
     this.log('Command:Demo start');
-    // throw Error('testEror');
+    throw Error('testEror');
     let { user, name } = args;
     let { onlyFlag, logName, isTest } = options;
-
-    // console.log(args);
     this.log('user =>', user);
-    // this.log(`CommandDemo, name=> ${name}`);
-    // this.log(`CommandDemo, onlyFlag=> ${onlyFlag}`);
-    // this.log(`CommandDemo, logName=> ${logName}`);
-    // this.log(`CommandDemo, isTest=> ${isTest}`);
+    this.log(`CommandDemo, name=> ${name}`);
+    this.log(`CommandDemo, onlyFlag=> ${onlyFlag}`);
+    this.log(`CommandDemo, logName=> ${logName}`);
+    this.log(`CommandDemo, isTest=> ${isTest}`);
     this.log('Command:Demo finish');
   }
   saveToDB() {}

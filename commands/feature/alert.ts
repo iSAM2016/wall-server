@@ -48,6 +48,7 @@ export default class Alert {
    * 整理ucid
    */
   private checkUcidList(rawUcidList) {
+    this.ucidList.length = 0;
     rawUcidList.forEach(rawUcid => {
       let ucid = rawUcid;
       if (ucid.length > 10) {
@@ -55,7 +56,6 @@ export default class Alert {
         ucid = parseInt(ucid.substr(1));
       }
       this.ucidList.push(ucid);
-      console.log(this.ucidList);
       //   this.ucidList = _.uniq(this.ucidList);TODO: errror
     });
   }

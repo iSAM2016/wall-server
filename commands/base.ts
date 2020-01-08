@@ -1,11 +1,13 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import Alert from './feature/alert';
+
 import Logger from './feature/logger';
 import { Command } from '@adonisjs/ace';
+import ConfigService from './utils/configLoad';
+import { CommonModuleInterface } from './interface';
 import { DISPLAY_BY_MILLSECOND } from './config/date_format';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
-import ConfigService from './utils/configLoad';
 
 class Base extends Command {
   @Inject
@@ -15,21 +17,9 @@ class Base extends Command {
   @Inject
   public config: ConfigService;
 
-  async handle(args, options) {
-    await this.execute(args, options).catch(e => {
-      this.alert.sendMessage(
-        String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        e.stack,
-      );
-      this.log('catch error');
-      this.log(e.stack);
-    });
-  }
-
-  async execute(args, options): Promise<any> {}
-  /**
-   * logger-log
-   */
+  // /**
+  //  * logger-log
+  //  */
   async log(...arg) {
     let message = '';
     arg.forEach(rawMessage => {
@@ -43,10 +33,10 @@ class Base extends Command {
     console.log(`[${triggerAt}]-[${this.constructor.name}] ` + message);
     this.logger.getLogger4Command(this.constructor.name).info(message);
   }
-  /**
-   *  commond-logger
-   * @returns  null
-   */
+  // /**
+  //  *  commond-logger
+  //  * @returns  null
+  //  */
   async warn(...arg) {
     let message = '';
     arg.forEach(rawMessage => {

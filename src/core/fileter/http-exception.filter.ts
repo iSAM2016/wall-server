@@ -28,7 +28,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     this.request = ctx.getRequest<Request>();
     this.errorResponse = exception.getResponse();
     this.response.status(this.status).json(this.getMregeresponseMessage());
-    console.log(this.status);
   }
   /**
    * 得到返回信息
