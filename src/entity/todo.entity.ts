@@ -30,17 +30,17 @@ export class Todo {
 
   @UpdateDateColumn() updatedDate: Date;
 
-  @OneToOne(
-    type => User,
-    user => user.todos,
-    { onDelete: 'SET NULL' },
-  )
-  @JoinColumn()
-  user: User;
+  // @OneToOne(
+  //   type => User,
+  //   user => user.todos,
+  //   { onDelete: 'SET NULL' },
+  // )
+  // @JoinColumn()
+  // user: User;
 
-  @OneToMany(
-    type => Favorite,
-    favorite => favorite.todo,
-  )
-  favorites: Favorite[];
+  // @OneToMany(
+  //   type => Favorite,
+  //   favorite => favorite.todo,
+  // )
+  // favorites: Favorite[];
 }

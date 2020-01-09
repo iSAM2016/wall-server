@@ -28,7 +28,7 @@ export class TodoService {
     const todo = new Todo();
     todo.title = body.title;
     todo.description = body.description;
-    todo.user = authUser;
+    // todo.user = authUser;
     await this.todoRepository.save(todo);
 
     // inform everyone

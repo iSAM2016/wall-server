@@ -1,18 +1,15 @@
 import * as utility from 'utility';
-import { Repository } from 'typeorm';
-import { UV } from './entity';
+import { Repository, createConnection } from 'typeorm';
+// import { UV } from '@entity';
 import * as moment from 'moment';
 import _ from 'lodash';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '../config/date_format';
-import { Inject } from 'typescript-ioc';
-
+import { User } from './entity/User.entity';
+import { getConnection } from '@commands/feature';
 function encryptMD5(key: string): string {
   return utility.md5(key);
 }
 
 export class UVService {
-  @Inject
-  private readonly uvRepository: Repository<UV>;
   constructor() {}
   /**
    * 获取指定小时内的uuid列表
@@ -21,10 +18,18 @@ export class UVService {
    * @param {*} visitAt
    * @return {Object}
    */
-  getExistUuidSetInHour = async (projectId, visitAt) => {
+  getExistUuidSetInHour = async () => {
     try {
-      const userExist = await this.uvRepository.count({ name: 12 });
+      let connection = await getConnection();
+      let UVRepository = connection.getRepository(User);
+      UVRepository.find({ id: 1 })
+        .then(post => console.log('Post has been saved: ', post))
+        .then(() => {
+          connection.close();
+        })
+        .catch(error => console.log('Cannot save. Error: ', error));
 
+      // const userExist = await this.uvRepository.count({ uuid: '12' });
       // let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
       // let tableName = getTableName(projectId, visitAt);
       // let rawRecordList = await Knex.select('uuid')
@@ -39,7 +44,9 @@ export class UVService {
       //   uuidSet.add(uuid);
       // }
       // return uuidSet;
+      return true;
     } catch (error) {
+      console.log('oooo');
       throw new Error(error);
     }
   };

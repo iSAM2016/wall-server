@@ -20,6 +20,4 @@ function getLocalIpList() {
   return localIpList;
 }
 
-export default {
-  getLocalIpList,
-};
+export { getLocalIpList };

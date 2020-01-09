@@ -12,7 +12,7 @@ import * as Joi from '@hapi/joi';
 import * as dotenv from 'dotenv';
 import { EnvConfig, ConfigOptions } from '../interface';
 
-export default class ConfigService {
+export class ConfigService {
   private static envConfig: EnvConfig;
   // 文件路径
   private rootPath: string;

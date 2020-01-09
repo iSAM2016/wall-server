@@ -1,12 +1,10 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import Alert from './feature/alert';
-
-import Logger from './feature/logger';
+import { Alert, Logger } from '@commands/feature';
 import { Command } from '@adonisjs/ace';
-import ConfigService from './utils/configLoad';
+import { ConfigService } from '@commands/service';
 import { CommonModuleInterface } from './interface';
-import { DISPLAY_BY_MILLSECOND } from './config/date_format';
+import { DISPLAY_BY_MILLSECOND } from '@commands/config';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 
 class Base extends Command {

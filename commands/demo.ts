@@ -1,7 +1,7 @@
 import Base from './base';
 import { Command } from '@adonisjs/ace';
-import { Catcherror } from './annotation';
-import { CommonModuleInterface } from './interface';
+import { Catcherror } from '@annotation';
+import { CommonModuleInterface } from '@commands/interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 // import Util from '~/src/library/utils/modules/util'
 

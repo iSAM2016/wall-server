@@ -10,14 +10,17 @@
 import _ from 'lodash';
 import * as moment from 'moment';
 import Base from '../../base';
-import { CommonModuleInterface } from '../../interface';
-import { Catcherror, ParseLog } from '../../annotation';
+import { CommonModuleInterface } from '@commands/interface';
+import { Catcherror, ParseLog } from '@annotation';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MINUTE,
-} from '../../config/date_format';
+} from '@commands/config';
+import { Inject } from 'typescript-ioc';
+import { UVService } from '@commands/service';
 
 class ParseUV extends Base implements CommonModuleInterface {
+  @Inject UVservice: UVService;
   // 统一按项目进行统计
   projectMap = new Map();
   static get signature() {
@@ -41,7 +44,7 @@ class ParseUV extends Base implements CommonModuleInterface {
     let totalRecordCount = this.getRecordCountInProjectMap(); // 日志总数
     let processRecordCount = 0;
     let successSaveCount = 0; // 成功的条数
-
+    this.UVservice.getExistUuidSetInHour();
     // this.projectMap.forEach(({ projectId, visitAtMap }) => {
     //   visitAtMap.forEach(async ({ visitAtHour, uvMap }) => {
     //     let visitAtInDb = moment(visitAtHour, DATABASE_BY_MINUTE).unix();

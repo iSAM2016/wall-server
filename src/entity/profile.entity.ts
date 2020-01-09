@@ -23,17 +23,17 @@ export class Profile {
 
   @UpdateDateColumn() updatedDate: Date;
 
-  @OneToOne(
-    type => User,
-    user => user.profile,
-    {
-      // TODO:op
-      onDelete: 'SET NULL',
-      //   cascadeAll: true,
-    },
-  )
-  @JoinColumn()
-  user: User;
+  // @OneToOne(
+  //   type => User,
+  //   user => user.profile,
+  //   {
+  //     // TODO:op
+  //     onDelete: 'SET NULL',
+  //     //   cascadeAll: true,
+  //   },
+  // )
+  // @JoinColumn()
+  // user: User;
 
   get fullName() {
     return `${this.firstName} ${this.lastName}`.trim();

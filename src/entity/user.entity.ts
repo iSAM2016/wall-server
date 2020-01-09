@@ -24,33 +24,33 @@ export class User {
 
   @UpdateDateColumn() updatedDate: Date;
 
-  @OneToOne(
-    type => Profile,
-    profile => profile.user,
-  )
-  profile: Profile;
+  // @OneToOne(
+  //   type => Profile,
+  //   profile => profile.user,
+  // )
+  // profile: Profile;
 
-  @OneToOne(
-    type => Role,
-    role => role.user,
-    {
-      onDelete: 'SET NULL',
-      //   cascadeInsert: true,
-      //   cascadeUpdate: true,
-    },
-  )
-  @JoinColumn()
-  role: Role;
+  // @OneToOne(
+  //   type => Role,
+  //   role => role.user,
+  //   {
+  //     onDelete: 'SET NULL',
+  //     //   cascadeInsert: true,
+  //     //   cascadeUpdate: true,
+  //   },
+  // )
+  // @JoinColumn()
+  // role: Role;
 
-  @OneToMany(
-    type => Todo,
-    todo => todo.user,
-  )
-  todos: Todo[];
+  // @OneToMany(
+  //   type => Todo,
+  //   todo => todo.user,
+  // )
+  // todos: Todo[];
 
-  @OneToMany(
-    type => Favorite,
-    favorite => favorite.user,
-  )
-  favorites: Favorite[];
+  // @OneToMany(
+  //   type => Favorite,
+  //   favorite => favorite.user,
+  // )
+  // favorites: Favorite[];
 }

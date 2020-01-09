@@ -85,7 +85,7 @@ export class AuthService {
     const profile = new Profile();
     profile.firstName = body.firstName;
     profile.lastName = body.lastName;
-    profile.user = user;
+    // profile.user = user;
     try {
       this.userRepository.save(user);
     } catch (error) {

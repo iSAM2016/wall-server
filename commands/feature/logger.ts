@@ -5,7 +5,7 @@ import _ from 'lodash';
 var path = require('path');
 let ABSOLUTE_LOG_PATH = path.resolve(__dirname, '../../../', 'log');
 
-export default class Looger {
+export class Logger {
   /**
    * getLogger会重新打开一个文件, 导致文件句柄打开过多, 系统报错退出, 因此需要人工做一层缓存
    */

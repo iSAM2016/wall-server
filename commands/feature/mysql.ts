@@ -1,38 +1,47 @@
-// import 'reflect-metadata';
-// import { createConnection } from 'typeorm';
-// import { User } from './entity/User';
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
+import { Inject } from 'typescript-ioc';
+import { ConfigService } from '@commands/service';
 
-// createConnection({
-//   type: 'mysql',
-//   host: '127.0.0.1',
-//   port: 3306,
-//   username: 'root',
-//   password: 'abc123456',
-//   database: 'nest',
-//   synchronize: true,
-//   logging: false,
-//   entities: ['src/entity/**/*.ts'],
-//   migrations: ['src/migration/**/*.ts'],
-//   subscribers: ['src/subscriber/**/*.ts'],
-//   cli: {
-//     entitiesDir: 'src/entity',
-//     migrationsDir: 'src/migration',
-//     subscribersDir: 'src/subscriber',
-//   },
-// })
-//   .then(async connection => {
-//     console.log('Inserting a new user into the database...');
-//     const user = new User();
-//     user.firstName = 'Timber';
-//     user.lastName = 'Saw';
-//     user.age = 25;
-//     await connection.manager.save(user);
-//     console.log('Saved a new user with id: ' + user.id);
+// export class Mysql {
+//   @Inject
+//   config: ConfigService;
+//   constructor() {}
+//   async connectMysql() {
+//     return await createConnection({
+//       type: 'mysql',
+//       host: String(this.config.get('MYSQL_HOST')),
+//       port: Number(this.config.get('MYSQL_PORT')),
+//       username: String(this.config.get('MYSQL_USERNAME')),
+//       password: String(this.config.get('MYSQL_PASSWORD')),
+//       database: String(this.config.get('MYSQL_DATABASE')),
+//       entities: ['dist/src/**/**.entity{.ts,.js}'],
+//       synchronize: Boolean(this.config.get('MYSQL_SYNCHRONIZE')),
+//     });
+//   }
 
-//     console.log('Loading users from the database...');
-//     const users = await connection.manager.find(User);
-//     console.log('Loaded users: ', users);
+//   async getConnection() {
+//     return await this.connectMysql();
+//   }
+// }
 
-//     console.log('Here you can setup and run express/koa/any other framework.');
-//   })
-//   .catch(error => console.log(error));
+export const getConnection = async () => {
+  return await createConnection({
+    type: 'mysql',
+    host: '127.0.0.1',
+    port: 3306,
+    username: 'root',
+    password: 'abc123456',
+    database: 'nest',
+    synchronize: true,
+    logging: false,
+    entities: ['dist/src/**/*.entity{.ts,.js}'],
+    migrations: ['src/migration/**/*.ts'],
+    subscribers: ['src/subscriber/**/*.ts'],
+    cli: {
+      entitiesDir: 'src/entity',
+      migrationsDir: 'src/migration',
+      subscribersDir: 'src/subscriber',
+    },
+  });
+};

@@ -11,8 +11,12 @@
     "incremental": true,
     "baseUrl": ".", // 可以相对这个目录 import 文件
     "paths": {
-      "@app/entity": ["src/entity"],
-      "@commands": ["commands/"],
+      "@entity": ["src/entity"],
+      "@commands/interface": ["commands/interface"],
+      "@commands/config": ["commands/config"],
+      "@commands/utils": ["commands/utils"],
+      "@commands/feature": ["commands/feature"],
+      "@commands/service": ["commands/service"],
       "@annotation": ["commands/annotation"]
     }
   },

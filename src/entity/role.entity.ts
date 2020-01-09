@@ -20,9 +20,9 @@ export class Role {
 
   @UpdateDateColumn() updatedDate: Date;
 
-  @OneToOne(
-    type => User,
-    user => user.role,
-  )
-  user: User;
+  // @OneToOne(
+  //   type => User,
+  //   user => user.role,
+  // )
+  // user: User;
 }

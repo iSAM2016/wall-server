@@ -1,11 +1,11 @@
 import * as md5 from 'md5';
 import _ from 'lodash';
 import http from '../feature/http';
-import NetworkUtil from '../utils/network';
-import ConfigService from '../utils/configLoad';
+import { getLocalIpList } from '@commands/utils';
+import { ConfigService } from '@commands/service';
 import { Inject } from 'typescript-ioc';
 
-export default class Alert {
+export class Alert {
   @Inject
   private config: ConfigService;
   private ucidList = [];
@@ -89,7 +89,7 @@ export default class Alert {
   }
 
   private getLocalIpStr(): string {
-    return NetworkUtil.getLocalIpList().join(',');
+    return getLocalIpList().join(',');
   }
 
   private getMessageId(message) {

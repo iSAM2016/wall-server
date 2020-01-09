@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateTodoDto } from './dto/createTodo.dto';
-import { User, Todo } from '@app/entity';
+import { User, Todo } from '@entity';
 import { TodoService } from './todo.service';
 
 export class TodoController {
