@@ -18,7 +18,7 @@ export class ConfigService {
   private rootPath: string;
 
   constructor() {
-    let config: ConfigOptions;
+    let config: ConfigOptions = {};
     const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const envFile: string = resolve(
       __dirname,

@@ -9,6 +9,7 @@ export interface CommondInterface {
 export interface CommonModuleInterface {
   projectMap: any;
   handle(args: any, options: any): Promise<any>;
+  readLogSaveToCache(record): boolean; // 将一段时间添加到缓存
 }
 
 export interface EnvConfig {

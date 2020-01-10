@@ -6,3 +6,4 @@ export * from './favorite.entity';
 export * from './register.entity';
 export * from './user.entity';
 export * from './projectItem.entity';
+export * from './uv.entity';

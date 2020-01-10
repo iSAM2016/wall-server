@@ -6,9 +6,9 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-import Base from './base';
+import Base from './base.entity';
 
-@Entity('project_item')
+@Entity('uv')
 export class UV extends Base {
   @PrimaryColumn()
   @PrimaryGeneratedColumn()

@@ -8,7 +8,6 @@ import * as fs from 'fs';
 import * as moment from 'moment';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '../config/date_format';
 import LKafka from '../feature/kafka';
-import { Inject } from 'typescript-ioc';
 const readLine = require('lei-stream').readLine;
 
 /**
@@ -78,7 +77,6 @@ let readLog = async (startAt, endAt, self) => {
         COMMAND_ARGUMENT_BY_MINUTE,
       )}的记录, log文件地址 => ${absoluteLogUri}`,
     );
-    console.log(absoluteLogUri);
     if (fs.existsSync(absoluteLogUri) === false) {
       self.log(`log文件不存在, 自动跳过 => ${absoluteLogUri}`);
       continue;
@@ -86,11 +84,12 @@ let readLog = async (startAt, endAt, self) => {
     // 按顺序读取日志文件
     await new Promise((resolve, reject) => {
       let onDataReceive = async (data, next) => {
-        try {
-          let record = JSON.parse(data); // 其他操作
-          next();
-        } catch (error) {
-          next();
+        if (self.isLegalRecord(data)) {
+          if (self.readLogSaveToCache(data)) {
+            next();
+          } else {
+            next();
+          }
         }
       };
       let onReadFinish = () => {
@@ -103,7 +102,11 @@ let readLog = async (startAt, endAt, self) => {
         autoNext: false,
         // 编码器，可以为函数或字符串（内置编码器：json，base64），默认null
         encoding: function(data) {
-          return JSON.parse(data);
+          try {
+            return JSON.parse(data);
+          } catch (error) {
+            self.log('解析文件错误' + error.message);
+          }
         },
       }).go(onDataReceive, onReadFinish);
     });
@@ -147,20 +150,17 @@ export const ParseLog = function() {
       await readLog(startAt, endAt, this);
       this.log('全部数据处理完毕, 存入数据库中');
 
-      // let {
-      //   totalRecordCount,
-      //   processRecordCount,
-      //   successSaveCount,
-      // } = await this.saveToDB();
-
-      let result = oldMethod.apply(this, arguments);
+      let {
+        totalRecordCount,
+        processRecordCount,
+        successSaveCount,
+      } = await oldMethod.apply(this, arguments);
       //   this.log(
       //     `${startAtMoment.format(COMMAND_ARGUMENT_BY_MINUTE) +
       //       ':00'}~${endAtMoment.format(COMMAND_ARGUMENT_BY_MINUTE) +
       //       ':59'}范围内日志录入完毕, 共记录数据${processRecordCount}/${totalRecordCount}条, 入库成功${successSaveCount}条`,
       //   );
       this.log(this.constructor.name + 'Parse:UV  finish');
-      return result;
     };
   };
 };

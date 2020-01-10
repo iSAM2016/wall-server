@@ -1,5 +1,5 @@
 ## ls
-
+//TODO: 需要注意
 1. FP
 2. nestjs 是 node 版本的 spring
 3. nestjs ioc 的实现原理
@@ -9,6 +9,8 @@
 7. 架构研究
 8. ssm 连接池
 9. 减少 nest 循环依赖注入深坑
+10. ts-ioc 元编程
+11. proxy
 
 ## 配置
 

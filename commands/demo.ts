@@ -3,7 +3,6 @@ import { Command } from '@adonisjs/ace';
 import { Catcherror } from '@annotation';
 import { CommonModuleInterface } from '@commands/interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
-// import Util from '~/src/library/utils/modules/util'
 
 class CommandDemo extends Base implements CommonModuleInterface {
   projectMap = new Map();
@@ -26,7 +25,7 @@ class CommandDemo extends Base implements CommonModuleInterface {
   @Catcherror()
   async handle(args, options) {
     this.log('Command:Demo start');
-    throw Error('testEror');
+    // throw Error('testEror');
     let { user, name } = args;
     let { onlyFlag, logName, isTest } = options;
     this.log('user =>', user);
@@ -36,7 +35,9 @@ class CommandDemo extends Base implements CommonModuleInterface {
     this.log(`CommandDemo, isTest=> ${isTest}`);
     this.log('Command:Demo finish');
   }
-  saveToDB() {}
+  readLogSaveToCache(): boolean {
+    return true;
+  }
 }
 
 export default CommandDemo;
