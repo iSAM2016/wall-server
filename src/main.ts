@@ -30,28 +30,28 @@ async function bootstrap() {
   //   }),
   // );
   //  注册session中间件
-  app.use(
-    session({
-      name: 'isam216',
-      secret: String(secret), // 用来对sessionid 相关的 cookie 进行签名
-      // 本地存储session（文本文件，也可以选择其他store，比如redis的
-      store: new RedisStore({
-        client: redis.createClient({
-          // 本地存储session（文本文件，也可以选择其他store，比如redis的）
-          host: String(ConfigService.get('REDIS_HOST')),
-          port: +ConfigService.get('REDIS_PORT') || 6379,
-          password: '' || undefined,
-          db: ConfigService.get('REDIS_DB'),
-        }),
-      }),
-      resave: false,
-      saveUninitialized: false, // 是否自动保存未初始化的会话，建议false
-      cookie: {
-        maxAge: +ConfigService.get('MAXAGE_MS'), // 毫秒
-        httpOnly: true,
-      },
-    }),
-  );
+  // app.use(
+  //   session({
+  //     name: 'isam216',
+  //     secret: String(secret), // 用来对sessionid 相关的 cookie 进行签名
+  //     // 本地存储session（文本文件，也可以选择其他store，比如redis的
+  //     store: new RedisStore({
+  //       client: redis.createClient({
+  //         // 本地存储session（文本文件，也可以选择其他store，比如redis的）
+  //         host: String(ConfigService.get('REDIS_HOST')),
+  //         port: +ConfigService.get('REDIS_PORT') || 6379,
+  //         password: '' || undefined,
+  //         db: ConfigService.get('REDIS_DB'),
+  //       }),
+  //     }),
+  //     resave: false,
+  //     saveUninitialized: false, // 是否自动保存未初始化的会话，建议false
+  //     cookie: {
+  //       maxAge: +ConfigService.get('MAXAGE_MS'), // 毫秒
+  //       httpOnly: true,
+  //     },
+  //   }),
+  // );
   // ws
   // app.useWebSocketAdapter(new WsAdapter(app));
 

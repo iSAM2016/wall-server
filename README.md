@@ -1,5 +1,5 @@
 ## ls
-//TODO: 需要注意
+//TODO: 需要注意  )u5eSjvozP6X
 1. FP
 2. nestjs 是 node 版本的 spring
 3. nestjs ioc 的实现原理

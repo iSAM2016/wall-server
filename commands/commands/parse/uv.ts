@@ -48,8 +48,6 @@ class ParseUV extends Base implements CommonModuleInterface {
       let successSaveCount = 0; // 成功的条数
       console.log(this.projectMap);
       this.projectMap.forEach((visitAtMap, projectId) => {
-        // console.log(visitAtMap);
-
         visitAtMap.forEach(async (uvMap, visitAtHour) => {
           let visitAtInDb = moment(visitAtHour, DATABASE_BY_MINUTE).unix();
           // console.log(projectId);
@@ -58,8 +56,7 @@ class ParseUV extends Base implements CommonModuleInterface {
             projectId,
             visitAtInDb,
           );
-          uvMap.forEach((uvRecord, uv) => {
-            console.log(uvRecord);
+          uvMap.forEach(async (uvRecord, uv) => {
             let {
               projectId,
               visitAt,
@@ -73,7 +70,7 @@ class ParseUV extends Base implements CommonModuleInterface {
             uuid = `${uuid}`; // 转成string
             if (existUuidSet.has(uuid) === false) {
               // 只有当uuid不存在时才插入
-              isSuccess = await this.UVservice.replaceUvRecord(
+              isSuccess = await this.uvService.replaceUvRecord(
                 //TODO:
                 projectId,
                 uuid,

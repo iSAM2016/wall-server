@@ -11,8 +11,10 @@ export class ProjectService {
     private readonly projectItemRepository: Repository<ProjectItem>,
   ) {}
 
-  async addProjectItem(projectItem: AddProjectItemDto): Promise<ProjectItem> {
-    return await this.projectItemRepository.save(projectItem);
+  async addProjectItem(
+    projectItemDto: AddProjectItemDto,
+  ): Promise<ProjectItem> {
+    return await this.projectItemRepository.save(projectItemDto);
   }
 
   async deleteProjectItem(projectItemDelete): Promise<ProjectItem> {

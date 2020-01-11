@@ -26,8 +26,8 @@ export class UV extends Base {
   @Column({ default: '' })
   city: string;
 
-  @Column('int')
-  visit_at_hour: number;
+  @Column()
+  visit_at_hour: string;
 
   @Column('int')
   pv_count: number;

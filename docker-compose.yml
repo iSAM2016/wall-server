@@ -2,31 +2,31 @@ version: '3'
 
 services:
   #   tty: true
-  nest:
-    env_file:
-      - ./config/development.env
-    image: node:${NODE_VERSION}
-    working_dir: /home/node/app
-    command: npm config set registry https://registry.npm.taobao.org
-    command: npm run start:dev
-    volumes:
-      - ./:/home/node/app
-    ports:
-      - ${APP_PORT}:3000
+  # nest:
+  #   env_file:
+  #     - ./config/development.env
+  #   image: node:${NODE_VERSION}
+  #   working_dir: /home/node/app
+  #   command: npm config set registry https://registry.npm.taobao.org
+  #   command: npm run start:dev
+  #   volumes:
+  #     - ./:/home/node/app
+  #   ports:
+  #     - ${APP_PORT}:3000
 
   mysql:
     env_file:
       - ./config/development.env
-    image: mysql:${MYSQL_VERSION}
+    image: mysql:5.7
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     ports:
-      - ${MYSQL_PORT}:3306
+      - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      # MYSQL_ROOT_PASSWORD: MYSQL_PASSWORD
+      MYSQL_DATABASE: nest
+      MYSQL_USER: root
+      MYSQL_PASSWORD: abc123456
 
   redis:
     image: redis:4
@@ -36,5 +36,4 @@ services:
     #   # 目录映射
     #   - "${REDIS_DIR}/conf:/usr/local/etc/redis"
     #   - "${REDIS_DIR}/data:/data"
-    command:
-      redis-server
+    command: redis-server

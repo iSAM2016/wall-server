@@ -65,23 +65,6 @@ class Base extends Command {
       );
     }
   }
-
-  async connectMysql() {
-    return await createConnection({
-      type: 'mysql',
-      host: String(this.config.get('MYSQL_HOST')),
-      port: Number(this.config.get('MYSQL_PORT')),
-      username: String(this.config.get('MYSQL_USERNAME')),
-      password: String(this.config.get('MYSQL_PASSWORD')),
-      database: String(this.config.get('MYSQL_DATABASE')),
-      entities: ['dist/src/**/**.entity{.ts,.js}'],
-      synchronize: Boolean(this.config.get('MYSQL_SYNCHRONIZE')),
-    });
-  }
-
-  async getConnection() {
-    return await this.connectMysql();
-  }
 }
 
 export default Base;
