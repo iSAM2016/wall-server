@@ -16,7 +16,7 @@
       "@commands/config": ["commands/config"],
       "@commands/utils": ["commands/utils"],
       "@commands/feature": ["commands/feature"],
-      "@commands/service": ["commands/service"],
+      "@commands/service": ["commands/commands/service"],
       "@annotation": ["commands/annotation"]
     }
   },

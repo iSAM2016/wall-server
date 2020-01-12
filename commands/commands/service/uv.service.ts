@@ -1,19 +1,10 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { UV } from '@entity';
-import BaseService from './base';
-import { Connection, Repository, createConnection } from 'typeorm';
+import BaseService from '../serviceBase';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-interface ConnectionInterface<T> {
-  connection: Connection;
-  repository: Repository<T>;
-}
 
 export class UVService extends BaseService {
-  async getRepository(): Promise<ConnectionInterface<UV>> {
-    let connection: Connection = await this.getConnection();
-    return { connection, repository: connection.getRepository(UV) };
-  }
   /**
    * 获取指定小时内的uuid列表
    * @param {*} projectId
@@ -21,13 +12,13 @@ export class UVService extends BaseService {
    * @param {*} visitAt
    * @return {Object}
    */
-  getExistUuidSetInHour = async (projectId, visitAt) => {
-    const { connection, repository } = await this.getRepository();
-    let UVRepository = connection.getRepository(UV);
 
+  getExistUuidSetInHour = async (projectId, visitAt) => {
+    const { connection, repository } = await this.getRepository(UV);
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     console.log(visitAtHour);
-    let rawRecordList = await UVRepository.createQueryBuilder()
+    let rawRecordList = await repository
+      .createQueryBuilder()
       .where({
         visit_at_hour: visitAtHour,
       })
@@ -70,7 +61,7 @@ export class UVService extends BaseService {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     // let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    const { connection, repository } = await this.getRepository();
+    const { connection, repository } = await this.getRepository(UV);
 
     // // 返回值是一个列表
     let oldRecordList = await repository

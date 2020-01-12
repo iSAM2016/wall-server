@@ -93,3 +93,98 @@ a.say('isam2016');
 //     }
 //   };
 // }
+
+function f() {
+  console.log('f(): evaluated');
+  return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+    let oldMethod = descriptor.value;
+    console.log('f');
+    descriptor.value = function(...arg) {
+      console.log('f start');
+      // console.log(JSON.stringify(oldMethod));
+      let value = oldMethod.apply(this, arguments);
+      console.log('f' + value);
+      console.log('f end');
+    };
+  };
+}
+
+function g() {
+  console.log('g(): evaluated');
+  return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+    let oldMethod = descriptor.value;
+    console.log('g');
+    descriptor.value = function(...arg) {
+      console.log('g start');
+      let value = oldMethod.apply(this, arguments);
+      console.log('g' + value);
+      console.log('g end');
+      return value + 'tom';
+    };
+  };
+}
+function d() {
+  console.log('d(): evaluated');
+  return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+    let oldMethod = descriptor.value;
+    console.log('d');
+    descriptor.value = function(...arg) {
+      console.log('d start');
+      let value = oldMethod.apply(this, arguments);
+      console.log('d' + value);
+      console.log('d end');
+      return value + 'd';
+    };
+  };
+}
+
+class C {
+  @f()
+  @g()
+  @d()
+  method() {
+    console.log(9);
+    return 'isam2026';
+  }
+}
+let c = new C();
+
+c.method();
+
+// function modifyProp(target, propertyKey) {
+//   // 修改属性
+//   // console.log(target);
+//   // console.log(propertyKey);
+//   // console.log('99');
+//   // target[propertyKey] = 'modfiyed by decorator';
+
+//   let logHandler = {};
+//   const propKey = `__${propertyKey}`;
+//   Object.defineProperty(target, propertyKey, {
+//     enumerable: true,
+//     get: async function() {
+//       // console.log(`${key} 被读取`);
+//       let config = new ConfigService();
+//       return await createConnection({
+//         type: 'mysql',
+//         name: 'commond',
+//         host: String(config.get('MYSQL_HOST')),
+//         port: Number(config.get('MYSQL_PORT')),
+//         username: String(config.get('MYSQL_USERNAME')),
+//         password: String(config.get('MYSQL_PASSWORD')),
+//         database: String(config.get('MYSQL_DATABASE')),
+//         entities: ['dist/src/**/**.entity{.ts,.js}'],
+//         synchronize: Boolean(config.get('MYSQL_SYNCHRONIZE')),
+//       });
+
+//       // return targets[key];
+//     },
+//     set: function(value) {
+//       console.log(`${propKey} 被设置为 ${value}`);
+//       // this[propKey] = value;
+//       // return true;
+//     },
+//   });
+
+//   // targetProxy[propertyKey] = 'propertyKey';
+// }

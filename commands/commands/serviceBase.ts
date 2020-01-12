@@ -1,9 +1,12 @@
 import { Command } from '@adonisjs/ace';
-import { createConnection } from 'typeorm';
 import { ConfigService } from '@commands/service';
+import { Connection, Repository, createConnection } from 'typeorm';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
-
-class BaseService extends Command {
+interface ConnectionInterface<T> {
+  connection: Connection;
+  repository: Repository<T>;
+}
+class BaseService {
   async connectMysql() {
     let config = new ConfigService();
     return await createConnection({
@@ -18,21 +21,10 @@ class BaseService extends Command {
       synchronize: Boolean(config.get('MYSQL_SYNCHRONIZE')),
     });
   }
-  // let connection: Connection = await createConnection({
-  //   type: 'mysql',
-  //   name: 'commond',
-  //   host: '127.0.0.1',
-  //   port: 3306,
-  //   username: 'root',
-  //   password: 'abc123456',
-  //   database: 'nest',
-  //   entities: ['dist/src/**/**.entity{.ts,.js}'],
-  //   synchronize: true,
-  // });
-
-  async getConnection() {
+  async getRepository(entity) {
     try {
-      return await this.connectMysql();
+      let connection: Connection = await this.connectMysql();
+      return { connection, repository: connection.getRepository(entity) };
     } catch (error) {
       console.log(error.message); //TODO: 没有log
     }

@@ -1,10 +1,12 @@
-import Base from './base';
+import Base from './commands/commandsBase';
 import { Command } from '@adonisjs/ace';
-import { Catcherror } from '@annotation';
 import { CommonModuleInterface } from '@commands/interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
+import moment = require('moment');
 
 class CommandDemo extends Base implements CommonModuleInterface {
+  startAtMoment: moment.Moment;
+  endAtMoment: moment.Moment;
   projectMap = new Map();
   static get signature() {
     return `
@@ -22,7 +24,6 @@ class CommandDemo extends Base implements CommonModuleInterface {
   static get description() {
     return '解析kafka日志, 分析pv';
   }
-  @Catcherror()
   async handle(args, options) {
     this.log('Command:Demo start');
     // throw Error('testEror');
@@ -36,6 +37,9 @@ class CommandDemo extends Base implements CommonModuleInterface {
     this.log('Command:Demo finish');
   }
   readLogSaveToCache(): boolean {
+    return true;
+  }
+  isLegalRecord(): boolean {
     return true;
   }
 }

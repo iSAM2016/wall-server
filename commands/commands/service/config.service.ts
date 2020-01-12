@@ -10,7 +10,7 @@ import { get } from 'lodash';
 import { resolve } from 'path';
 import * as Joi from '@hapi/joi';
 import * as dotenv from 'dotenv';
-import { EnvConfig, ConfigOptions } from '../interface';
+import { EnvConfig, ConfigOptions } from '../../interface';
 
 export class ConfigService {
   private static envConfig: EnvConfig;
@@ -22,12 +22,13 @@ export class ConfigService {
     const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const envFile: string = resolve(
       __dirname,
-      '../../../commands/config',
+      '../../../../commands/env',
       filePath,
     );
     if (this.isFileExist(envFile)) {
       config = dotenv.parse(fs.readFileSync(envFile));
     }
+
     ConfigService.envConfig = this.validateInpt(config);
   }
   /**
@@ -36,7 +37,7 @@ export class ConfigService {
    */
   private isFileExist(filePath: string): boolean {
     if (!fs.existsSync(filePath)) {
-      throw Error('文件不存在');
+      throw Error('配置文件' + filePath + '不存在');
     }
     return true;
   }
@@ -118,15 +119,3 @@ export class ConfigService {
     return this.get('NODE_ENV') === 'test';
   }
 }
-
-let configCacheMap = new Map();
-// function getConfig() {
-//   if (configCacheMap.has(loggerConfigJSON)) {
-//     return loggerCacheMap.get(loggerConfigJSON);
-//   } else {
-//     log4js.configure(loggerConfig);
-//     let logger = log4js.getLogger(loggerType);
-//     loggerCacheMap.set(loggerConfigJSON, logger);
-//     return logger;
-//   }
-// }

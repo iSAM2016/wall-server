@@ -1,4 +1,5 @@
 import { DotenvConfigOptions } from 'dotenv';
+import moment = require('moment');
 
 export interface CommondInterface {
   new (): CommonModuleInterface;
@@ -7,9 +8,12 @@ export interface CommondInterface {
 }
 
 export interface CommonModuleInterface {
+  startAtMoment: moment.Moment;
+  endAtMoment: moment.Moment;
   projectMap: any;
   handle(args: any, options: any): Promise<any>;
   readLogSaveToCache(record): boolean; // 将一段时间添加到缓存
+  isLegalRecord(): boolean;
 }
 
 export interface EnvConfig {
