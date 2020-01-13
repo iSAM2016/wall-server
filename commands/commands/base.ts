@@ -30,28 +30,16 @@ const mysqlConnection = async () => {
 };
 
 export const clearMysqlConnection = async () => {
-  try {
-    let connection = mysqlMap.get(MYSQLCONNECTION);
-    console.log(connection);
-    await connection.close();
-    mysqlMap.delete(MYSQLCONNECTION);
-    return false;
-  } catch (error) {
-    console.log(error.message);
-    return error.messge;
-  }
+  let connection = mysqlMap.get(MYSQLCONNECTION);
+  await connection.close();
+  mysqlMap.delete(MYSQLCONNECTION);
 };
 
-export const getMysqlConnection = async () => {
-  console.log(MYSQLCONNECTION + mysqlMap.has(MYSQLCONNECTION));
+export const getMysqlConnection = async (): Promise<Connection> => {
   if (!mysqlMap.has(MYSQLCONNECTION)) {
     let connection = await mysqlConnection();
-    // console.log(111111);
-
     mysqlMap.set(MYSQLCONNECTION, connection);
     return connection;
   }
-  //   console.log(8888888888);
-  let a = mysqlMap.get(MYSQLCONNECTION);
-  return a;
+  return mysqlMap.get(MYSQLCONNECTION);
 };

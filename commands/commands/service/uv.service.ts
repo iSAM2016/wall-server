@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { UV } from '@entity';
 import BaseService from '../serviceBase';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
+import { DATABASE_BY_HOUR } from '@commands/config';
 
 export class UVService extends BaseService {
   /**
@@ -14,7 +14,6 @@ export class UVService extends BaseService {
    */
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    console.log('k');
     const connection = await this.connectMysql();
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     console.log('v');
