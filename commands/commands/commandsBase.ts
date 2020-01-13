@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Command } from '@adonisjs/ace';
-import { Inject } from 'typescript-ioc';
+import { Inject, Singleton } from 'typescript-ioc';
 import { Alert, Logger } from '@commands/feature';
 import { ConfigService } from '@commands/service';
 import { DISPLAY_BY_MILLSECOND } from '@commands/config';

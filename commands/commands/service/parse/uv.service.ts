@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { UV } from '@entity';
-import BaseService from '../serviceBase';
+import BaseService from '../../serviceBase';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 
 export class UVService extends BaseService {

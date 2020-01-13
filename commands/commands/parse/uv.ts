@@ -37,13 +37,11 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
     return '[按小时] 解析kafka日志, 分析记录指定时间范围内的uv';
   }
 
-  // @Catcherror()
-  // @ParseLog() // 1.开始自动获取日志
+  // 1.开始自动获取日志
   @StartPase
   async handle(...arg) {
     try {
       console.log(arg);
-
       await this.readLog(
         this.startAtMoment,
         this.endAtMoment,
@@ -127,7 +125,6 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
   }
   /**
    *存储到数据库
-   *
    * @memberof ParseUV
    */
   @EndParse

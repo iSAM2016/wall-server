@@ -11,7 +11,7 @@ const registedCommandList = [
 
   // 解析日志
   './commands/parse/uv', //  解析uv
-  //   './commands/parse/time_on_site', // 解析用户停留时长
+  // './commands/parse/time_on_site', // 解析用户停留时长
   //   './commands/parse/device', //  解析device
   //   './commands/parse/monitor', //  解析错误报警
   //   './commands/parse/menu_click', //  解析菜单点击记录
