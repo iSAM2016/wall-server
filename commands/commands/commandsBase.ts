@@ -138,7 +138,7 @@ abstract class CommandsBase extends Command {
       });
       self.log('处理完毕');
     }
-    this.log('全部数据处理完毕, 存入数据库中');
+    this.log('全部数据处理完毕, 准备存入数据库中');
   };
 }
 

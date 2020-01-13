@@ -1,11 +1,10 @@
-import { Command } from '@adonisjs/ace';
-import { ConfigService } from '@commands/service';
 import { Connection, Repository, createConnection } from 'typeorm';
-import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 interface ConnectionInterface<T> {
   connection: Connection;
   repository: Repository<T>;
 }
+import { ConfigService } from '@commands/service';
+import { getMysqlConnection } from './base';
 class BaseService {
   async connectMysql() {
     let config = new ConfigService();
@@ -19,6 +18,10 @@ class BaseService {
       database: String(config.get('MYSQL_DATABASE')),
       entities: ['dist/src/**/**.entity{.ts,.js}'],
       synchronize: Boolean(config.get('MYSQL_SYNCHRONIZE')),
+      extra: {
+        connectionLimit: 1, // 连接池最大连接数量, 查阅资料 建议是  core number  * 2 + n
+      },
+      cache: false,
     });
   }
 }

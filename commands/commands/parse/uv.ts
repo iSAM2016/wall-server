@@ -9,7 +9,6 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
 import { EndParse, StartPase } from '@annotation';
 import { UVService } from 'commands/commands/service';
@@ -20,11 +19,15 @@ import {
 } from '@commands/config';
 
 class ParseUV extends CommandsBase implements CommonModuleInterface {
+  constructor() {
+    super();
+    this.uvService = new UVService();
+  }
   // 统一按项目进行统计
   projectMap = new Map();
   startAtMoment: moment.Moment;
   endAtMoment: moment.Moment;
-  @Inject uvService: UVService;
+  uvService: UVService;
   static get signature() {
     return `
      Parse:UV 
@@ -131,59 +134,59 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
    * @memberof ParseUV
    */
   @EndParse
-  saveTODB() {
+  async saveTODB() {
     /**
      * 3.将map数据同步到数据库中
      */
     let totalRecordCount = this.getRecordCountInProjectMap(); // 日志总数
     let processRecordCount = 0;
     let successSaveCount = 0; // 成功的条数
-    // console.log(this.projectMap);
-    this.projectMap.forEach((visitAtMap, projectId) => {
+    console.log(this.projectMap);
+    this.projectMap.forEach(async (visitAtMap, projectId) => {
       visitAtMap.forEach(async (uvMap, visitAtHour) => {
         let visitAtInDb = moment(visitAtHour, DATABASE_BY_MINUTE).unix();
-        // console.log(projectId);
-        // console.log(visitAtInDb);
+        console.log('projectId' + projectId);
         let existUuidSet = await this.uvService.getExistUuidSetInHour(
           projectId,
           visitAtInDb,
         );
-        uvMap.forEach(async (uvRecord, uv) => {
-          let {
-            projectId,
-            visitAt,
-            uuid,
-            country,
-            province,
-            city,
-            pvCount,
-          } = uvRecord;
-          let isSuccess = false;
-          uuid = `${uuid}`; // 转成string
-          if (existUuidSet.has(uuid) === false) {
-            // 只有当uuid不存在时才插入
-            isSuccess = await this.uvService.replaceUvRecord(
-              //TODO:
-              projectId,
-              uuid,
-              visitAt,
-              country,
-              province,
-              city,
-            );
-            // 插入完成后, 把uuid再补进去(意义不大, 只为了增强稳定性)
-            existUuidSet.add(uuid);
-          }
-          processRecordCount = processRecordCount + 1;
-          if (isSuccess) {
-            successSaveCount = successSaveCount + 1;
-          }
-          this.reportProcess(
-            processRecordCount,
-            successSaveCount,
-            totalRecordCount,
-          );
-        });
+        console.log('毒王');
+        // uvMap.forEach(async (uvRecord, uv) => {
+        //   let {
+        //     projectId,
+        //     visitAt,
+        //     uuid,
+        //     country,
+        //     province,
+        //     city,
+        //     pvCount,
+        //   } = uvRecord;
+        //   let isSuccess = false;
+        //   uuid = `${uuid}`; // 转成string
+        //   if (existUuidSet.has(uuid) === false) {
+        //     // 只有当uuid不存在时才插入
+        //     isSuccess = await this.uvService.replaceUvRecord(
+        //       //TODO:
+        //       projectId,
+        //       uuid,
+        //       visitAt,
+        //       country,
+        //       province,
+        //       city,
+        //     );
+        //     // 插入完成后, 把uuid再补进去(意义不大, 只为了增强稳定性)
+        //     existUuidSet.add(uuid);
+        //   }
+        //   processRecordCount = processRecordCount + 1;
+        //   if (isSuccess) {
+        //     successSaveCount = successSaveCount + 1;
+        //   }
+        //   this.reportProcess(
+        //     processRecordCount,
+        //     successSaveCount,
+        //     totalRecordCount,
+        //   );
+        // });
       });
     });
     return { totalRecordCount, processRecordCount, successSaveCount };

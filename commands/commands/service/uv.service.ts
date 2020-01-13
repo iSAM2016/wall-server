@@ -14,8 +14,10 @@ export class UVService extends BaseService {
    */
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
+    console.log('k');
     const connection = await this.connectMysql();
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
+    console.log('v');
     let rawRecordList = await connection
       .getRepository(UV)
       .createQueryBuilder()
@@ -34,7 +36,8 @@ export class UVService extends BaseService {
       let uuid = _.get(rawRecord, ['uuid'], '');
       uuidSet.add(uuid);
     });
-    await connection.close();
+    console.log(99);
+    // await connection.close();
     return uuidSet;
   };
   /**
@@ -97,7 +100,7 @@ export class UVService extends BaseService {
       let insertId = _.get(insertResult, [0], 0);
       isSuccess = insertId > 0;
     }
-    await connection.close();
+    // await connection.close();
     return isSuccess;
   };
 }
