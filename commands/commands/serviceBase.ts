@@ -21,14 +21,6 @@ class BaseService {
       synchronize: Boolean(config.get('MYSQL_SYNCHRONIZE')),
     });
   }
-  async getRepository(entity) {
-    try {
-      let connection: Connection = await this.connectMysql();
-      return { connection, repository: connection.getRepository(entity) };
-    } catch (error) {
-      console.log(error.message); //TODO: 没有log
-    }
-  }
 }
 
 export default BaseService;

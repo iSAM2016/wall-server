@@ -14,10 +14,10 @@ export class UVService extends BaseService {
    */
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    const { connection, repository } = await this.getRepository(UV);
+    const connection = await this.connectMysql();
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
-    console.log(visitAtHour);
-    let rawRecordList = await repository
+    let rawRecordList = await connection
+      .getRepository(UV)
       .createQueryBuilder()
       .where({
         visit_at_hour: visitAtHour,
@@ -35,7 +35,6 @@ export class UVService extends BaseService {
       uuidSet.add(uuid);
     });
     await connection.close();
-    console.log(999);
     return uuidSet;
   };
   /**
@@ -61,10 +60,10 @@ export class UVService extends BaseService {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     // let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    const { connection, repository } = await this.getRepository(UV);
-
+    const connection = await this.connectMysql();
     // // 返回值是一个列表
-    let oldRecordList = await repository
+    let repository = await connection.getRepository(UV);
+    let oldRecordList = repository
       .createQueryBuilder('uv')
       .where({ uuid })
       .andWhere('uv.visit_at_hour = :visitAtHour', { visitAtHour })
