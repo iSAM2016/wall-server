@@ -1,18 +1,22 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { Repository } from 'typeorm';
 import { DurationDistribution } from '@entity';
-import BaseService from '../../serviceBase';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
+import { InjectRepositorys } from '@annotation';
 
-export class DurationDistributionService extends BaseService {
+export class DurationDistributionService {
+  @InjectRepositorys(DurationDistribution)
+  private readonly durationDistributionRepository: Repository<
+    DurationDistribution
+  >;
+
   /**
    * 自动创建/替换总uv记录
    */
   replaceUvRecord = async (projectId, countAtTime, countType) => {
     // 返回值是一个列表
-    const connection = await this.connectMysql();
-    let oldRecordList = await connection
-      .getRepository(DurationDistribution)
+    let oldRecordList = await (await this.durationDistributionRepository)
       .createQueryBuilder()
       .where({ projectId })
       .andWhere('count_at_time = :countAtTime', countAtTime)
@@ -35,13 +39,11 @@ export class DurationDistributionService extends BaseService {
    */
   updateDuration = async (id, data) => {
     // 返回值是一个列表
-    const connection = await this.connectMysql();
-    let result = await connection
-      .getRepository(DurationDistribution)
-      .findOne({ id });
+    let result = await (await this.durationDistributionRepository).findOne({
+      id,
+    });
 
-    let updateResult = await connection
-      .getRepository(DurationDistribution)
+    let updateResult = await (await this.durationDistributionRepository)
       .save({ ...result, ...data })
       .catch(e => {
         return [];
@@ -56,9 +58,7 @@ export class DurationDistributionService extends BaseService {
    */
   async insertDuration(data) {
     // 返回值是一个列表
-    const connection = await this.connectMysql();
-    let result = await connection
-      .getRepository(DurationDistribution)
+    let result = await (await this.durationDistributionRepository)
       .save(data)
       .catch(e => {
         return {};

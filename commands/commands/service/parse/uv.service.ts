@@ -1,12 +1,11 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { UV } from '@entity';
-import BaseService from '../../serviceBase';
+import { Repository } from 'typeorm';
+import { InjectRepositorys } from '@annotation';
 import { DATABASE_BY_HOUR } from '@commands/config';
-export class UVService extends BaseService {
-  constructor() {
-    super();
-  }
+
+export class UVService {
   /**
    * 获取指定小时内的uuid列表
    * @param {*} projectId
@@ -14,18 +13,19 @@ export class UVService extends BaseService {
    * @param {*} visitAt
    * @return {Object}
    */
+  @InjectRepositorys(UV)
+  private readonly uvRepository: Repository<UV>;
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    const uvRepository = await this.getRepository(UV);
+    // const uvRepository = await this.getRepository(UV);
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     console.log('v');
-    let rawRecordList = await uvRepository
+    let rawRecordList = await (await this.uvRepository)
       .createQueryBuilder()
       .where({
         visit_at_hour: visitAtHour,
       })
       .getMany();
-
     // //  = await Knex.select('uuid')
     // //   .from(tableName)
     // //   .where('visit_at_hour', '=', visitAtHour)
@@ -62,9 +62,9 @@ export class UVService extends BaseService {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     // let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    const uvRepository = await this.getRepository(UV);
+    // const uvRepository = await this.getRepository(UV);
     // // 返回值是一个列表
-    let oldRecordList = uvRepository
+    let oldRecordList = await (await this.uvRepository)
       .createQueryBuilder('uv')
       .where({ uuid })
       .andWhere('uv.visit_at_hour = :visitAtHour', { visitAtHour })
@@ -86,13 +86,13 @@ export class UVService extends BaseService {
     console.log(id);
     let isSuccess = false;
     if (id > 0) {
-      let affectRows = await uvRepository.findOne({ id });
+      let affectRows = await (await this.uvRepository).findOne({ id });
 
-      await uvRepository.save(data);
+      await (await this.uvRepository).save(data);
       isSuccess = affectRows ? true : false;
     } else {
       data['create_time'] = updateAt;
-      let insertResult = await uvRepository.save(data).catch(e => {
+      let insertResult = await (await this.uvRepository).save(data).catch(e => {
         return [];
       });
       let insertId = _.get(insertResult, [0], 0);

@@ -1,7 +1,5 @@
-import { Command } from '@adonisjs/ace';
 import { ConfigService } from '@commands/service';
 import { Connection, Repository, createConnection } from 'typeorm';
-import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 interface ConnectionInterface<T> {
   connection: Connection;
   repository: Repository<T>;
@@ -35,7 +33,7 @@ export const clearMysqlConnection = async () => {
   mysqlMap.delete(MYSQLCONNECTION);
 };
 
-export const getMysqlConnection = async (): Promise<Connection> => {
+const getMysqlConnection = async (): Promise<Connection> => {
   if (!mysqlMap.has(MYSQLCONNECTION)) {
     let connection = await mysqlConnection();
     mysqlMap.set(MYSQLCONNECTION, connection);
@@ -43,3 +41,17 @@ export const getMysqlConnection = async (): Promise<Connection> => {
   }
   return mysqlMap.get(MYSQLCONNECTION);
 };
+
+export function InjectRepositorys(entity) {
+  return function(target, propertyKey) {
+    // 修改属性
+    Object.defineProperty(target, propertyKey, {
+      enumerable: true,
+      get: async function() {
+        let connection: Connection = await getMysqlConnection();
+        return connection.getRepository(entity);
+      },
+      set: function(value) {},
+    });
+  };
+}

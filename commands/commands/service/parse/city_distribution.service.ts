@@ -1,10 +1,13 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { CityDistribution } from '@entity';
-import BaseService from '../../serviceBase';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
+import { Repository } from 'typeorm';
+import { InjectRepositorys } from '@annotation';
 
-export class CityDistributionService extends BaseService {
+export class CityDistributionService {
+  @InjectRepositorys(CityDistribution)
+  private readonly cityDistributionRepository: Repository<CityDistribution>;
   /**
    * 插入城市分布记录, 返回插入id
    * @param {string} cityDistributeJson
@@ -14,9 +17,7 @@ export class CityDistributionService extends BaseService {
    */
   async insertCityDistributionRecord(cityDistributeJson) {
     let updateAt = moment().unix();
-    const connection = await this.connectMysql();
-    let insertResult = await connection
-      .getRepository(CityDistribution)
+    let insertResult = await (await this.cityDistributionRepository)
       .save({
         city_distribute_json: cityDistributeJson,
         create_time: updateAt,
@@ -37,14 +38,10 @@ export class CityDistributionService extends BaseService {
    * @return {boolean}
    */
   async updateCityDistributionRecord(id, cityDistributeJson): Promise<boolean> {
-    const connection = await this.connectMysql();
     let updateAt = moment().unix();
-    let result = await connection
-      .getRepository(CityDistribution)
-      .findOne({ id });
+    let result = await (await this.cityDistributionRepository).findOne({ id });
 
-    let affectRows = await connection
-      .getRepository(CityDistribution)
+    let affectRows = await (await this.cityDistributionRepository)
       .save({
         ...result,
         ...{

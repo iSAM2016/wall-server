@@ -1,1 +1,2 @@
-export * from './ParseLog';
+export * from './arseLog';
+export * from './typeOrm';
