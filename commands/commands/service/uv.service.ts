@@ -14,11 +14,10 @@ export class UVService extends BaseService {
    */
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    const connection = await this.connectMysql();
+    const uvRepository = await this.getRepository(UV);
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     console.log('v');
-    let rawRecordList = await connection
-      .getRepository(UV)
+    let rawRecordList = await uvRepository
       .createQueryBuilder()
       .where({
         visit_at_hour: visitAtHour,
@@ -62,10 +61,9 @@ export class UVService extends BaseService {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     // let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    const connection = await this.connectMysql();
+    const uvRepository = await this.getRepository(UV);
     // // 返回值是一个列表
-    let repository = await connection.getRepository(UV);
-    let oldRecordList = repository
+    let oldRecordList = uvRepository
       .createQueryBuilder('uv')
       .where({ uuid })
       .andWhere('uv.visit_at_hour = :visitAtHour', { visitAtHour })
@@ -87,13 +85,13 @@ export class UVService extends BaseService {
     console.log(id);
     let isSuccess = false;
     if (id > 0) {
-      let affectRows = await repository.findOne({ id });
+      let affectRows = await uvRepository.findOne({ id });
 
-      await repository.save(data);
+      await uvRepository.save(data);
       isSuccess = affectRows ? true : false;
     } else {
       data['create_time'] = updateAt;
-      let insertResult = await repository.save(data).catch(e => {
+      let insertResult = await uvRepository.save(data).catch(e => {
         return [];
       });
       let insertId = _.get(insertResult, [0], 0);
