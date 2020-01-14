@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2019-12-30 16:00:39
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-07 14:24:14
+ * @Last Modified time: 2020-01-14 17:07:17
  */
 import * as ace from '@adonisjs/ace';
 
@@ -39,7 +39,7 @@ const registedCommandList = [
   //   './commands/create_cache/update_per_ten_minute', // 更新缓存
 
   //   // 任务调度
-  //   './commands/task/manage', //  任务调度
+  './commands/task/manage',
 
   //   // 工具类命令
   //   './commands/utils/template_sql', // 生成模板数据

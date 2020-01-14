@@ -1,5 +1,5 @@
 export * from './network';
-
+export * from './dataClearn';
 /**
  * 将城市分布数据拍平后, 作为一个列表返回回来, 方便集中处理
  * @param {*} distribution

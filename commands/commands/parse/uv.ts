@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-06 16:06:34
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-07 12:44:37
+ * @Last Modified time: 2020-01-14 14:17:18
  * 独立访问用户数：即UniqueVisitor，访问网站的一台电脑客户端为一个访客。
  * 00:00-24:00内相同的客户端只被计算一次。
  */
@@ -12,7 +12,7 @@ import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
 import { EndParse, StartPase } from '@annotation';
 import { UVService } from '@commands/service';
-import { CommonModuleInterface } from '@commands/interface';
+import { CommonModuleInterface, DBResult } from '@commands/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MINUTE,
@@ -52,7 +52,7 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
         this.isLegalRecord,
         this.readLogSaveToCache,
       );
-      this.saveTODB();
+      await this.saveTODB();
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
@@ -62,7 +62,7 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
     }
   }
   /**
-   *  将日志存储到MAP 集合当中
+   *  2.将日志存储到MAP 集合当中
    */
   readLogSaveToCache(record): boolean {
     let commonInfo = _.get(record, ['common'], {});
@@ -127,11 +127,11 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
     return totalCount;
   }
   /**
-   *存储到数据库
+   *3.存储到数据库
    * @memberof ParseUV
    */
   @EndParse
-  async saveTODB() {
+  async saveTODB(): Promise<DBResult> {
     /**
      * 3.将map数据同步到数据库中
      */

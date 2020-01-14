@@ -1,8 +1,8 @@
-/* 解析用户停留时间
+/* 用户点击情况
  * @Author: isam2016
- * @Date: 2020-01-13 11:25:52
+ * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 14:16:57
+ * @Last Modified time: 2020-01-14 14:16:52
  */
 
 import * as _ from 'lodash';
@@ -10,39 +10,47 @@ import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
 import { EndParse, StartPase } from '@annotation';
-import {
-  UniqueViewService,
-  CityDistributionService,
-  DurationDistributionService,
-} from '@commands/service';
 import { CommonModuleInterface } from '@commands/interface';
+import {
+  BehaviorDistributionService,
+  CityDistributionService,
+} from '@commands/service';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
-  UNIT,
   DATABASE_BY_HOUR,
+  UNIT,
 } from '@commands/config';
 
-class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
+class MenuClick extends CommandsBase implements CommonModuleInterface {
+  constructor() {
+    super();
+  }
   // 统一按项目进行统计
   projectMap = new Map();
   startAtMoment: moment.Moment;
   endAtMoment: moment.Moment;
-  @Inject uniqueViewService: UniqueViewService;
-  @Inject durationDistributionService: DurationDistributionService;
-  @Inject cityDistributionService: CityDistributionService;
+  @Inject
+  behaviorDistributionService: BehaviorDistributionService;
+  @Inject
+  cityDistributionService: CityDistributionService;
   static get signature() {
     return `
-     Parse:TimeOnSiteByHour 
+     Parse:MenuClick 
      {startAtYmdHi:日志扫描范围上限${COMMAND_ARGUMENT_BY_MINUTE}格式}
      {endAtYmdHi:日志扫描范围下限${COMMAND_ARGUMENT_BY_MINUTE}格式}
      `;
   }
 
   static get description() {
-    return '[按小时] 解析kafka日志, 分析记录指定时间范围内用户停留时长';
+    return '[按天] 解析kafka日志, 用户点击情况';
   }
 
+  /**
+   * 判断该条记录是不是需要解析的记录
+   * @param {Object} record
+   * @return {Boolean}
+   */
   // 1.开始自动获取日志
   @StartPase
   async handle(...arg) {
@@ -60,9 +68,60 @@ class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
         error.stack,
       );
-      this.log('catch error');
-      this.log(error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.stack);
     }
+  }
+  /**
+   *  2.将日志存储到MAP 集合当中
+   */
+  readLogSaveToCache(record): boolean {
+    let projectId = _.get(record, ['project_id'], '');
+    let name = _.get(record, ['detail', 'name'], '');
+    let code = _.get(record, ['detail', 'code'], '');
+    let url = _.get(record, ['detail', 'url'], '');
+    url = url + ''; // 强制转换为字符串
+    if (url.length > 200) {
+      // url最长是200个字符
+      url = url.slice(0, 200);
+    }
+
+    let country = _.get(record, ['country'], '');
+    let province = _.get(record, ['province'], '');
+    let city = _.get(record, ['city'], '');
+    let recordAt = _.get(record, ['time'], 0);
+
+    let countAtTime = moment.unix(recordAt).format(DATABASE_BY_HOUR);
+    let distributionPath = [country, province, city];
+
+    let distributeCountCount = 1;
+    let countAtMap = new Map();
+    let codeMap = new Map();
+    let distribution = {};
+    if (this.projectMap.has(projectId)) {
+      countAtMap = this.projectMap.get(projectId);
+      if (countAtMap.has(countAtTime)) {
+        codeMap = countAtMap.get(countAtTime);
+        if (codeMap.has(code)) {
+          let recordPackage = codeMap.get(code);
+          distribution = _.get(recordPackage, ['distribution'], {});
+          if (_.has(distribution, distributionPath)) {
+            let oldDistributeCount = _.get(distribution, distributionPath, 0);
+            distributeCountCount = distributeCountCount + oldDistributeCount;
+          }
+        }
+      }
+    }
+    _.set(distribution, distributionPath, distributeCountCount);
+    let recordPackage = {
+      code,
+      distribution,
+      name,
+      url,
+    };
+    codeMap.set(code, recordPackage);
+    countAtMap.set(countAtTime, codeMap);
+    this.projectMap.set(projectId, countAtMap);
+    return true;
   }
   /**
    * 判断该条记录是不是uv记录 格式
@@ -73,80 +132,69 @@ class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
     return true;
   }
   /**
-   *  2.将日志存储到MAP 集合当中
+   * 统计 projectUvMap 中的记录总数
    */
-  readLogSaveToCache(record): boolean {
-    let projectId = _.get(record, ['project_id'], 0);
-    let durationMs = _.get(record, ['detail', 'duration_ms'], 0);
-    let country = _.get(record, ['country'], '');
-    let province = _.get(record, ['province'], '');
-    let city = _.get(record, ['city'], '');
-    let recordAt = _.get(record, ['time'], 0);
-
-    let countAtTime = moment.unix(recordAt).format(DATABASE_BY_HOUR);
-    let distributionPath = [country, province, city];
-
-    let countAtMap = new Map();
-    let distribution = {};
-    if (this.projectMap.has(projectId)) {
-      countAtMap = this.projectMap.get(projectId);
-      if (countAtMap.has(countAtTime)) {
-        distribution = countAtMap.get(countAtTime);
-        if (_.has(distribution, distributionPath)) {
-          let oldDurationMs = _.get(distribution, distributionPath, 0);
-          durationMs = durationMs + oldDurationMs;
+  getRecordCountInProjectMap() {
+    let totalCount = 0;
+    for (let [projectId, visitAtMap] of this.projectMap) {
+      for (let [visitAtHour, uvMap] of visitAtMap) {
+        for (let [uv, uvRecord] of uvMap) {
+          totalCount = totalCount + 1;
         }
       }
     }
-    _.set(distribution, distributionPath, durationMs);
-    countAtMap.set(countAtTime, distribution);
-    this.projectMap.set(projectId, countAtMap);
-    return true;
+    return totalCount;
   }
-
   /**
    *3.存储到数据库
    * @memberof ParseUV
    */
   @EndParse
   async saveTODB() {
-    let totalRecordCount = this.getRecordCountInProjectMap(); // 日志总数
+    let totalRecordCount = this.getRecordCountInProjectMap();
     let processRecordCount = 0;
-    let successSaveCount = 0; // 成功的条数
+    let successSaveCount = 0;
     for (let [projectId, countAtMap] of this.projectMap) {
-      for (let [countAtTime, distribution] of countAtMap) {
-        let recordList = getFlattenCityRecordListInDistribution(distribution);
-        let totalStayMs = 0;
-        for (let record of recordList) {
-          totalStayMs = totalStayMs + record;
+      for (let [countAtTime, codeMap] of countAtMap) {
+        for (let [code, recordPackage] of codeMap) {
+          let { distribution, name, url } = recordPackage;
+          let recordList = getFlattenCityRecordListInDistribution(distribution);
+          let totalCount = 0;
+          for (let record of recordList) {
+            totalCount = totalCount + record;
+          }
+          let oldRecordList = await this.behaviorDistributionService.replaceRecord(
+            projectId,
+            code,
+            name,
+            url,
+            totalCount,
+            countAtTime,
+            UNIT.HOUR,
+            distribution,
+          );
+
+          let isSuccess = this.checkSaveCount(
+            url,
+            name,
+            code,
+            projectId,
+            totalCount,
+            countAtTime,
+            oldRecordList,
+            distribution,
+          );
+
+          processRecordCount = processRecordCount + 1;
+          if (isSuccess) {
+            successSaveCount = successSaveCount + 1;
+          }
+          this.reportProcess(
+            processRecordCount,
+            successSaveCount,
+            totalRecordCount,
+          );
         }
-        let totalUv = await this.uniqueViewService.getTotalUv(
-          projectId,
-          countAtTime,
-          UNIT.HOUR,
-        );
-        let oldRecordList = await this.durationDistributionService.replaceUvRecord(
-          projectId,
-          countAtTime,
-          UNIT.HOUR,
-        );
-        let isSuccess = this.checkSaveCount(
-          totalUv,
-          oldRecordList,
-          projectId,
-          countAtTime,
-          distribution,
-          totalStayMs,
-        );
-        processRecordCount = processRecordCount + 1;
-        if (isSuccess) {
-          successSaveCount = successSaveCount + 1;
-        }
-        this.reportProcess(
-          processRecordCount,
-          successSaveCount,
-          totalRecordCount,
-        );
       }
     }
     return { totalRecordCount, processRecordCount, successSaveCount };
@@ -155,12 +203,14 @@ class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
    * 更新城市分布图
    */
   async checkSaveCount(
-    totalUv,
-    oldRecordList,
+    url,
+    name,
+    code,
     projectId,
+    totalCount,
     countAtTime,
+    oldRecordList,
     cityDistribute,
-    totalStayMs,
   ): Promise<boolean> {
     // 利用get方法, 不存在直接返回0, 没毛病
     let cityDistributeIdInDb = _.get(
@@ -169,14 +219,17 @@ class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
       0,
     );
     let id = _.get(oldRecordList, [0, 'id'], 0);
-    // let createTimeInDb = _.get(oldRecordList, [0, 'create_time'], 0);
+    let createTimeInDb = _.get(oldRecordList, [0, 'create_time'], 0);
+
     let data = {
       project_id: projectId,
-      total_uv: totalUv,
       count_at_time: countAtTime,
-      update_time: moment().unix(),
       count_type: UNIT.HOUR,
-      total_stay_ms: totalStayMs,
+      code,
+      name,
+      url,
+      total_count: totalCount,
+      update_time: moment().unix(),
     };
 
     let isSuccess: boolean = false;
@@ -207,16 +260,12 @@ class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
     if (isUpdateSuccess === false) {
       return false;
     }
-    let affectRows = await this.durationDistributionService.updateDuration(
+    let affectRows = await this.behaviorDistributionService.updateBehavior(
       id,
       data,
     );
     return affectRows > 0;
-    // let affectRows = await Knex(tableName)
-    //   .update(data)
-    //   .where(`id`, '=', id);
   }
-
   // 首先插入城市分布数据
   async insertCityDistributionRecord(cityDistribute, data): Promise<boolean> {
     let cityDistributeId = await this.cityDistributionService.insertCityDistributionRecord(
@@ -229,24 +278,12 @@ class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
     data['city_distribute_id'] = cityDistributeId;
     data['create_time'] = moment().unix();
 
-    let insertResult = await this.durationDistributionService.insertDuration(
+    let insertResult = await this.behaviorDistributionService.insertDuration(
       data,
     );
     let insertId = _.get(insertResult, [0], 0);
     return insertId > 0;
   }
-  /**
-   * 统计 projectUvMap 中的记录总数
-   */
-  getRecordCountInProjectMap() {
-    let totalCount = 0;
-    for (let [projectId, countAtMap] of this.projectMap) {
-      for (let [countAtTime, distribution] of countAtMap) {
-        totalCount = totalCount + 1;
-      }
-    }
-    return totalCount;
-  }
 }
 
-export default TimeOnSiteByHour;
+export default MenuClick;

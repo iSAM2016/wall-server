@@ -10,3 +10,5 @@ export * from './uv.entity';
 export * from './uniqueview.entity';
 export * from './durationdistribution.entity';
 export * from './citydistribution.entity';
+export * from './behaviordistribution.entity';
+export * from './userfirstloginat.entity';

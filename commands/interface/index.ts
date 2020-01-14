@@ -11,9 +11,16 @@ export interface CommonModuleInterface {
   startAtMoment: moment.Moment;
   endAtMoment: moment.Moment;
   projectMap: any;
+  saveTODB(): Promise<DBResult>;
   handle(args: any, options: any): Promise<any>;
   readLogSaveToCache(record): boolean; // 将一段时间添加到缓存
   isLegalRecord(): boolean;
+}
+
+export interface DBResult {
+  totalRecordCount: number;
+  processRecordCount: number;
+  successSaveCount: number;
 }
 
 export interface EnvConfig {

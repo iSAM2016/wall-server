@@ -45,7 +45,7 @@ export class AuthService {
       };
     }
 
-    // hash加密密码，不能明文存储到数据库
+    // hash加密密码，不能明文3.存储到数据库
     const passhash = hashSync(register.name, 10);
     // 保存用户到数据库
     try {

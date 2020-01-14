@@ -1,6 +1,6 @@
 import Base from './commands/commandsBase';
 import { Command } from '@adonisjs/ace';
-import { CommonModuleInterface } from '@commands/interface';
+import { CommonModuleInterface, DBResult } from '@commands/interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 import moment = require('moment');
 
@@ -41,6 +41,13 @@ class CommandDemo extends Base implements CommonModuleInterface {
   }
   isLegalRecord(): boolean {
     return true;
+  }
+  async saveTODB(): Promise<DBResult> {
+    return {
+      totalRecordCount: 1,
+      processRecordCount: 2,
+      successSaveCount: 2,
+    };
   }
 }
 
