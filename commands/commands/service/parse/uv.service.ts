@@ -2,9 +2,11 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { UV } from '@entity';
 import BaseService from '../../serviceBase';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-
+import { DATABASE_BY_HOUR } from '@commands/config';
 export class UVService extends BaseService {
+  constructor() {
+    super();
+  }
   /**
    * 获取指定小时内的uuid列表
    * @param {*} projectId
@@ -23,6 +25,7 @@ export class UVService extends BaseService {
         visit_at_hour: visitAtHour,
       })
       .getMany();
+
     // //  = await Knex.select('uuid')
     // //   .from(tableName)
     // //   .where('visit_at_hour', '=', visitAtHour)
@@ -34,8 +37,6 @@ export class UVService extends BaseService {
       let uuid = _.get(rawRecord, ['uuid'], '');
       uuidSet.add(uuid);
     });
-    console.log(99);
-    // await connection.close();
     return uuidSet;
   };
   /**

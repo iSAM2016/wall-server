@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
 import { EndParse, StartPase } from '@annotation';
-import { UVService } from 'commands/commands/service';
+import { UVService } from '@commands/service';
 import { CommonModuleInterface } from '@commands/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
@@ -58,8 +58,7 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
         error.stack,
       );
-      this.log('catch error');
-      this.log(error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.stack);
     }
   }
   /**
