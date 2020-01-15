@@ -17,7 +17,7 @@
       "@commands/shard": ["commands/shard"],
       "@commands/core": ["commands/core"],
       "@commands/interface": ["commands/utils/interface"],
-      "@commands/service": ["commands/commands/service"],
+      "@commands/service": ["commands/feature/service"],
       "@commands/annotation": ["commands/utils/annotation"]
     }
   },

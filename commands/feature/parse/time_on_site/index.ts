@@ -8,20 +8,18 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../commandsBase';
+import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import {
-  UniqueViewService,
-  CityDistributionService,
-  DurationDistributionService,
-} from '@commands/service';
 import { CommonModuleInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
+import { UniqueViewService, CityDistributionService } from '@commands/shard';
+import { DurationDistributionService } from './duration_distribution.service';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   UNIT,
   DATABASE_BY_HOUR,
 } from '@commands/config';
+import { from } from 'rxjs';
 
 class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
   // 统一按项目进行统计

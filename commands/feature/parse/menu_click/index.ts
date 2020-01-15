@@ -8,14 +8,14 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../commandsBase';
+import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
+import { getFlattenCityRecordListInDistribution } from '@commands/utils';
 import {
   BehaviorDistributionService,
   CityDistributionService,
-} from '@commands/service';
-import { getFlattenCityRecordListInDistribution } from '@commands/utils';
+} from '@commands/shard';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_HOUR,

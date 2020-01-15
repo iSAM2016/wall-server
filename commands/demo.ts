@@ -1,4 +1,4 @@
-import Base from './commands/commandsBase';
+import Base from './feature/commandsBase';
 import { Command } from '@adonisjs/ace';
 import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';

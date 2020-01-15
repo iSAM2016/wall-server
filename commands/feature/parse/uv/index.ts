@@ -9,15 +9,15 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import CommandsBase from '../commandsBase';
+import { Inject } from 'typescript-ioc';
+import { UVService } from './uv.service';
+import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import { UVService } from '@commands/service';
 import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MINUTE,
 } from '@commands/config';
-import { Inject } from 'typescript-ioc';
 
 class ParseUV extends CommandsBase implements CommonModuleInterface {
   constructor() {

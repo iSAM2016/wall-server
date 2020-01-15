@@ -22,7 +22,7 @@ export class ConfigService {
     const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const envFile: string = resolve(
       __dirname,
-      '../../../../commands/env',
+      '../../../commands/env',
       filePath,
     );
     if (this.isFileExist(envFile)) {

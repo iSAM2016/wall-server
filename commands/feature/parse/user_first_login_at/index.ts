@@ -8,10 +8,10 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../commandsBase';
+import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
-import { UserFirstLoginAtService } from '@commands/service';
+import { UserFirstLoginAtService } from './user_first_login_at.service';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
