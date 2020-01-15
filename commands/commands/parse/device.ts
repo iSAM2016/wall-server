@@ -2,20 +2,20 @@
  * @Author: isam2016
  * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 14:16:40
+ * @Last Modified time: 2020-01-15 15:31:14
  */
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from '@annotation';
-import { CommonModuleInterface } from '@commands/interface';
+import { EndParse, StartPase } from 'commands/utils/annotation';
+import { CommonModuleInterface } from 'commands/utils/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MONTH,
 } from '@commands/config';
 import { Inject } from 'typescript-ioc';
-import { DataCleaning } from '@commands/utils';
+import { DataCleaning } from '@commands/core';
 
 class ParseDevice extends CommandsBase implements CommonModuleInterface {
   constructor() {

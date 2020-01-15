@@ -2,20 +2,20 @@
  * @Author: isam2016
  * @Date: 2020-01-13 11:25:52
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 14:16:57
+ * @Last Modified time: 2020-01-15 15:26:59
  */
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from '@annotation';
+import { EndParse, StartPase } from 'commands/utils/annotation';
 import {
   UniqueViewService,
   CityDistributionService,
   DurationDistributionService,
 } from '@commands/service';
-import { CommonModuleInterface } from '@commands/interface';
+import { CommonModuleInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,

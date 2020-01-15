@@ -1,8 +1,7 @@
 import * as md5 from 'md5';
 import _ from 'lodash';
-import http from '../feature/http';
-import { getLocalIpList } from '@commands/utils';
-import { ConfigService } from '@commands/service';
+import { getLocalIpList, http } from '@commands/utils';
+import { ConfigService } from '@commands/core';
 import { Inject } from 'typescript-ioc';
 
 export class Alert {

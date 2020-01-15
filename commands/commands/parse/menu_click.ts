@@ -2,15 +2,15 @@
  * @Author: isam2016
  * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 14:16:52
+ * @Last Modified time: 2020-01-15 15:30:28
  */
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from '@annotation';
-import { CommonModuleInterface } from '@commands/interface';
+import { EndParse, StartPase } from 'commands/utils/annotation';
+import { CommonModuleInterface } from 'commands/utils/interface';
 import {
   BehaviorDistributionService,
   CityDistributionService,

@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-06 16:06:34
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 14:17:18
+ * @Last Modified time: 2020-01-15 15:26:57
  * 独立访问用户数：即UniqueVisitor，访问网站的一台电脑客户端为一个访客。
  * 00:00-24:00内相同的客户端只被计算一次。
  */
@@ -10,9 +10,9 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from '@annotation';
+import { EndParse, StartPase } from 'commands/utils/annotation';
 import { UVService } from '@commands/service';
-import { CommonModuleInterface, DBResult } from '@commands/interface';
+import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MINUTE,

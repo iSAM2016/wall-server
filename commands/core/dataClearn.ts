@@ -29,9 +29,3 @@ export class DataCleaning {
    */
   iterator() {}
 }
-
-/**
- * 延迟执行函数, 返回一个 Promise
- * @param {number} ms
- */
-export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

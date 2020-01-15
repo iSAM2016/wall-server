@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { Repository } from 'typeorm';
 import { DurationDistribution } from '@entity';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-import { InjectRepositorys } from '@annotation';
+import { InjectRepositorys } from 'commands/utils/annotation';
 
 export class DurationDistributionService {
   @InjectRepositorys(DurationDistribution)

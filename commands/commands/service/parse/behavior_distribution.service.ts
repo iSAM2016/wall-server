@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { BehaviorDistribution } from '@entity';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { Repository } from 'typeorm';
-import { InjectRepositorys } from '@annotation';
+import { InjectRepositorys } from 'commands/utils/annotation';
 
 export class BehaviorDistributionService {
   @InjectRepositorys(BehaviorDistribution)

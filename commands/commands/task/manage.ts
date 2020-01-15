@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-14 16:08:44
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 17:09:26
+ * @Last Modified time: 2020-01-15 15:32:30
  */
 import * as _ from 'lodash';
 import * as path from 'path';
@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import * as shell from 'shelljs';
 import * as schedule from 'node-schedule';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from '@annotation';
+import { EndParse, StartPase } from 'commands/utils/annotation';
 import {
   UNIT,
   appConfig,
@@ -19,7 +19,8 @@ import {
 } from '@commands/config';
 console.log(UNIT.MINUTE);
 import { Inject } from 'typescript-ioc';
-import { DataCleaning, sleep } from '@commands/utils';
+import { sleep } from '@commands/utils';
+import { DataCleaning } from '@commands/core';
 class TaskManger extends CommandsBase {
   constructor() {
     super();

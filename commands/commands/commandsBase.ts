@@ -3,11 +3,11 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Command } from '@adonisjs/ace';
 import { Inject, Singleton } from 'typescript-ioc';
-import { Alert, Logger } from '@commands/feature';
-import { ConfigService } from '@commands/service';
+import { Alert, Logger } from '@commands/core';
+import { ConfigService } from '@commands/core';
 import { DISPLAY_BY_MILLSECOND } from '@commands/config';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '../config/date_format';
-import LKafka from '../feature/kafka';
+import LKafka from '../core/kafka';
 const readLine = require('lei-stream').readLine;
 
 abstract class CommandsBase extends Command {

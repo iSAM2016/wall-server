@@ -2,11 +2,11 @@
  * @Author: isam2016
  * @Date: 2020-01-06 16:37:01
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-07 12:45:51
+ * @Last Modified time: 2020-01-15 15:30:25
  */
 import * as moment from 'moment';
-import { COMMAND_ARGUMENT_BY_MINUTE } from '../config/date_format';
-import LKafka from '../feature/kafka';
+import { COMMAND_ARGUMENT_BY_MINUTE } from '../../config/date_format';
+import LKafka from '../../core/kafka';
 import { clearMysqlConnection } from './typeOrm';
 /**
  * @param {*} args

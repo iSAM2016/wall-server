@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { UserFirstLoginAt } from '@entity';
 import { Repository } from 'typeorm';
-import { InjectRepositorys } from '@annotation';
+import { InjectRepositorys } from 'commands/utils/annotation';
 
 export class UserFirstLoginAtService {
   @InjectRepositorys(UserFirstLoginAt)

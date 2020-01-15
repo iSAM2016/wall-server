@@ -12,12 +12,13 @@
     "baseUrl": ".", // 可以相对这个目录 import 文件
     "paths": {
       "@entity": ["src/entity"],
-      "@commands/interface": ["commands/interface"],
       "@commands/config": ["commands/config"],
       "@commands/utils": ["commands/utils"],
-      "@commands/feature": ["commands/feature"],
+      "@commands/shard": ["commands/shard"],
+      "@commands/core": ["commands/core"],
+      "@commands/interface": ["commands/utils/interface"],
       "@commands/service": ["commands/commands/service"],
-      "@annotation": ["commands/annotation"]
+      "@commands/annotation": ["commands/utils/annotation"]
     }
   },
   "exclude": ["node_modules", "dist"]

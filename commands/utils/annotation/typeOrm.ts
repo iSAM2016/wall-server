@@ -1,4 +1,4 @@
-import { ConfigService } from '@commands/service';
+import { ConfigService } from '@commands/core';
 import { Connection, Repository, createConnection } from 'typeorm';
 interface ConnectionInterface<T> {
   connection: Connection;

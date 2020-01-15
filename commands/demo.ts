@@ -1,6 +1,6 @@
 import Base from './commands/commandsBase';
 import { Command } from '@adonisjs/ace';
-import { CommonModuleInterface, DBResult } from '@commands/interface';
+import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
 import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
 import moment = require('moment');
 

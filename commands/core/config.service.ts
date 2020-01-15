@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2019-12-31 12:23:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-06 17:38:00
+ * @Last Modified time: 2020-01-15 15:29:14
  */
 
 import * as fs from 'fs';
@@ -10,7 +10,7 @@ import { get } from 'lodash';
 import { resolve } from 'path';
 import * as Joi from '@hapi/joi';
 import * as dotenv from 'dotenv';
-import { EnvConfig, ConfigOptions } from '../../interface';
+import { EnvConfig, ConfigOptions } from '../utils/interface';
 
 export class ConfigService {
   private static envConfig: EnvConfig;
