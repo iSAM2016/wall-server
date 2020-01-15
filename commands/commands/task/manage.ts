@@ -12,11 +12,14 @@ import * as schedule from 'node-schedule';
 import CommandsBase from '../commandsBase';
 import { EndParse, StartPase } from '@annotation';
 import {
+  UNIT,
+  appConfig,
   COMMAND_ARGUMENT_BY_MINUTE,
-  DATABASE_BY_MONTH,
+  DISPLAY_BY_MILLSECOND,
 } from '@commands/config';
+console.log(UNIT.MINUTE);
 import { Inject } from 'typescript-ioc';
-import { DataCleaning } from '@commands/utils';
+import { DataCleaning, sleep } from '@commands/utils';
 class TaskManger extends CommandsBase {
   constructor() {
     super();
@@ -36,10 +39,32 @@ class TaskManger extends CommandsBase {
     this.log('其他TaskManager进程已关闭');
     this.log('避免当前还有正在运行的save2Log命令, 等待30s');
     this.log('开始休眠');
+    for (let i = 0; i < 1; i++) {
+      await sleep(1 * 1000);
+      this.log(`休眠中, 第${i + 1}秒`);
+    }
+    this.log('休眠完毕');
+    this.log('开始注册cron任务');
+    // 注册定时任务
+    this.log('注册每分钟执行一次的任务');
+    this.registerTaskRepeatPer1Minute();
   }
   // 关闭其他进程
   async claoseOtherTaskManger() {
     let taskManagerPidList = await this.getOtherTaskMangerPidList();
+    console.log(taskManagerPidList);
+    this.log('当前process.pid => ', process.pid);
+    this.log(`其余TaskManger进程Pid列表 => `, taskManagerPidList);
+    this.log('执行kill操作, 关闭其余进程');
+    for (let pid of taskManagerPidList) {
+      this.log(`kill pid => ${pid}`);
+      try {
+        process.kill(pid);
+      } catch (e) {
+        let message = `TaskManger进程pid => ${pid} kill失败, 该pid不存在或者没有权限kill`;
+        this.log(message);
+      }
+    }
   }
   // 获取当前正在运行的进程
   async getOtherTaskMangerPidList() {
@@ -67,14 +92,67 @@ class TaskManger extends CommandsBase {
     }
     return taskManagerPidList;
   }
-
   /**
-   * 判断该条记录是不是uv记录 格式
-   * @param {Object} record
-   * @return {Boolean}
+   *  1分钟任务
    */
-  isLegalRecord(): boolean {
-    return true;
+  registerTaskRepeatPer1Minute() {
+    let that = this;
+    // schedule.scheduleJob('1 * * * * * ', () => {
+
+    // });
+    that.log('registerTaskRepeatPer1Minute 开始执行');
+    let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
+    let twoMinuteAgoByMinute = moment()
+      .subtract(2, 'minute')
+      .format(COMMAND_ARGUMENT_BY_MINUTE);
+    let threeMinuteAgoByMinute = moment()
+      .subtract(3, 'minute')
+      .format(COMMAND_ARGUMENT_BY_MINUTE);
+    let fourMinuteAgoByMinute = moment()
+      .subtract(4, 'minute')
+      .format(COMMAND_ARGUMENT_BY_MINUTE);
+    let fiveMinuteAgoByMinute = moment()
+      .subtract(5, 'minute')
+      .format(COMMAND_ARGUMENT_BY_MINUTE);
+    let tenMinuteAgoByMinute = moment()
+      .subtract(10, 'minute')
+      .format(COMMAND_ARGUMENT_BY_MINUTE);
+    that.log(`[按分钟] 每分钟启动一次SaveLog `);
+    that.execCommand('SaveLog:Nginx', []);
+
+    that.log(`[按分钟] 每分钟启动一次WatchDog:Alarm, 监控平台运行情况 `);
+    that.execCommand('WatchDog:Alarm', []);
+  }
+  /**
+   * 执行command 命令行
+   */
+  execCommand(commandName, args = []) {
+    let argvString = args
+      .map(arg => {
+        return `'${arg}'`;
+      })
+      .join('   ');
+    let commandOrder = `NODE_ENV=${this.config.getEnv()} node ${
+      appConfig.appPath
+    }/dist/commands/index.js ${commandName} ${argvString}`;
+    this.log(`待执行命令=> ${commandOrder}`);
+    let commandStartAtFormated = moment().format(DISPLAY_BY_MILLSECOND);
+    let commandStartAtms = moment().valueOf();
+    shell.exec(
+      commandOrder,
+      {
+        async: true,
+        silent: false,
+      },
+      () => {
+        let commandFinishAtFormated = moment().format(DISPLAY_BY_MILLSECOND);
+        let commandFinishAtms = moment().valueOf();
+        let during = (commandFinishAtms - commandStartAtms) / 1000;
+        this.log(
+          `${commandOrder}命令执行完毕, 共用时${during}秒, 开始执行时间=> ${commandStartAtFormated}, 执行完毕时间=> ${commandFinishAtFormated}`,
+        );
+      },
+    );
   }
 }
 

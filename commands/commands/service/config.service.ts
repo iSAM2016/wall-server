@@ -118,4 +118,8 @@ export class ConfigService {
   get isTest(): boolean {
     return this.get('NODE_ENV') === 'test';
   }
+  getEnv(): string {
+    // return process.env.NODE_ENV;
+    return 'development';
+  }
 }
