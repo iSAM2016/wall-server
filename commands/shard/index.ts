@@ -1,3 +1,3 @@
-export * from './uniqueView.service';
+export * from './unique_view.service';
 export * from './city_distribution.service';
 export * from './behavior_distribution.service';

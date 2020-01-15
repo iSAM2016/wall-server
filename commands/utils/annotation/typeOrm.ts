@@ -20,6 +20,8 @@ const mysqlConnection = async () => {
     database: String(config.get('MYSQL_DATABASE')),
     entities: ['dist/src/**/**.entity{.ts,.js}'],
     synchronize: Boolean(config.get('MYSQL_SYNCHRONIZE')),
+    logging: true, // 开启所有数据库信息打印
+    entityPrefix: 'wall_',
     extra: {
       connectionLimit: 1, // 连接池最大连接数量, 查阅资料 建议是  core number  * 2 + n
     },

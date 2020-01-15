@@ -1,7 +1,9 @@
-import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Column, UpdateDateColumn } from 'typeorm';
 
 export default class Base {
-  @CreateDateColumn() created_date: Date;
+  @Column({ type: 'bigint', width: 10, default: 0 })
+  created_date: number;
 
-  @UpdateDateColumn() updated_date: Date;
+  @Column({ type: 'bigint', width: 10, default: 0 })
+  updated_date: number;
 }

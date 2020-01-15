@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 import Base from './base.entity';
-
+//TODO:类型没有修改
 @Entity('city_distribution')
 export class CityDistribution extends Base {
   @PrimaryColumn()
