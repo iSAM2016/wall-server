@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2019-12-30 16:00:39
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 17:07:17
+ * @Last Modified time: 2020-01-16 14:42:08
  */
 import * as ace from '@adonisjs/ace';
 
@@ -42,7 +42,7 @@ const registedCommandList = [
   './feature/task/manage',
 
   //   // 工具类命令
-  //   './feature/utils/template_sql', // 生成模板数据
+  './feature/sql', // 生成模板数据
   //   './feature/utils/generate_sql', //  生成SQL
   //   './feature/utils/clean_old_log', //  自动删除旧日志
   //   './feature/utils/test', //  专业粘贴调试代码

@@ -2,7 +2,7 @@ import { Column, Entity, OneToOne } from 'typeorm';
 
 // 设备分布图
 import Base from './base.entity';
-@Entity('Systemdevice')
+@Entity('system_device')
 export class SystemDevice extends Base {
   @Column({ length: 50, default: '' })
   device_vendor: string;

@@ -2,7 +2,7 @@ import { Column, Entity, OneToOne } from 'typeorm';
 
 // 浏览器 记录表
 import Normal from './normal.entity';
-@Entity('systembrowser')
+@Entity('system_browser')
 export class SystemBrowser extends Normal {
   @Column({ length: 20, default: '' })
   browser: string; //

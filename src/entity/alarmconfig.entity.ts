@@ -2,7 +2,7 @@ import { Column, Entity, OneToOne } from 'typeorm';
 
 // 用户行为
 import Base from './base.entity';
-@Entity('alarmconfig')
+@Entity('alarm_config')
 export class AlarmConfig extends Base {
   // 项目id
   // 项目id
@@ -18,10 +18,10 @@ export class AlarmConfig extends Base {
   @Column({ length: 255, default: '' })
   error_name: string; //
 
-  @Column({ length: 20, default: 0 })
+  @Column({ width: 20, default: 0 })
   time_range_s: number; //
 
-  @Column({ length: 20, default: 0 })
+  @Column({ width: 20, default: 0 })
   max_error_count: number; //
 
   @Column({ type: 'bigint', width: 20, default: 0 })

@@ -1,7 +1,7 @@
 import { Column, Entity, OneToOne } from 'typeorm';
 
 import Base from './base.entity';
-@Entity('userfirstloginat')
+@Entity('user_first_login_at')
 export class UserFirstLoginAt extends Base {
   @Column({ length: 20, default: '' })
   ucid: string;

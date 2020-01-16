@@ -1,59 +1,59 @@
-function f() {
-  console.log('f(): evaluated');
-  return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
-    let oldMethod = descriptor.value;
-    console.log('f');
-    descriptor.value = function(...arg) {
-      console.log('f start');
-      // console.log(JSON.stringify(oldMethod));
-      let value = oldMethod.apply(this, arguments);
-      console.log('f' + value);
-      console.log('f end');
-    };
-  };
-}
+// function f() {
+//   console.log('f(): evaluated');
+//   return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+//     let oldMethod = descriptor.value;
+//     console.log('f');
+//     descriptor.value = function(...arg) {
+//       console.log('f start');
+//       // console.log(JSON.stringify(oldMethod));
+//       let value = oldMethod.apply(this, arguments);
+//       console.log('f' + value);
+//       console.log('f end');
+//     };
+//   };
+// }
 
-function g() {
-  console.log('g(): evaluated');
-  return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
-    let oldMethod = descriptor.value;
-    console.log('g');
-    descriptor.value = function(...arg) {
-      console.log('g start');
-      let value = oldMethod.apply(this, arguments);
-      console.log('g' + value);
-      console.log('g end');
-      return value + 'tom';
-    };
-  };
-}
-function d() {
-  console.log('d(): evaluated');
-  return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
-    let oldMethod = descriptor.value;
-    console.log('d');
-    descriptor.value = function(...arg) {
-      console.log('d start');
-      let value = oldMethod.apply(this, arguments);
-      console.log('d' + value);
-      console.log('d end');
-      return value + 'd';
-    };
-  };
-}
+// function g() {
+//   console.log('g(): evaluated');
+//   return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+//     let oldMethod = descriptor.value;
+//     console.log('g');
+//     descriptor.value = function(...arg) {
+//       console.log('g start');
+//       let value = oldMethod.apply(this, arguments);
+//       console.log('g' + value);
+//       console.log('g end');
+//       return value + 'tom';
+//     };
+//   };
+// }
+// function d() {
+//   console.log('d(): evaluated');
+//   return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
+//     let oldMethod = descriptor.value;
+//     console.log('d');
+//     descriptor.value = function(...arg) {
+//       console.log('d start');
+//       let value = oldMethod.apply(this, arguments);
+//       console.log('d' + value);
+//       console.log('d end');
+//       return value + 'd';
+//     };
+//   };
+// }
 
-class C {
-  @f()
-  @g()
-  @d()
-  method() {
-    console.log(9);
-    return 'isam2026';
-  }
-}
-let c = new C();
+// class C {
+//   @f()
+//   @g()
+//   @d()
+//   method() {
+//     console.log(9);
+//     return 'isam2026';
+//   }
+// }
+// let c = new C();
 
-c.method();
+// c.method();
 
 // class PersonDAO {
 //   email: string;

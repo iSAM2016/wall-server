@@ -1,8 +1,8 @@
 import { Column, Entity, OneToOne } from 'typeorm';
 
 import Base from './base.entity';
-@Entity('UVRecode')
-export class UVRecode extends Base {
+@Entity('uv_recode')
+export class UvRecode extends Base {
   @Column({ length: 50, default: '' })
   uuid: string;
 

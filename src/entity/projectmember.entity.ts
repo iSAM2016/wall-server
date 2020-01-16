@@ -2,7 +2,7 @@ import { Column, Entity, OneToOne } from 'typeorm';
 
 import Base from './base.entity';
 
-@Entity('projectmember')
+@Entity('project_member')
 export class ProjectMember extends Base {
   // 项目id
   @Column({ type: 'bigint', width: 20, default: 0 })

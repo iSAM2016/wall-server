@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { UV } from '@entity';
+import { UvRecode } from '@entity';
 import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 import { DATABASE_BY_HOUR } from '@commands/config';
@@ -13,11 +13,11 @@ export class UVService {
    * @param {*} visitAt
    * @return {Object}
    */
-  @InjectRepositorys(UV)
-  private readonly uvRepository: Repository<UV>;
+  @InjectRepositorys(UvRecode)
+  private readonly uvRepository: Repository<UvRecode>;
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    // const uvRepository = await this.getRepository(UV);
+    // const uvRepository = await this.getRepository(UvRecode);
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     console.log('v');
     let rawRecordList = await (await this.uvRepository)
@@ -62,7 +62,7 @@ export class UVService {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     // let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    // const uvRepository = await this.getRepository(UV);
+    // const uvRepository = await this.getRepository(UvRecode);
     // // 返回值是一个列表
     let oldRecordList = await (await this.uvRepository)
       .createQueryBuilder('uv')

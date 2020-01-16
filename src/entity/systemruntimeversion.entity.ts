@@ -2,7 +2,7 @@ import { Column, Entity, OneToOne } from 'typeorm';
 
 // 版本分布
 import Base from './base.entity';
-@Entity('SystemRuntimeVersion')
+@Entity('system_runtime_version')
 export class SystemRuntimeVersion extends Base {
   @Column({ length: 50, default: 0 })
   runtime_version: string; // 停留的时间
