@@ -4,7 +4,6 @@ import * as path from 'path';
 import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
 import { COMMAND_ARGUMENT_BY_MONTH, DATABASE_BY_MONTH } from '@commands/config';
-import baseSql from '../../../src/entity/submeter';
 import { async } from 'rxjs/internal/scheduler/async';
 const SQL_DATE_FORMAT_YM = 'YYYYMM';
 
@@ -525,7 +524,6 @@ SET foreign_key_checks = 0;
           MUILT_T_R_ERROR_SUMMARY,
         ]) {
           let [content, fullname] = generate(tableName, projectId, curremtAtYM);
-          await this.createEntity(tableName, fullname);
           sqlContent = `${sqlContent}\n${content}`;
         }
       }
@@ -554,26 +552,6 @@ SET foreign_key_checks = 0;
    */
   async log(message) {
     console.log(message);
-  }
-  /**
-   * 创建分表需要的实体
-   */
-  async createEntity(tableName: string, fullName: string) {
-    let sqlTemplate = baseSql[tableName](fullName);
-    console.log(sqlTemplate);
-    let sqlfilePath = path.resolve(__dirname, '../../../src/entity/subentity');
-    // 写入文件内容（如果文件不存在会创建一个文件）
-    // 传递了追加参数 { 'flag': 'a' }
-    await fs.writeFile(
-      path.join(sqlfilePath, `${fullName}.ts`),
-      eval(sqlTemplate),
-      { flag: 'a' },
-      function(err) {
-        if (err) {
-          throw err;
-        }
-      },
-    );
   }
 }
 

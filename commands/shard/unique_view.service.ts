@@ -1,13 +1,12 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { UniqueView } from '@entity';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { InjectRepositorys } from 'commands/utils/annotation';
 import { Repository } from 'typeorm';
 
 export class UniqueViewService {
-  @InjectRepositorys(UniqueView)
-  private readonly uniqueViewRepository: Repository<UniqueView>;
+  @InjectRepositorys()
+  private readonly uniqueViewRepository;
 
   /**
    * 获取记录

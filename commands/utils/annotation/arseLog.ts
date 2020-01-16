@@ -7,7 +7,6 @@
 import * as moment from 'moment';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '../../config/date_format';
 import LKafka from '../../core/kafka';
-import { clearMysqlConnection } from './typeOrm';
 /**
  * @param {*} args
  * @param {*} options
@@ -101,7 +100,6 @@ export const EndParse = function(target, propetyKey, descriptor) {
         ':00'}~${this.endAtMoment.format(COMMAND_ARGUMENT_BY_MINUTE) +
         ':59'}范围内日志录入完毕, 共记录数据${processRecordCount}/${totalRecordCount}条, 入库成功${successSaveCount}条`,
     );
-    await clearMysqlConnection();
     this.log('数据库正常关闭');
     this.log(this.constructor.name + 'Parse:UV  finish');
   };

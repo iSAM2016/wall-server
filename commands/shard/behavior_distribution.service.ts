@@ -1,15 +1,32 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { BehaviorDistribution } from '@entity';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 
+const TABLE_NAME = 't_r_behavior_distribution';
+const TABLE_COLUMN = [
+  `id`,
+  `project_id`,
+  `code`,
+  `name`,
+  `url`,
+  `total_count`,
+  `count_at_time`,
+  `count_type`,
+  `city_distribute_id`,
+  `create_time`,
+  `update_time`,
+];
+
+function getTableName() {
+  return TABLE_NAME;
+}
+
 export class BehaviorDistributionService {
-  @InjectRepositorys(BehaviorDistribution)
-  private readonly behaviorDistributionRepository: Repository<
-    BehaviorDistribution
-  >;
+  @InjectRepositorys()
+  private readonly behaviorDistributionRepository;
+
   /**
    * 自动创建&更新, 并增加total_stay_ms的值
    * @param {number} projectId
@@ -32,13 +49,18 @@ export class BehaviorDistributionService {
     countType,
     cityDistribute,
   ) {
-    let oldRecordList = await (await this.behaviorDistributionRepository)
-      .createQueryBuilder()
-      .where('project_id = :projectId', projectId)
-      .andWhere('count_at_time = :countAtTime', countAtTime)
-      .andWhere('code = :code', code)
-      .andWhere('count_type = :countType', countType)
-      .getMany();
+    let tableName = getTableName();
+    let updateAt = moment().unix();
+    let oldRecordList = await this.behaviorDistributionRepository
+      .select([`total_count`, `city_distribute_id`, `create_time`, `id`])
+      .from(tableName)
+      .where('project_id', '=', projectId)
+      .andWhere('count_at_time', '=', countAtTime)
+      .andWhere('code', '=', code)
+      .andWhere('count_type', '=', countType)
+      .catch(() => {
+        return [];
+      });
     return oldRecordList;
   }
   updateBehavior = async (id, data) => {

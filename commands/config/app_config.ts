@@ -6,5 +6,6 @@ const appConfig = {
   name: '监控平台开发环境',
   appPath,
   absoluteLogPath: path.resolve(appPath, 'log'),
+  nginxLogFilePath: path.resolve(appPath, 'log'),
 };
 export { appConfig };
