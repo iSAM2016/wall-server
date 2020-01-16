@@ -1,18 +1,9 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 
+//用户停留时间表
 import Base from './base.entity';
 @Entity('duration_distribution')
 export class DurationDistribution extends Base {
-  @PrimaryGeneratedColumn()
-  @PrimaryColumn({ unsigned: true, width: 20, type: 'bigint' })
-  id: number;
-
   @Column({ type: 'bigint', width: 20, default: 0 })
   total_stay_ms: number; // 停留的时间
 
@@ -29,6 +20,6 @@ export class DurationDistribution extends Base {
   @Column({ length: 20, default: 'day' })
   count_type: string;
 
-  @Column({ type: 'bigint', width: 20 })
+  @Column({ type: 'bigint', width: 20, default: 0 })
   city_distribute_id: number;
 }

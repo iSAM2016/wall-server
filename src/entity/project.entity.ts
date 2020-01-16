@@ -1,18 +1,9 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 
 import Base from './base.entity';
 
 @Entity('project')
 export class Project extends Base {
-  @PrimaryGeneratedColumn()
-  @PrimaryColumn({ unsigned: true, width: 20, type: 'bigint' })
-  id: number;
   // 项目id
   @Column({ length: 50, default: '' })
   display_name: string;

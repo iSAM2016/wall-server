@@ -1,19 +1,8 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 
 import Base from './base.entity';
 @Entity('userfirstloginat')
 export class UserFirstLoginAt extends Base {
-  @PrimaryGeneratedColumn()
-  @PrimaryColumn({ unsigned: true, width: 20, type: 'bigint' })
-  id: number;
-
-  // 项目id
   @Column({ length: 20, default: '' })
   ucid: string;
 

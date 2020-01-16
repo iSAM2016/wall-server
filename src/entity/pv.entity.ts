@@ -1,10 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 
+//pv 记录表
 import Normal from './normal.entity';
-//uv记录表, 不分表
-
-@Entity('unique_view')
-export class UniqueView extends Normal {
+@Entity('pv')
+export class PV extends Normal {
   @Column({ length: 30, default: '' })
   count_at_time: string; //
 

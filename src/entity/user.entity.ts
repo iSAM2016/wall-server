@@ -9,20 +9,42 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Favorite, Profile, Role, Todo } from '.';
+import Base from './base.entity';
 
-@Entity()
-export class User {
-  @PrimaryGeneratedColumn() id: number;
+@Entity('user')
+export class User extends Base {
+  @Column({ length: 50, default: '' })
+  ucid: string;
 
-  @Column({})
+  @Column({ length: 50, default: '' })
+  account: string;
+
+  @Column({ length: 20, default: '' })
+  nickname: string;
+
+  @Column({ length: 50, default: '' })
   email: string;
 
-  @Column()
-  password: string;
+  @Column({ length: 32, default: '' })
+  password_md5: string;
 
-  @CreateDateColumn() createdDate: Date;
+  @Column({ length: 50, default: 'dev' })
+  role: string;
 
-  @UpdateDateColumn() updatedDate: Date;
+  @Column({ length: 20, default: 'site' })
+  register_type: string;
+
+  @Column({
+    length: 200,
+    default: 'http://ww1.sinaimg.cn/large/00749HCsly1fwofq2t1kaj30qn0qnaai.jpg',
+  })
+  avatar_url: string;
+
+  @Column({ length: 20, default: '' })
+  mobile: string;
+
+  @Column({ type: 'tinyint', default: 0, width: 0, unsigned: true })
+  is_delete: number; //
 
   // @OneToOne(
   //   type => Profile,

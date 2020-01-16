@@ -1,18 +1,8 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 import Base from './base.entity';
 
 @Entity('project_item')
 export class ProjectItem extends Base {
-  @PrimaryColumn()
-  @PrimaryGeneratedColumn()
-  id: number;
-
   @Column({})
   project_name: string;
 

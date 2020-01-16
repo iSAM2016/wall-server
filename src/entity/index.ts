@@ -6,7 +6,7 @@ export * from './favorite.entity';
 export * from './register.entity';
 export * from './user.entity';
 export * from './projectItem.entity';
-export * from './uv.entity';
+export * from './uvrecode.entity';
 export * from './uniqueview.entity';
 export * from './durationdistribution.entity';
 export * from './citydistribution.entity';

@@ -1,18 +1,8 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 
 import Base from './base.entity';
-@Entity('uv')
-export class UV extends Base {
-  @PrimaryGeneratedColumn()
-  @PrimaryColumn({ unsigned: true, width: 20, type: 'bigint' })
-  id: number;
-
+@Entity('UVRecode')
+export class UVRecode extends Base {
   @Column({ length: 50, default: '' })
   uuid: string;
 
