@@ -16,6 +16,8 @@ describe('测试命令行', function() {
     // scheduleCronstyle();
   });
   it('test =>sql调度', function() {
-    shell.exec("node ../index.js Utils:GenerateSQL 13 '2018-10' '2018-11'");
+    shell.exec(
+      "node ../index.js Utils:GenerateSQL 13 '2018-10' '2018-11' > ../../../int.sql",
+    );
   });
 });

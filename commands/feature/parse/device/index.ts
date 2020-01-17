@@ -43,7 +43,6 @@ class ParseDevice extends CommandsBase implements CommonModuleInterface {
   @StartPase
   async handle(...arg) {
     try {
-      console.log(arg);
       await this.readLog(
         this.startAtMoment,
         this.endAtMoment,

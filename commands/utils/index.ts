@@ -1,11 +1,10 @@
 export * from './nginx';
-
 import * as os from 'os';
 import * as path from 'path';
+import * as datx from 'ipip-datx';
 import * as querystring from 'query-string';
 import _ from 'lodash';
 import axios from 'axios'; // 引入axios组件
-import datx from 'ipip-datx';
 /**
  * 将城市分布数据拍平后, 作为一个列表返回回来, 方便集中处理
  * @param {*} distribution
@@ -74,7 +73,7 @@ function postForm(url, formData = {}, config = {}) {
 
 let ipDatabaseUri = path.resolve(
   __dirname,
-  './ip2locate_ipip.net_20180910.datx',
+  '../../../ip2locate_ipip.net_20180910.datx',
 );
 
 let DatabaseClient = new datx.City(ipDatabaseUri);

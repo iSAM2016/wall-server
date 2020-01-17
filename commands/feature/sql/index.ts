@@ -546,7 +546,7 @@ SET foreign_key_checks = 0;
   }
 
   /**
-   * 覆盖父类方法, 避免再手工删除冗余日志记录
+   * 输出sql 日志
    * @param {*} args
    * @param {*} options
    */

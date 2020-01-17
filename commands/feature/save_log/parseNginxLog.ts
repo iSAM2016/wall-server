@@ -11,7 +11,7 @@ import * as path from 'path';
 import * as moment from 'moment';
 import * as queryString from 'query-string';
 import shell from 'shelljs';
-import parser from 'ua-parser-js';
+import * as parser from 'ua-parser-js';
 import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
 import { appConfig } from '@commands/config';

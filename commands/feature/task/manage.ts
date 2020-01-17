@@ -17,7 +17,6 @@ import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DISPLAY_BY_MILLSECOND,
 } from '@commands/config';
-console.log(UNIT.MINUTE);
 import { Inject } from 'typescript-ioc';
 import { sleep } from '@commands/utils';
 import { DataCleaning } from '@commands/core';

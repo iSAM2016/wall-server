@@ -108,8 +108,6 @@ export class UVService {
       update_time: updateAt,
     };
 
-    console.log(data);
-    console.log(id);
     let isSuccess = false;
     if (id > 0) {
       let affectRows = await (await this.uvRepository).findOne({ id });
