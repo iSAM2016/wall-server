@@ -74,7 +74,7 @@ function getMonthDirName(logAt) {
   return monthDirName;
 }
 
-export default {
+export {
   // 原型对象
   //   Kafka,
   // 工具函数

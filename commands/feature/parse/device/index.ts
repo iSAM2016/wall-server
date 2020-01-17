@@ -7,7 +7,7 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import CommandsBase from '../../commandsBase';
+import ParseBase from '../parseBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
 import {
@@ -17,7 +17,7 @@ import {
 import { Inject } from 'typescript-ioc';
 import { DataCleaning } from '@commands/core';
 
-class ParseDevice extends CommandsBase implements CommonModuleInterface {
+class ParseDevice extends ParseBase implements CommonModuleInterface {
   constructor() {
     super();
   }

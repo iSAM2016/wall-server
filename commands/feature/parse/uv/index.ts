@@ -10,8 +10,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
+import ParseBase from '../parseBase';
 import { UVService } from './uv.service';
-import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
 import {
@@ -19,7 +19,7 @@ import {
   DATABASE_BY_MINUTE,
 } from '@commands/config';
 
-class ParseUV extends CommandsBase implements CommonModuleInterface {
+class ParseUV extends ParseBase implements CommonModuleInterface {
   constructor() {
     super();
   }

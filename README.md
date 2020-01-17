@@ -1,28 +1,31 @@
 ## ls
-//TODO: 需要注意  )u5eSjvozP6X
-1. FP
-2. nestjs 是 node 版本的 spring
-3. nestjs ioc 的实现原理
-4. 手写 express + nodejs
-5. NGINX redis mysql
-6. cli
-7. 架构研究
-8. ssm 连接池
-9. 减少 nest 循环依赖注入深坑
+
+//TODO: 需要注意 )u5eSjvozP6X
+
+1.  FP
+2.  nestjs 是 node 版本的 spring
+3.  nestjs ioc 的实现原理
+4.  手写 express + nodejs
+5.  NGINX redis mysql
+6.  cli
+7.  架构研究
+8.  ssm 连接池
+9.  减少 nest 循环依赖注入深坑
 10. ts-ioc 元编程
 11. proxy
-12.  元编程:指某类计算机程序的编写，这类计算机程序编写或者操纵其他程序（或者自身）作为它们的数据，或者在运行时完成部分本应在编译时完成的工作。 元函数
-13.  装饰器（Decorator） 仅提供定义劫持，能够对类及其方法、方法入参、属性的定义并没有提供任何附加元数据的功能。
-14.  注解（Annotation） 仅提供附加元数据支持，并不能实现任何操作。需要另外的 Scanner 根据元数据执行相应操作。
+12. 元编程:指某类计算机程序的编写，这类计算机程序编写或者操纵其他程序（或者自身）作为它们的数据，或者在运行时完成部分本应在编译时完成的工作。 元函数
+13. 装饰器（Decorator） 仅提供定义劫持，能够对类及其方法、方法入参、属性的定义并没有提供任何附加元数据的功能。
+14. 注解（Annotation） 仅提供附加元数据支持，并不能实现任何操作。需要另外的 Scanner 根据元数据执行相应操作。
 15.     反射:反射给了我们在类及其属性、方法、入参上存储读取数据的能力
-16.  BFF 和网关的区别
+16. BFF 和网关的区别
 17. Reflect 和 Reflect-meatedata
+18. 开启 多线程读取文件
 
 ## 配置
 
 - service 中不要写 try catch 否则异常捕获不到 \*
 
-MySQL 5.6-pass:abc123456 
+MySQL 5.6-pass:abc123456
 
 ## 2 restful
 
@@ -168,7 +171,6 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
    3. 数据监控 跑批任务
 4. 一个表的数据太大 分库分表
 
-
 4) docker-compose 常用命令
 
    docker-compose up [options][service...]
@@ -181,187 +183,3 @@ docker-compose down
 此命令将会停止 up 命令所启动的容器，并移除网络
 
 docker-compose restart [options][service...]
-
-```
-
-
-  async findAll(query): Promise<ArticlesRO> {
-
-    const qb = await getRepository(ArticleEntity)
-      .createQueryBuilder('article')
-      .leftJoinAndSelect('article.author', 'author');
-
-    qb.where("1 = 1");
-
-    if ('tag' in query) {
-      qb.andWhere("article.tagList LIKE :tag", { tag: `%${query.tag}%` });
-    }
-
-    if ('author' in query) {
-      const author = await this.userRepository.findOne({username: query.author});
-      qb.andWhere("article.authorId = :id", { id: author.id });
-    }
-
-    if ('favorited' in query) {
-      const author = await this.userRepository.findOne({username: query.favorited});
-      const ids = author.favorites.map(el => el.id);
-      qb.andWhere("article.authorId IN (:ids)", { ids });
-    }
-
-    qb.orderBy('article.created', 'DESC');
-
-    const articlesCount = await qb.getCount();
-
-    if ('limit' in query) {
-      qb.limit(query.limit);
-    }
-
-    if ('offset' in query) {
-      qb.offset(query.offset);
-    }
-
-    const articles = await qb.getMany();
-
-    return {articles, articlesCount};
-  }
-
-  async findFeed(userId: number, query): Promise<ArticlesRO> {
-    const _follows = await this.followsRepository.find( {followerId: userId});
-    const ids = _follows.map(el => el.followingId);
-
-    const qb = await getRepository(ArticleEntity)
-      .createQueryBuilder('article')
-      .where('article.authorId IN (:ids)', { ids });
-
-    qb.orderBy('article.created', 'DESC');
-
-    const articlesCount = await qb.getCount();
-
-    if ('limit' in query) {
-      qb.limit(query.limit);
-    }
-
-    if ('offset' in query) {
-      qb.offset(query.offset);
-    }
-
-    const articles = await qb.getMany();
-
-    return {articles, articlesCount};
-  }
-
-  async findOne(where): Promise<ArticleRO> {
-    const article = await this.articleRepository.findOne(where);
-    return {article};
-  }
-
-  async addComment(slug: string, commentData): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({slug});
-
-    const comment = new Comment();
-    comment.body = commentData.body;
-
-    article.comments.push(comment);
-
-    await this.commentRepository.save(comment);
-    article = await this.articleRepository.save(article);
-    return {article}
-  }
-
-  async deleteComment(slug: string, id: string): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({slug});
-
-    const comment = await this.commentRepository.findOne(id);
-    const deleteIndex = article.comments.findIndex(_comment => _comment.id === comment.id);
-
-    if (deleteIndex >= 0) {
-      const deleteComments = article.comments.splice(deleteIndex, 1);
-      await this.commentRepository.delete(deleteComments[0].id);
-      article =  await this.articleRepository.save(article);
-      return {article};
-    } else {
-      return {article};
-    }
-
-  }
-
-  async favorite(id: number, slug: string): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({slug});
-    const user = await this.userRepository.findOne(id);
-
-    const isNewFavorite = user.favorites.findIndex(_article => _article.id === article.id) < 0;
-    if (isNewFavorite) {
-      user.favorites.push(article);
-      article.favoriteCount++;
-
-      await this.userRepository.save(user);
-      article = await this.articleRepository.save(article);
-    }
-
-    return {article};
-  }
-
-  async unFavorite(id: number, slug: string): Promise<ArticleRO> {
-    let article = await this.articleRepository.findOne({slug});
-    const user = await this.userRepository.findOne(id);
-
-    const deleteIndex = user.favorites.findIndex(_article => _article.id === article.id);
-
-    if (deleteIndex >= 0) {
-
-      user.favorites.splice(deleteIndex, 1);
-      article.favoriteCount--;
-
-      await this.userRepository.save(user);
-      article = await this.articleRepository.save(article);
-    }
-
-    return {article};
-  }
-
-  async findComments(slug: string): Promise<CommentsRO> {
-    const article = await this.articleRepository.findOne({slug});
-    return {comments: article.comments};
-  }
-
-  async create(userId: number, articleData: CreateArticleDto): Promise<ArticleEntity> {
-
-    let article = new ArticleEntity();
-    article.title = articleData.title;
-    article.description = articleData.description;
-    article.slug = this.slugify(articleData.title);
-    article.tagList = articleData.tagList || [];
-    article.comments = [];
-
-    const newArticle = await this.articleRepository.save(article);
-
-    const author = await this.userRepository.findOne({ where: { id: userId } });
-
-    if (Array.isArray(author.articles)) {
-      author.articles.push(article);
-    } else {
-      author.articles = [article];
-    }
-
-    await this.userRepository.save(author);
-
-    return newArticle;
-
-  }
-
-  async update(slug: string, articleData: any): Promise<ArticleRO> {
-    let toUpdate = await this.articleRepository.findOne({ slug: slug});
-    let updated = Object.assign(toUpdate, articleData);
-    const article = await this.articleRepository.save(updated);
-    return {article};
-  }
-
-  async delete(slug: string): Promise<DeleteResult> {
-    return await this.articleRepository.delete({ slug: slug});
-  }
-
-  slugify(title: string) {
-    return slug(title, {lower: true}) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36)
-  }
-}
-```

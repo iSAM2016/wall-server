@@ -7,8 +7,8 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
@@ -22,7 +22,7 @@ import {
   UNIT,
 } from '@commands/config';
 
-class MenuClick extends CommandsBase implements CommonModuleInterface {
+class MenuClick extends ParseBase implements CommonModuleInterface {
   constructor() {
     super();
   }

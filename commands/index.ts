@@ -34,7 +34,7 @@ const registedCommandList = [
   //   './feature/summary/error_summary', // 统计某一错误的数量
   //   // 监控
   //   './feature/watch_dog/saas', //  saas监控
-  //   './feature/watch_dog/alarm',
+  './feature/watch_dog/alarm',
 
   //   './feature/create_cache/update_per_ten_minute', // 更新缓存
 
@@ -42,8 +42,7 @@ const registedCommandList = [
   './feature/task/manage',
 
   //   // 工具类命令
-  './feature/sql', // 生成模板数据
-  //   './feature/utils/generate_sql', //  生成SQL
+  './feature/sql', // 生成模板数据sql
   //   './feature/utils/clean_old_log', //  自动删除旧日志
   //   './feature/utils/test', //  专业粘贴调试代码
 

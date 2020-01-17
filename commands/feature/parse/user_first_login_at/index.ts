@@ -7,19 +7,14 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
 import { UserFirstLoginAtService } from './user_first_login_at.service';
-import { getFlattenCityRecordListInDistribution } from '@commands/utils';
-import {
-  COMMAND_ARGUMENT_BY_MINUTE,
-  DATABASE_BY_HOUR,
-  UNIT,
-} from '@commands/config';
+import { COMMAND_ARGUMENT_BY_MINUTE } from '@commands/config';
 
-class UserFirstLoginAt extends CommandsBase implements CommonModuleInterface {
+class UserFirstLoginAt extends ParseBase implements CommonModuleInterface {
   constructor() {
     super();
   }

@@ -7,8 +7,8 @@
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
@@ -19,9 +19,8 @@ import {
   UNIT,
   DATABASE_BY_HOUR,
 } from '@commands/config';
-import { from } from 'rxjs';
 
-class TimeOnSiteByHour extends CommandsBase implements CommonModuleInterface {
+class TimeOnSiteByHour extends ParseBase implements CommonModuleInterface {
   // 统一按项目进行统计
   projectMap = new Map();
   startAtMoment: moment.Moment;

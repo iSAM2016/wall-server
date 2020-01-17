@@ -6,7 +6,6 @@
  */
 import * as moment from 'moment';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '../../config/date_format';
-import LKafka from '../../core/kafka';
 /**
  * @param {*} args
  * @param {*} options
