@@ -70,8 +70,8 @@ export class ConfigService {
       ALERT_MAX_CONTENT_CHAR: Joi.number().required(),
       ALERT_IS_USEING: Joi.boolean().required(),
       ALERT_WXADDR: Joi.string().required(),
-
-      // API_AUTH_ENABLED: Joi.boolean().required(),
+      NGINXLOG_FILEPATH: Joi.string().required(),
+      // : Joi.boolean().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
       envConfig,

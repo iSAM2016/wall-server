@@ -20,7 +20,7 @@ const registedCommandList = [
   //   './feature/parse/user_first_login_at', //  录入新增用户
 
   //   './feature/save_log/parseKafkaLog', //  将kafka日志落在文件中
-  //   './feature/save_log/parseNginxLog', // 将ngnix日志落在文件中
+  './feature/save_log/parseNginxLog', // 将ngnix日志落在文件中
   //   // 从数据库中, 按时间段统计
   //   './feature/summary/uv', //  统计uv数据
   //   './feature/summary/time_on_site', //  统计用户停留时长

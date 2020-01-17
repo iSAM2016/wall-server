@@ -10,11 +10,10 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as moment from 'moment';
 import * as queryString from 'query-string';
-import shell from 'shelljs';
+import * as shell from 'shelljs';
 import * as parser from 'ua-parser-js';
 import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
-import { appConfig } from '@commands/config';
 import { readLine, writeLine } from 'lei-stream';
 import { ProjectService } from '@commands/shard';
 import {
@@ -22,15 +21,13 @@ import {
   LOG_TYPE_RAW,
   LOG_TYPE_JSON,
   LOG_TYPE_TEST,
-  getAbsoluteLogUriByType,
+  getAbsoluteLogUriByType, //  生成对应日志绝对路径, 按分钟分隔
 } from '@commands/utils';
-import {
-  COMMAND_ARGUMENT_BY_MINUTE,
-  DATABASE_BY_MONTH,
-} from '@commands/config';
+
 const TEST_LOG_FLAG = 'b47ca710747e96f1c523ebab8022c19e9abaa56b';
 let jsonWriteStreamPool = new Map();
 let rawLogWriteStreamPool = new Map();
+
 class NginxParse extends CommandsBase {
   @Inject
   projectService: ProjectService;
@@ -54,15 +51,22 @@ class NginxParse extends CommandsBase {
       let projectMap = await this.projectService.getList();
       let logCounter = 0;
       let legalLogCounter = 0;
-      let nginxLogFilePath = appConfig.nginxLogFilePath;
+      let nginxLogFilePath = this.config.get('NGINXLOG_FILEPATH');
       let timeAt = moment().unix() - 60;
       let timeMoment = moment.unix(timeAt);
       let formatStr = timeMoment.format('/YYYYMM/DD/HH/mm');
-      let logAbsolutePath = `${nginxLogFilePath}${formatStr}.log`;
+      let logAbsolutePath: string = '';
+      if (this.config.getEnv() === 'development') {
+        logAbsolutePath = `${nginxLogFilePath}${'202001/17/13/54'}.log`;
+      } else {
+        logAbsolutePath = `${nginxLogFilePath}${formatStr}.log`;
+      }
       if (fs.existsSync(logAbsolutePath) === false) {
         that.log(`log文件不存在, 自动跳过 => ${logAbsolutePath}`);
-        return;
+        return false;
       }
+      that.log(`开始读取文件 => ${logAbsolutePath}`);
+
       let onDataIn = async (data, next) => {
         logCounter++;
         let content = data.toString();
@@ -76,7 +80,7 @@ class NginxParse extends CommandsBase {
         let parseResult = await that.parseLog(content, projectMap);
         if (_.isEmpty(parseResult)) {
           that.log('日志格式不规范, 自动跳过, 原日志内容为 =>', content);
-          return;
+          return false;
         }
 
         let projectName = _.get(parseResult, ['project_name'], 0);
@@ -99,10 +103,7 @@ class NginxParse extends CommandsBase {
         );
         jsonWriteStreamByLogCreateAt.write(JSON.stringify(parseResult));
         // 定期清一下
-        if (
-          jsonWriteStreamPool.size > 100 ||
-          rawLogWriteStreamPool.size > 100
-        ) {
+        if (jsonWriteStreamPool.size > 2 || rawLogWriteStreamPool.size > 2) {
           // 每当句柄池满100后, 关闭除距离当前时间10分钟之内的所有文件流
           this.autoCloseOldStream();
         }
@@ -117,7 +118,7 @@ class NginxParse extends CommandsBase {
         /** 是否将数据转换为字符串 */
         toString: true,
         // 编码器，可以为函数或字符串（内置编码器：json，base64），默认null
-        encoding: 'json',
+        encoding: null,
       }) as any).go(onDataIn, function() {
         // return true;
       });
@@ -140,12 +141,10 @@ class NginxParse extends CommandsBase {
     if (_.isString(data) === false) {
       return nowAt;
     }
-    const info = data.split('\t');
-    let url = _.get(info, [15], '');
-
+    const info = data.split(' ');
+    let url = _.get(info, [5], '');
     const urlQS = queryString.parseUrl(url);
     let record = _.get(urlQS, ['query', 'd'], '[]');
-
     try {
       record = JSON.parse(record);
     } catch (err) {
@@ -155,8 +154,11 @@ class NginxParse extends CommandsBase {
       // common是新sdk的字段值, pub是旧值, 这里做下兼容
       record.common = record.pub;
     }
-
-    let logAtMoment = moment(info[0], moment.ISO_8601);
+    // match
+    let logAtMoment = moment(
+      info[3].match(/(?!\[).*(?<!])/)[0],
+      moment.ISO_8601,
+    );
     let logAt = 0;
     if (moment.isMoment(logAtMoment) && logAtMoment.isValid()) {
       logAt = logAtMoment.unix();
@@ -180,19 +182,16 @@ class NginxParse extends CommandsBase {
    * @returns {object|null}
    */
   async parseLog(data, projectMap) {
-    const info = data.split('\t');
-    let url = _.get(info, [15], '');
-
+    const info = data.split(' ');
+    let url = _.get(info, [5], '');
     const urlQS = queryString.parseUrl(url);
     let record = _.get(urlQS, ['query', 'd'], '[]');
-
     try {
       record = JSON.parse(record);
     } catch (err) {
       this.log('==== 打点数据异常 ====', err);
       return null;
     }
-
     // 记录日志md5
     record.md5 = md5(data);
     if (_.has(record, ['pub'])) {
@@ -244,7 +243,7 @@ class NginxParse extends CommandsBase {
     }
 
     // 解析IP地址，映射成城市
-    record.ip = info[3] || info[4];
+    record.ip = info[0] || info[1];
     const location = await ip2Locate(record.ip);
     record.country = location.country;
     record.province = location.province;
@@ -252,7 +251,7 @@ class NginxParse extends CommandsBase {
     return record;
   }
   /**
-   * 获取写入Stream
+   * 根据不同类型——获取数据并写入Stream
    * @param {number} nowAt
    * @returns {WriteStream}
    */
@@ -342,4 +341,4 @@ class NginxParse extends CommandsBase {
   }
 }
 
-export default ParseDevice;
+export default NginxParse;

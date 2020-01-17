@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { InjectRepositorys } from 'commands/utils/annotation';
 import BaseService from '../serviceBase';
-const BASE_TABLE_NAME = 't_o_project';
+const BASE_TABLE_NAME = 't_r_project';
 const TABLE_COLUMN = [
   `id`,
   `project_name`,
@@ -47,15 +47,23 @@ export class ProjectService extends BaseService {
    */
   async getList() {
     let tableName = getTableName();
-    let result = await this.uniqueViewRepository
+    let projectList = await this.uniqueViewRepository
       .select(TABLE_COLUMN)
       .from(tableName)
       .where('is_delete', 0)
       .catch(err => {
-        this.log(err.message, 'project_item    getlist   出错');
+        this.log('getlist => 出错' + err.message);
         return [];
       });
-    return result;
+    let projectMap = {};
+    for (let project of projectList) {
+      projectMap[project.project_name] = {
+        id: project.id,
+        rate: project.rate,
+      };
+    }
+    this.log('项目列表获取成功 =>', projectMap);
+    return projectMap;
   }
 
   // /**

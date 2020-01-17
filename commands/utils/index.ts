@@ -3,7 +3,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as datx from 'ipip-datx';
 import * as querystring from 'query-string';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import axios from 'axios'; // 引入axios组件
 /**
  * 将城市分布数据拍平后, 作为一个列表返回回来, 方便集中处理
