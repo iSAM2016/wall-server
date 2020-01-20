@@ -340,14 +340,14 @@ TABLE_TEMPLATE[SINGLE_T_R_ALARM_CONFIG] = `(
 `;
 TABLE_TEMPLATE[SINGLE_T_R_USER] = `(
   \`id\` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
-  \`ucid\` varchar(50) NOT NULL DEFAULT '' COMMENT '贝壳ucid',
+  \`ucid\` varchar(50) NOT NULL DEFAULT '' COMMENT 'ucid',
   \`account\` varchar(50) NOT NULL DEFAULT '' COMMENT '账户名,不能重复',
   \`email\` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
   \`password_md5\` varchar(32) NOT NULL DEFAULT '' COMMENT 'md5后的password',
   \`nickname\` varchar(20) NOT NULL DEFAULT '' COMMENT '昵称',
   \`role\` varchar(50) NOT NULL DEFAULT 'dev' COMMENT '角色(dev => 开发者,admin => 管理员)',
   \`register_type\` varchar(20) NOT NULL DEFAULT 'site' COMMENT '注册类型(site => 网站注册, third => 第三方登录)',
-  \`avatar_url\` varchar(200) NOT NULL DEFAULT 'http://ww1.sinaimg.cn/large/00749HCsly1fwofq2t1kaj30qn0qnaai.jpg' COMMENT '头像地址, 默认使用贝壳logo',
+  \`avatar_url\` varchar(200) NOT NULL DEFAULT 'http://ww1.sinaimg.cn/large/00749HCsly1fwofq2t1kaj30qn0qnaai.jpg' COMMENT '头像地址, 默认使用logo',
   \`mobile\` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号',
   \`is_delete\` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除(1 => 是, 0 => 否)',
   \`create_time\` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -447,7 +447,7 @@ class GenerateSQL extends CommandsBase {
     let { projectIdList, startAtYm, finishAtYm } = args;
     projectIdList = projectIdList.split(',');
     if (_.isEmpty(projectIdList)) {
-      this.warn('自动退出:projectIdList为空 =>', projectIdList);
+      this.log(`自动退出:projectIdList为空 => ${projectIdList}`);
       return false;
     }
     let commonSqlContent = `

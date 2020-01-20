@@ -1,15 +1,15 @@
 import * as md5 from 'md5';
 import _ from 'lodash';
-import { getLocalIpList, http } from '@commands/utils';
-import { ConfigService } from '@commands/core';
+import CoreBase from './coreBase';
 import { Inject } from 'typescript-ioc';
-
-export class Alert {
-  @Inject
-  private config: ConfigService;
+import { ConfigService } from '@commands/core';
+import { getLocalIpList, http } from '@commands/utils';
+export class Alert extends CoreBase {
   private ucidList = [];
   private sendList = [];
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   sendMessage(rawUcidListString = '', message = '') {
     if (this.config.get('ALERT_IS_USEING')) {

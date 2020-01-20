@@ -2,15 +2,17 @@
  * @Author: isam2016
  * @Date: 2019-12-31 12:23:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:29:14
+ * @Last Modified time: 2020-01-20 10:31:57
  */
 
 import * as fs from 'fs';
-import { get } from 'lodash';
-import { resolve } from 'path';
 import * as Joi from '@hapi/joi';
 import * as dotenv from 'dotenv';
+import { get } from 'lodash';
+import { resolve } from 'path';
 import { EnvConfig, ConfigOptions } from '../utils/interface';
+let configMap = new Map();
+const CONFIGMAPKEY = 'CONFIGMAPKEY';
 
 export class ConfigService {
   private static envConfig: EnvConfig;
@@ -123,3 +125,10 @@ export class ConfigService {
     return 'development';
   }
 }
+export const getConfig = () => {
+  if (configMap.has(CONFIGMAPKEY)) {
+    return configMap.get(CONFIGMAPKEY);
+  }
+  let config = new ConfigService();
+  configMap.set(CONFIGMAPKEY, config);
+};

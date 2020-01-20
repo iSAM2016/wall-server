@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-06 16:06:34
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:26:57
+ * @Last Modified time: 2020-01-20 09:09:47
  * 独立访问用户数：即UniqueVisitor，访问网站的一台电脑客户端为一个访客。
  * 00:00-24:00内相同的客户端只被计算一次。
  */
@@ -13,13 +13,13 @@ import { Inject } from 'typescript-ioc';
 import ParseBase from '../parseBase';
 import { UVService } from './uv.service';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
+import { ParseInterface, DBResult } from 'commands/utils/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MINUTE,
 } from '@commands/config';
 
-class ParseUV extends ParseBase implements CommonModuleInterface {
+class ParseUV extends ParseBase implements ParseInterface {
   constructor() {
     super();
   }

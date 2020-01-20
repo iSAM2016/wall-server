@@ -2,14 +2,11 @@
  * @Author: isam2016
  * @Date: 2020-01-15 16:29:48
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-16 16:40:06
+ * @Last Modified time: 2020-01-20 11:46:11
  */
-import * as Knex from 'knex';
 import * as _ from 'lodash';
-import * as moment from 'moment';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
+import { BaseService } from '../serviceBase';
 import { InjectRepositorys } from 'commands/utils/annotation';
-import BaseService from '../serviceBase';
 const BASE_TABLE_NAME = 't_r_project';
 const TABLE_COLUMN = [
   `id`,

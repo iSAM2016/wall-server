@@ -2,25 +2,24 @@
  * @Author: isam2016
  * @Date: 2020-01-14 16:08:44
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:32:30
+ * @Last Modified time: 2020-01-20 09:12:33
  */
 import * as _ from 'lodash';
 import * as path from 'path';
 import * as moment from 'moment';
 import * as shell from 'shelljs';
 import * as schedule from 'node-schedule';
+import { sleep } from '@commands/utils';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from 'commands/utils/annotation';
+import { CommandsModuleInterface } from 'commands/utils/interface';
 import {
   UNIT,
   appConfig,
   COMMAND_ARGUMENT_BY_MINUTE,
   DISPLAY_BY_MILLSECOND,
 } from '@commands/config';
-import { Inject } from 'typescript-ioc';
-import { sleep } from '@commands/utils';
-import { DataCleaning } from '@commands/core';
-class TaskManger extends CommandsBase {
+
+class TaskManger extends CommandsBase implements CommandsModuleInterface {
   constructor() {
     super();
   }
@@ -119,8 +118,8 @@ class TaskManger extends CommandsBase {
       that.execCommand('SaveLog:Nginx', []);
     });
 
-    // that.log(`[按分钟] 每分钟启动一次WatchDog:Alarm, 监控平台运行情况 `);
-    // that.execCommand('WatchDog:Alarm', []); //TODO:
+    that.log(`[按分钟] 每分钟启动一次Watch:Alarm, 监控平台运行情况 `);
+    that.execCommand('Watct:Alarm', []); //TODO:
   }
   /**
    * 执行command 命令行

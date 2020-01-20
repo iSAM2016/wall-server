@@ -1,17 +1,14 @@
-import { ConfigService } from '@commands/core';
-import { Connection, Repository, createConnection } from 'typeorm';
+import { ConfigService, getConfig } from '@commands/core';
+import { Connection, Repository, createConnection, Table } from 'typeorm';
 import * as knex from 'knex';
-interface ConnectionInterface<T> {
+interface Knex<T> {
   connection: Connection;
   repository: Repository<T>;
 }
 
-let MYSQLCONNECTION = 'MYSQLCONNECTION';
-let mysqlMap = new Map();
-
 const mysqlConnection = () => {
-  let config = new ConfigService();
-  return knex({
+  let config: ConfigService = getConfig();
+  knex({
     client: 'mysql',
     connection: {
       host: String(config.get('MYSQL_HOST')),
@@ -34,12 +31,7 @@ const mysqlConnection = () => {
     },
     acquireConnectionTimeout: 60000,
     log: {
-      error(message) {
-        // Alert.sendMessage( // TODO: 数据库异常
-        //   WatchIdList.WATCH_UCID_LIST_DEFAULT,
-        //   `数据库操作异常 => ${message}`,
-        // );
-      },
+      error(message) {},
     },
   });
 };

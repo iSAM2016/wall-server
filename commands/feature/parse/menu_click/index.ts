@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-16 17:06:24
+ * @Last Modified time: 2020-01-20 09:09:12
  */
 
 import * as _ from 'lodash';
@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import { CommonModuleInterface } from 'commands/utils/interface';
+import { ParseInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
 import {
   BehaviorDistributionService,
@@ -22,7 +22,7 @@ import {
   UNIT,
 } from '@commands/config';
 
-class MenuClick extends ParseBase implements CommonModuleInterface {
+class MenuClick extends ParseBase implements ParseInterface {
   constructor() {
     super();
   }

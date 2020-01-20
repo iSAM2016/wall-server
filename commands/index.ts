@@ -33,8 +33,8 @@ const registedCommandList = [
   //   './feature/summary/new_user_summary', //  统计新增用户数
   //   './feature/summary/error_summary', // 统计某一错误的数量
   //   // 监控
-  //   './feature/watch_dog/saas', //  saas监控
-  './feature/watch_dog/alarm',
+  //   './feature/watch/saas', //  saas监控
+  './feature/watch/alarm',
 
   //   './feature/create_cache/update_per_ten_minute', // 更新缓存
 

@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-14 14:06:22
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:30:31
+ * @Last Modified time: 2020-01-20 09:09:39
  */
 
 import * as _ from 'lodash';
@@ -10,11 +10,11 @@ import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import { CommonModuleInterface } from 'commands/utils/interface';
+import { ParseInterface } from 'commands/utils/interface';
 import { UserFirstLoginAtService } from './user_first_login_at.service';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '@commands/config';
 
-class UserFirstLoginAt extends ParseBase implements CommonModuleInterface {
+class UserFirstLoginAt extends ParseBase implements ParseInterface {
   constructor() {
     super();
   }
