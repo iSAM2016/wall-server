@@ -21,7 +21,7 @@ class CommandDemo extends Base implements CommandsModuleInterface {
   }
 
   static get description() {
-    return '解析kafka日志, 分析pv';
+    return '解析nginx日志, 分析pv';
   }
   async handle(args, options) {
     this.log('Command:Demo start');

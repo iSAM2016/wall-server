@@ -33,7 +33,7 @@ class UserFirstLoginAt extends ParseBase implements ParseInterface {
   }
 
   static get description() {
-    return '[按天] 解析kafka日志, 记录用户首次登陆时间';
+    return '[按天] 解析nginx日志, 记录用户首次登陆时间';
   }
 
   /**
@@ -55,9 +55,9 @@ class UserFirstLoginAt extends ParseBase implements ParseInterface {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
-      this.log(this.constructor.name + '运行异常 =>' + error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
   /**

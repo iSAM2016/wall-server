@@ -43,7 +43,7 @@ class MenuClick extends ParseBase implements ParseInterface {
   }
 
   static get description() {
-    return '[按天] 解析kafka日志, 用户点击情况';
+    return '[按天] 解析nginx日志, 用户点击情况';
   }
 
   /**
@@ -65,9 +65,9 @@ class MenuClick extends ParseBase implements ParseInterface {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
-      this.log(this.constructor.name + '运行异常 =>' + error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
   /**

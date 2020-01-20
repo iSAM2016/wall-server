@@ -36,7 +36,7 @@ class ParseDevice extends ParseBase implements ParseInterface {
   }
 
   static get description() {
-    return '[按天] 解析kafka日志, 分析指定时间范围Device';
+    return '[按天] 解析nginx日志, 分析指定时间范围Device';
   }
 
   // 1.开始自动获取日志
@@ -53,9 +53,9 @@ class ParseDevice extends ParseBase implements ParseInterface {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
-      this.log(this.constructor.name + '运行异常 =>' + error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
   /**

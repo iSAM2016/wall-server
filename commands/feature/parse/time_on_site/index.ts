@@ -37,7 +37,7 @@ class TimeOnSiteByHour extends ParseBase implements ParseInterface {
   }
 
   static get description() {
-    return '[按小时] 解析kafka日志, 分析记录指定时间范围内用户停留时长';
+    return '[按小时] 解析nginx日志, 分析记录指定时间范围内用户停留时长';
   }
 
   // 1.开始自动获取日志
@@ -54,10 +54,10 @@ class TimeOnSiteByHour extends ParseBase implements ParseInterface {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
       this.log('catch error');
-      this.log(error.stack);
+      this.log(error.message);
     }
   }
   /**

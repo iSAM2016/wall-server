@@ -1,14 +1,9 @@
 import { ConfigService, getConfig } from '@commands/core';
-import { Connection, Repository, createConnection, Table } from 'typeorm';
 import * as knex from 'knex';
-interface Knex<T> {
-  connection: Connection;
-  repository: Repository<T>;
-}
 
 const mysqlConnection = () => {
   let config: ConfigService = getConfig();
-  knex({
+  return knex({
     client: 'mysql',
     connection: {
       host: String(config.get('MYSQL_HOST')),

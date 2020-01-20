@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { Repository } from 'typeorm';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { InjectRepositorys } from 'commands/utils/annotation';
 

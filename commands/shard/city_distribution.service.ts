@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 
 const DateFormat = 'YYYYMM';
