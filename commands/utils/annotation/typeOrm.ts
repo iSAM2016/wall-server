@@ -1,5 +1,6 @@
 import { ConfigService } from '@commands/core';
 import { Connection, Repository, createConnection } from 'typeorm';
+import * as knex from 'knex';
 interface ConnectionInterface<T> {
   connection: Connection;
   repository: Repository<T>;
@@ -8,50 +9,48 @@ interface ConnectionInterface<T> {
 let MYSQLCONNECTION = 'MYSQLCONNECTION';
 let mysqlMap = new Map();
 
-const mysqlConnection = async () => {
+const mysqlConnection = () => {
   let config = new ConfigService();
-  return await createConnection({
-    type: 'mysql',
-    name: 'commond',
-    host: String(config.get('MYSQL_HOST')),
-    port: Number(config.get('MYSQL_PORT')),
-    username: String(config.get('MYSQL_USERNAME')),
-    password: String(config.get('MYSQL_PASSWORD')),
-    database: String(config.get('MYSQL_DATABASE')),
-    entities: ['dist/src/**/**.entity{.ts,.js}'],
-    synchronize: Boolean(config.get('MYSQL_SYNCHRONIZE')),
-    logging: true, // 开启所有数据库信息打印
-    entityPrefix: 'wall_',
-    extra: {
-      connectionLimit: 1, // 连接池最大连接数量, 查阅资料 建议是  core number  * 2 + n
+  return knex({
+    client: 'mysql',
+    connection: {
+      host: String(config.get('MYSQL_HOST')),
+      port: Number(config.get('MYSQL_PORT')),
+      user: String(config.get('MYSQL_USERNAME')),
+      password: String(config.get('MYSQL_PASSWORD')),
+      database: String(config.get('MYSQL_DATABASE')),
     },
-    cache: false,
+    debug: false,
+    pool: {
+      max: 10,
+      min: 0,
+      // 由于存在资源池, 导致句柄不被释放, 程序不能退出
+      // 因此将最小句柄数设为0, 每100ms检查一次是否有超过120ms未被使用的资源
+      // 以便句柄的及时回收
+      // free resouces are destroyed after this many milliseconds
+      idleTimeoutMillis: 100,
+      // how often to check for idle resources to destroy
+      reapIntervalMillis: 150,
+    },
+    acquireConnectionTimeout: 60000,
+    log: {
+      error(message) {
+        // Alert.sendMessage( // TODO: 数据库异常
+        //   WatchIdList.WATCH_UCID_LIST_DEFAULT,
+        //   `数据库操作异常 => ${message}`,
+        // );
+      },
+    },
   });
 };
 
-export const clearMysqlConnection = async () => {
-  let connection = mysqlMap.get(MYSQLCONNECTION);
-  await connection.close();
-  mysqlMap.delete(MYSQLCONNECTION);
-};
-
-const getMysqlConnection = async (): Promise<Connection> => {
-  if (!mysqlMap.has(MYSQLCONNECTION)) {
-    let connection = await mysqlConnection();
-    mysqlMap.set(MYSQLCONNECTION, connection);
-    return connection;
-  }
-  return mysqlMap.get(MYSQLCONNECTION);
-};
-
-export function InjectRepositorys(entity) {
+export function InjectRepositorys() {
   return function(target, propertyKey) {
     // 修改属性
     Object.defineProperty(target, propertyKey, {
       enumerable: true,
-      get: async function() {
-        let connection: Connection = await getMysqlConnection();
-        return connection.getRepository(entity);
+      get: function() {
+        return mysqlConnection();
       },
       set: function(value) {},
     });

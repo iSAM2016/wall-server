@@ -1,10 +1,33 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { UV } from '@entity';
 import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 import { DATABASE_BY_HOUR } from '@commands/config';
 
+const TableNameDateFormat = 'YYYYMM';
+const VisitAtHourDateFormat = DATABASE_BY_HOUR;
+const BASE_TABLE_NAME = 't_o_uv_record';
+const TABLE_COLUMN = [
+  `id`,
+  `uuid`,
+  `country`,
+  `province`,
+  `city`,
+  `visit_at_hour`,
+  `pv_count`,
+  `create_time`,
+  `update_time`,
+];
+/**
+ * 获取表名
+ * @param {number} projectId 项目id
+ * @param {number} createTimeAt 创建时间, 时间戳
+ * @return {String}
+ */
+function getTableName(projectId, createTimeAt) {
+  let dateYm = moment.unix(createTimeAt).format(TableNameDateFormat);
+  return `${BASE_TABLE_NAME}_${projectId}_${dateYm}`;
+}
 export class UVService {
   /**
    * 获取指定小时内的uuid列表
@@ -13,14 +36,14 @@ export class UVService {
    * @param {*} visitAt
    * @return {Object}
    */
-  @InjectRepositorys(UV)
-  private readonly uvRepository: Repository<UV>;
+  @InjectRepositorys()
+  private readonly uvRepository;
 
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    // const uvRepository = await this.getRepository(UV);
+    // const uvRepository = await this.getRepository(UvRecode);
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     console.log('v');
-    let rawRecordList = await (await this.uvRepository)
+    let rawRecordList = await this.uvRepository
       .createQueryBuilder()
       .where({
         visit_at_hour: visitAtHour,
@@ -60,15 +83,18 @@ export class UVService {
     // pv数无意义, 不再计算 s
     let pvCount = 0;
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
-    // let tableName = getTableName(projectId, visitAt);
+    let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    // const uvRepository = await this.getRepository(UV);
+    // const uvRepository = await this.getRepository(UvRecode);
     // // 返回值是一个列表
     let oldRecordList = await (await this.uvRepository)
-      .createQueryBuilder('uv')
-      .where({ uuid })
-      .andWhere('uv.visit_at_hour = :visitAtHour', { visitAtHour })
-      .getMany();
+      .select([`id`])
+      .from(tableName)
+      .where('uuid', '=', uuid)
+      .andWhere('visit_at_hour', '=', visitAtHour)
+      .catch(() => {
+        return [];
+      });
     // // 利用get方法, 不存在直接返回0, 没毛病
     let id = _.get(oldRecordList, [0, 'id'], 0);
     let data = {
@@ -82,8 +108,6 @@ export class UVService {
       update_time: updateAt,
     };
 
-    console.log(data);
-    console.log(id);
     let isSuccess = false;
     if (id > 0) {
       let affectRows = await (await this.uvRepository).findOne({ id });

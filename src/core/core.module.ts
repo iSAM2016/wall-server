@@ -23,7 +23,7 @@ import { SMTPTransportOptions } from './mailer/mailer.interface';
         password: configService.get('MYSQL_PASSWORD'),
         database: configService.get('MYSQL_DATABASE'),
         entities: ['dist/src/**/**.entity{.ts,.js}'],
-        logging: true, // 开启所有数据库信息打印
+        logging: false, // 开启所有数据库信息打印
         entityPrefix: 'wall_',
         synchronize: Boolean(configService.get('MYSQL_SYNCHRONIZE')),
       }),

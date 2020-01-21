@@ -17,7 +17,6 @@ import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DISPLAY_BY_MILLSECOND,
 } from '@commands/config';
-console.log(UNIT.MINUTE);
 import { Inject } from 'typescript-ioc';
 import { sleep } from '@commands/utils';
 import { DataCleaning } from '@commands/core';
@@ -98,28 +97,27 @@ class TaskManger extends CommandsBase {
    */
   registerTaskRepeatPer1Minute() {
     let that = this;
-    // schedule.scheduleJob('1 * * * * * ', () => {
-
-    // });
-    that.log('registerTaskRepeatPer1Minute 开始执行');
-    let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
-    let twoMinuteAgoByMinute = moment()
-      .subtract(2, 'minute')
-      .format(COMMAND_ARGUMENT_BY_MINUTE);
-    let threeMinuteAgoByMinute = moment()
-      .subtract(3, 'minute')
-      .format(COMMAND_ARGUMENT_BY_MINUTE);
-    let fourMinuteAgoByMinute = moment()
-      .subtract(4, 'minute')
-      .format(COMMAND_ARGUMENT_BY_MINUTE);
-    let fiveMinuteAgoByMinute = moment()
-      .subtract(5, 'minute')
-      .format(COMMAND_ARGUMENT_BY_MINUTE);
-    let tenMinuteAgoByMinute = moment()
-      .subtract(10, 'minute')
-      .format(COMMAND_ARGUMENT_BY_MINUTE);
-    that.log(`[按分钟] 每分钟启动一次SaveLog `);
-    that.execCommand('SaveLog:Nginx', []);
+    schedule.scheduleJob('1 * * * * * ', () => {
+      that.log('registerTaskRepeatPer1Minute 开始执行');
+      let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
+      let twoMinuteAgoByMinute = moment()
+        .subtract(2, 'minute')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+      let threeMinuteAgoByMinute = moment()
+        .subtract(3, 'minute')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+      let fourMinuteAgoByMinute = moment()
+        .subtract(4, 'minute')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+      let fiveMinuteAgoByMinute = moment()
+        .subtract(5, 'minute')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+      let tenMinuteAgoByMinute = moment()
+        .subtract(10, 'minute')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+      that.log(`[按分钟] 每分钟启动一次SaveLog `);
+      that.execCommand('SaveLog:Nginx', []);
+    });
 
     that.log(`[按分钟] 每分钟启动一次WatchDog:Alarm, 监控平台运行情况 `);
     that.execCommand('WatchDog:Alarm', []);
@@ -150,8 +148,9 @@ class TaskManger extends CommandsBase {
         let commandFinishAtms = moment().valueOf();
         let during = (commandFinishAtms - commandStartAtms) / 1000;
         this.log(
-          `${commandOrder}命令执行完毕, 共用时${during}秒, 开始执行时间=> ${commandStartAtFormated}, 执行完毕时间=> ${commandFinishAtFormated}`,
+          `命令执行完毕 => ${commandOrder}, 共用时${during}秒, 开始执行时间=> ${commandStartAtFormated}, 执行完毕时间=> ${commandFinishAtFormated}`,
         );
+        this.log(`========         分隔符          ==========`);
       },
     );
   }

@@ -1,14 +1,16 @@
+export * from './nginx';
 import * as os from 'os';
+import * as path from 'path';
+import * as datx from 'ipip-datx';
 import * as querystring from 'query-string';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import axios from 'axios'; // 引入axios组件
-
 /**
  * 将城市分布数据拍平后, 作为一个列表返回回来, 方便集中处理
  * @param {*} distribution
  * @return {Array}
  */
-export function getFlattenCityRecordListInDistribution(distribution) {
+function getFlattenCityRecordListInDistribution(distribution) {
   let recordList = [];
   for (let country of Object.keys(distribution)) {
     let countryDistribution = distribution[country];
@@ -26,7 +28,7 @@ export function getFlattenCityRecordListInDistribution(distribution) {
 /**
  * 获取本机ip
  */
-export const getLocalIpList = () => {
+const getLocalIpList = () => {
   // demo =>  {"lo":[{"address":"127.0.0.1","netmask":"255.0.0.0","family":"IPv4","mac":"00:00:00:00:00:00","internal":true,"cidr":"127.0.0.1/8"}],"eth0":[{"address":"10.26.27.20","netmask":"255.255.255.0","family":"IPv4","mac":"52:54:00:05:68:ba","internal":false,"cidr":"10.26.27.20/24"}]}
   let networkInterfaceList = os.networkInterfaces();
   let localIpList = [];
@@ -69,4 +71,42 @@ function postForm(url, formData = {}, config = {}) {
 }
 (http as any).postForm = postForm;
 
-export { http };
+let ipDatabaseUri = path.resolve(
+  __dirname,
+  '../../../ip2locate_ipip.net_20180910.datx',
+);
+
+let DatabaseClient = new datx.City(ipDatabaseUri);
+
+function isIp(ip) {
+  return /^(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}$/.test(ip);
+}
+
+async function ip2Locate(ip) {
+  let country = '';
+  let province = '';
+  let city = '';
+  if (isIp(ip) === false) {
+    return {
+      country, //  国家
+      province, //  省
+      city, //  市
+    };
+  }
+  let res = await DatabaseClient.findSync(ip);
+  country = _.get(res, [0], '');
+  province = _.get(res, [1], '');
+  city = _.get(res, [2], '');
+  return {
+    country, //  国家
+    province, //  省
+    city, //  市
+  };
+}
+
+export {
+  http,
+  ip2Locate,
+  getLocalIpList,
+  getFlattenCityRecordListInDistribution,
+};

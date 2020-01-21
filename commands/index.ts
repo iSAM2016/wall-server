@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2019-12-30 16:00:39
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-14 17:07:17
+ * @Last Modified time: 2020-01-16 14:42:08
  */
 import * as ace from '@adonisjs/ace';
 
@@ -20,7 +20,7 @@ const registedCommandList = [
   //   './feature/parse/user_first_login_at', //  录入新增用户
 
   //   './feature/save_log/parseKafkaLog', //  将kafka日志落在文件中
-  //   './feature/save_log/parseNginxLog', // 将ngnix日志落在文件中
+  './feature/save_log/parseNginxLog', // 将ngnix日志落在文件中
   //   // 从数据库中, 按时间段统计
   //   './feature/summary/uv', //  统计uv数据
   //   './feature/summary/time_on_site', //  统计用户停留时长
@@ -34,7 +34,7 @@ const registedCommandList = [
   //   './feature/summary/error_summary', // 统计某一错误的数量
   //   // 监控
   //   './feature/watch_dog/saas', //  saas监控
-  //   './feature/watch_dog/alarm',
+  './feature/watch/alarm',
 
   //   './feature/create_cache/update_per_ten_minute', // 更新缓存
 
@@ -42,8 +42,7 @@ const registedCommandList = [
   './feature/task/manage',
 
   //   // 工具类命令
-  //   './feature/utils/template_sql', // 生成模板数据
-  //   './feature/utils/generate_sql', //  生成SQL
+  './feature/sql', // 生成模板数据sql
   //   './feature/utils/clean_old_log', //  自动删除旧日志
   //   './feature/utils/test', //  专业粘贴调试代码
 

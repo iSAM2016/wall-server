@@ -2,13 +2,13 @@
  * @Author: isam2016
  * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:30:28
+ * @Last Modified time: 2020-01-16 17:06:24
  */
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
@@ -22,7 +22,7 @@ import {
   UNIT,
 } from '@commands/config';
 
-class MenuClick extends CommandsBase implements CommonModuleInterface {
+class MenuClick extends ParseBase implements CommonModuleInterface {
   constructor() {
     super();
   }
@@ -55,7 +55,6 @@ class MenuClick extends CommandsBase implements CommonModuleInterface {
   @StartPase
   async handle(...arg) {
     try {
-      console.log(arg);
       await this.readLog(
         this.startAtMoment,
         this.endAtMoment,

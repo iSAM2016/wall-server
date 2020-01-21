@@ -1,12 +1,32 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { UserFirstLoginAt } from '@entity';
 import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 
+const BASE_TABLE_NAME = 't_o_user_first_login_at';
+const TABLE_COLUMN = [
+  `id`,
+  `ucid`,
+  `first_visit_at`,
+  `country`,
+  `province`,
+  `city`,
+  `create_time`,
+  `update_time`,
+];
+
+/**
+ * 获取表名
+ * @param {number} projectId 项目id
+ * @return {String}
+ */
+function getTableName(projectId) {
+  return `${BASE_TABLE_NAME}_${projectId}`;
+}
+
 export class UserFirstLoginAtService {
-  @InjectRepositorys(UserFirstLoginAt)
-  private readonly userFirstLoginAtRepository: Repository<UserFirstLoginAt>;
+  @InjectRepositorys()
+  private readonly userFirstLoginAtRepository;
   /**
    * 过滤所有已存在在数据库中的ucid(使用Set, 以便区分Map和Object)
    * @param {*} projectId
@@ -39,10 +59,15 @@ export class UserFirstLoginAtService {
    */
   async replaceInto(projectId, ucid, firstVisitAt, country, province, city) {
     let updateAt = moment().unix();
+    let tableName = getTableName(projectId);
     // 返回值是一个列表
-    let oldRecordList = await (await this.userFirstLoginAtRepository)
-      .createQueryBuilder()
-      .where('ucid = :ucid', ucid);
+    let oldRecordList = await this.userFirstLoginAtRepository
+      .select([`id`, `first_visit_at`])
+      .from(tableName)
+      .where('ucid', '=', ucid)
+      .catch(() => {
+        return [];
+      });
 
     // 利用get方法, 不存在直接返回0, 没毛病
     let id = _.get(oldRecordList, [0, 'id'], 0);

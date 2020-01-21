@@ -1,13 +1,33 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { CityDistribution } from '@entity';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 
+const DateFormat = 'YYYYMM';
+
+const BaseTableName = 't_r_city_distribution';
+const TABLE_COLUMN = [
+  `id`,
+  `city_distribute_json`,
+  `create_time`,
+  `update_time`,
+];
+
+/**
+ * 获取表名
+ * @param {number} projectId 项目id
+ * @param {number} createTimeAt 创建时间, 时间戳
+ * @return {String}
+ */
+function getTableName(projectId, createTimeAt) {
+  let YmDate = moment.unix(createTimeAt).format(DateFormat);
+  return BaseTableName + '_' + projectId + '_' + YmDate;
+}
+
 export class CityDistributionService {
-  @InjectRepositorys(CityDistribution)
-  private readonly cityDistributionRepository: Repository<CityDistribution>;
+  @InjectRepositorys()
+  private readonly cityDistributionRepository;
   /**
    * 插入城市分布记录, 返回插入id
    * @param {string} cityDistributeJson

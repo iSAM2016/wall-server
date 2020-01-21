@@ -79,7 +79,7 @@ export class AuthService {
 
     const user = new User();
     user.email = body.email;
-    user.password = await genSalt().then(s => hash(body.password, s));
+    user.password_md5 = await genSalt().then(s => hash(body.password, s));
     // user.role = userRole;
 
     const profile = new Profile();
@@ -104,7 +104,7 @@ export class AuthService {
       // relations: ['profile', 'role'],
     });
     if (!user) throw new BadRequestException('Email address does not exits');
-    const isCorrectPassword = await compare(body.password, user.password);
+    const isCorrectPassword = await compare(body.password, user.password_md5);
     if (!isCorrectPassword) {
       throw new BadRequestException('Password is not correct.');
     }

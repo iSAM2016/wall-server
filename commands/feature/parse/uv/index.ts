@@ -10,8 +10,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
+import ParseBase from '../parseBase';
 import { UVService } from './uv.service';
-import CommandsBase from '../../commandsBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
 import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
 import {
@@ -19,7 +19,7 @@ import {
   DATABASE_BY_MINUTE,
 } from '@commands/config';
 
-class ParseUV extends CommandsBase implements CommonModuleInterface {
+class ParseUV extends ParseBase implements CommonModuleInterface {
   constructor() {
     super();
   }
@@ -45,7 +45,6 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
   @StartPase
   async handle(...arg) {
     try {
-      console.log(arg);
       await this.readLog(
         this.startAtMoment,
         this.endAtMoment,
@@ -145,6 +144,7 @@ class ParseUV extends CommandsBase implements CommonModuleInterface {
         let existUuidSet = await this.uvService.getExistUuidSetInHour(
           projectId,
           visitAtInDb,
+          // uuid,
         );
 
         for (let [uv, uvRecord] of uvMap) {
