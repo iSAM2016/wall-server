@@ -154,8 +154,8 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
 
       let parseCommandList = [
         // 'Parse:UV',
-        'Parse:TimeOnSiteByHour',
-        // 'Parse:Performance',
+        // 'Parse:TimeOnSiteByHour',
+        'Parse:Performance',
         // 'Parse:Monitor',
       ];
       for (let parseCommand of parseCommandList) {

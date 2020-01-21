@@ -173,7 +173,7 @@ class MenuClick extends ParseBase implements ParseInterface {
             distribution,
           );
 
-          let isSuccess = this.checkSaveCount(
+          let isSuccess = await this.checkSaveCount(
             url,
             name,
             code,
