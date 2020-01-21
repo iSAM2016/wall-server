@@ -217,6 +217,7 @@ class MenuClick extends ParseBase implements ParseInterface {
       [0, 'city_distribute_id'],
       0,
     );
+    let updateAt = moment().unix();
     let id = _.get(oldRecordList, [0, 'id'], 0);
     let createTimeInDb = _.get(oldRecordList, [0, 'create_time'], 0);
 
@@ -234,26 +235,37 @@ class MenuClick extends ParseBase implements ParseInterface {
     let isSuccess: boolean = false;
     if (id > 0) {
       isSuccess = await this.updateCityDistribution(
-        cityDistributeIdInDb,
-        cityDistribute,
-        data,
         id,
+        data,
+        projectId,
+        createTimeInDb,
+        cityDistribute,
+        cityDistributeIdInDb,
       );
     } else {
-      isSuccess = await this.insertCityDistributionRecord(cityDistribute, data);
+      isSuccess = await this.insertCityDistributionRecord(
+        cityDistribute,
+        data,
+        projectId,
+        updateAt,
+      );
     }
     return isSuccess;
   }
   // 更新城市分布数据
   async updateCityDistribution(
-    cityDistributeIdInDb,
-    cityDistribute,
-    data,
     id,
+    data,
+    projectId,
+    createTimeInDb,
+    cityDistribute,
+    cityDistributeIdInDb,
   ): Promise<boolean> {
     // 更新城市分布数据
     let isUpdateSuccess = await this.cityDistributionService.updateCityDistributionRecord(
       cityDistributeIdInDb,
+      projectId,
+      createTimeInDb,
       JSON.stringify(cityDistribute),
     );
     if (isUpdateSuccess === false) {
@@ -266,9 +278,16 @@ class MenuClick extends ParseBase implements ParseInterface {
     return affectRows > 0;
   }
   // 首先插入城市分布数据
-  async insertCityDistributionRecord(cityDistribute, data): Promise<boolean> {
+  async insertCityDistributionRecord(
+    cityDistribute,
+    data,
+    projectId,
+    updateAt,
+  ): Promise<boolean> {
     let cityDistributeId = await this.cityDistributionService.insertCityDistributionRecord(
       JSON.stringify(cityDistribute),
+      projectId,
+      updateAt,
     );
     if (cityDistributeId === 0) {
       // 城市分布数据插入失败

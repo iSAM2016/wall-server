@@ -6,17 +6,6 @@ import { InjectRepositorys } from '@commands/annotation';
 
 const TableNameDateFormat = 'YYYYMM';
 const BASE_TABLE_NAME = 't_r_uv_record';
-const TABLE_COLUMN = [
-  `id`,
-  `uuid`,
-  `country`,
-  `province`,
-  `city`,
-  `visit_at_hour`,
-  `pv_count`,
-  `create_time`,
-  `update_time`,
-];
 /**
  * 获取表名
  * @param {number} projectId 项目id
@@ -28,13 +17,6 @@ function getTableName(projectId, createTimeAt) {
   return `${BASE_TABLE_NAME}_${projectId}_${dateYm}`;
 }
 export class UVService extends BaseService {
-  /**
-   * 获取指定小时内的uuid列表
-   * @param {*} projectId
-   * @param {*} uuid
-   * @param {*} visitAt
-   * @return {Object}
-   */
   @InjectRepositorys()
   private readonly uvRepository;
   /**
@@ -51,7 +33,7 @@ export class UVService extends BaseService {
       .from(tableName)
       .where('visit_at_hour', '=', visitAtHour)
       .catch(err => {
-        this.log('getExistUuidSetInHour => 出错' + err.message);
+        this.log('获取指定小时内的uuid列表 => 出错' + err.message);
         return [];
       });
     let uuidSet = new Set();

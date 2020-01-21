@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-14 16:08:44
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-20 15:52:14
+ * @Last Modified time: 2020-01-20 18:08:16
  */
 import * as _ from 'lodash';
 import * as path from 'path';
@@ -153,8 +153,8 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       }
 
       let parseCommandList = [
-        'Parse:UV',
-        // 'Parse:TimeOnSiteByHour',
+        // 'Parse:UV',
+        'Parse:TimeOnSiteByHour',
         // 'Parse:Performance',
         // 'Parse:Monitor',
       ];

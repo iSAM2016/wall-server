@@ -120,6 +120,14 @@ export class ConfigService {
   get isProduction(): boolean {
     return this.get('NODE_ENV') === 'production';
   }
+  /** 测试模式 */
+  static get isTest(): boolean {
+    return this.get('NODE_ENV') === 'test';
+  }
+  /** 测试模式 */
+  get isTest(): boolean {
+    return this.get('NODE_ENV') === 'test';
+  }
   getEnv(): string {
     return process.env['NODE_ENV'] || 'development';
   }

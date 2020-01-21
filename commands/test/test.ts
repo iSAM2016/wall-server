@@ -4,7 +4,7 @@ import Manage from '../feature/task/manage';
 describe('测试命令行', function() {
   // var manage = new Manage();
   it('test => 任务调度', function() {
-    shell.exec(' NODE_ENV=development node ../index.js Task:Manger');
+    shell.exec(' NODE_ENV=test node ../index.js Task:Manger');
   });
   // it('test =>sql调度', function() {
   //   shell.exec(

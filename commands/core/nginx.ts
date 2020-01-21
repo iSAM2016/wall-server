@@ -60,7 +60,7 @@ function getAbsoluteLogUriByType(logAt, logType = LOG_TYPE_RAW) {
     DDFormat,
   )}/${startAtMoment.format(HHFormat)}/${startAtMoment.format(mmFormat)}.log`;
   let fileUri = path.resolve(basePath, fileName);
-  if (ConfigService.isDevelopment) {
+  if (ConfigService.isTest) {
     fileUri = path.resolve(basePath, './month_202001/day_16/16/00.log');
   }
   return fileUri;

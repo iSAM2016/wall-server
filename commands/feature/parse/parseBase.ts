@@ -5,7 +5,6 @@ import { COMMAND_ARGUMENT_BY_MINUTE } from '@commands/config';
 import { getAbsoluteLogUriByType, LOG_TYPE_JSON } from '@commands/core';
 import CommandsBase from '../commandsBase';
 const readLine = require('lei-stream').readLine;
-let ao = 0;
 abstract class ParseBase extends CommandsBase {
   //存入数据库汇报进度
   reportProcess(
@@ -45,7 +44,6 @@ abstract class ParseBase extends CommandsBase {
       currentAt <= endAt;
       currentAt = currentAt + 60
     ) {
-      console.log(ao++);
       let currentAtMoment = moment.unix(currentAt);
       let absoluteLogUri = getAbsoluteLogUriByType(currentAt, LOG_TYPE_JSON);
       self.log(

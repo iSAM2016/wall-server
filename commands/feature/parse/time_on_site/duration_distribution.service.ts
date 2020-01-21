@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { InjectRepositorys } from 'commands/utils/annotation';
+import { BaseService } from '@commands/shard';
 
 const TableName = 't_r_duration_distribution';
 const TABLE_COLUMN = [
@@ -18,8 +19,12 @@ const TABLE_COLUMN = [
 function getTableName() {
   return TableName;
 }
-
-export class DurationDistributionService {
+/*
+ * 用户停留时长分布， 按天和月进行统计
+ * 当前项目 当前统计尺度下 记录用户停留总秒数 同时记录城市分布情况
+ *
+ */
+export class DurationDistributionService extends BaseService {
   @InjectRepositorys()
   private readonly durationDistributionRepository;
 
@@ -28,21 +33,17 @@ export class DurationDistributionService {
    */
   replaceUvRecord = async (projectId, countAtTime, countType) => {
     let tableName = getTableName();
-    // 返回值是一个列表
     let oldRecordList = await this.durationDistributionRepository
       .select([`city_distribute_id`, `create_time`, `id`])
       .from(tableName)
       .where('project_id', '=', projectId)
       .andWhere('count_at_time', '=', countAtTime)
       .andWhere('count_type', '=', countType)
-      .catch(() => {
+      .catch(err => {
+        this.log('获取uv记录失败 => 出错' + err.message);
         return [];
       });
-    // let oldRecordList = await Knex.select([//TODO:
-    //   `city_distribute_id`,
-    //   `create_time`,
-    //   `id`,
-    // ])
+
     return oldRecordList;
   };
   /**
@@ -51,30 +52,28 @@ export class DurationDistributionService {
    * @memberof DurationDistributionService
    */
   updateDuration = async (id, data) => {
-    // 返回值是一个列表
-    let result = await (await this.durationDistributionRepository).findOne({
-      id,
-    });
-
-    let updateResult = await (await this.durationDistributionRepository)
-      .save({ ...result, ...data })
-      .catch(e => {
-        return [];
-      });
+    let tableName = getTableName();
+    let updateResult = await this.durationDistributionRepository(tableName)
+      .update(data)
+      .where(`id`, '=', id);
     return updateResult;
   };
 
   /**
-   * 插入数据
+   * 插入用户停留时间数据
    * @param id
    * @param data
    */
   async insertDuration(data) {
+    let tableName = getTableName();
     // 返回值是一个列表
-    let result = await (await this.durationDistributionRepository)
-      .save(data)
-      .catch(e => {
-        return {};
+    let result = await this.durationDistributionRepository
+      .returning('id')
+      .insert(data)
+      .into(tableName)
+      .catch(err => {
+        this.log('插入用户停留时间数据失败 => 出错' + err.message);
+        return [];
       });
     return result;
   }
