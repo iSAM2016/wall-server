@@ -119,53 +119,93 @@ class UserFirstLoginAt extends ParseBase implements ParseInterface {
    */
   @EndParse
   async saveTODB() {
-    let totalRecordCount = this.getRecordCountInProjectMap();
-    let processRecordCount = 0;
-    let successSaveCount = 0;
-    for (let [projectId, dbRecordMap] of this.projectMap) {
-      let ucidList = [];
-      for (let ucid of dbRecordMap.keys()) {
-        ucidList.push(ucid);
-      }
-      let existUcidSet = await this.userFirstLoginAtService.filterExistUcidSetInDb(
-        projectId,
-        ucidList,
-      );
-
-      for (let [ucid, dbRecord] of dbRecordMap) {
-        let {
-          project_id: projectId,
-          country,
-          province,
-          city,
-          first_visit_at: firstVisitAt,
-        } = dbRecord;
-
-        let isSuccess = false;
-        ucid = `${ucid}`; // 专门转成string
-        if (existUcidSet.has(ucid) === false) {
-          // 只有ucid不存在的时候, 才需要插入
-          isSuccess = await this.userFirstLoginAtService.replaceInto(
-            projectId,
-            ucid,
-            firstVisitAt,
+    try {
+      let totalRecordCount = this.getRecordCountInProjectMap();
+      let processRecordCount = 0;
+      let successSaveCount = 0;
+      for (let [projectId, dbRecordMap] of this.projectMap) {
+        let ucidList = [];
+        for (let ucid of dbRecordMap.keys()) {
+          ucidList.push(ucid);
+        }
+        let existUcidSet = await this.userFirstLoginAtService.filterExistUcidSetInDb(
+          projectId,
+          ucidList,
+        );
+        for (let [ucid, dbRecord] of dbRecordMap) {
+          let {
+            project_id: projectId,
             country,
             province,
             city,
+            first_visit_at: firstVisitAt,
+          } = dbRecord;
+
+          let isSuccess = false;
+          ucid = `${ucid}`; // 专门转成string
+          if (existUcidSet.has(ucid) === false) {
+            let updateAt = moment().unix();
+            // 只有ucid不存在的时候, 才需要插入
+            let oldRecordList = await this.userFirstLoginAtService.getOldRecordList(
+              projectId,
+              ucid,
+            );
+
+            // 利用get方法, 不存在直接返回0, 没毛病
+            let id = _.get(oldRecordList, [0, 'id'], 0);
+            let oldFirstVisitAt = _.get(
+              oldRecordList,
+              [0, 'first_visit_at'],
+              0,
+            );
+            let data = {
+              ucid,
+              first_visit_at: firstVisitAt,
+              country,
+              province,
+              city,
+              update_time: updateAt,
+            };
+            let isSuccess = false;
+            if (id > 0) {
+              if (oldFirstVisitAt > 0 && oldFirstVisitAt > firstVisitAt) {
+                // 有更新的数据时更新一下
+                let affectRows = await this.userFirstLoginAtService.updateUserFirstLoginAt(
+                  id,
+                  data,
+                  projectId,
+                );
+                isSuccess = affectRows > 0;
+              }
+            } else {
+              data['create_time'] = updateAt;
+              let insertResult = await this.userFirstLoginAtService.insertUserFirstLoginAt(
+                data,
+                projectId,
+              );
+              let insertId = _.get(insertResult, [0], 0);
+              isSuccess = insertId > 0;
+            }
+          }
+          processRecordCount = processRecordCount + 1;
+          if (isSuccess) {
+            successSaveCount = successSaveCount + 1;
+          }
+          this.reportProcess(
+            processRecordCount,
+            successSaveCount,
+            totalRecordCount,
           );
         }
-        processRecordCount = processRecordCount + 1;
-        if (isSuccess) {
-          successSaveCount = successSaveCount + 1;
-        }
-        this.reportProcess(
-          processRecordCount,
-          successSaveCount,
-          totalRecordCount,
-        );
       }
+      return { totalRecordCount, processRecordCount, successSaveCount };
+    } catch (error) {
+      this.alert.sendMessage(
+        String(this.config.get('ALERT_WATCH_UCID_LIST')),
+        error.message,
+      );
+      this.log(error.message);
     }
-    return { totalRecordCount, processRecordCount, successSaveCount };
   }
 }
 

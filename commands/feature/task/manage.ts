@@ -217,8 +217,8 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       // 解析命令
       let parseCommandList = [
         // 'Parse:Device',
-        'Parse:MenuClick',
-        // 'Parse:UserFirstLoginAt',
+        // 'Parse:MenuClick',
+        'Parse:UserFirstLoginAt',
       ];
       for (let parseCommand of parseCommandList) {
         // 解析昨天到今天的数据
