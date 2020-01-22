@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
 import { InjectRepositorys } from 'commands/utils/annotation';
+import { BaseService } from './serviceBase';
 
 const TABLE_NAME = 't_r_behavior_distribution';
 const TABLE_COLUMN = [
@@ -22,7 +23,7 @@ function getTableName() {
   return TABLE_NAME;
 }
 
-export class BehaviorDistributionService {
+export class BehaviorDistributionService extends BaseService {
   @InjectRepositorys()
   private readonly behaviorDistributionRepository;
 
@@ -38,18 +39,8 @@ export class BehaviorDistributionService {
    * @param {object} cityDistribute
    * @return {boolean}
    */
-  async replaceRecord(
-    projectId,
-    code,
-    name,
-    url,
-    totalCount,
-    countAtTime,
-    countType,
-    cityDistribute,
-  ) {
+  async replaceRecord(projectId, code, countAtTime, countType) {
     let tableName = getTableName();
-    let updateAt = moment().unix();
     let oldRecordList = await this.behaviorDistributionRepository
       .select([`total_count`, `city_distribute_id`, `create_time`, `id`])
       .from(tableName)
@@ -63,18 +54,13 @@ export class BehaviorDistributionService {
     return oldRecordList;
   }
   updateBehavior = async (id, data) => {
-    // 返回值是一个列表
-    let result = await (await this.behaviorDistributionRepository).findOne({
-      id,
-    });
-
-    let updateResult = await (await this.behaviorDistributionRepository)
-      .save({ ...result, ...data })
-      .catch(e => {
-        return [];
-      });
+    let tableName = getTableName();
+    let updateResult = await this.behaviorDistributionRepository(tableName)
+      .update(data)
+      .where(`id`, '=', id);
     return updateResult;
   };
+
   /**
    * 插入数据
    * @param id
@@ -82,10 +68,16 @@ export class BehaviorDistributionService {
    */
   async insertDuration(data) {
     // 返回值是一个列表
-    let result = await (await this.behaviorDistributionRepository)
-      .save(data)
-      .catch(e => {
-        return {};
+
+    let tableName = getTableName();
+    // 返回值是一个列表
+    let result = await this.behaviorDistributionRepository
+      .returning('id')
+      .insert(data)
+      .into(tableName)
+      .catch(err => {
+        this.log('插入用户行为数据失败 => 出错' + err.message);
+        return [];
       });
     return result;
   }

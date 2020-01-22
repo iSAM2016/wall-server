@@ -16,6 +16,7 @@ import {
 } from '@commands/config';
 import { Inject } from 'typescript-ioc';
 import { DataCleaning } from '@commands/core';
+import { DeviceService } from './device.service';
 
 class ParseDevice extends ParseBase implements ParseInterface {
   constructor() {
@@ -25,6 +26,8 @@ class ParseDevice extends ParseBase implements ParseInterface {
   projectMap = new Map();
   startAtMoment: moment.Moment;
   endAtMoment: moment.Moment;
+  @Inject
+  deviceService: DeviceService;
   @Inject
   dataCleaning: DataCleaning;
   static get signature() {
@@ -83,7 +86,7 @@ class ParseDevice extends ParseBase implements ParseInterface {
     let deviceRecord = {
       projectId,
       visitAt,
-      uuid,
+      uuid, // 设备名
       browser,
       browserVersion,
       engine,
@@ -97,17 +100,19 @@ class ParseDevice extends ParseBase implements ParseInterface {
       city,
       runtimeVersion,
     };
-
-    // 数据清洗迭代器
-    if (!this.dataCleaning.getData(deviceRecord, 'deviceConfigDevice')) {
-      return false;
-    }
+    // 数据清洗迭代器//TODO:
+    // if (!this.dataCleaning.getData(deviceRecord)) {
+    //   return false;
+    // }
 
     let visitAtMap = new Map();
     let deviceMap = new Map();
+    // 项目=> 时间段 =>  uuid
+    // 判断是否存在该项目
     if (this.projectMap.has(projectId)) {
       visitAtMap = this.projectMap.get(projectId);
       if (visitAtMap.has(visitAtMonth)) {
+        // 判断是否有该时间段
         deviceMap = visitAtMap.get(visitAtMonth);
       }
     }
@@ -148,11 +153,6 @@ class ParseDevice extends ParseBase implements ParseInterface {
     let processRecordCount = 0;
     let successSaveCount = 0;
     for (let [projectId, visitAtMap] of this.projectMap) {
-      //   const processTableName = MCommon.getTableName(
-      //     BaseTableName,
-      //     MCommon.SPLIT_BY.PROJECT,
-      //     projectId,
-      //   );
       for (let [visitAtMonth, deviceMap] of visitAtMap) {
         for (let [uuid, deviceRecord] of deviceMap) {
           let { visitAt } = deviceRecord;
@@ -173,14 +173,31 @@ class ParseDevice extends ParseBase implements ParseInterface {
             visit_at_month: visitAtMonth,
             log_at: visitAt,
           };
-          //   let isSuccess = await MCommon.replaceInto({
-          //     tableName: BaseTableName,
-          //     splitBy: MCommon.SPLIT_BY.PROJECT,
-          //     projectId: projectId,
-          //     where: { visit_at_month: visitAtMonth, uuid: uuid },
-          //     datas: sqlParams,
-          //   });
-          let isSuccess = true;
+          let oldListRest = await this.deviceService.getOldList(
+            projectId,
+            visitAtMonth,
+            uuid,
+          );
+          let id = _.get(oldListRest, [0, 'id'], 0);
+          let updateAt = moment().unix();
+          let isSuccess = false;
+          if (id > 0) {
+            sqlParams['update_time'] = updateAt;
+            let affectRows = await this.deviceService.updataDevice(
+              sqlParams,
+              projectId,
+              id,
+            );
+            isSuccess = affectRows > 0;
+          } else {
+            sqlParams['create_time'] = updateAt;
+            sqlParams['update_time'] = updateAt;
+            const insertId = await this.deviceService.createDevice(
+              sqlParams,
+              projectId,
+            );
+            isSuccess = insertId > 0;
+          }
           processRecordCount = processRecordCount + 1;
           if (isSuccess) {
             successSaveCount = successSaveCount + 1;
@@ -189,7 +206,6 @@ class ParseDevice extends ParseBase implements ParseInterface {
             processRecordCount,
             successSaveCount,
             totalRecordCount,
-            // processTableName,
           );
         }
       }

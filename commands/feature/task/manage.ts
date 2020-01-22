@@ -16,6 +16,7 @@ import {
   UNIT,
   appConfig,
   DISPLAY_BY_MILLSECOND,
+  COMMAND_ARGUMENT_BY_DAY,
   COMMAND_ARGUMENT_BY_HOUR,
   COMMAND_ARGUMENT_BY_MINUTE,
 } from '@commands/config';
@@ -49,7 +50,10 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
     this.log('注册每分钟执行一次的任务');
     // this.registerTaskRepeatPer1Minute();
     this.log('注册每10分钟执行一次的任务');
-    this.registerTaskRepeatPer10Minute();
+    // this.registerTaskRepeatPer10Minute();
+    this.log('注册每1小时执行一次的任务');
+    this.registerTaskRepeatPer1Hour();
+    this.log('全部定时任务注册完毕, 等待执行');
   }
   // 关闭其他进程
   async claoseOtherTaskManger() {
@@ -122,12 +126,13 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
 
       that.log(`[按分钟] 每分钟启动一次Watch:Alarm, 监控平台运行情况 `);
       // that.execCommand('Watct:Alarm', []); //TODO:
+      that.log('registerTaskRepeatPer_1_Minute 命令分配完毕');
     });
   }
   /**
    * 每10分钟启动一次
    */
-  async registerTaskRepeatPer10Minute() {
+  registerTaskRepeatPer10Minute() {
     let that = this;
     // 每10分钟的第30秒启动
     // schedule.scheduleJob('15 */10 * * * * *', function() {
@@ -189,10 +194,57 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       //   );
       // }
 
-      that.log('registerTaskRepeatPer10Minute 命令分配完毕');
+      that.log('registerTaskRepeatPer_10_Minute 命令分配完毕');
     });
   }
+  /**
+   * 每小时启动一次
+   */
+  async registerTaskRepeatPer1Hour() {
+    let that = this;
+    // 每小时15分30秒启动
+    // schedule.scheduleJob('30 15 * * * * *', function() {
+    schedule.scheduleJob('*/3  * * * * *', function() {
+      that.log('registerTaskRepeatPer1Hour 开始执行');
 
+      let nowByDay = moment().format(COMMAND_ARGUMENT_BY_DAY);
+      let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
+      let lastDayStartAtByMinute = moment()
+        .subtract(1, 'day')
+        .startOf('day')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+
+      // 解析命令
+      let parseCommandList = [
+        // 'Parse:Device',
+        'Parse:MenuClick',
+        // 'Parse:UserFirstLoginAt',
+      ];
+      for (let parseCommand of parseCommandList) {
+        // 解析昨天到今天的数据
+        that.dispatchParseCommand(
+          parseCommand,
+          lastDayStartAtByMinute,
+          nowByMinute,
+        );
+      }
+
+      // 汇总命令
+      let summaryCommandList = [
+        // 'Summary:UV',
+        // 'Summary:NewUser',
+        // 'Summary:Performance',
+        // 'Summary:Error',
+        // 'Summary:TimeOnSite',
+      ];
+      for (let summaryCommand of summaryCommandList) {
+        // 当日数据
+        that.dispatchParseCommand(summaryCommand, nowByDay, UNIT.DAY);
+      }
+
+      that.log('registerTaskRepeatPer1Hour 命令分配完毕');
+    });
+  }
   /**
    * 执行command 命令行
    */
@@ -225,6 +277,7 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       },
     );
   }
+
   /**
    * 分发日志Parse命令
    * @param {*} commandName

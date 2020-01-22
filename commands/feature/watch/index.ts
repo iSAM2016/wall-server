@@ -7,11 +7,6 @@
 
 import * as moment from 'moment';
 
-// import MMonitor from '~/src/model/parse/monitor';
-// import WatchIdList from '~/src/configs/alarm';
-// import Util from '~/src/library/utils/modules/util';
-// import MProject from '~/src/model/project/project';
-// import MProjectMember from '~/src/model/project/project_member';
 import _ from 'lodash';
 import CommandsBase from '../commandsBase';
 import { CommandsModuleInterface } from 'commands/utils/interface';

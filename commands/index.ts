@@ -15,14 +15,13 @@ const registedCommandList = [
   // 解析日志
   './feature/parse/uv', //  解析uv
   './feature/parse/time_on_site', // 解析用户停留时长
-  //   './feature/parse/device', //  解析device
+  './feature/parse/device', //  解析device
   //   './feature/parse/monitor', //  解析错误报警
-  //   './feature/parse/menu_click', //  解析菜单点击记录
-
+  './feature/parse/menu_click', //  解析菜单点击记录
   './feature/parse/performance', //  解析性能统计指标数据
   //   './feature/parse/user_first_login_at', //  录入新增用户
-
   './feature/save_log/parseNginxLog', // 将ngnix日志落在文件中
+
   //   // 从数据库中, 按时间段统计
   //   './feature/summary/uv', //  统计uv数据
   //   './feature/summary/time_on_site', //  统计用户停留时长
