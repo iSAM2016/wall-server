@@ -5,9 +5,8 @@ import { COMMAND_ARGUMENT_BY_MINUTE } from '@commands/config';
 import { getAbsoluteLogUriByType, LOG_TYPE_JSON } from '@commands/core';
 import CommandsBase from '../commandsBase';
 const readLine = require('lei-stream').readLine;
-
 abstract class ParseBase extends CommandsBase {
-  // 汇报进度
+  //存入数据库汇报进度
   reportProcess(
     processRecordCount,
     successSaveCount,
@@ -30,6 +29,7 @@ abstract class ParseBase extends CommandsBase {
    * @param endAtMoment
    *
    */
+
   readLog = async (
     startAtMoment,
     endAtMoment,

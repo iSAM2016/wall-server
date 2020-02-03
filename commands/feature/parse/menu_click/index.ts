@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-16 17:06:24
+ * @Last Modified time: 2020-01-20 09:09:12
  */
 
 import * as _ from 'lodash';
@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import { CommonModuleInterface } from 'commands/utils/interface';
+import { ParseInterface } from 'commands/utils/interface';
 import { getFlattenCityRecordListInDistribution } from '@commands/utils';
 import {
   BehaviorDistributionService,
@@ -22,7 +22,7 @@ import {
   UNIT,
 } from '@commands/config';
 
-class MenuClick extends ParseBase implements CommonModuleInterface {
+class MenuClick extends ParseBase implements ParseInterface {
   constructor() {
     super();
   }
@@ -43,7 +43,7 @@ class MenuClick extends ParseBase implements CommonModuleInterface {
   }
 
   static get description() {
-    return '[按天] 解析kafka日志, 用户点击情况';
+    return '[按天] 解析nginx日志, 用户点击情况';
   }
 
   /**
@@ -65,9 +65,9 @@ class MenuClick extends ParseBase implements CommonModuleInterface {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
-      this.log(this.constructor.name + '运行异常 =>' + error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
   /**
@@ -173,7 +173,7 @@ class MenuClick extends ParseBase implements CommonModuleInterface {
             distribution,
           );
 
-          let isSuccess = this.checkSaveCount(
+          let isSuccess = await this.checkSaveCount(
             url,
             name,
             code,
@@ -217,6 +217,7 @@ class MenuClick extends ParseBase implements CommonModuleInterface {
       [0, 'city_distribute_id'],
       0,
     );
+    let updateAt = moment().unix();
     let id = _.get(oldRecordList, [0, 'id'], 0);
     let createTimeInDb = _.get(oldRecordList, [0, 'create_time'], 0);
 
@@ -234,26 +235,37 @@ class MenuClick extends ParseBase implements CommonModuleInterface {
     let isSuccess: boolean = false;
     if (id > 0) {
       isSuccess = await this.updateCityDistribution(
-        cityDistributeIdInDb,
-        cityDistribute,
-        data,
         id,
+        data,
+        projectId,
+        createTimeInDb,
+        cityDistribute,
+        cityDistributeIdInDb,
       );
     } else {
-      isSuccess = await this.insertCityDistributionRecord(cityDistribute, data);
+      isSuccess = await this.insertCityDistributionRecord(
+        cityDistribute,
+        data,
+        projectId,
+        updateAt,
+      );
     }
     return isSuccess;
   }
   // 更新城市分布数据
   async updateCityDistribution(
-    cityDistributeIdInDb,
-    cityDistribute,
-    data,
     id,
+    data,
+    projectId,
+    createTimeInDb,
+    cityDistribute,
+    cityDistributeIdInDb,
   ): Promise<boolean> {
     // 更新城市分布数据
     let isUpdateSuccess = await this.cityDistributionService.updateCityDistributionRecord(
       cityDistributeIdInDb,
+      projectId,
+      createTimeInDb,
       JSON.stringify(cityDistribute),
     );
     if (isUpdateSuccess === false) {
@@ -266,9 +278,16 @@ class MenuClick extends ParseBase implements CommonModuleInterface {
     return affectRows > 0;
   }
   // 首先插入城市分布数据
-  async insertCityDistributionRecord(cityDistribute, data): Promise<boolean> {
+  async insertCityDistributionRecord(
+    cityDistribute,
+    data,
+    projectId,
+    updateAt,
+  ): Promise<boolean> {
     let cityDistributeId = await this.cityDistributionService.insertCityDistributionRecord(
       JSON.stringify(cityDistribute),
+      projectId,
+      updateAt,
     );
     if (cityDistributeId === 0) {
       // 城市分布数据插入失败

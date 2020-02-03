@@ -37,3 +37,16 @@ services:
     #   - "${REDIS_DIR}/conf:/usr/local/etc/redis"
     #   - "${REDIS_DIR}/data:/data"
     command: redis-server
+
+  nginx:
+    restart: always
+    image: nginx:1.11.6-alpine
+    ports:
+      - 8080:80
+      - 80:80
+      - 443:443
+    volumes:
+      - ./log:/var/log/nginx
+      - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/html:/usr/share/nginx/html

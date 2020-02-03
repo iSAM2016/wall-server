@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
 
 const BASE_TABLE_NAME = 't_o_user_first_login_at';

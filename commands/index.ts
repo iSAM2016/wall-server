@@ -2,24 +2,26 @@
  * @Author: isam2016
  * @Date: 2019-12-30 16:00:39
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-16 14:42:08
+ * @Last Modified time: 2020-01-20 15:41:16
  */
+import * as _ from 'lodash';
+import * as moment from 'moment';
 import * as ace from '@adonisjs/ace';
-
+import { Alert, Logger } from '@commands/core';
+import { DISPLAY_BY_MILLSECOND } from '@commands/config';
 const registedCommandList = [
   './demo', //  命令demo
 
   // 解析日志
   './feature/parse/uv', //  解析uv
-  // './feature/parse/time_on_site', // 解析用户停留时长
+  './feature/parse/time_on_site', // 解析用户停留时长
   //   './feature/parse/device', //  解析device
   //   './feature/parse/monitor', //  解析错误报警
   //   './feature/parse/menu_click', //  解析菜单点击记录
 
-  //   './feature/parse/performance', //  解析性能统计指标数据
+  './feature/parse/performance', //  解析性能统计指标数据
   //   './feature/parse/user_first_login_at', //  录入新增用户
 
-  //   './feature/save_log/parseKafkaLog', //  将kafka日志落在文件中
   './feature/save_log/parseNginxLog', // 将ngnix日志落在文件中
   //   // 从数据库中, 按时间段统计
   //   './feature/summary/uv', //  统计uv数据
@@ -33,8 +35,8 @@ const registedCommandList = [
   //   './feature/summary/new_user_summary', //  统计新增用户数
   //   './feature/summary/error_summary', // 统计某一错误的数量
   //   // 监控
-  //   './feature/watch_dog/saas', //  saas监控
-  './feature/watch/alarm',
+  //   './feature/watch/saas', //  saas监控
+  './feature/watch',
 
   //   './feature/create_cache/update_per_ten_minute', // 更新缓存
 
@@ -55,10 +57,17 @@ for (let command of registedCommandList) {
   ace.addCommand(require(command)['default']);
 }
 ace.onError(function(error, commandName) {
-  console.log(`==========
-  ${commandName} reported ${error.message}
-  =============`);
-  // process.exit(1);//TODO: 是否退出
+  let alert = new Alert();
+  let logger = new Logger({});
+  console.log('=========================');
+  alert.sendMessage(
+    String(this.config.get('ALERT_WATCH_UCID_LIST')),
+    error.message,
+  );
+  let triggerAt = moment().format(DISPLAY_BY_MILLSECOND);
+  console.log(`[${triggerAt}]-[${this.constructor.name}] ` + error.message);
+  logger.getLogger4Command(this.constructor.name).info(error.message);
+  process.exit(1); //退出程序
 });
 
 // Boot ace to execute commands

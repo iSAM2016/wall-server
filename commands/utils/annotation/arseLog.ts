@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-06 16:37:01
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:30:25
+ * @Last Modified time: 2020-01-20 14:30:12
  */
 import * as moment from 'moment';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '../../config/date_format';
@@ -18,17 +18,8 @@ export const StartPase = (
 ) => {
   let oldmethod = descriptor.value;
   descriptor.value = function(...arg) {
-    console.log(arg);
     this.log(this.constructor.name + 'start');
-
-    let args = {
-      startAtYmdHi: new Date(2011, 2, 12, 5, 0, 0),
-      endAtYmdHi: new Date(2011, 2, 12, 5, 1, 0),
-    };
-    let startAtYmdHi = new Date(2011, 2, 12, 5, 0, 0);
-    let endAtYmdHi = new Date(2011, 2, 12, 5, 1, 0);
-
-    // let { startAtYmdHi, endAtYmdHi } = arg[0];
+    let { startAtYmdHi, endAtYmdHi } = arg[0];
     this.startAtMoment = moment(startAtYmdHi, COMMAND_ARGUMENT_BY_MINUTE);
     this.endAtMoment = moment(endAtYmdHi, COMMAND_ARGUMENT_BY_MINUTE);
     let isSuccess = true;

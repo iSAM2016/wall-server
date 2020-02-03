@@ -1,16 +1,8 @@
-import { ConfigService } from '@commands/core';
-import { Connection, Repository, createConnection } from 'typeorm';
+import { ConfigService, getConfig } from '@commands/core';
 import * as knex from 'knex';
-interface ConnectionInterface<T> {
-  connection: Connection;
-  repository: Repository<T>;
-}
-
-let MYSQLCONNECTION = 'MYSQLCONNECTION';
-let mysqlMap = new Map();
 
 const mysqlConnection = () => {
-  let config = new ConfigService();
+  let config: ConfigService = getConfig();
   return knex({
     client: 'mysql',
     connection: {
@@ -34,12 +26,7 @@ const mysqlConnection = () => {
     },
     acquireConnectionTimeout: 60000,
     log: {
-      error(message) {
-        // Alert.sendMessage( // TODO: 数据库异常
-        //   WatchIdList.WATCH_UCID_LIST_DEFAULT,
-        //   `数据库操作异常 => ${message}`,
-        // );
-      },
+      error(message) {},
     },
   });
 };

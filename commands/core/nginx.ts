@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as moment from 'moment';
-// import Kafka from 'node-rdkafka'; TODO:kfafa
 import { appConfig } from '../config';
 
+import { ConfigService } from '@commands/core';
 let logPath = appConfig.absoluteLogPath;
 
 const YMFormat = 'YYYYMM';
@@ -31,7 +31,7 @@ function getAbsoluteBasePathByType(logType = LOG_TYPE_RAW) {
     default:
       logType = LOG_TYPE_RAW;
   }
-  let fileUri = path.resolve(logPath, 'kafka', logType);
+  let fileUri = path.resolve(logPath, 'nginx', logType);
   return fileUri;
 }
 
@@ -60,6 +60,9 @@ function getAbsoluteLogUriByType(logAt, logType = LOG_TYPE_RAW) {
     DDFormat,
   )}/${startAtMoment.format(HHFormat)}/${startAtMoment.format(mmFormat)}.log`;
   let fileUri = path.resolve(basePath, fileName);
+  if (ConfigService.isTest) {
+    fileUri = path.resolve(basePath, './month_202001/day_16/16/00.log');
+  }
   return fileUri;
 }
 
@@ -76,7 +79,6 @@ function getMonthDirName(logAt) {
 
 export {
   // 原型对象
-  //   Kafka,
   // 工具函数
   getAbsoluteLogUriByType,
   getAbsoluteBasePathByType,

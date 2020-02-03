@@ -1,7 +1,7 @@
 import * as log4js from 'log4js';
 import * as moment from 'moment';
-import { DISPLAY_BY_MILLSECOND } from '../config/date_format';
 import _ from 'lodash';
+import { DISPLAY_BY_MILLSECOND } from '../config/date_format';
 var path = require('path');
 let ABSOLUTE_LOG_PATH = path.resolve(__dirname, '../../../', 'log');
 
@@ -12,18 +12,6 @@ export class Logger {
   private loggerCacheMap = new Map();
   private baseLoggerConfig: log4js.Configuration;
   constructor(private options) {
-    // let config: ConfigOptions;
-    // const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
-    // const envFile: string = resolve(
-    //   __dirname,
-    //   '../../',
-    //   options.folder,
-    //   filePath,
-    // );
-    // if (this.isFileExist(envFile)) {
-    //   config = dotenv.parse(fs.readFileSync(envFile));
-    // }
-    // ConfigService.envConfig = this.validateInpt(config);
     this.baseLoggerConfig = {
       appenders: {
         // command: {

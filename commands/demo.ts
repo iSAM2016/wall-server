@@ -1,10 +1,9 @@
 import Base from './feature/commandsBase';
 import { Command } from '@adonisjs/ace';
-import { CommonModuleInterface, DBResult } from 'commands/utils/interface';
-import { AutoWired, Inject, Singleton, Provides } from 'typescript-ioc';
+import { CommandsModuleInterface, DBResult } from 'commands/utils/interface';
 import moment = require('moment');
 
-class CommandDemo extends Base implements CommonModuleInterface {
+class CommandDemo extends Base implements CommandsModuleInterface {
   startAtMoment: moment.Moment;
   endAtMoment: moment.Moment;
   projectMap = new Map();
@@ -22,7 +21,7 @@ class CommandDemo extends Base implements CommonModuleInterface {
   }
 
   static get description() {
-    return '解析kafka日志, 分析pv';
+    return '解析nginx日志, 分析pv';
   }
   async handle(args, options) {
     this.log('Command:Demo start');

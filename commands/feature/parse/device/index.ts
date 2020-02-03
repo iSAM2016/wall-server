@@ -2,14 +2,14 @@
  * @Author: isam2016
  * @Date: 2020-01-14 10:30:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:31:14
+ * @Last Modified time: 2020-01-20 09:09:05
  */
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { EndParse, StartPase } from 'commands/utils/annotation';
-import { CommonModuleInterface } from 'commands/utils/interface';
+import { ParseInterface } from 'commands/utils/interface';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MONTH,
@@ -17,7 +17,7 @@ import {
 import { Inject } from 'typescript-ioc';
 import { DataCleaning } from '@commands/core';
 
-class ParseDevice extends ParseBase implements CommonModuleInterface {
+class ParseDevice extends ParseBase implements ParseInterface {
   constructor() {
     super();
   }
@@ -36,7 +36,7 @@ class ParseDevice extends ParseBase implements CommonModuleInterface {
   }
 
   static get description() {
-    return '[按天] 解析kafka日志, 分析指定时间范围Device';
+    return '[按天] 解析nginx日志, 分析指定时间范围Device';
   }
 
   // 1.开始自动获取日志
@@ -53,9 +53,9 @@ class ParseDevice extends ParseBase implements CommonModuleInterface {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
-      this.log(this.constructor.name + '运行异常 =>' + error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
   /**

@@ -1,23 +1,11 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { Repository } from 'typeorm';
-import { InjectRepositorys } from 'commands/utils/annotation';
+import { BaseService } from '@commands/shard';
 import { DATABASE_BY_HOUR } from '@commands/config';
+import { InjectRepositorys } from '@commands/annotation';
 
 const TableNameDateFormat = 'YYYYMM';
-const VisitAtHourDateFormat = DATABASE_BY_HOUR;
-const BASE_TABLE_NAME = 't_o_uv_record';
-const TABLE_COLUMN = [
-  `id`,
-  `uuid`,
-  `country`,
-  `province`,
-  `city`,
-  `visit_at_hour`,
-  `pv_count`,
-  `create_time`,
-  `update_time`,
-];
+const BASE_TABLE_NAME = 't_r_uv_record';
 /**
  * 获取表名
  * @param {number} projectId 项目id
@@ -28,33 +16,26 @@ function getTableName(projectId, createTimeAt) {
   let dateYm = moment.unix(createTimeAt).format(TableNameDateFormat);
   return `${BASE_TABLE_NAME}_${projectId}_${dateYm}`;
 }
-export class UVService {
+export class UVService extends BaseService {
+  @InjectRepositorys()
+  private readonly uvRepository;
   /**
    * 获取指定小时内的uuid列表
    * @param {*} projectId
-   * @param {*} uuid
    * @param {*} visitAt
    * @return {Object}
    */
-  @InjectRepositorys()
-  private readonly uvRepository;
-
   getExistUuidSetInHour = async (projectId, visitAt) => {
-    // const uvRepository = await this.getRepository(UvRecode);
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
-    console.log('v');
+    let tableName = getTableName(projectId, visitAt);
     let rawRecordList = await this.uvRepository
-      .createQueryBuilder()
-      .where({
-        visit_at_hour: visitAtHour,
-      })
-      .getMany();
-    // //  = await Knex.select('uuid')
-    // //   .from(tableName)
-    // //   .where('visit_at_hour', '=', visitAtHour)
-    // //   .catch(e => {
-    // //     return [];
-    // //   });
+      .select('uuid')
+      .from(tableName)
+      .where('visit_at_hour', '=', visitAtHour)
+      .catch(err => {
+        this.log('获取指定小时内的uuid列表 => 出错' + err.message);
+        return [];
+      });
     let uuidSet = new Set();
     rawRecordList.forEach(rawRecord => {
       let uuid = _.get(rawRecord, ['uuid'], '');
@@ -85,14 +66,14 @@ export class UVService {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     let tableName = getTableName(projectId, visitAt);
     let updateAt = moment().unix();
-    // const uvRepository = await this.getRepository(UvRecode);
     // // 返回值是一个列表
-    let oldRecordList = await (await this.uvRepository)
+    let oldRecordList = await this.uvRepository
       .select([`id`])
       .from(tableName)
       .where('uuid', '=', uuid)
       .andWhere('visit_at_hour', '=', visitAtHour)
-      .catch(() => {
+      .catch(err => {
+        this.log('replaceUvRecord => 出错' + err.message);
         return [];
       });
     // // 利用get方法, 不存在直接返回0, 没毛病
@@ -104,25 +85,29 @@ export class UVService {
       country,
       province,
       city,
-      is_delete: 0,
       update_time: updateAt,
     };
 
     let isSuccess = false;
     if (id > 0) {
-      let affectRows = await (await this.uvRepository).findOne({ id });
-
-      await (await this.uvRepository).save(data);
-      isSuccess = affectRows ? true : false;
+      let affectRows = await this.uvRepository
+        .from(tableName)
+        .update(data)
+        .where(`id`, '=', id);
+      isSuccess = affectRows > 0;
     } else {
       data['create_time'] = updateAt;
-      let insertResult = await (await this.uvRepository).save(data).catch(e => {
-        return [];
-      });
+      let insertResult = await this.uvRepository
+        .returning('id')
+        .insert(data)
+        .into(tableName)
+        .catch(err => {
+          this.log('replaceUvRecord => 出错' + err.message);
+          return [];
+        });
       let insertId = _.get(insertResult, [0], 0);
       isSuccess = insertId > 0;
     }
-    // await connection.close();
     return isSuccess;
   };
 }

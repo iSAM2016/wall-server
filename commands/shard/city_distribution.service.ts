@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-import { Repository } from 'typeorm';
 import { InjectRepositorys } from 'commands/utils/annotation';
+import { BaseService } from './serviceBase';
 
 const DateFormat = 'YYYYMM';
 
@@ -25,7 +25,7 @@ function getTableName(projectId, createTimeAt) {
   return BaseTableName + '_' + projectId + '_' + YmDate;
 }
 
-export class CityDistributionService {
+export class CityDistributionService extends BaseService {
   @InjectRepositorys()
   private readonly cityDistributionRepository;
   /**
@@ -35,20 +35,27 @@ export class CityDistributionService {
    * @param {number} createTimeAt
    * @return {number}
    */
-  async insertCityDistributionRecord(cityDistributeJson) {
+  async insertCityDistributionRecord(
+    cityDistributeJson,
+    projectId,
+    createTimeAt,
+  ) {
+    let tableName = getTableName(projectId, createTimeAt);
     let updateAt = moment().unix();
-    let insertResult = await (await this.cityDistributionRepository)
-      .save({
-        city_distribute_json: cityDistributeJson,
-        create_time: updateAt,
-        update_time: updateAt,
-      })
-      .catch(e => {
-        // Logger.warn('城市数据插入失败, 错误原因 =>', e); //TODO: logger
+    let data = {
+      city_distribute_json: cityDistributeJson,
+      create_time: updateAt,
+      update_time: updateAt,
+    };
+    let insertResult = await this.cityDistributionRepository
+      .returning('id')
+      .insert(data)
+      .into(tableName)
+      .catch(err => {
+        this.log('城市数据插入失败 => 出错' + err.message);
         return [];
       });
     let insertId = _.get(insertResult, [0], 0);
-
     return insertId;
   }
   /**
@@ -57,20 +64,23 @@ export class CityDistributionService {
    * @param {string} cityDistributeJson
    * @return {boolean}
    */
-  async updateCityDistributionRecord(id, cityDistributeJson): Promise<boolean> {
+  async updateCityDistributionRecord(
+    id,
+    projectId,
+    createTimeAt,
+    cityDistributeJson,
+  ): Promise<boolean> {
+    let tableName = getTableName(projectId, createTimeAt);
     let updateAt = moment().unix();
-    let result = await (await this.cityDistributionRepository).findOne({ id });
-
-    let affectRows = await (await this.cityDistributionRepository)
-      .save({
-        ...result,
-        ...{
-          city_distribute_json: cityDistributeJson,
-          update_time: updateAt,
-        },
-      })
+    let data = {
+      city_distribute_json: cityDistributeJson,
+      update_time: updateAt,
+    };
+    let affectRows = await this.cityDistributionRepository(tableName)
+      .update(data)
+      .where('id', '=', id)
       .catch(e => {
-        // Logger.warn('城市数据更新失败, 错误原因 =>', e); //TODO://
+        this.log('城市数据更新失败, 错误原因 =>', e.message);
         return 0;
       });
     return affectRows > 0;

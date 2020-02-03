@@ -2,25 +2,25 @@
  * @Author: isam2016
  * @Date: 2020-01-14 16:08:44
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:32:30
+ * @Last Modified time: 2020-01-20 18:08:16
  */
 import * as _ from 'lodash';
 import * as path from 'path';
 import * as moment from 'moment';
 import * as shell from 'shelljs';
 import * as schedule from 'node-schedule';
+import { sleep } from '@commands/utils';
 import CommandsBase from '../commandsBase';
-import { EndParse, StartPase } from 'commands/utils/annotation';
+import { CommandsModuleInterface } from 'commands/utils/interface';
 import {
   UNIT,
   appConfig,
-  COMMAND_ARGUMENT_BY_MINUTE,
   DISPLAY_BY_MILLSECOND,
+  COMMAND_ARGUMENT_BY_HOUR,
+  COMMAND_ARGUMENT_BY_MINUTE,
 } from '@commands/config';
-import { Inject } from 'typescript-ioc';
-import { sleep } from '@commands/utils';
-import { DataCleaning } from '@commands/core';
-class TaskManger extends CommandsBase {
+
+class TaskManger extends CommandsBase implements CommandsModuleInterface {
   constructor() {
     super();
   }
@@ -48,6 +48,8 @@ class TaskManger extends CommandsBase {
     // 注册定时任务
     this.log('注册每分钟执行一次的任务');
     this.registerTaskRepeatPer1Minute();
+    this.log('注册每10分钟执行一次的任务');
+    // this.registerTaskRepeatPer10Minute();
   }
   // 关闭其他进程
   async claoseOtherTaskManger() {
@@ -97,7 +99,7 @@ class TaskManger extends CommandsBase {
    */
   registerTaskRepeatPer1Minute() {
     let that = this;
-    schedule.scheduleJob('1 * * * * * ', () => {
+    schedule.scheduleJob('*/1 * * * * * ', () => {
       that.log('registerTaskRepeatPer1Minute 开始执行');
       let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
       let twoMinuteAgoByMinute = moment()
@@ -117,11 +119,80 @@ class TaskManger extends CommandsBase {
         .format(COMMAND_ARGUMENT_BY_MINUTE);
       that.log(`[按分钟] 每分钟启动一次SaveLog `);
       that.execCommand('SaveLog:Nginx', []);
-    });
 
-    that.log(`[按分钟] 每分钟启动一次WatchDog:Alarm, 监控平台运行情况 `);
-    that.execCommand('WatchDog:Alarm', []);
+      that.log(`[按分钟] 每分钟启动一次Watch:Alarm, 监控平台运行情况 `);
+      // that.execCommand('Watct:Alarm', []); //TODO:
+    });
   }
+  /**
+   * 每10分钟启动一次
+   */
+  async registerTaskRepeatPer10Minute() {
+    let that = this;
+    // 每10分钟的第30秒启动
+    // schedule.scheduleJob('15 */10 * * * * *', function() {
+    schedule.scheduleJob('*/3  * * * * *', function() {
+      that.log('registerTaskRepeatPer10Minute 开始执行');
+
+      let nowByHour = moment().format(COMMAND_ARGUMENT_BY_HOUR);
+      let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
+
+      let oneHourAgoByHour = moment()
+        .subtract(1, 'hours')
+        .format(COMMAND_ARGUMENT_BY_HOUR);
+
+      let fifteenMinuteAgoByminute = moment()
+        .subtract(15, 'minute')
+        .format(COMMAND_ARGUMENT_BY_MINUTE);
+
+      // 周期性执行命令
+      let intervalCommandList = ['CreateCache:UpdatePerOneMinute'];
+      for (let intervalCommand of intervalCommandList) {
+        // 周期性执行命令
+        // that.execCommand(intervalCommand); //TODO: 更新缓存
+      }
+
+      let parseCommandList = [
+        // 'Parse:UV',
+        // 'Parse:TimeOnSiteByHour',
+        'Parse:Performance',
+        // 'Parse:Monitor',
+      ];
+      for (let parseCommand of parseCommandList) {
+        // 解析最近15分钟内的数据
+        that.dispatchParseCommand(
+          parseCommand,
+          fifteenMinuteAgoByminute,
+          nowByMinute,
+        );
+      }
+
+      // 汇总命令
+      let summaryCommandList = [
+        'Summary:UV',
+        'Summary:NewUser',
+        'Summary:Performance',
+        'Summary:Error',
+      ];
+      // for (let summaryCommand of summaryCommandList) {
+      //   // 当前小时
+      //   that.dispatchParseCommand(
+      //     summaryCommand,
+      //     nowByHour,
+      //     DATE_FORMAT.UNIT.HOUR,
+      //   );
+      //   // 一小时前
+      //   that.dispatchParseCommand(
+      //     summaryCommand,
+      //     oneHourAgoByHour,
+      //     DATE_FORMAT.UNIT.HOUR,
+      //   );
+      // }
+
+      that.log('registerTaskRepeatPer10Minute 命令分配完毕');
+    });
+  }
+
   /**
    * 执行command 命令行
    */
@@ -153,6 +224,19 @@ class TaskManger extends CommandsBase {
         this.log(`========         分隔符          ==========`);
       },
     );
+  }
+  /**
+   * 分发日志Parse命令
+   * @param {*} commandName
+   * @param {*} startAt
+   * @param {*} endAt
+   */
+  async dispatchParseCommand(commandName, startAtStr, endAtStr) {
+    this.log(`${commandName}任务开始, 处理时间 => ${startAtStr}, ${endAtStr}`);
+    this.execCommand(commandName, [
+      startAtStr, // startAtYmdHi:
+      endAtStr, // endAtYmdHi
+    ]);
   }
 }
 

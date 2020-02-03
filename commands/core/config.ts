@@ -2,15 +2,17 @@
  * @Author: isam2016
  * @Date: 2019-12-31 12:23:17
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-15 15:29:14
+ * @Last Modified time: 2020-01-20 15:22:22
  */
 
 import * as fs from 'fs';
-import { get } from 'lodash';
-import { resolve } from 'path';
 import * as Joi from '@hapi/joi';
 import * as dotenv from 'dotenv';
+import { get } from 'lodash';
+import { resolve } from 'path';
 import { EnvConfig, ConfigOptions } from '../utils/interface';
+let configMap = new Map();
+const CONFIGMAPKEY = 'CONFIGMAPKEY';
 
 export class ConfigService {
   private static envConfig: EnvConfig;
@@ -71,7 +73,6 @@ export class ConfigService {
       ALERT_IS_USEING: Joi.boolean().required(),
       ALERT_WXADDR: Joi.string().required(),
       NGINXLOG_FILEPATH: Joi.string().required(),
-      // : Joi.boolean().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
       envConfig,
@@ -90,12 +91,9 @@ export class ConfigService {
    * @param key
    * @param defaultVal
    */
-  static get(key: string | string[], defaultValue?: any): string | number {
+  static get(key: string, defaultValue?: ''): string | number {
     const configValue = get(ConfigService.envConfig, key);
-    if (configValue === undefined) {
-      return defaultValue;
-    }
-    return configValue;
+    return process.env[key] || configValue || defaultValue;
   }
   /**
    * 获取配置
@@ -107,19 +105,38 @@ export class ConfigService {
   }
 
   /** 开发模式 */
+  static get isDevelopment(): boolean {
+    return ConfigService.get('NODE_ENV') === 'development';
+  }
+  /** 开发模式 */
   get isDevelopment(): boolean {
     return this.get('NODE_ENV') === 'development';
+  }
+  /** 生产模式 */
+  static get isProduction(): boolean {
+    return ConfigService.get('NODE_ENV') === 'production';
   }
   /** 生产模式 */
   get isProduction(): boolean {
     return this.get('NODE_ENV') === 'production';
   }
   /** 测试模式 */
+  static get isTest(): boolean {
+    return this.get('NODE_ENV') === 'test';
+  }
+  /** 测试模式 */
   get isTest(): boolean {
     return this.get('NODE_ENV') === 'test';
   }
   getEnv(): string {
-    // return process.env.NODE_ENV;
-    return 'development';
+    return process.env['NODE_ENV'] || 'development';
   }
 }
+export const getConfig = (): ConfigService => {
+  if (configMap.has(CONFIGMAPKEY)) {
+    return configMap.get(CONFIGMAPKEY);
+  }
+  let config = new ConfigService();
+  configMap.set(CONFIGMAPKEY, config);
+  return config;
+};

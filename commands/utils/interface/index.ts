@@ -1,18 +1,21 @@
 import { DotenvConfigOptions } from 'dotenv';
 import moment = require('moment');
 
-export interface CommondInterface {
-  new (): CommonModuleInterface;
+export interface CommandInterface {
+  new (): CommandsModuleInterface;
   signature(): string;
   description(): string;
 }
 
-export interface CommonModuleInterface {
+export interface CommandsModuleInterface {
+  handle(args: any, options: any): Promise<any>;
+}
+
+export interface ParseInterface extends CommandsModuleInterface {
   startAtMoment: moment.Moment;
   endAtMoment: moment.Moment;
   projectMap: any;
   saveTODB(): Promise<DBResult>;
-  handle(args: any, options: any): Promise<any>;
   readLogSaveToCache(record): boolean; // 将一段时间添加到缓存
   isLegalRecord(): boolean;
 }

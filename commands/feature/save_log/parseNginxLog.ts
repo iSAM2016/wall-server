@@ -2,7 +2,7 @@
  * @Author: isam2016
  * @Date: 2020-01-15 14:16:32
  * @Last Modified by: isam2016
- * @Last Modified time: 2020-01-16 18:45:11
+ * @Last Modified time: 2020-01-20 15:49:43
  */
 import * as fs from 'fs';
 import * as md5 from 'md5';
@@ -61,6 +61,7 @@ class NginxParse extends CommandsBase {
       } else {
         logAbsolutePath = `${nginxLogFilePath}${formatStr}.log`;
       }
+      console.log('logAbsolutePath' + logAbsolutePath);
       if (fs.existsSync(logAbsolutePath) === false) {
         that.log(`log文件不存在, 自动跳过 => ${logAbsolutePath}`);
         return false;
@@ -125,9 +126,9 @@ class NginxParse extends CommandsBase {
     } catch (error) {
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
-        error.stack,
+        error.message,
       );
-      this.log(this.constructor.name + '运行异常 =>' + error.stack);
+      this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
   /**
@@ -173,7 +174,7 @@ class NginxParse extends CommandsBase {
   async getProjectMap() {}
 
   isTestLog(content) {
-    return content.includes(TEST_LOG_FLAG); // 校验
+    return content.includes(TEST_LOG_FLAG); // TODO:校验
   }
   /**
    * 将日志解析为标准格式, 解析失败返回null
@@ -224,7 +225,7 @@ class NginxParse extends CommandsBase {
     record.project_name = record.common.pid;
     let currentAt = moment().unix();
     let logCreateAt = this.parseLogCreateAt(data);
-    // 如果入库时间距离现在大于10天, 则认为是不合法数据(kafka中只会存7天以内的数据, 入库时间超出上下10天, 都不正常)
+    // 如果入库时间距离现在大于10天, 则认为是不合法数据(nginx中只会存7天以内的数据, 入库时间超出上下10天, 都不正常)
     if (Math.abs(logCreateAt - currentAt) > 864000) {
       this.log('入库时间超出阈值, 自动跳过 finialTimeAt=>', logCreateAt);
       return null;
