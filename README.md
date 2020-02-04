@@ -191,6 +191,9 @@ nginx -s reload
 
 ## 定时任务
 
+yum install -y crontabs
+crond start
+
 1. 对脚本 脚本 sh 设置 777 权限
 2. 编辑执行定时任务文件`davecron`(也可以执行 `crontab -e` 添加任务)
    **注意： davecron 的最后一行是空行**

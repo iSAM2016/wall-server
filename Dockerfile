@@ -15,6 +15,7 @@ RUN yum install wget -y && \
     ./configure --prefix=/usr/local/nginx --with-pcre  && \
     make && make install && \
     echo "daemon off;" >> /usr/local/nginx/conf/nginx.conf && \
+    yum install -y crontabs\
     yum clean all
 
 
@@ -22,7 +23,7 @@ RUN yum install wget -y && \
 EXPOSE 80
 #启动容器
 
-CMD ["/usr/local/nginx/sbin/nginx"]
+CMD ["/usr/local/nginx/sbin/nginx", ""]
 # FROM node:10.13-alpine
 # ENV NODE_ENV production
 # WORKDIR /usr/src/app

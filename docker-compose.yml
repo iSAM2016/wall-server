@@ -40,7 +40,7 @@ services:
 
   nginx:
     restart: always
-    image: ihailong2016/isam2016:0.1
+    image: ihailong2016/nginx:1.0.0
     ports:
       - 9090:80
     volumes:
@@ -48,3 +48,8 @@ services:
       - ./nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
       - ./nginx/html:/usr/share/nginx/html
       - ./nginx/sh:/home
+    # command:
+    #   - /bin/sh
+    #   - -c
+    #   - |
+    #     crond start &&  cd /home && crontab davecron && tail -f /var/log/nginx/over.log
