@@ -83,12 +83,10 @@ class MenuClick extends ParseBase implements ParseInterface {
       // url最长是200个字符
       url = url.slice(0, 200);
     }
-
     let country = _.get(record, ['country'], '');
     let province = _.get(record, ['province'], '');
     let city = _.get(record, ['city'], '');
     let recordAt = _.get(record, ['time'], 0);
-
     let countAtTime = moment.unix(recordAt).format(DATABASE_BY_HOUR);
     let distributionPath = [country, province, city];
 
@@ -162,15 +160,12 @@ class MenuClick extends ParseBase implements ParseInterface {
           for (let record of recordList) {
             totalCount = totalCount + record;
           }
+          console.log('9999');
           let oldRecordList = await this.behaviorDistributionService.replaceRecord(
             projectId,
             code,
-            name,
-            url,
-            totalCount,
             countAtTime,
             UNIT.HOUR,
-            distribution,
           );
 
           let isSuccess = await this.checkSaveCount(

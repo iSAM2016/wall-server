@@ -23,7 +23,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      # MYSQL_ROOT_PASSWORD: MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: abc123456
       MYSQL_DATABASE: nest
       MYSQL_USER: root
       MYSQL_PASSWORD: abc123456
@@ -40,13 +40,11 @@ services:
 
   nginx:
     restart: always
-    image: nginx:1.11.6-alpine
+    image: ihailong2016/isam2016:0.1
     ports:
-      - 8080:80
-      - 80:80
-      - 443:443
+      - 9090:80
     volumes:
       - ./log:/var/log/nginx
-      - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
       - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/sh:/home

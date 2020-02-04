@@ -1,8 +1,9 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { InjectRepositorys } from 'commands/utils/annotation';
+import { BaseService } from '@commands/shard';
 
-const BASE_TABLE_NAME = 't_o_user_first_login_at';
+const BASE_TABLE_NAME = 't_r_user_first_login_at';
 const TABLE_COLUMN = [
   `id`,
   `ucid`,
@@ -23,7 +24,7 @@ function getTableName(projectId) {
   return `${BASE_TABLE_NAME}_${projectId}`;
 }
 
-export class UserFirstLoginAtService {
+export class UserFirstLoginAtService extends BaseService {
   @InjectRepositorys()
   private readonly userFirstLoginAtRepository;
   /**
@@ -33,11 +34,11 @@ export class UserFirstLoginAtService {
    * @returns {object}
    */
   async filterExistUcidSetInDb(projectId, allUcidList) {
-    // let rawRecordList = await (await this.userFirstLoginAtRepository).whereIn(
-    //   'ucid',
-    //   allUcidList,
-    // );
-    let rawRecordList = [];
+    let tableName = getTableName(projectId);
+    let rawRecordList = await this.userFirstLoginAtRepository
+      .select('ucid')
+      .from(tableName)
+      .whereIn('ucid', allUcidList);
     let existUcidSet = new Set();
     for (let rawRecord of rawRecordList) {
       let ucid = _.get(rawRecord, ['ucid'], '');
@@ -46,78 +47,48 @@ export class UserFirstLoginAtService {
     return existUcidSet;
   }
   /**
-   * 若数据库中记录的最早登陆时间比传入值更晚, 则更新为传入的更新时间
-   * @param {number} projectId
-   * @param {string} ucid
-   * @param {number} visitAt
-   * @param {number} pvCount
-   * @param {string} country
-   * @param {string} province
-   * @param {string} city
-   * @return {boolean}
    */
-  async replaceInto(projectId, ucid, firstVisitAt, country, province, city) {
-    let updateAt = moment().unix();
+  async getOldRecordList(projectId, ucid) {
     let tableName = getTableName(projectId);
     // 返回值是一个列表
     let oldRecordList = await this.userFirstLoginAtRepository
       .select([`id`, `first_visit_at`])
       .from(tableName)
       .where('ucid', '=', ucid)
-      .catch(() => {
+      .catch(err => {
+        this.log('插入插入页面统计数据失败 => 出错' + err.message);
         return [];
       });
-
-    // 利用get方法, 不存在直接返回0, 没毛病
-    let id = _.get(oldRecordList, [0, 'id'], 0);
-    let oldFirstVisitAt = _.get(oldRecordList, [0, 'first_visit_at'], 0);
-    let data = {
-      ucid,
-      first_visit_at: firstVisitAt,
-      country,
-      province,
-      city,
-      update_time: updateAt,
-    };
-    let isSuccess = false;
-    if (id > 0) {
-      if (oldFirstVisitAt > 0 && oldFirstVisitAt > firstVisitAt) {
-        // 有更新的数据时更新一下
-        let result = await (await this.userFirstLoginAtRepository).findOne(
-          `id = :id`,
-          id,
-        );
-        let affectRows = await (await this.userFirstLoginAtRepository).save({
-          ...result,
-          ...data,
-        });
-        // isSuccess = affectRows > 0; // TODO:
-      } else {
-        return true;
-      }
-    } else {
-      data['create_time'] = updateAt;
-      let insertResult = await (await this.userFirstLoginAtRepository)
-        .save(data)
-        .catch(e => {
-          return [];
-        });
-      let insertId = _.get(insertResult, [0], 0);
-      isSuccess = insertId > 0;
-    }
-    return isSuccess;
+    return oldRecordList;
   }
   /**
-   * 插入数据
+   *更新
+   *
+   * @memberof DurationDistributionService
+   */
+  updateUserFirstLoginAt = async (id, data, projectId) => {
+    let tableName = getTableName(projectId);
+    let updateResult = await this.userFirstLoginAtRepository(tableName)
+      .update(data)
+      .where(`id`, '=', id);
+    return updateResult;
+  };
+
+  /**
+   * 插入页面统计
    * @param id
    * @param data
    */
-  async insertDuration(data) {
+  async insertUserFirstLoginAt(data, projectId) {
+    let tableName = getTableName(projectId);
     // 返回值是一个列表
-    let result = await (await this.userFirstLoginAtRepository)
-      .save(data)
-      .catch(e => {
-        return {};
+    let result = await this.userFirstLoginAtRepository
+      .returning('id')
+      .insert(data)
+      .into(tableName)
+      .catch(err => {
+        this.log('插入插入页面统计数据失败 => 出错' + err.message);
+        return [];
       });
     return result;
   }

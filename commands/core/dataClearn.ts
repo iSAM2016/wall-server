@@ -13,10 +13,9 @@ export class DataCleaning {
   constructor() {}
   // 简单的清洗方法
   // 返回值为true的时候代表可以入库，否则数据中存在非法数据
-  getData(data, config) {
-    let DataConfig = deviceConfigDevice[config];
-    for (let key of Object.keys(DataConfig)) {
-      if (!DataConfig[key].test(data[key])) {
+  getData(data) {
+    for (let key of Object.keys(deviceConfigDevice)) {
+      if (!deviceConfigDevice[key].test(data[key])) {
         return false;
       }
     }

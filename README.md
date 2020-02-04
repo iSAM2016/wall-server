@@ -20,6 +20,7 @@
 16. BFF 和网关的区别
 17. Reflect 和 Reflect-meatedata
 18. 开启 多线程读取文件
+19. 数据库索引
 
 ## 配置
 
@@ -183,3 +184,17 @@ docker-compose down
 此命令将会停止 up 命令所启动的容器，并移除网络
 
 docker-compose restart [options][service...]
+
+## nginx
+
+nginx -s reload
+
+## 定时任务
+
+1. 对脚本 脚本 sh 设置 777 权限
+2. 编辑执行定时任务文件`davecron`(也可以执行 `crontab -e` 添加任务)
+   **注意： davecron 的最后一行是空行**
+   内容如下`*/1 * * * * sh /home/splitLog.sh`
+   执行： `crontab davecron`
+
+查看 crontab 日志 `tail -f /var/log/cron.log`
