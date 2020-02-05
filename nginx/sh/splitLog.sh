@@ -1,5 +1,4 @@
 #!/bin/bash
-# 凌晨 00:00:01,把昨天的日志重命名,放在相应的目录下再 USR1 信息号控制 nginx 重新生成新的日志文件
 base_path='/var/log/nginx'
 year_month=$(date +"%Y%m")
 day=$(date +"%d")
