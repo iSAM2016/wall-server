@@ -201,3 +201,5 @@ crond start
    执行： `crontab davecron`
 
 查看 crontab 日志 `tail -f /var/log/cron.log`
+
+nohup  docker-compose  up &

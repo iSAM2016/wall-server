@@ -10,7 +10,13 @@ current_min=$(date +"%M")
 if [[ $current_min -eq 0 ]];
 then
   current_min=60
-  hours=`expr $hours - 1`
+  hoursTime=`expr $hours - 1`
+  if [[ $hoursTime -lt 10 ]];
+  then
+    hours=0$hoursTime
+  else
+    hours=$hoursTime
+  fi
 elif [[ $hours -eq -1 ]]; 
 then
   hours=23
