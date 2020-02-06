@@ -84,7 +84,7 @@ export const EndParse = function(target, propetyKey, descriptor) {
       totalRecordCount,
       processRecordCount,
       successSaveCount,
-    } = await oldMethod.apply(this, arguments);
+    } = await oldMethod.apply(this, arg);
     this.log(
       `${this.startAtMoment.format(COMMAND_ARGUMENT_BY_MINUTE) +
         ':00'}~${this.endAtMoment.format(COMMAND_ARGUMENT_BY_MINUTE) +

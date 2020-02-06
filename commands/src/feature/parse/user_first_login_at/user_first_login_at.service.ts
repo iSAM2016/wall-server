@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { InjectRepositorys } from 'commands/utils/annotation';
-import { BaseService } from '@commands/shard';
+import { InjectRepositorys } from '@app/utils';
+import { BaseService } from '@app/shard';
 
 const BASE_TABLE_NAME = 't_r_user_first_login_at';
 const TABLE_COLUMN = [

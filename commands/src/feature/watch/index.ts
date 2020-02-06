@@ -9,11 +9,11 @@ import * as moment from 'moment';
 
 import _ from 'lodash';
 import CommandsBase from '../commandsBase';
-import { CommandsModuleInterface } from 'commands/utils/interface';
-import { sleep } from '@commands/utils';
+import { CommandsModuleInterface } from '@app/utils';
+import { sleep } from '@app/utils';
 import { Inject } from 'typescript-ioc';
 import { WatchService } from './watch.service';
-import { RedisClient } from '@commands/core';
+import { RedisClient } from '@app/core';
 const BASE_REDIS_KEY = 'plat_fe_fee_watch_alarm_';
 const MAX_QUERY_COUNT = 10;
 const MAX_SLEEP_COUNT = 60;

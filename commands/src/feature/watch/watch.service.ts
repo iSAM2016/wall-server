@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { BaseService } from '@commands/shard';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-import { InjectRepositorys } from 'commands/utils/annotation';
+import { BaseService } from '@app/shard';
+import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@app/config';
+import { InjectRepositorys } from '@app/utils';
 
 const BASE_TABLE_NAME = 't_o_alarm_config';
 const TABLE_COLUMN = [

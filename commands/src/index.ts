@@ -7,8 +7,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as ace from '@adonisjs/ace';
-import { Alert, Logger } from '@commands/core';
-import { DISPLAY_BY_MILLSECOND } from '@commands/config';
+import { Alert, Logger } from '@app/core';
+import { DISPLAY_BY_MILLSECOND } from '@app/config';
 const registedCommandList = [
   './demo', //  命令demo
 

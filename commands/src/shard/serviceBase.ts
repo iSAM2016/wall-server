@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { DISPLAY_BY_MILLSECOND } from '../config/date_format';
-import { Alert, Logger } from '@commands/core';
+import { Alert, Logger } from '@app/core';
 import { Inject } from 'typescript-ioc';
 
 class BaseService {

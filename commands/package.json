@@ -1,11 +1,33 @@
 {
   "name": "commands",
   "version": "1.0.0",
-  "description": "分表",
+  "description": "read nginx log",
   "main": "index.js",
   "scripts": {
+    "dev:c": "export NODE_ENV=dev && gulp",
+    "tsc": "tsc --downlevelIteration",
+    "build:c": "npm run build-ts && npm run buildViews &&  pm2 start process.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "log4js": "^6.1.0",
+    "ioredis": "^4.14.1",
+    "moment": "^2.24.0"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@adonisjs/ace": "^5.0.8",
+    "@hapi/joi": "^16.1.8",
+    "@types/node": "^13.7.0",
+    "dotenv": "^8.2.0",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-pug": "^4.0.1",
+    "gulp-typescript": "^5.0.0",
+    "md5": "^2.2.1",
+    "typescript": "^3.7.5",
+    "typescript-ioc": "^1.2.5"
+  }
 }

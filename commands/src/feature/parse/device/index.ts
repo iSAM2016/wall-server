@@ -8,14 +8,11 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../parseBase';
-import { EndParse, StartPase } from 'commands/utils/annotation';
-import { ParseInterface } from 'commands/utils/interface';
-import {
-  COMMAND_ARGUMENT_BY_MINUTE,
-  DATABASE_BY_MONTH,
-} from '@commands/config';
+import { EndParse, StartPase } from '@app/utils';
+import { ParseInterface } from '@app/utils';
+import { COMMAND_ARGUMENT_BY_MINUTE, DATABASE_BY_MONTH } from '@app/config';
 import { Inject } from 'typescript-ioc';
-import { DataCleaning } from '@commands/core';
+import { DataCleaning } from '@app/core';
 import { DeviceService } from './device.service';
 
 class ParseDevice extends ParseBase implements ParseInterface {

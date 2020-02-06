@@ -1,6 +1,6 @@
 import Base from './feature/commandsBase';
 import { Command } from '@adonisjs/ace';
-import { CommandsModuleInterface, DBResult } from 'commands/utils/interface';
+import { CommandsModuleInterface, DBResult } from '@app/utils';
 import moment = require('moment');
 
 class CommandDemo extends Base implements CommandsModuleInterface {

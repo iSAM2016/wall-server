@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { COMMAND_ARGUMENT_BY_MINUTE } from '@commands/config';
-import { getAbsoluteLogUriByType, LOG_TYPE_JSON } from '@commands/core';
+import { COMMAND_ARGUMENT_BY_MINUTE } from '@app/config';
+import { getAbsoluteLogUriByType, LOG_TYPE_JSON } from '@app/core';
 import CommandsBase from '../commandsBase';
 const readLine = require('lei-stream').readLine;
 abstract class ParseBase extends CommandsBase {

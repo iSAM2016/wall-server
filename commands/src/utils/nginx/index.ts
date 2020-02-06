@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as moment from 'moment';
-import { appConfig } from '@commands/config';
+import { appConfig } from '@app/config';
 
 let logPath = appConfig.absoluteLogPath;
 

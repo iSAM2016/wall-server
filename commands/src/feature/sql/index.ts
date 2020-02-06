@@ -3,7 +3,7 @@ import * as fs from 'fs'; // 引入fs模块
 import * as path from 'path';
 import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
-import { COMMAND_ARGUMENT_BY_MONTH, DATABASE_BY_MONTH } from '@commands/config';
+import { COMMAND_ARGUMENT_BY_MONTH, DATABASE_BY_MONTH } from '@app/config';
 import { async } from 'rxjs/internal/scheduler/async';
 const SQL_DATE_FORMAT_YM = 'YYYYMM';
 

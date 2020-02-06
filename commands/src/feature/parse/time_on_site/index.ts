@@ -9,16 +9,16 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import { EndParse, StartPase } from 'commands/utils/annotation';
-import { ParseInterface } from 'commands/utils/interface';
-import { getFlattenCityRecordListInDistribution } from '@commands/utils';
-import { UniqueViewService, CityDistributionService } from '@commands/shard';
+import { EndParse, StartPase } from '@app/utils';
+import { ParseInterface } from '@app/utils';
+import { getFlattenCityRecordListInDistribution } from '@app/utils';
+import { UniqueViewService, CityDistributionService } from '@app/shard';
 import { DurationDistributionService } from './duration_distribution.service';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   UNIT,
   DATABASE_BY_HOUR,
-} from '@commands/config';
+} from '@app/config';
 
 class TimeOnSiteByHour extends ParseBase implements ParseInterface {
   // 统一按项目进行统计

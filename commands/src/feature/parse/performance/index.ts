@@ -9,16 +9,16 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import { EndParse, StartPase } from 'commands/utils/annotation';
-import { ParseInterface } from 'commands/utils/interface';
-import { CityDistributionService } from '@commands/shard';
+import { EndParse, StartPase } from '@app/utils';
+import { ParseInterface } from '@app/utils';
+import { CityDistributionService } from '@app/shard';
 import { PerformanceService } from './performance.service';
 import {
   UNIT,
   DATABASE_BY_UNIT,
   DATABASE_BY_MINUTE,
   COMMAND_ARGUMENT_BY_MINUTE,
-} from '@commands/config';
+} from '@app/config';
 
 class Performance extends ParseBase implements ParseInterface {
   // 统一按项目进行统计

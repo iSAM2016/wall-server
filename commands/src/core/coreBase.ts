@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
-import { Alert, Logger } from '@commands/core';
-import { ConfigService, getConfig } from '@commands/core';
-import { DISPLAY_BY_MILLSECOND } from '@commands/config';
+import { Alert, Logger } from '@app/core';
+import { ConfigService, getConfig } from '@app/core';
+import { DISPLAY_BY_MILLSECOND } from '@app/config';
 
 abstract class CoreBase {
   @Inject

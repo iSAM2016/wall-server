@@ -9,10 +9,10 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import { EndParse, StartPase } from 'commands/utils/annotation';
-import { ParseInterface } from 'commands/utils/interface';
+import { EndParse, StartPase } from '@app/utils';
+import { ParseInterface } from '@app/utils';
 import { UserFirstLoginAtService } from './user_first_login_at.service';
-import { COMMAND_ARGUMENT_BY_MINUTE } from '@commands/config';
+import { COMMAND_ARGUMENT_BY_MINUTE } from '@app/config';
 
 class UserFirstLoginAt extends ParseBase implements ParseInterface {
   constructor() {

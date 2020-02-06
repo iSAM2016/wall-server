@@ -1,4 +1,6 @@
 export * from './nginx';
+export * from './annotation';
+export * from './interface';
 import * as os from 'os';
 import * as path from 'path';
 import * as datx from 'ipip-datx';

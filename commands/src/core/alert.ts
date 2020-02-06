@@ -2,8 +2,8 @@ import * as md5 from 'md5';
 import _ from 'lodash';
 import CoreBase from './coreBase';
 import { Inject } from 'typescript-ioc';
-import { ConfigService } from '@commands/core';
-import { getLocalIpList, http } from '@commands/utils';
+import { ConfigService } from '@app/core';
+import { getLocalIpList, http } from '@app/utils';
 export class Alert extends CoreBase {
   private ucidList = [];
   private sendList = [];

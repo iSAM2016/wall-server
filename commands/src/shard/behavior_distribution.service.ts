@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@commands/config';
-import { InjectRepositorys } from 'commands/utils/annotation';
+import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@app/config';
+import { InjectRepositorys } from '@app/utils';
 import { BaseService } from './serviceBase';
 
 const TABLE_NAME = 't_r_behavior_distribution';

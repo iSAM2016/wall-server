@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { DATABASE_BY_UNIT, UNIT } from '@commands/config';
-import { InjectRepositorys } from 'commands/utils/annotation';
-import { BaseService } from '@commands/shard';
+import { DATABASE_BY_UNIT, UNIT } from '@app/config';
+import { InjectRepositorys } from '@app/utils';
+import { BaseService } from '@app/shard';
 
 const BaseTableName = 't_r_system_collection';
 function getTableName(projectId) {

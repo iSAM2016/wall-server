@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as moment from 'moment';
 import { appConfig } from '../config';
 
-import { ConfigService } from '@commands/core';
+import { ConfigService } from '@app/core';
 let logPath = appConfig.absoluteLogPath;
 
 const YMFormat = 'YYYYMM';
