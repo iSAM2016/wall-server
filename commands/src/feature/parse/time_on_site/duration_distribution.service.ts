@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '@app/config';
-import { InjectRepositorys } from '@app/utils';
-import { BaseService } from '@app/shard';
+import { DATABASE_BY_HOUR, DATABASE_BY_MINUTE } from '../../../config';
+import { InjectRepositorys } from '../../../utils';
+import { BaseService } from '../../../shard';
 
 const TableName = 't_r_duration_distribution';
 const TABLE_COLUMN = [

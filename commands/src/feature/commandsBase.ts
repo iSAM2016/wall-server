@@ -2,9 +2,8 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Command } from '@adonisjs/ace';
 import { Inject, Singleton } from 'typescript-ioc';
-import { Alert, Logger } from '@app/core';
-import { ConfigService, getConfig } from '@app/core';
-import { DISPLAY_BY_MILLSECOND } from '@app/config';
+import { Alert, Logger, ConfigService, getConfig } from '../core';
+import { DISPLAY_BY_MILLSECOND } from '../config';
 
 abstract class CommandsBase extends Command {
   @Inject

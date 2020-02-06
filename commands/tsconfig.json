@@ -3,23 +3,21 @@
         "module": "commonjs",
         "declaration": true,
         "removeComments": true,
+        "noImplicitAny": false,
         "incremental": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "target": "es6",
-        "sourceMap": true,
+        "sourceMap": false,
         "outDir": "dist/",
         "lib": ["es6"],
+        // "watch": true,
         "baseUrl": ".", // 可以相对这个目录 import 文件
         "paths": {
-            "@app/config": ["src/config"],
-            "@app/utils": ["src/utils"],
-            "@app/shard": ["src/shard"],
-            "@app/core": ["src/core"],
-            "@app/interface": ["src/utils/interface"],
-            "@app/service": ["src/feature/service"],
-            "@app/annotation": ["src/utils/annotation"]
+            "*": ["*",
+                "core/*"
+            ]
         }
     },
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", ]
 }

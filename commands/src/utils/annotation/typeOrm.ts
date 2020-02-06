@@ -1,4 +1,4 @@
-import { ConfigService, getConfig } from '@app/core';
+import { ConfigService, getConfig } from '../../core';
 import * as knex from 'knex';
 
 const mysqlConnection = () => {

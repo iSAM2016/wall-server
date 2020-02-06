@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { InjectRepositorys } from '@app/utils';
+import { InjectRepositorys } from '../utils';
 import { BaseService } from './serviceBase';
 
 // uv记录

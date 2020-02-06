@@ -9,9 +9,9 @@ import * as path from 'path';
 import * as moment from 'moment';
 import * as shell from 'shelljs';
 import * as schedule from 'node-schedule';
-import { sleep } from '@app/utils';
+import { sleep } from '../../utils';
 import CommandsBase from '../commandsBase';
-import { CommandsModuleInterface } from '@app/utils';
+import { CommandsModuleInterface } from '../../utils';
 import {
   UNIT,
   appConfig,
@@ -19,7 +19,7 @@ import {
   COMMAND_ARGUMENT_BY_DAY,
   COMMAND_ARGUMENT_BY_HOUR,
   COMMAND_ARGUMENT_BY_MINUTE,
-} from '@app/config';
+} from '../../config';
 
 class TaskManger extends CommandsBase implements CommandsModuleInterface {
   constructor() {

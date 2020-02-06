@@ -12,12 +12,12 @@ import * as moment from 'moment';
 import { Inject } from 'typescript-ioc';
 import ParseBase from '../parseBase';
 import { UVService } from './uv.service';
-import { EndParse, StartPase } from '@app/utils';
-import { ParseInterface, DBResult } from '@app/utils';
+import { EndParse, StartPase } from '../../../utils';
+import { ParseInterface, DBResult } from '../../../utils';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_MINUTE,
-} from '@app/config';
+} from '../../../config';
 
 class ParseUV extends ParseBase implements ParseInterface {
   constructor() {

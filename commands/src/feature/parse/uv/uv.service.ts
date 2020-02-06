@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { BaseService } from '@app/shard';
-import { DATABASE_BY_HOUR } from '@app/config';
-import { InjectRepositorys } from '@app/annotation';
+import { BaseService } from '../../../shard';
+import { DATABASE_BY_HOUR } from '../../../config';
+import { InjectRepositorys } from '../../../utils/annotation';
 
 const TableNameDateFormat = 'YYYYMM';
 const BASE_TABLE_NAME = 't_r_uv_record';

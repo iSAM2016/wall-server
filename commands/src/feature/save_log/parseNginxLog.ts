@@ -15,14 +15,14 @@ import * as parser from 'ua-parser-js';
 import { Inject } from 'typescript-ioc';
 import CommandsBase from '../commandsBase';
 import { readLine, writeLine } from 'lei-stream';
-import { ProjectService } from '@app/shard';
+import { ProjectService } from '../../shard';
 import {
   ip2Locate,
   LOG_TYPE_RAW,
   LOG_TYPE_JSON,
   LOG_TYPE_TEST,
   getAbsoluteLogUriByType, //  生成对应日志绝对路径, 按分钟分隔
-} from '@app/utils';
+} from '../../utils';
 
 const TEST_LOG_FLAG = 'b47ca710747e96f1c523ebab8022c19e9abaa56b';
 let jsonWriteStreamPool = new Map();

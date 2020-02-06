@@ -6,7 +6,7 @@
  */
 import * as _ from 'lodash';
 import { BaseService } from '../serviceBase';
-import { InjectRepositorys } from '@app/utils';
+import { InjectRepositorys } from '../../utils';
 const BASE_TABLE_NAME = 't_r_project';
 const TABLE_COLUMN = [
   `id`,

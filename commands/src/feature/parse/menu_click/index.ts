@@ -9,18 +9,18 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../parseBase';
 import { Inject } from 'typescript-ioc';
-import { EndParse, StartPase } from '@app/utils';
-import { ParseInterface } from '@app/utils';
-import { getFlattenCityRecordListInDistribution } from '@app/utils';
+import { EndParse, StartPase } from '../../../utils';
+import { ParseInterface } from '../../../utils';
+import { getFlattenCityRecordListInDistribution } from '../../../utils';
 import {
   BehaviorDistributionService,
   CityDistributionService,
-} from '@app/shard';
+} from '../../../shard';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   DATABASE_BY_HOUR,
   UNIT,
-} from '@app/config';
+} from '../../../config';
 
 class MenuClick extends ParseBase implements ParseInterface {
   constructor() {

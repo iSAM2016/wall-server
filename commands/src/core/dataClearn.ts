@@ -1,4 +1,4 @@
-import { deviceConfigDevice } from '@app/config';
+import { deviceConfigDevice } from '../config';
 /**
  * 数据清洗公共类
  * 读取对应配置 对parse第一清洗数据做，一致性、合法性校验

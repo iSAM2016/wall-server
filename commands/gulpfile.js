@@ -1,6 +1,8 @@
 const { src, dest, series, watch, parallel } = require('gulp');
 const nodemon = require('gulp-nodemon');
 const ts = require('gulp-typescript');
+const gulp = require('gulp');
+const tsProject = ts.createProject('tsconfig.json');
 
 function nodemonWatch(cb) {
   var started = false;
@@ -22,12 +24,9 @@ function nodemonWatch(cb) {
 }
 
 function TypeScript() {
-  return src('src/**/*.ts')
-    .pipe(
-      ts({
-        noImplicitAny: true,
-      }),
-    )
+  return gulp
+    .src('src/**/*.ts')
+    .pipe(tsProject())
     .pipe(dest('dist'));
 }
 
