@@ -1,112 +1,0 @@
-Starting wall-server_redis_1 ... 
-Starting wall-server_nginx_1 ... 
-Starting wall-server_mysql_1 ... 
-[2A[2KStarting wall-server_nginx_1 ... [32mdone[0m[2B[3A[2KStarting wall-server_redis_1 ... [32mdone[0m[3B[1A[2KStarting wall-server_mysql_1 ... [32mdone[0m[1BAttaching to wall-server_nginx_1, wall-server_redis_1, wall-server_mysql_1
-[33mredis_1  |[0m 1:C 05 Feb 09:21:32.790 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-[33mredis_1  |[0m 1:C 05 Feb 09:21:32.790 # Redis version=4.0.14, bits=64, commit=00000000, modified=0, pid=1, just started
-[33mredis_1  |[0m 1:C 05 Feb 09:21:32.790 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-[33mredis_1  |[0m 1:M 05 Feb 09:21:32.798 * Running mode=standalone, port=6379.
-[33mredis_1  |[0m 1:M 05 Feb 09:21:32.798 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
-[33mredis_1  |[0m 1:M 05 Feb 09:21:32.798 # Server initialized
-[33mredis_1  |[0m 1:M 05 Feb 09:21:32.798 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
-[33mredis_1  |[0m 1:M 05 Feb 09:21:32.798 * DB loaded from disk: 0.000 seconds
-[33mredis_1  |[0m 1:M 05 Feb 09:21:32.798 * Ready to accept connections
-[32mmysql_1  |[0m 2020-02-05 09:21:32+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7 started.
-[32mmysql_1  |[0m 2020-02-05 09:21:32+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
-[32mmysql_1  |[0m 2020-02-05 09:21:32+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7 started.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.167325Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-[32mmysql_1  |[0m 2020-02-05T09:21:33.168523Z 0 [Note] mysqld (mysqld 5.7.28) starting as process 1 ...
-[32mmysql_1  |[0m 2020-02-05T09:21:33.172317Z 0 [Note] InnoDB: PUNCH HOLE support available
-[32mmysql_1  |[0m 2020-02-05T09:21:33.172368Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
-[32mmysql_1  |[0m 2020-02-05T09:21:33.172382Z 0 [Note] InnoDB: Uses event mutexes
-[32mmysql_1  |[0m 2020-02-05T09:21:33.172395Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
-[32mmysql_1  |[0m 2020-02-05T09:21:33.172406Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
-[32mmysql_1  |[0m 2020-02-05T09:21:33.172416Z 0 [Note] InnoDB: Using Linux native AIO
-[32mmysql_1  |[0m 2020-02-05T09:21:33.173297Z 0 [Note] InnoDB: Number of pools: 1
-[32mmysql_1  |[0m 2020-02-05T09:21:33.174189Z 0 [Note] InnoDB: Using CPU crc32 instructions
-[32mmysql_1  |[0m 2020-02-05T09:21:33.176125Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
-[32mmysql_1  |[0m 2020-02-05T09:21:33.184792Z 0 [Note] InnoDB: Completed initialization of buffer pool
-[32mmysql_1  |[0m 2020-02-05T09:21:33.187827Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
-[32mmysql_1  |[0m 2020-02-05T09:21:33.202577Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.214775Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
-[32mmysql_1  |[0m 2020-02-05T09:21:33.214869Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
-[32mmysql_1  |[0m 2020-02-05T09:21:33.233002Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.234946Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.234996Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.236179Z 0 [Note] InnoDB: 5.7.28 started; log sequence number 12442765
-[32mmysql_1  |[0m 2020-02-05T09:21:33.238126Z 0 [Note] Plugin 'FEDERATED' is disabled.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.243366Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.243413Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.244170Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
-[32mmysql_1  |[0m 2020-02-05T09:21:33.244449Z 0 [Warning] CA certificate ca.pem is self signed.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.244484Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.246106Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
-[32mmysql_1  |[0m 2020-02-05T09:21:33.246171Z 0 [Note] IPv6 is available.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.246191Z 0 [Note]   - '::' resolves to '::';
-[32mmysql_1  |[0m 2020-02-05T09:21:33.246212Z 0 [Note] Server socket created on IP: '::'.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.246804Z 0 [Note] InnoDB: Buffer pool(s) load completed at 200205  9:21:33
-[32mmysql_1  |[0m 2020-02-05T09:21:33.247988Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
-[32mmysql_1  |[0m 2020-02-05T09:21:33.264356Z 0 [Note] Event Scheduler: Loaded 0 events
-[32mmysql_1  |[0m 2020-02-05T09:21:33.265103Z 0 [Note] mysqld: ready for connections.
-[32mmysql_1  |[0m Version: '5.7.28'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
-Killing wall-server_nginx_1  ... 
-Killing wall-server_mysql_1  ... 
-Killing wall-server_redis_1  ... 
-Aborting.
-Starting wall-server_mysql_1 ... 
-Starting wall-server_nginx_1 ... 
-Starting wall-server_redis_1 ... 
-[2A[2KStarting wall-server_nginx_1 ... [32mdone[0m[2B[1A[2KStarting wall-server_redis_1 ... [32mdone[0m[1B[3A[2KStarting wall-server_mysql_1 ... [32mdone[0m[3BAttaching to wall-server_nginx_1, wall-server_redis_1, wall-server_mysql_1
-[33mredis_1  |[0m 1:C 05 Feb 09:21:58.371 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-[33mredis_1  |[0m 1:C 05 Feb 09:21:58.371 # Redis version=4.0.14, bits=64, commit=00000000, modified=0, pid=1, just started
-[33mredis_1  |[0m 1:C 05 Feb 09:21:58.371 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-[33mredis_1  |[0m 1:M 05 Feb 09:21:58.372 * Running mode=standalone, port=6379.
-[33mredis_1  |[0m 1:M 05 Feb 09:21:58.373 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
-[33mredis_1  |[0m 1:M 05 Feb 09:21:58.373 # Server initialized
-[33mredis_1  |[0m 1:M 05 Feb 09:21:58.373 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
-[33mredis_1  |[0m 1:M 05 Feb 09:21:58.373 * DB loaded from disk: 0.000 seconds
-[33mredis_1  |[0m 1:M 05 Feb 09:21:58.373 * Ready to accept connections
-[32mmysql_1  |[0m 2020-02-05 09:21:58+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7 started.
-[32mmysql_1  |[0m 2020-02-05 09:21:58+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
-[32mmysql_1  |[0m 2020-02-05 09:21:58+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7 started.
-[32mmysql_1  |[0m 2020-02-05T09:21:58.805396Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-[32mmysql_1  |[0m 2020-02-05T09:21:58.806577Z 0 [Note] mysqld (mysqld 5.7.28) starting as process 1 ...
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810207Z 0 [Note] InnoDB: PUNCH HOLE support available
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810260Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810278Z 0 [Note] InnoDB: Uses event mutexes
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810289Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810302Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810317Z 0 [Note] InnoDB: Using Linux native AIO
-[32mmysql_1  |[0m 2020-02-05T09:21:58.810640Z 0 [Note] InnoDB: Number of pools: 1
-[32mmysql_1  |[0m 2020-02-05T09:21:58.811008Z 0 [Note] InnoDB: Using CPU crc32 instructions
-[32mmysql_1  |[0m 2020-02-05T09:21:58.812779Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
-[32mmysql_1  |[0m 2020-02-05T09:21:58.821536Z 0 [Note] InnoDB: Completed initialization of buffer pool
-[32mmysql_1  |[0m 2020-02-05T09:21:58.823727Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
-[32mmysql_1  |[0m 2020-02-05T09:21:58.838253Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
-[32mmysql_1  |[0m 2020-02-05T09:21:58.841531Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 12442784
-[32mmysql_1  |[0m 2020-02-05T09:21:58.841620Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 12442793
-[32mmysql_1  |[0m 2020-02-05T09:21:58.841645Z 0 [Note] InnoDB: Database was not shutdown normally!
-[32mmysql_1  |[0m 2020-02-05T09:21:58.841668Z 0 [Note] InnoDB: Starting crash recovery.
-[32mmysql_1  |[0m 2020-02-05T09:21:58.965370Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
-[32mmysql_1  |[0m 2020-02-05T09:21:58.965449Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
-[32mmysql_1  |[0m 2020-02-05T09:21:58.965532Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
-[32mmysql_1  |[0m 2020-02-05T09:21:58.986441Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
-[32mmysql_1  |[0m 2020-02-05T09:21:58.988086Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
-[32mmysql_1  |[0m 2020-02-05T09:21:58.988135Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
-[32mmysql_1  |[0m 2020-02-05T09:21:58.988767Z 0 [Note] InnoDB: Waiting for purge to start
-[32mmysql_1  |[0m 2020-02-05T09:21:59.040189Z 0 [Note] InnoDB: 5.7.28 started; log sequence number 12442793
-[32mmysql_1  |[0m 2020-02-05T09:21:59.041692Z 0 [Note] Plugin 'FEDERATED' is disabled.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.044687Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
-[32mmysql_1  |[0m 2020-02-05T09:21:59.049195Z 0 [Note] InnoDB: Buffer pool(s) load completed at 200205  9:21:59
-[32mmysql_1  |[0m 2020-02-05T09:21:59.054428Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.054487Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.055691Z 0 [Warning] CA certificate ca.pem is self signed.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.055759Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.056420Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
-[32mmysql_1  |[0m 2020-02-05T09:21:59.056522Z 0 [Note] IPv6 is available.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.056543Z 0 [Note]   - '::' resolves to '::';
-[32mmysql_1  |[0m 2020-02-05T09:21:59.056570Z 0 [Note] Server socket created on IP: '::'.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.060373Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
-[32mmysql_1  |[0m 2020-02-05T09:21:59.076210Z 0 [Note] Event Scheduler: Loaded 0 events
-[32mmysql_1  |[0m 2020-02-05T09:21:59.076436Z 0 [Note] mysqld: ready for connections.
-[32mmysql_1  |[0m Version: '5.7.28'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)

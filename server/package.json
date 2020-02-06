@@ -1,7 +1,6 @@
 {
   "name": "project-name",
   "version": "0.0.1",
-  "description": "",
   "author": "",
   "license": "MIT",
   "scripts": {
@@ -113,5 +112,6 @@
     },
     "coverageDirectory": "./coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": "index.js"
 }

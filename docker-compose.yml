@@ -15,8 +15,8 @@ services:
   #     - ${APP_PORT}:3000
 
   mysql:
-    env_file:
-      - ./config/development.env
+    # env_file:
+    #   - ./config/development.env
     image: mysql:5.7
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
@@ -44,10 +44,10 @@ services:
     ports:
       - 9090:80
     volumes:
-      - ./log:/var/log/nginx
-      - ./nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
-      - ./nginx/html:/usr/share/nginx/html
-      - ./nginx/sh:/home
+      - ./commands/log:/var/log/nginx
+      - ./commands/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./commands/nginx/html:/usr/share/nginx/html
+      - ./commands/nginx/sh:/home
     # command:
     #   - /bin/sh
     #   - -c
