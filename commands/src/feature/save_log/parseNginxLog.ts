@@ -344,34 +344,3 @@ class NginxParse extends CommandsBase {
 }
 
 export default NginxParse;
-
-let a = {
-  type: 'BEHAVIOR_XHR',
-  info: {
-    message: '异步请求',
-    url: 'http://localhost:8001/sockjs-node/info?t=1580906284133',
-    method: 'GET',
-    status: 200,
-    responseSize: null,
-    statusText: 'OK',
-    success: true,
-    duration: 17,
-  },
-  options: {
-    token: '9999',
-    origin: 'http://localhost:9090',
-    isTest: false,
-    frequency: 1,
-    userId: 'wall_KLSkzxldp0fxpyHXOKSuCrMJQoWMoKg2',
-  },
-  key: 'NtsGbhvxzDSm1ti2uffSue7u2UIFPVXo',
-  version: '0.2.2',
-  createTime: 1580906284151,
-  deviceInfo: {
-    deviceName: 'PC',
-    browserName: 'chrome',
-    browserVersion: '79.0.3945.130',
-    os: 'web',
-  },
-  currentUrl: 'http%3A%2F%2Flocalhost%3A8001%2F%3Fa%3D1',
-};

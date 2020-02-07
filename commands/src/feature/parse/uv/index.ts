@@ -19,6 +19,7 @@ import {
   DATABASE_BY_MINUTE,
 } from '../../../config';
 
+// UV(独立访客)：即Unique Visitor,访问您网站的一台电脑客户端为一个访客。00:00-24:00内相同的客户端只被计算一次。
 class ParseUV extends ParseBase implements ParseInterface {
   constructor() {
     super();
@@ -65,14 +66,14 @@ class ParseUV extends ParseBase implements ParseInterface {
    */
   readLogSaveToCache(record): boolean {
     try {
-      let commonInfo = _.get(record, ['common'], {});
-      let uuid = _.get(commonInfo, ['uuid'], '');
+      let uuid = _.get(record, ['uuid'], ''); //设备唯一标识TODO:// 设备唯一标识
       let visitAt = _.get(record, ['time'], 0);
       let projectId = _.get(record, ['project_id'], 0);
       let country = _.get(record, ['country'], '');
       let province = _.get(record, ['province'], '');
       let city = _.get(record, ['city'], '');
       let pvCount = 1;
+
       if (
         _.isNumber(visitAt) === false ||
         visitAt === 0 ||
@@ -92,6 +93,11 @@ class ParseUV extends ParseBase implements ParseInterface {
         pvCount,
       };
       // 项目=>  时间段(10 分钟) => uid
+      // 项目id:{
+      //   时间段:{
+      //     uid: {}
+      //   }
+      // }
       let visitAtMap = new Map(); // 时间段区分
       let uvMap = new Map(); // uid 区分
       if (this.projectMap.has(projectId)) {

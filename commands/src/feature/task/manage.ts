@@ -101,6 +101,10 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
    *  1分钟任务
    */
   registerTaskRepeatPer1Minute() {
+    let fifteenMinuteAgoByminute = moment()
+      .subtract(15, 'minute')
+      .format(COMMAND_ARGUMENT_BY_MINUTE);
+    console.log(fifteenMinuteAgoByminute);
     let that = this;
     schedule.scheduleJob('*/1 * * * * * ', () => {
       that.log('registerTaskRepeatPer1Minute 开始执行');
@@ -157,9 +161,9 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       }
 
       let parseCommandList = [
-        // 'Parse:UV',
+        'Parse:UV',
         // 'Parse:TimeOnSiteByHour',
-        'Parse:Performance',
+        // 'Parse:Performance',
         // 'Parse:Monitor',
       ];
       for (let parseCommand of parseCommandList) {
