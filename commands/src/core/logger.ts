@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import _ from 'lodash';
 import { DISPLAY_BY_MILLSECOND } from '../config/date_format';
 var path = require('path');
-let ABSOLUTE_LOG_PATH = path.resolve(__dirname, '../../../', 'log');
+let ABSOLUTE_LOG_PATH = path.resolve(__dirname, '../../', 'log');
 
 export class Logger {
   /**

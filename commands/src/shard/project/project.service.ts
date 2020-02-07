@@ -49,7 +49,7 @@ export class ProjectService extends BaseService {
       .from(tableName)
       .where('is_delete', 0)
       .catch(err => {
-        this.log('getlist => 出错' + err.message);
+        this.log(`${this.constructor.name} => getlist => 出错` + err.message);
         return [];
       });
     let projectMap = {};

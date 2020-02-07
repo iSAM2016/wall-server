@@ -11,7 +11,7 @@
         "sourceMap": false,
         "outDir": "dist/",
         "lib": ["es6"],
-        // "watch": true,
+        "watch": true,
         "baseUrl": ".", // 可以相对这个目录 import 文件
         "paths": {
             "*": ["*",

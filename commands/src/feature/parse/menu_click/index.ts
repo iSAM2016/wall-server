@@ -160,7 +160,6 @@ class MenuClick extends ParseBase implements ParseInterface {
           for (let record of recordList) {
             totalCount = totalCount + record;
           }
-          console.log('9999');
           let oldRecordList = await this.behaviorDistributionService.replaceRecord(
             projectId,
             code,

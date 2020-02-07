@@ -23,6 +23,7 @@ import {
   LOG_TYPE_TEST,
   getAbsoluteLogUriByType, //  生成对应日志绝对路径, 按分钟分隔
 } from '../../utils';
+import { appConfig } from '../../config';
 
 const TEST_LOG_FLAG = 'b47ca710747e96f1c523ebab8022c19e9abaa56b';
 let jsonWriteStreamPool = new Map();
@@ -51,17 +52,18 @@ class NginxParse extends CommandsBase {
       let projectMap = await this.projectService.getList();
       let logCounter = 0;
       let legalLogCounter = 0;
-      let nginxLogFilePath = this.config.get('NGINXLOG_FILEPATH');
+      let nginxLogFilePath = appConfig.absoluteLogPath + '/nginx/';
+      // 每间隔一分钟读取，前一分钟的数据
       let timeAt = moment().unix() - 60;
       let timeMoment = moment.unix(timeAt);
       let formatStr = timeMoment.format('/YYYYMM/DD/HH/mm');
       let logAbsolutePath: string = '';
-      if (this.config.getEnv() === 'development') {
-        logAbsolutePath = `${nginxLogFilePath}${'202001/17/13/54'}.log`;
+      if (this.config.getEnv() === 'test') {
+        // 使用测试数据
+        logAbsolutePath = `${nginxLogFilePath}${'test'}.log`;
       } else {
         logAbsolutePath = `${nginxLogFilePath}${formatStr}.log`;
       }
-      console.log('logAbsolutePath' + logAbsolutePath);
       if (fs.existsSync(logAbsolutePath) === false) {
         that.log(`log文件不存在, 自动跳过 => ${logAbsolutePath}`);
         return false;
@@ -155,7 +157,7 @@ class NginxParse extends CommandsBase {
       // common是新sdk的字段值, pub是旧值, 这里做下兼容
       record.common = record.pub;
     }
-    // match
+    // matc
     let logAtMoment = moment(
       info[3].match(/(?!\[).*(?<!])/)[0],
       moment.ISO_8601,
@@ -176,7 +178,7 @@ class NginxParse extends CommandsBase {
   isTestLog(content) {
     return content.includes(TEST_LOG_FLAG); // TODO:校验
   }
-  /**
+  /***
    * 将日志解析为标准格式, 解析失败返回null
    * @param {string} data
    * @param {object} projectMap code => project_id格式的项目字典
@@ -205,24 +207,22 @@ class NginxParse extends CommandsBase {
       this.log('record 不规范 =>', record);
       return null;
     }
-    if (_.has(record, ['common', 'pid']) === false) {
-      this.log('pid 不存在 =>', record);
+    //TODO: 校验项目id
+    if (_.has(record, ['key']) === false) {
+      this.log('key 不存在 =>', record);
       return null;
     }
-    if (record.common.pid === '') {
-      this.log('记录中没有record.common.pid  =>', record.common.pid);
+    if (record.key === '') {
+      this.log('记录中没有record.key  =>', record.key);
       return null;
     }
-    if (_.has(projectMap, [record.common.pid]) === false) {
-      this.log(
-        '项目尚未注册projectMap[record.common.pid] =>',
-        projectMap,
-        record.common.pid,
-      );
+    if (_.has(projectMap, [record.key]) === false) {
+      this.log('项目尚未注册projectMap[record.key] =>', projectMap, record.key);
       return null;
     }
-    record.project_id = projectMap[record.common.pid]['id'];
-    record.project_name = record.common.pid;
+
+    record.project_id = projectMap[record.key]['id'];
+    // record.project_name = record.common.pid;
     let currentAt = moment().unix();
     let logCreateAt = this.parseLogCreateAt(data);
     // 如果入库时间距离现在大于10天, 则认为是不合法数据(nginx中只会存7天以内的数据, 入库时间超出上下10天, 都不正常)
@@ -271,6 +271,7 @@ class NginxParse extends CommandsBase {
     let nowAtLogUri = getAbsoluteLogUriByType(nowAt, logType);
     // 创建对应路径
     let logPath = path.dirname(nowAtLogUri);
+    this.log('创建存储目录 =>', logPath);
     shell.mkdir('-p', logPath);
     let nowAtWriteStream = null;
     if (jsonWriteStreamPool.has(nowAtLogUri)) {
@@ -343,3 +344,34 @@ class NginxParse extends CommandsBase {
 }
 
 export default NginxParse;
+
+let a = {
+  type: 'BEHAVIOR_XHR',
+  info: {
+    message: '异步请求',
+    url: 'http://localhost:8001/sockjs-node/info?t=1580906284133',
+    method: 'GET',
+    status: 200,
+    responseSize: null,
+    statusText: 'OK',
+    success: true,
+    duration: 17,
+  },
+  options: {
+    token: '9999',
+    origin: 'http://localhost:9090',
+    isTest: false,
+    frequency: 1,
+    userId: 'wall_KLSkzxldp0fxpyHXOKSuCrMJQoWMoKg2',
+  },
+  key: 'NtsGbhvxzDSm1ti2uffSue7u2UIFPVXo',
+  version: '0.2.2',
+  createTime: 1580906284151,
+  deviceInfo: {
+    deviceName: 'PC',
+    browserName: 'chrome',
+    browserVersion: '79.0.3945.130',
+    os: 'web',
+  },
+  currentUrl: 'http%3A%2F%2Flocalhost%3A8001%2F%3Fa%3D1',
+};

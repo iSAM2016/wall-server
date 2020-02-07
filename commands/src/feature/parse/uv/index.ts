@@ -45,7 +45,6 @@ class ParseUV extends ParseBase implements ParseInterface {
   @StartPase
   async handle(...arg) {
     try {
-      console.log(arg);
       await this.readLog(
         this.startAtMoment,
         this.endAtMoment,

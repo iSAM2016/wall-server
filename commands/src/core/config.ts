@@ -24,7 +24,7 @@ export class ConfigService {
     const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const envFile: string = resolve(
       __dirname,
-      '../../../commands/env',
+      '../../../commands/src/env',
       filePath,
     );
     if (this.isFileExist(envFile)) {
@@ -72,7 +72,6 @@ export class ConfigService {
       ALERT_MAX_CONTENT_CHAR: Joi.number().required(),
       ALERT_IS_USEING: Joi.boolean().required(),
       ALERT_WXADDR: Joi.string().required(),
-      NGINXLOG_FILEPATH: Joi.string().required(),
     });
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
       envConfig,

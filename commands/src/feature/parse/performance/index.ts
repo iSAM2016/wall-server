@@ -188,9 +188,7 @@ class Performance extends ParseBase implements ParseInterface {
           countAt,
           UNIT.MINUTE,
         );
-        console.log(oldRecordList);
         let id = _.get(oldRecordList, [0, 'id'], 0);
-        console.log(id);
 
         let isSuccess = await this.checkSaveCount(
           url,

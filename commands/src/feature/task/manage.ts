@@ -50,15 +50,14 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
     this.log('注册每分钟执行一次的任务');
     this.registerTaskRepeatPer1Minute();
     this.log('注册每10分钟执行一次的任务');
-    // this.registerTaskRepeatPer10Minute();
+    this.registerTaskRepeatPer10Minute();
     this.log('注册每1小时执行一次的任务');
-    // this.registerTaskRepeatPer1Hour();
+    this.registerTaskRepeatPer1Hour();
     this.log('全部定时任务注册完毕, 等待执行');
   }
   // 关闭其他进程
   async claoseOtherTaskManger() {
     let taskManagerPidList = await this.getOtherTaskMangerPidList();
-    console.log(taskManagerPidList);
     this.log('当前process.pid => ', process.pid);
     this.log(`其余TaskManger进程Pid列表 => `, taskManagerPidList);
     this.log('执行kill操作, 关闭其余进程');
@@ -256,7 +255,7 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       .join('   ');
     let commandOrder = `NODE_ENV=${this.config.getEnv()} node ${
       appConfig.appPath
-    }/dist/commands/index.js ${commandName} ${argvString}`;
+    }/dist/index.js ${commandName} ${argvString}`;
     this.log(`待执行命令=> ${commandOrder}`);
     let commandStartAtFormated = moment().format(DISPLAY_BY_MILLSECOND);
     let commandStartAtms = moment().valueOf();

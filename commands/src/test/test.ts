@@ -13,4 +13,6 @@ import Manage from '../feature/task/manage';
 //   // });
 // });
 
-shell.exec(' NODE_ENV=test node ../index.js Task:Manger');
+// shell.exec(' NODE_ENV=test node ../index.js Task:Manger');
+// 测试读取nginx 日志
+shell.exec(' NODE_ENV=test node ../index.js SaveLog:Nginx');
