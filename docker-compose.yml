@@ -1,3 +1,4 @@
+
 version: '3'
 
 services:
@@ -19,8 +20,16 @@ services:
     working_dir: /home/app
     command: npm config set registry https://registry.npm.taobao.org
     command: npm run build
+    environment:    #容器环境变量配置
+      MYSQL_DB_HOST: mysql
+      MYSQL_ROOT_PASSWORD: abc123456
+      MYSQL_DATABASE: nest
+      MYSQL_USER: root
+      MYSQL_PASSWORD: abc123456
     volumes:
       - ./commands:/home/app
+    depends_on:
+    - mysql
 
   mysql:
     # env_file:
@@ -48,9 +57,9 @@ services:
 
   nginx:
     restart: always
-    image: ihailong2016/nginx:1.0.0
+    image: ihailong2016/nginx:1.0.2
     environment:
-      TZ : 'Asia/Shanghai'
+      TZ : 'Asia/Shanghai' #TODO:无法使用
     ports:
       - 9090:80
     volumes:
@@ -63,3 +72,9 @@ services:
     #   - -c
     #   - |
     #     crond start &&  cd /home && crontab davecron && tail -f /var/log/nginx/over.log daemon off;'
+
+
+
+
+  
+

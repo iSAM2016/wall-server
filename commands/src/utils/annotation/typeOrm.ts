@@ -6,7 +6,7 @@ const mysqlConnection = () => {
   return knex({
     client: 'mysql',
     connection: {
-      host: String(config.get('MYSQL_HOST')),
+      host: String(process.env.MYSQL_DB_HOST || 'localhost'),
       port: Number(config.get('MYSQL_PORT')),
       user: String(config.get('MYSQL_USERNAME')),
       password: String(config.get('MYSQL_PASSWORD')),

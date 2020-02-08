@@ -48,7 +48,6 @@ export class ConfigService {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       SYSTEM_SECRET: Joi.string().required(),
       MYSQL_PORT: Joi.number().required(),
-      MYSQL_HOST: Joi.string().required(),
       MYSQL_USERNAME: Joi.string().required(),
       MYSQL_PASSWORD: Joi.string().required(),
       MYSQL_DATABASE: Joi.string().required(),

@@ -102,7 +102,7 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
    */
   registerTaskRepeatPer1Minute() {
     let that = this;
-    schedule.scheduleJob('*/1 * * * * * ', () => {
+    schedule.scheduleJob('0 */1 * * * * ', () => {
       that.log('registerTaskRepeatPer1Minute 开始执行');
       let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
       let twoMinuteAgoByMinute = moment()

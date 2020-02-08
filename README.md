@@ -12,3 +12,23 @@ docker-compose down
 此命令将会停止 up 命令所启动的容器，并移除网络
 
 docker-compose restart [options][service...]
+
+# 以后台方式启动运行
+
+docker-compose up -d
+
+# 查看启动的服务容器
+
+docker-compose ps
+
+# 帮助指令
+
+docker-compose up --help
+
+# 停止所有运行中的容器
+
+docker-compose down
+
+# 构建镜像
+
+docker-compose build
