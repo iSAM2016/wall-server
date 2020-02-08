@@ -75,18 +75,21 @@ class TimeOnSiteByHour extends ParseBase implements ParseInterface {
    */
   readLogSaveToCache(record): boolean {
     try {
+      console.log(record);
+      // 不用类别判断
       let projectId = _.get(record, ['project_id'], 0);
-      let durationMs = _.get(record, ['detail', 'duration_ms'], 0);
+      let durationMs = _.get(record, ['info', 'duration_ms'], 0);
       let country = _.get(record, ['country'], '');
       let province = _.get(record, ['province'], '');
       let city = _.get(record, ['city'], '');
       let recordAt = _.get(record, ['time'], 0);
       let countAtTime = moment.unix(recordAt).format(DATABASE_BY_HOUR);
+      // 设置访问地址map
       let distributionPath = [country, province, city];
-
       let countAtMap = new Map();
       let distribution = {};
       // 项目=> 时间周期 => 停留时间
+      // 12 => Map { '2020-02-07_07' => { '北京市': { '北京市': { '': 30383 } } } }
       if (this.projectMap.has(projectId)) {
         countAtMap = this.projectMap.get(projectId);
         if (countAtMap.has(countAtTime)) {
@@ -122,6 +125,7 @@ class TimeOnSiteByHour extends ParseBase implements ParseInterface {
       let totalRecordCount = this.getRecordCountInProjectMap(); // 日志总数
       let processRecordCount = 0;
       let successSaveCount = 0; // 成功的条数
+      console.log(this.projectMap);
       for (let [projectId, countAtMap] of this.projectMap) {
         for (let [countAtTime, distribution] of countAtMap) {
           //  统计每个城市 停留时间集合

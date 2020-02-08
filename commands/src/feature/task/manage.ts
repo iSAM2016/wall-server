@@ -40,7 +40,7 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
     this.log('其他TaskManager进程已关闭');
     this.log('避免当前还有正在运行的save2Log命令, 等待30s');
     this.log('开始休眠');
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 30; i++) {
       await sleep(1 * 1000);
       this.log(`休眠中, 第${i + 1}秒`);
     }
@@ -49,10 +49,10 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
     // 注册定时任务
     this.log('注册每分钟执行一次的任务');
     this.registerTaskRepeatPer1Minute();
-    this.log('注册每10分钟执行一次的任务');
-    this.registerTaskRepeatPer10Minute();
-    this.log('注册每1小时执行一次的任务');
-    this.registerTaskRepeatPer1Hour();
+    // this.log('注册每10分钟执行一次的任务');
+    // this.registerTaskRepeatPer10Minute();
+    // this.log('注册每1小时执行一次的任务');
+    // this.registerTaskRepeatPer1Hour();
     this.log('全部定时任务注册完毕, 等待执行');
   }
   // 关闭其他进程
@@ -101,10 +101,6 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
    *  1分钟任务
    */
   registerTaskRepeatPer1Minute() {
-    let fifteenMinuteAgoByminute = moment()
-      .subtract(15, 'minute')
-      .format(COMMAND_ARGUMENT_BY_MINUTE);
-    console.log(fifteenMinuteAgoByminute);
     let that = this;
     schedule.scheduleJob('*/1 * * * * * ', () => {
       that.log('registerTaskRepeatPer1Minute 开始执行');
@@ -138,10 +134,8 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
   registerTaskRepeatPer10Minute() {
     let that = this;
     // 每10分钟的第30秒启动
-    // schedule.scheduleJob('15 */10 * * * * *', function() {
-    schedule.scheduleJob('*/3  * * * * *', function() {
+    schedule.scheduleJob('15 */10 * * * * *', function() {
       that.log('registerTaskRepeatPer10Minute 开始执行');
-
       let nowByHour = moment().format(COMMAND_ARGUMENT_BY_HOUR);
       let nowByMinute = moment().format(COMMAND_ARGUMENT_BY_MINUTE);
 
@@ -162,7 +156,7 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
 
       let parseCommandList = [
         'Parse:UV',
-        // 'Parse:TimeOnSiteByHour',
+        'Parse:TimeOnSiteByHour',
         // 'Parse:Performance',
         // 'Parse:Monitor',
       ];
@@ -206,8 +200,7 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
   async registerTaskRepeatPer1Hour() {
     let that = this;
     // 每小时15分30秒启动
-    // schedule.scheduleJob('30 15 * * * * *', function() {
-    schedule.scheduleJob('*/3  * * * * *', function() {
+    schedule.scheduleJob('30 15 * * * * *', function() {
       that.log('registerTaskRepeatPer1Hour 开始执行');
 
       let nowByDay = moment().format(COMMAND_ARGUMENT_BY_DAY);
@@ -219,8 +212,8 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
 
       // 解析命令
       let parseCommandList = [
-        // 'Parse:Device',
-        // 'Parse:MenuClick',
+        'Parse:Device',
+        'Parse:MenuClick',
         'Parse:UserFirstLoginAt',
       ];
       for (let parseCommand of parseCommandList) {
@@ -244,7 +237,6 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
         // 当日数据
         that.dispatchParseCommand(summaryCommand, nowByDay, UNIT.DAY);
       }
-
       that.log('registerTaskRepeatPer1Hour 命令分配完毕');
     });
   }

@@ -119,7 +119,7 @@ export class Logger {
       appenders: {
         command: {
           type: 'dateFile',
-          filename: `${ABSOLUTE_LOG_PATH}/command/${commandName}`,
+          filename: `${ABSOLUTE_LOG_PATH}/command/${'runtime'}`,
           pattern: '-yyyy-MM-dd.log',
           alwaysIncludePattern: true,
         },

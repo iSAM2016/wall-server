@@ -4,6 +4,7 @@ FROM centos:centos7.2.1511
 #工作目录，相当于cd到一个目录
 WORKDIR /usr/src
 
+ENV TZ=Asia/Shanghai
 #可以去执行一些命令
 RUN yum install wget -y && \
     wget http://mirrors.aliyun.com/repo/Centos-7.repo -O /etc/yum.repos.d/centos.repo && \
@@ -23,7 +24,7 @@ RUN yum install wget -y && \
 EXPOSE 80
 #启动容器
 
-CMD ["/usr/local/nginx/sbin/nginx", ""]
+CMD ["/usr/local/nginx/sbin/nginx"]
 # FROM node:10.13-alpine
 # ENV NODE_ENV production
 # WORKDIR /usr/src/app

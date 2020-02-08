@@ -2,9 +2,9 @@ var assert = require('assert');
 var shell = require('shelljs');
 describe('测试命令行', function() {
   // var manage = new Manage();
-  //   it('test => 任务调度', function() {
-  //     shell.exec(' NODE_ENV=test node ./index.js Task:Manger');
-  //   });
+  it('test => 任务调度', function() {
+    shell.exec('NODE_ENV=development node ../dist/index.js Task:Manger');
+  });
   // it('test =>sql调度', function() {
   //   shell.exec(
   //     "node ../dist/index.js Utils:GenerateSQL 1,12 '2020-01' '2020-12' > ../../int.sql",
@@ -33,11 +33,11 @@ describe('测试命令行', function() {
   //     "NODE_ENV=test node ../dist/index.js Parse:MenuClick  '2020-02-07 07:21' '2020-02-07 07:21'",
   //   );
   // });
-  it('test => 测试用户第一次登陆', function() {
-    shell.exec(
-      "NODE_ENV=test node ../dist/index.js Parse:UserFirstLoginAt   '2020-02-07 07:21' '2020-02-07 07:21'",
-    );
-  });
+  // it('test => 测试用户第一次登陆', function() {
+  //   shell.exec(
+  //     "NODE_ENV=test node ../dist/index.js Parse:UserFirstLoginAt   '2020-02-07 07:21' '2020-02-07 07:21'",
+  //   );
+  // });
 });
 
 // 'Parse:Performance',

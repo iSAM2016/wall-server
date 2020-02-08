@@ -11,7 +11,7 @@ import { SMTPTransportOptions } from './mailer/mailer.interface';
  */
 @Module({
   imports: [
-    ConfigModule.register({ folder: '../../config' }),
+    ConfigModule.register({ folder: '../../../env' }),
 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

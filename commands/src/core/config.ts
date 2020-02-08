@@ -22,11 +22,7 @@ export class ConfigService {
   constructor() {
     let config: ConfigOptions = {};
     const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
-    const envFile: string = resolve(
-      __dirname,
-      '../../../commands/src/env',
-      filePath,
-    );
+    const envFile: string = resolve(__dirname, '../../env', filePath);
     if (this.isFileExist(envFile)) {
       config = dotenv.parse(fs.readFileSync(envFile));
     }

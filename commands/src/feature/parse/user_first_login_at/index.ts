@@ -64,7 +64,7 @@ class UserFirstLoginAt extends ParseBase implements ParseInterface {
    *  2.将日志存储到MAP 集合当中
    */
   readLogSaveToCache(record): boolean {
-    let ucid = _.get(record, ['common', 'ucid'], '');
+    let ucid = _.get(record, ['userId'], '');
     let projectId = _.get(record, ['project_id'], '');
     let country = _.get(record, ['country'], '');
     let province = _.get(record, ['province'], '');
@@ -86,10 +86,11 @@ class UserFirstLoginAt extends ParseBase implements ParseInterface {
         if (existRecord['first_visit_at'] > dbRecord['first_visit_at']) {
           dbRecordMap.set(ucid, dbRecord);
         }
-      } else {
-        dbRecordMap.set(ucid, dbRecord);
       }
+    } else {
+      dbRecordMap.set(ucid, dbRecord);
     }
+
     this.projectMap.set(projectId, dbRecordMap);
     return true;
   }

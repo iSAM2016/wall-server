@@ -75,10 +75,11 @@ class MenuClick extends ParseBase implements ParseInterface {
    */
   readLogSaveToCache(record): boolean {
     let projectId = _.get(record, ['project_id'], '');
-    let name = _.get(record, ['detail', 'name'], '');
-    let code = _.get(record, ['detail', 'code'], '');
-    let url = _.get(record, ['detail', 'url'], '');
-    url = url + ''; // 强制转换为字符串
+    let name = _.get(record, ['info:', 'message'], '');
+    let code = _.get(record, ['info', 'code'], '');
+    let url = _.get(record, ['currentUrl'], '');
+
+    url = decodeURIComponent(url) + ''; // 强制转换为字符串
     if (url.length > 200) {
       // url最长是200个字符
       url = url.slice(0, 200);
@@ -125,7 +126,11 @@ class MenuClick extends ParseBase implements ParseInterface {
    * @param {Object} record
    * @return {Boolean}
    */
-  isLegalRecord(): boolean {
+  isLegalRecord(record): boolean {
+    let recordType = _.get(record, ['type'], '');
+    if (!recordType.includes('BEHAVIOR')) {
+      return false;
+    }
     return true;
   }
   /**

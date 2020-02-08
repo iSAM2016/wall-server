@@ -40,22 +40,22 @@ export class ConfigService {
     }
     return true;
   }
-  private resolveRootPath(startPath: string) {
-    if (!isAbsolute(startPath)) {
-      throw Error('filePath must be an absolute path');
-    }
-    // if(){}
-    if (!this.rootPath) {
-      const root = this.root();
-      let workingDir = startPath;
-      let parent = dirname(startPath);
-      while (workingDir !== root && parent !== root && parent !== workingDir) {
-        workingDir = parent;
-        parent = dirname(workingDir);
-      }
-      this.rootPath = workingDir;
-    }
-  }
+  // private resolveRootPath(startPath: string) {
+  //   if (!isAbsolute(startPath)) {
+  //     throw Error('filePath must be an absolute path');
+  //   }
+  //   // if(){}
+  //   if (!this.rootPath) {
+  //     const root = this.root();
+  //     let workingDir = startPath;
+  //     let parent = dirname(startPath);
+  //     while (workingDir !== root && parent !== root && parent !== workingDir) {
+  //       workingDir = parent;
+  //       parent = dirname(workingDir);
+  //     }
+  //     this.rootPath = workingDir;
+  //   }
+  // }
   /**
    * 校验env 文件
    * @private
@@ -81,6 +81,10 @@ export class ConfigService {
       MAXAGE_MS: Joi.number().required(),
       MAIL_USER: Joi.string().required(),
       MAIL_PASS: Joi.string().required(),
+      ALERT_WATCH_UCID_LIST: Joi.string().required(),
+      ALERT_MAX_CONTENT_CHAR: Joi.number().required(),
+      ALERT_IS_USEING: Joi.boolean().required(),
+      ALERT_WXADDR: Joi.string().required(),
 
       // API_AUTH_ENABLED: Joi.boolean().required(),
     });
@@ -96,10 +100,10 @@ export class ConfigService {
    * 获取根路径
    * @param dir
    */
-  private root(dir: string = ''): string {
-    const rootPath = this.rootPath || resolve(process.cwd());
-    return resolve(rootPath, dir);
-  }
+  // private root(dir: string = ''): string {
+  //   const rootPath = this.rootPath || resolve(process.cwd());
+  //   return resolve(rootPath, dir);
+  // }
   /**
    * 获取问价配置
    * @param key

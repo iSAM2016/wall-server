@@ -29,7 +29,8 @@ abstract class CommandsBase extends Command {
     });
     let triggerAt = moment().format(DISPLAY_BY_MILLSECOND);
     console.log(`[${triggerAt}]-[${this.constructor.name}] ` + message);
-    this.logger.getLogger4Command(this.constructor.name).info(message);
+    let infoMessage = `[${this.constructor.name}] ` + message;
+    this.logger.getLogger4Command(this.constructor.name).info(infoMessage);
   }
 }
 

@@ -17,7 +17,7 @@ export interface ParseInterface extends CommandsModuleInterface {
   projectMap: any;
   saveTODB(): Promise<DBResult>;
   readLogSaveToCache(record): boolean; // 将一段时间添加到缓存
-  isLegalRecord(): boolean;
+  isLegalRecord(recode): boolean;
 }
 
 export interface DBResult {

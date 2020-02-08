@@ -4,7 +4,6 @@ import * as path from 'path';
 import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
 import { COMMAND_ARGUMENT_BY_MONTH, DATABASE_BY_MONTH } from '../../config';
-import { async } from 'rxjs/internal/scheduler/async';
 const SQL_DATE_FORMAT_YM = 'YYYYMM';
 
 // 不需要分表

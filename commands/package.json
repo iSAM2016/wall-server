@@ -4,17 +4,26 @@
   "description": "read nginx log",
   "main": "index.js",
   "scripts": {
-    "dev:c": "export NODE_ENV=dev && gulp",
-    "tsc": "rm -rf dist && tsc --downlevelIteration",
-    "build:c": "npm run build-ts && npm run buildViews &&  pm2 start process.config.js",
+    "dev": "rm -rf dist && tsc --downlevelIteration --watch",
+    "build": "rm -rf dist && tsc --downlevelIteration && NODE_ENV=development node ./dist/index.js Task:Manger",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "dependencies": {
+    "axios": "^0.19.2",
+    "ioredis": "^4.14.1",
+    "ipip-datx": "^0.2.2",
+    "knex": "^0.20.8",
+    "lei-stream": "^1.4.2",
     "lodash": "^4.17.15",
     "log4js": "^6.1.0",
-    "ioredis": "^4.14.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "node-schedule": "^1.3.2",
+    "query-string": "^6.9.0",
+    "reflect-metadata": "^0.1.13",
+    "shelljs": "^0.8.3",
+    "ua-parser-js": "^0.7.21"
   },
   "license": "ISC",
   "devDependencies": {

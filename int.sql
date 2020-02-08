@@ -279,7 +279,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_alarm_log` (
 -- SQL for 202001 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -303,7 +303,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202001` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -313,7 +313,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202001` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -329,7 +329,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202001` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -339,7 +339,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202001` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -357,7 +357,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202001` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -382,7 +382,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -400,7 +400,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -419,7 +419,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202001` (
 -- SQL for 202002 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -443,7 +443,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202002` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -453,7 +453,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202002` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -469,7 +469,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202002` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -479,7 +479,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202002` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -497,7 +497,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202002` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -522,7 +522,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -540,7 +540,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -559,7 +559,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202002` (
 -- SQL for 202003 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -583,7 +583,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202003` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -593,7 +593,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202003` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -609,7 +609,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202003` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -619,7 +619,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202003` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -637,7 +637,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202003` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -662,7 +662,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -680,7 +680,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -699,7 +699,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202003` (
 -- SQL for 202004 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -723,7 +723,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202004` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -733,7 +733,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202004` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -749,7 +749,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202004` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -759,7 +759,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202004` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -777,7 +777,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202004` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -802,7 +802,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -820,7 +820,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -839,7 +839,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202004` (
 -- SQL for 202005 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -863,7 +863,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202005` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -873,7 +873,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202005` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -889,7 +889,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202005` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -899,7 +899,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202005` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -917,7 +917,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202005` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -942,7 +942,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -960,7 +960,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -979,7 +979,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202005` (
 -- SQL for 202006 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1003,7 +1003,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202006` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1013,7 +1013,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202006` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1029,7 +1029,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202006` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1039,7 +1039,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202006` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1057,7 +1057,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202006` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1082,7 +1082,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1100,7 +1100,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -1119,7 +1119,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202006` (
 -- SQL for 202007 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1143,7 +1143,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202007` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1153,7 +1153,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202007` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1169,7 +1169,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202007` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1179,7 +1179,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202007` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1197,7 +1197,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202007` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1222,7 +1222,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1240,7 +1240,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -1259,7 +1259,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202007` (
 -- SQL for 202008 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1283,7 +1283,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202008` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1293,7 +1293,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202008` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1309,7 +1309,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202008` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1319,7 +1319,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202008` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1337,7 +1337,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202008` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1362,7 +1362,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1380,7 +1380,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -1399,7 +1399,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202008` (
 -- SQL for 202009 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1423,7 +1423,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202009` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1433,7 +1433,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202009` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1449,7 +1449,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202009` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1459,7 +1459,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202009` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1477,7 +1477,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202009` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1502,7 +1502,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1520,7 +1520,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -1539,7 +1539,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202009` (
 -- SQL for 202010 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1563,7 +1563,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202010` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1573,7 +1573,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202010` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1589,7 +1589,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202010` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1599,7 +1599,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202010` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1617,7 +1617,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202010` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1642,7 +1642,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1660,7 +1660,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -1679,7 +1679,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202010` (
 -- SQL for 202011 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1703,7 +1703,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202011` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1713,7 +1713,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202011` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1729,7 +1729,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202011` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1739,7 +1739,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202011` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1757,7 +1757,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202011` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1782,7 +1782,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1800,7 +1800,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -1819,7 +1819,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202011` (
 -- SQL for 202012 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_1_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1843,7 +1843,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_13_202012` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_1_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1853,7 +1853,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_13_202012` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_1_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -1869,7 +1869,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_13_202012` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_1_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1879,7 +1879,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_13_202012` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_1_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -1897,7 +1897,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_13_202012` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -1922,7 +1922,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -1940,7 +1940,1687 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_13` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_13_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202012` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202001 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202001` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202001` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202001` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202001` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202001` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202001` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202002 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202002` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202002` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202002` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202002` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202002` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202002` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202003 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202003` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202003` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202003` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202003` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202003` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202003` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202004 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202004` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202004` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202004` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202004` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202004` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202004` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202005 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202005` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202005` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202005` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202005` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202005` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202005` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202006 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202006` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202006` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202006` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202006` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202006` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202006` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202007 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202007` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202007` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202007` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202007` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202007` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202007` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202008 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202008` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202008` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202008` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202008` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202008` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202008` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202009 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202009` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202009` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202009` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202009` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202009` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202009` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202010 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202010` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202010` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202010` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202010` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202010` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202010` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202011 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202011` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202011` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202011` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202011` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202011` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202011` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
+  `url_path` varchar(255) NOT NULL DEFAULT '' COMMENT '错误URL_PATH',
+  `city_distribution_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '城市分布详情id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计时间(按类型不同,day:YYYY-MM-DD;hour:YYYY-MM-DD_HH;minute:YYYY-MM-DD_HH:mm)',
+  `count_type` varchar(10) NOT NULL DEFAULT 'day' COMMENT '统计类型(day天,hour小时,minute分)',
+  `error_count` int(10) NOT NULL DEFAULT '0' COMMENT '数量总和',
+  `create_time` int(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_error_type_error_name` (`count_at_time`,`count_type`,`error_type`,`error_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='按项目,按月统计error错误';
+
+    
+-- SQL for 202012 => 
+
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202012` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
+  `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
+  `http_code` int(10) NOT NULL DEFAULT '0' COMMENT 'http状态码, 没有则为0',
+  `monitor_ext_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '详情id',
+  `during_ms` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求时长, 单位毫秒',
+  `request_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口请求体积, 单位b',
+  `response_size_b` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '接口响应体积, 单位b',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '发生异常的url',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '记录生成MD5',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_log_at_md5` (`log_at`,`md5`),
+  KEY `idx_log_at_error_type_error_name_url` (`log_at`,`error_type`,`error_name`,`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据表, 按项目按月分表, 只有最基础的错误信息, ext字段需要到详情表中单独获取, 命名规则: t_o_monitor_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202012` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ext_json` text COMMENT '异常记录扩展信息',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='异常数据的ext信息, 按项目按月分表, 命名规则: t_o_monitor_ext_项目id_YYYYMM';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202012` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `visit_at_hour` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
+  `pv_count` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_hour_uuid` (`visit_at_hour`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='uv记录表, 按项目&月分表,最小统计粒度为小时 命名规则: t_o_uv_record_项目id_YYYYMM';
+        
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202012` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `city_distribute_json` text COMMENT '扩展字段',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='城市数据的扩展信息, 按项目按月分表, 命名规则: t_r_city_distribution_项目id_YYYYMM, 获取数据时, 以记录创建时间和记录所属项目id, 决定distribute记录所在表';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202012` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
+  `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
+  `indicator` varchar(50) NOT NULL DEFAULT '' COMMENT '性能指标:DNS响应时间/TCP时间/404数量/etc',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '页面url',
+  `city_distribute_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '城市分布详情记录id',
+  `count_at_time` varchar(20) NOT NULL DEFAULT '' COMMENT '统计日期,格式根据统计尺度不同有四种可能,  minute => YYYY-MM-DD_HH:mm, hour => YYYY-MM-DD_HH, day => YYYY-MM-DD, month => YYYY-MM',
+  `count_type` varchar(10) NOT NULL DEFAULT 'minute' COMMENT '统计尺度(minute/hour/day/month)',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_count_at_time_count_type_url_indicator` (`count_at_time`, `count_type`, `url`, `indicator`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='性能指标表, 按项目按月分表, 索引应为唯一索引, 但是长度超限, 因此只能使用index';
+  
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
+  `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
+  `browser_version` varchar(100) NOT NULL DEFAULT '' COMMENT '浏览器版本详情',
+  `engine` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
+  `engine_version` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
+  `device_vendor` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  `device_model` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
+  `os` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
+  `os_version` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  `runtime_version` varchar(50) NOT NULL DEFAULT '' COMMENT '应用版本',
+  `visit_at_month` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM demo => 2018-09',
+  `log_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '日志记录时间',
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_visit_at_month_uuid` (`visit_at_month`,`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
+  `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
+
+  `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
+  `province` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
+  `city` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+
+  `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_ucid` (`ucid`),
+  INDEX `idx_first_visit_at` (`first_visit_at`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新用户记录表, 按项目分表, 命名规则: t_o_customer_first_login_at_项目id';
+
+    
+
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',

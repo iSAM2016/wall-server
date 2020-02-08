@@ -52,7 +52,7 @@ class NginxParse extends CommandsBase {
       let projectMap = await this.projectService.getList();
       let logCounter = 0;
       let legalLogCounter = 0;
-      let nginxLogFilePath = appConfig.absoluteLogPath + '/nginx/';
+      let nginxLogFilePath = appConfig.absoluteLogPath + '/nginx';
       // 每间隔一分钟读取，前一分钟的数据
       let timeAt = moment().unix() - 60;
       let timeMoment = moment.unix(timeAt);
