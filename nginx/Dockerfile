@@ -1,8 +1,7 @@
 #基于centos7.2镜像构建
-#docker  build  -t isam2016/nginx:1.0.0 .
 FROM centos:centos7.2.1511
 #工作目录，相当于cd到一个目录
-WORKDIR /usr/src
+WORKDIR /home
 
 ENV TZ=Asia/Shanghai
 #可以去执行一些命令
@@ -19,17 +18,19 @@ RUN yum install wget -y && \
     yum install -y crontabs\
     yum clean all
 
+COPY ./sh/Shanghai .
+
+COPY ./sh/nginxstart.sh .
+
+COPY ./sh/splitLog.sh .
+
+COPY ./sh/davecron .
+
+RUN cat ./Shanghai > /etc/localtime
+
 
 #打开80端口
 EXPOSE 80
-#启动容器
 
-CMD ["/usr/local/nginx/sbin/nginx"]
-# FROM node:10.13-alpine
-# ENV NODE_ENV production
-# WORKDIR /usr/src/app
-# COPY ["package.json", "./"]
-# RUN npm install --production --silent 
-# COPY . .
-# EXPOSE 3000
-# CMD npm start
+#启动容器
+CMD ["/home/nginxstart.sh"]

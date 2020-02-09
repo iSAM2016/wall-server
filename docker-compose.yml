@@ -26,10 +26,12 @@ services:
       MYSQL_DATABASE: nest
       MYSQL_USER: root
       MYSQL_PASSWORD: abc123456
+    environment:
+        TZ : 'Asia/Shanghai' # 东八区
     volumes:
       - ./commands:/home/app
     depends_on:
-    - mysql
+      - mysql
 
   mysql:
     # env_file:
@@ -57,9 +59,10 @@ services:
 
   nginx:
     restart: always
-    image: ihailong2016/nginx:1.0.2
+    # 指定目录下的dockerfile
+    build: ./nginx
     environment:
-      TZ : 'Asia/Shanghai' #TODO:无法使用
+      TZ : 'Asia/Shanghai' # 东八区
     ports:
       - 9090:80
     volumes:
@@ -71,7 +74,6 @@ services:
     #   - /bin/sh
     #   - -c
     #   - |
-    #     crond start &&  cd /home && crontab davecron && tail -f /var/log/nginx/over.log daemon off;'
 
 
 

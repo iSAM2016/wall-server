@@ -6,7 +6,6 @@ day=$(date +"%d")
 hours=$(date +"%H")
 # 不使用-d 因为兼容有问题
 current_min=$(date +"%M")
-echo $hours >  $base_path/access.log
 if [[ $current_min -eq 0 ]];
 then
   current_min=60
