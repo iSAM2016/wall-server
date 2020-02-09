@@ -3,12 +3,15 @@ import * as knex from 'knex';
 
 const mysqlConnection = () => {
   let config: ConfigService = getConfig();
+  console.log(process.env.MYSQL_DB_HOST);
   return knex({
     client: 'mysql',
     connection: {
-      host: String(process.env.MYSQL_DB_HOST || 'localhost'),
+      host: String(
+        process.env.MYSQL_DB_HOST ? process.env.MYSQL_DB_HOST : 'localhost',
+      ),
       port: Number(config.get('MYSQL_PORT')),
-      user: String(config.get('MYSQL_USERNAME')),
+      user: String(config.get('MYSQL_USER')),
       password: String(config.get('MYSQL_PASSWORD')),
       database: String(config.get('MYSQL_DATABASE')),
     },

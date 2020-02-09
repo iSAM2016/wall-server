@@ -75,7 +75,6 @@ class TimeOnSiteByHour extends ParseBase implements ParseInterface {
    */
   readLogSaveToCache(record): boolean {
     try {
-      console.log(record);
       // 不用类别判断
       let projectId = _.get(record, ['project_id'], 0);
       let durationMs = _.get(record, ['info', 'duration_ms'], 0);
@@ -125,7 +124,6 @@ class TimeOnSiteByHour extends ParseBase implements ParseInterface {
       let totalRecordCount = this.getRecordCountInProjectMap(); // 日志总数
       let processRecordCount = 0;
       let successSaveCount = 0; // 成功的条数
-      console.log(this.projectMap);
       for (let [projectId, countAtMap] of this.projectMap) {
         for (let [countAtTime, distribution] of countAtMap) {
           //  统计每个城市 停留时间集合

@@ -49,10 +49,10 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
     // 注册定时任务
     this.log('注册每分钟执行一次的任务');
     this.registerTaskRepeatPer1Minute();
-    // this.log('注册每10分钟执行一次的任务');
-    // this.registerTaskRepeatPer10Minute();
-    // this.log('注册每1小时执行一次的任务');
-    // this.registerTaskRepeatPer1Hour();
+    this.log('注册每10分钟执行一次的任务');
+    this.registerTaskRepeatPer10Minute();
+    this.log('注册每1小时执行一次的任务');
+    this.registerTaskRepeatPer1Hour();
     this.log('全部定时任务注册完毕, 等待执行');
   }
   // 关闭其他进程

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "rm -rf dist && tsc --downlevelIteration --watch",
-    "build": "rm -rf dist && tsc --downlevelIteration && NODE_ENV=development node ./dist/index.js Task:Manger",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dist && tsc --downlevelIteration && node ./dist/index.js Task:Manger"
   },
   "author": "",
   "dependencies": {
@@ -28,9 +27,7 @@
   "license": "ISC",
   "devDependencies": {
     "@adonisjs/ace": "^5.0.8",
-    "@hapi/joi": "^16.1.8",
     "@types/node": "^13.7.0",
-    "dotenv": "^8.2.0",
     "md5": "^2.2.1",
     "mocha": "^7.0.1",
     "typescript": "^3.7.5",

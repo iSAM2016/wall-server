@@ -217,7 +217,11 @@ class NginxParse extends CommandsBase {
       return null;
     }
     if (_.has(projectMap, [record.key]) === false) {
-      this.log('项目尚未注册projectMap[record.key] =>', projectMap, record.key);
+      this.log(
+        `项目尚未注册projectMap[${record.key}] =>`,
+        projectMap,
+        record.key,
+      );
       return null;
     }
 

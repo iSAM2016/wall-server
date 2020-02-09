@@ -21,13 +21,12 @@ export class ConfigService {
 
   constructor() {
     let config: ConfigOptions = {};
-    const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
-    const envFile: string = resolve(__dirname, '../../env', filePath);
+    // const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
+    const envFile: string = resolve(__dirname, '../../../.env');
     if (this.isFileExist(envFile)) {
       config = dotenv.parse(fs.readFileSync(envFile));
+      ConfigService.envConfig = config;
     }
-
-    ConfigService.envConfig = this.validateInpt(config);
   }
   /**
    *  检测文件是否存在
@@ -35,7 +34,7 @@ export class ConfigService {
    */
   private isFileExist(filePath: string): boolean {
     if (!fs.existsSync(filePath)) {
-      throw Error('配置文件' + filePath + '不存在');
+      return false;
     }
     return true;
   }
@@ -46,10 +45,12 @@ export class ConfigService {
    */
   private validateInpt(envConfig: ConfigOptions): EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
+      NODE_ENV: Joi.string().required(),
       SYSTEM_SECRET: Joi.string().required(),
       MYSQL_PORT: Joi.number().required(),
-      MYSQL_USERNAME: Joi.string().required(),
+      MYSQL_USER: Joi.string().required(),
       MYSQL_PASSWORD: Joi.string().required(),
+      MYSQL_ROOT_PASSWORD: Joi.string().required(),
       MYSQL_DATABASE: Joi.string().required(),
       MYSQL_SYNCHRONIZE: Joi.bool().required(),
       REDIS_HOST: Joi.string().required(),
