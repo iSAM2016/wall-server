@@ -1959,7 +1959,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_1_202012` (
 -- SQL for 202001 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -1983,7 +1983,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202001` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -1993,7 +1993,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202001` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2009,7 +2009,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202001` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2019,7 +2019,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202001` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2037,7 +2037,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202001` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2062,7 +2062,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2080,7 +2080,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202001` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202001` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2099,7 +2099,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202001` (
 -- SQL for 202002 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2123,7 +2123,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202002` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2133,7 +2133,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202002` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2149,7 +2149,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202002` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2159,7 +2159,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202002` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2177,7 +2177,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202002` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2202,7 +2202,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2220,7 +2220,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202002` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202002` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2239,7 +2239,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202002` (
 -- SQL for 202003 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2263,7 +2263,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202003` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2273,7 +2273,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202003` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2289,7 +2289,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202003` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2299,7 +2299,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202003` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2317,7 +2317,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202003` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2342,7 +2342,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2360,7 +2360,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202003` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202003` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2379,7 +2379,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202003` (
 -- SQL for 202004 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2403,7 +2403,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202004` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2413,7 +2413,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202004` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2429,7 +2429,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202004` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2439,7 +2439,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202004` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2457,7 +2457,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202004` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2482,7 +2482,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2500,7 +2500,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202004` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202004` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2519,7 +2519,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202004` (
 -- SQL for 202005 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2543,7 +2543,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202005` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2553,7 +2553,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202005` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2569,7 +2569,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202005` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2579,7 +2579,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202005` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2597,7 +2597,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202005` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2622,7 +2622,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2640,7 +2640,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202005` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202005` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2659,7 +2659,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202005` (
 -- SQL for 202006 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2683,7 +2683,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202006` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2693,7 +2693,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202006` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2709,7 +2709,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202006` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2719,7 +2719,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202006` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2737,7 +2737,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202006` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2762,7 +2762,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2780,7 +2780,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202006` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202006` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2799,7 +2799,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202006` (
 -- SQL for 202007 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2823,7 +2823,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202007` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2833,7 +2833,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202007` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2849,7 +2849,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202007` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2859,7 +2859,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202007` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -2877,7 +2877,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202007` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -2902,7 +2902,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -2920,7 +2920,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202007` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202007` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -2939,7 +2939,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202007` (
 -- SQL for 202008 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -2963,7 +2963,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202008` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2973,7 +2973,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202008` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -2989,7 +2989,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202008` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -2999,7 +2999,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202008` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -3017,7 +3017,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202008` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -3042,7 +3042,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -3060,7 +3060,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202008` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202008` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -3079,7 +3079,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202008` (
 -- SQL for 202009 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -3103,7 +3103,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202009` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3113,7 +3113,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202009` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -3129,7 +3129,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202009` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3139,7 +3139,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202009` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -3157,7 +3157,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202009` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -3182,7 +3182,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -3200,7 +3200,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202009` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202009` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -3219,7 +3219,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202009` (
 -- SQL for 202010 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -3243,7 +3243,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202010` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3253,7 +3253,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202010` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -3269,7 +3269,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202010` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3279,7 +3279,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202010` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -3297,7 +3297,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202010` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -3322,7 +3322,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -3340,7 +3340,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202010` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202010` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -3359,7 +3359,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202010` (
 -- SQL for 202011 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -3383,7 +3383,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202011` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3393,7 +3393,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202011` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -3409,7 +3409,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202011` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3419,7 +3419,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202011` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -3437,7 +3437,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202011` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -3462,7 +3462,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -3480,7 +3480,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202011` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202011` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',
@@ -3499,7 +3499,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202011` (
 -- SQL for 202012 => 
 
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_2_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '异常类型(目前是四种,分别对应前端的四种报错类型: api_data =>前端数据结构报警, start_process => 启动过程异常, load_wv => Url加载空服务报警, api_code => 请求接口异常报警)',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名/错误代码,用于细分错误类别',
@@ -3523,7 +3523,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_12_202012` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_2_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ext_json` text COMMENT '异常记录扩展信息',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3533,7 +3533,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_monitor_ext_12_202012` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_2_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `country` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
@@ -3549,7 +3549,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_uv_record_12_202012` (
         
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_2_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `city_distribute_json` text COMMENT '扩展字段',
   `create_time` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -3559,7 +3559,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_city_distribution_12_202012` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_performance_2_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `sum_indicator_value` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标求和',
   `pv` bigInt(10) NOT NULL DEFAULT '0' COMMENT '性能指标pv数,用于计算平均时长',
@@ -3577,7 +3577,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_performance_12_202012` (
   
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `uuid` varchar(50) NOT NULL DEFAULT '' COMMENT '设备唯一标识',
   `browser` varchar(50) NOT NULL DEFAULT '' COMMENT '浏览器品牌',
@@ -3602,7 +3602,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_system_collection_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
+CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `ucid` varchar(20) NOT NULL DEFAULT '' COMMENT '用户id',
   `first_visit_at` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户首次访问时间',
@@ -3620,7 +3620,7 @@ CREATE TABLE  IF NOT EXISTS  `t_r_user_first_login_at_12` (
 
     
 
-CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_12_202012` (
+CREATE TABLE  IF NOT EXISTS  `t_r_error_summary_2_202012` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
   `error_type` varchar(20) NOT NULL DEFAULT '' COMMENT '错误类型',
   `error_name` varchar(255) NOT NULL DEFAULT '' COMMENT '错误名字',

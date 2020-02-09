@@ -1,0 +1,29 @@
+{
+  "name": "wall-server",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "prettier": "^1.19.1"
+  },
+  "devDependencies": {
+    "@hapi/joi": "^17.1.0",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.15",
+    "shelljs": "^0.8.3"
+  },
+  "scripts": {
+    "test": "export NODE_ENV=test && node ./setConfigEnv.js",
+    "dev": " export NODE_ENV=development && node ./setConfigEnv.js",
+    "build": "export NODE_ENV=build && node ./setConfigEnv.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iSAM2016/wall-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iSAM2016/wall-server/issues"
+  },
+  "homepage": "https://github.com/iSAM2016/wall-server#readme"
+}
