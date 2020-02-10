@@ -33,13 +33,13 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     ports:
-      - 3306:3306
+      - ${MYSQL_PORT}:3306
 
   redis:
     env_file: .env
     image: redis:${REDIS_DB}
     ports:
-      - 6379:6379
+      - ${REDIS_PORT}:6379
     # volumes:
     #   # 目录映射
     #   - "${REDIS_DIR}/conf:/usr/local/etc/redis"

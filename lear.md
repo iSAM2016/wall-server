@@ -171,18 +171,3 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
 ## nginx
 
 nginx -s reload
-
-## 定时任务
-
-1. 对脚本 脚本 sh 设置 777 权限
-2. 编辑执行定时任务文件`davecron`(也可以执行 `crontab -e` 添加任务)
-   **注意： davecron 的最后一行是空行**
-   内容如下`*/1 * * * * sh /home/splitLog.sh`
-   执行： `crontab davecron`
-
-查看 crontab 日志 `tail -f /var/log/cron.log`
-
-docker-compose up
-docker-compose stop
-docker-compose down
-nohup docker-compose up &
