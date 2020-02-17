@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-@Index('uniq_ucid', ['ucid'], { unique: true })
-@Index('idx_first_visit_at', ['firstVisitAt'], {})
+// @Index('uniq_ucid', ['ucid'], { unique: true })
+// @Index('idx_first_visit_at', ['firstVisitAt'], {})
 @Entity('t_r_user_first_login_at', { schema: 'nest' })
 export class TRUserFirstLoginAt {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id', unsigned: true })
@@ -9,6 +9,9 @@ export class TRUserFirstLoginAt {
 
   @Column('varchar', { name: 'ucid', unique: true, length: 20 })
   ucid: string;
+
+  @Column('bigint', { name: 'project_id', default: () => "'0'" })
+  projectId: string;
 
   @Column('bigint', { name: 'first_visit_at', default: () => "'0'" })
   firstVisitAt: string;

@@ -14,3 +14,4 @@ export * from './TRCityDistribution';
 export * from './TRBehaviorDistribution';
 export * from './TRUniqueView';
 export * from './TRDurationDistribution';
+export * from './TRUserFirstLoginAt';
