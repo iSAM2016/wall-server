@@ -63,6 +63,7 @@ export class NginxService {
   }
   // nginx 读取日志文件
   @Cron('0 */1 * * * *')
+  // @Cron('*/4 * * * * *')
   async nginxSaveLog() {
     // 获取项目列表
     this.projectMap = await this.getList();
@@ -74,6 +75,7 @@ export class NginxService {
     let timeMoment = moment.unix(timeAt);
     let formatStr = timeMoment.format('/YYYYMM/DD/HH/mm');
     let logAbsolutePath: string = '';
+    console.log(ConfigService.isDevelopment);
     if (ConfigService.isDevelopment) {
       // 使用测试数据
       logAbsolutePath = `${nginxLogFilePath}${'test'}.log`;
@@ -219,12 +221,11 @@ export class NginxService {
       this.logger.log('记录中没有record.key  =>', record.key);
       return null;
     }
-    if (_.has(projectMap, [record.key]) === false) {
-      this.logger.log(`项目尚未注册projectMap=>[${record.key}]`);
+    if (_.has(projectMap, [record.project_id]) === false) {
+      this.logger.log(`项目尚未注册projectMap=>[${record.project_id}]`);
       return null;
     }
 
-    record.project_id = projectMap[record.key]['id'];
     // record.project_name = record.common.pid;
     let currentAt = moment().unix();
     let logCreateAt = this.parseLogCreateAt(data);

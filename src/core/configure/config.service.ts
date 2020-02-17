@@ -155,11 +155,11 @@ export class ConfigService {
   }
   /** 开发模式 */
   static get isDevelopment(): boolean {
-    return this.get('NODE_ENV') === 'build';
+    return this.get('NODE_ENV') === 'development';
   }
   /** 开发模式 */
   get isDevelopment(): boolean {
-    return this.get('NODE_ENV') === 'build';
+    return this.get('NODE_ENV') === 'development';
   }
   /** 生产模式 */
   static get isProduction(): boolean {
