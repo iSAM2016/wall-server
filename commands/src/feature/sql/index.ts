@@ -5,7 +5,6 @@ import * as moment from 'moment';
 import CommandsBase from '../commandsBase';
 import { COMMAND_ARGUMENT_BY_MONTH, DATABASE_BY_MONTH } from '../../config';
 const SQL_DATE_FORMAT_YM = 'YYYYMM';
-
 // 不需要分表
 const SINGLE_T_R_PROJECT = 't_r_project'; //  项目表
 const SINGLE_T_R_BEHAVIOR_DISTRIBUTION = 't_r_behavior_distribution'; //  用户点击记录表
@@ -215,6 +214,7 @@ TABLE_TEMPLATE[MUILT_T_O_UV_RECORD] = `(
   \`country\` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
   \`province\` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
   \`city\` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
+  \`project_id\` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '项目id',
   \`visit_at_hour\` varchar(20) NOT NULL DEFAULT '' COMMENT '访问日期, 数据格式为 YYYY-MM-DD_HH demo => 2018-08-02_23',
   \`pv_count\` int(10) NOT NULL DEFAULT '0' COMMENT '时间段内同一uuid访问次数, 用于计算总pv',
   \`create_time\` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
@@ -257,6 +257,7 @@ TABLE_TEMPLATE[MUILT_T_O_SYSTEM_COLLECTION] = `(
   \`engine\` varchar(100) NOT NULL DEFAULT '' COMMENT '内核名称',
   \`engine_version\` varchar(100) NOT NULL DEFAULT '' COMMENT '内核版本详情',
   \`device_vendor\` varchar(100) NOT NULL DEFAULT '' COMMENT '手机品牌',
+  \`project_id\` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '项目id',
   \`device_model\` varchar(100) NOT NULL DEFAULT '' COMMENT '手机型号',
   \`os\` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统',
   \`os_version\` varchar(50) NOT NULL DEFAULT '' COMMENT '操作系统详情',
@@ -269,7 +270,6 @@ TABLE_TEMPLATE[MUILT_T_O_SYSTEM_COLLECTION] = `(
   \`create_time\` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库创建时间',
   \`update_time\` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据库更新时间',
   PRIMARY KEY (\`id\`),
-  UNIQUE KEY \`uniq_visit_at_month_uuid\` (\`visit_at_month\`,\`uuid\`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备记录表, 按项目分表, 最小统计粒度为月, 命名规则: t_o_device_info_项目id';
 `;
 TABLE_TEMPLATE[MUILT_T_O_USER_FIRST_LOGIN_AT] = `(
@@ -280,7 +280,7 @@ TABLE_TEMPLATE[MUILT_T_O_USER_FIRST_LOGIN_AT] = `(
   \`country\` varchar(10) NOT NULL DEFAULT '' COMMENT '所属国家',
   \`province\` varchar(15) NOT NULL DEFAULT '' COMMENT '所属省份',
   \`city\` varchar(15) NOT NULL DEFAULT '' COMMENT '所属城市',
-
+  \`project_id\` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '项目id',
   \`create_time\` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建时间',
   \`update_time\` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (\`id\`),

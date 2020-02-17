@@ -124,7 +124,6 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       that.execCommand('SaveLog:Nginx', []);
 
       that.log(`[按分钟] 每分钟启动一次Watch:Alarm, 监控平台运行情况 `);
-      // that.execCommand('Watct:Alarm', []); //TODO:
       that.log('registerTaskRepeatPer_1_Minute 命令分配完毕');
     });
   }
@@ -151,7 +150,6 @@ class TaskManger extends CommandsBase implements CommandsModuleInterface {
       let intervalCommandList = ['CreateCache:UpdatePerOneMinute'];
       for (let intervalCommand of intervalCommandList) {
         // 周期性执行命令
-        // that.execCommand(intervalCommand); //TODO: 更新缓存
       }
 
       let parseCommandList = [

@@ -97,7 +97,6 @@ class ParseDevice extends ParseBase implements ParseInterface {
       city,
       runtimeVersion,
     };
-    // 数据清洗迭代器//TODO:
     // if (!this.dataCleaning.getData(deviceRecord)) {
     //   return false;
     // }
