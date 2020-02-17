@@ -75,7 +75,7 @@ export class NginxService {
     let timeMoment = moment.unix(timeAt);
     let formatStr = timeMoment.format('/YYYYMM/DD/HH/mm');
     let logAbsolutePath: string = '';
-    console.log(ConfigService.isDevelopment);
+    this.logger.log(`is devekopment ${ConfigService.isDevelopment}`);
     if (ConfigService.isDevelopment) {
       // 使用测试数据
       logAbsolutePath = `${nginxLogFilePath}${'test'}.log`;

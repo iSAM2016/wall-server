@@ -18,7 +18,9 @@ import { ScheduleModule } from '@nestjs/schedule';
       imports: [ConfigModule, ScheduleModule.forRoot()],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: process.env.MYSQL_USER || '127.0.0.1',
+        host: String(
+          process.env.MYSQL_DB_HOST ? process.env.MYSQL_DB_HOST : 'localhost',
+        ),
         port: Number(configService.get('MYSQL_PORT')),
         username: configService.get('MYSQL_USER'),
         password: configService.get('MYSQL_PASSWORD'),

@@ -117,3 +117,7 @@ kill -USR1 `cat /var/run/nginx.pid`
 # 创建 orm
 
 `typeorm-model-generator -h 127.0.0.1 -d nest -u root -x abc123456 -e mysql -p 3306 -o .`
+
+## TODO
+
+1.  脚本分钟小于 10

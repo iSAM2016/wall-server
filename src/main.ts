@@ -12,7 +12,6 @@ import { ConfigService } from './core/configure/config.service';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { HttpExceptionFilter, RolesGuard } from './core/';
 import { ValidationPipe } from './core/pipes/validation.pipe';
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const secret = ConfigService.get('SYSTEM_SECRET');
