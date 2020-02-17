@@ -18,7 +18,8 @@ export class ConfigService {
 
   constructor(@Inject(CONFIG_OPTIONS) private options) {
     let config: ConfigOptions;
-    const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
+    // const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
+    const filePath: string = `.env`;
     const envFile: string = resolve(
       __dirname,
       '../../',
@@ -65,7 +66,7 @@ export class ConfigService {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       SYSTEM_SECRET: Joi.string().required(),
       MYSQL_PORT: Joi.number().required(),
-      // MYSQL_HOST: Joi.string().required(),
+      MYSQL_DB_HOST: Joi.string().required(),
       NODE_ENV: Joi.string().required(),
       MYSQL_ROOT_PASSWORD: Joi.string().required(),
       MYSQL_USER: Joi.string().required(),
@@ -156,15 +157,19 @@ export class ConfigService {
     return this.get(key) !== undefined;
   }
   /** 开发模式 */
+  static get isDevelopment(): boolean {
+    return this.get('NODE_ENV') === 'build';
+  }
+  /** 开发模式 */
   get isDevelopment(): boolean {
-    return this.get('NODE_ENV') === 'development';
+    return this.get('NODE_ENV') === 'build';
+  }
+  /** 生产模式 */
+  static get isProduction(): boolean {
+    return this.get('NODE_ENV') === 'prod';
   }
   /** 生产模式 */
   get isProduction(): boolean {
-    return this.get('NODE_ENV') === 'production';
-  }
-  /** 测试模式 */
-  get isTest(): boolean {
-    return this.get('NODE_ENV') === 'test';
+    return this.get('NODE_ENV') === 'prod';
   }
 }

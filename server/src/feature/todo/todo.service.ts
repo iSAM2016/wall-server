@@ -14,7 +14,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash, hashSync } from 'bcryptjs';
 import { MailService } from '../../shared/services';
 import { CreateTodoDto } from './dto/createTodo.dto';
-import { ConfigService } from '../../core/configure/config.service';
 
 @Injectable()
 export class TodoService {

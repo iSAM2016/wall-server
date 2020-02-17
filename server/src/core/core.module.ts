@@ -5,24 +5,28 @@ import { ConfigService } from './configure/config.service';
 import { MailerModule } from './mailer/mailer.module';
 import { SMTPTransportOptions } from './mailer/mailer.interface';
 // import { ConfigValidate } from './config.validate';
+import { ScheduleModule } from '@nestjs/schedule';
 /**
  * 核心模块，只会注入到AppModule，不会注入到feature和shared模块里面，
  * 专门做初始化配置工作，不需要导出任何模块。
  */
 @Module({
   imports: [
-    ConfigModule.register({ folder: '../../../env' }),
+    ConfigModule.register({ folder: '../../../' }),
 
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule, ScheduleModule.forRoot()],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: '127.0.0.1',
+        host: process.env.MYSQL_USER || '127.0.0.1',
         port: Number(configService.get('MYSQL_PORT')),
         username: configService.get('MYSQL_USER'),
         password: configService.get('MYSQL_PASSWORD'),
         database: configService.get('MYSQL_DATABASE'),
-        entities: ['dist/src/**/**.entity{.ts,.js}'],
+        entities: [
+          'dist/src/entity/**.entity{.ts,.js}',
+          'dist/src/entity/**{.ts,.js}',
+        ],
         logging: false, // 开启所有数据库信息打印
         entityPrefix: 'wall_',
         synchronize: Boolean(configService.get('MYSQL_SYNCHRONIZE')),

@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Cat } from './cat.interface';
+
 /**
  * 相当于bean
  */
 @Injectable()
 export class CatsService {
+  private readonly logger = new Logger(CatsService.name);
   private readonly cats: Cat[] = [{ name: 'ui', age: 124, breed: 'io' }];
 
   public create(cat: Cat) {

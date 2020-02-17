@@ -4,9 +4,15 @@
  * @export
  * @interface Appconfig
  */
+// 系统配置
+import * as path from 'path';
+
 const name = 'isam2017';
 const description = '我是描述';
+let appPath = path.resolve(__dirname, '../../../commands/'); // 项目 所在根路径
 export default {
+  appPath,
+  absoluteLogPath: path.resolve(appPath, 'log'), // log目录
   name,
   keywords: 'nodejs, node, express, connect, socket.io',
   description,
