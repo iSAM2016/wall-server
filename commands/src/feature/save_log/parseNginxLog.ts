@@ -134,7 +134,9 @@ class NginxParse extends CommandsBase {
       this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
-
+  parseLogCreateAt(data) {
+    return 1;
+  }
   /**
    * 获取项目列表
    */

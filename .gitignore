@@ -2,7 +2,7 @@
 /dist
 /node_modules
 
-commands/
+/commands
 Log
 log
 *.log
@@ -10,7 +10,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-int.sql
+
 # OS
 .DS_Store
 

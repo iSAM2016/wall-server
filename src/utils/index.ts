@@ -54,7 +54,7 @@ const getLocalIpList = () => {
 export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // 创建axios实例
-let http = axios.create();
+// let http = axios.create();
 
 /**
  * post form表单
@@ -62,20 +62,20 @@ let http = axios.create();
  * @param {object} formData
  * @param {object} config
  */
-function postForm(url, formData = {}, config = {}) {
-  return http.post(url, querystring.stringify(formData), {
-    ...config,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      ..._.get(config, ['headers'], {}),
-    },
-  });
-}
-(http as any).postForm = postForm;
+// function postForm(url, formData = {}, config = {}) {
+//   return http.post(url, querystring.stringify(formData), {
+//     ...config,
+//     headers: {
+//       'Content-Type': 'application/x-www-form-urlencoded',
+//       ..._.get(config, ['headers'], {}),
+//     },
+//   });
+// }
+// (http as any).postForm = postForm;
 
 let ipDatabaseUri = path.resolve(
   __dirname,
-  '../../../../ip2locate_ipip.net_20180910.datx',
+  '../../../ip2locate_ipip.net_20180910.datx',
 );
 
 let DatabaseClient = new datx.City(ipDatabaseUri);
@@ -107,7 +107,7 @@ async function ip2Locate(ip) {
 }
 
 export {
-  http,
+  // http,
   ip2Locate,
   getLocalIpList,
   getFlattenCityRecordListInDistribution,

@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '../../core/configure/config.service';
+import appConfig from '../../../config/app';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
   getAbsoluteLogUriByType,
@@ -54,8 +55,7 @@ class ParseBase {
       let currentAtMoment = moment.unix(currentAt);
       let absoluteLogUri = '';
       if (ConfigService.isDevelopment) {
-        absoluteLogUri =
-          '/Users/isam2016/su/monitor/wall-server/commands/log/nginx/json/month_202002/day_07/07/21.log';
+        absoluteLogUri = `${appConfig.absoluteLogPath}/nginx/json/month_202002/day_07/07/21.log`;
       } else {
         absoluteLogUri = getAbsoluteLogUriByType(currentAt, LOG_TYPE_JSON);
       }

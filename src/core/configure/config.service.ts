@@ -20,12 +20,7 @@ export class ConfigService {
     let config: ConfigOptions;
     // const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const filePath: string = `.env`;
-    const envFile: string = resolve(
-      __dirname,
-      '../../',
-      options.folder,
-      filePath,
-    );
+    const envFile: string = resolve(__dirname, '../', options.folder, filePath);
     if (this.isFileExist(envFile)) {
       config = dotenv.parse(fs.readFileSync(envFile));
     }
@@ -112,8 +107,10 @@ export class ConfigService {
    * @param key
    * @param defaultVal
    */
-  static get(key: string | string[], defaultValue?: any): string | number {
+  static get(key: string, defaultValue?: any): string | number {
     const configValue = get(ConfigService.envConfig, key);
+    return process.env[key] || configValue[key];
+
     if (configValue === undefined) {
       return defaultValue;
     }

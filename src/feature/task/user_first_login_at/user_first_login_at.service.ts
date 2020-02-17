@@ -31,8 +31,8 @@ export class UserFirstLoginAtService extends ParseBase {
   private startAtMoment;
 
   // 每小时15分30秒启动
-  // @Cron('30 15 * * * *')
-  @Cron('*/4 * * * * *')
+  @Cron('30 15 * * * *')
+  // @Cron('*/4 * * * * *')
   async handle() {
     let nowByMinute = moment();
     // let lastDayStartAtByMinute = moment()

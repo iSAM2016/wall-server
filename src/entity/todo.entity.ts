@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Favorite, User } from '.';
+import { Favorite, User } from '../entity';
 
 @Entity()
 export class Todo {

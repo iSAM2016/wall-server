@@ -62,7 +62,7 @@ export class NginxService {
     this.logger.log('registerTaskRepeatPer_1_Minute 命令分配完毕');
   }
   // nginx 读取日志文件
-  // @Cron('0 */1 * * * *')
+  @Cron('0 */1 * * * *')
   async nginxSaveLog() {
     // 获取项目列表
     this.projectMap = await this.getList();
@@ -70,7 +70,7 @@ export class NginxService {
     this.legalLogCounter = 0;
     let nginxLogFilePath = appConfig.absoluteLogPath + '/nginx';
     // 每间隔一分钟读取，前一分钟的数据
-    let timeAt = moment().unix() - 60;
+    let timeAt = moment().unix() - 120;
     let timeMoment = moment.unix(timeAt);
     let formatStr = timeMoment.format('/YYYYMM/DD/HH/mm');
     let logAbsolutePath: string = '';
