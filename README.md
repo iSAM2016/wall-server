@@ -113,3 +113,7 @@ kill -USR1 `cat /var/run/nginx.pid`
    - docker-compose up -d 后台执行
    - docker-compose stop
    - docker-compose down
+
+# 创建 orm
+
+`typeorm-model-generator -h 127.0.0.1 -d nest -u root -x abc123456 -e mysql -p 3306 -o .`

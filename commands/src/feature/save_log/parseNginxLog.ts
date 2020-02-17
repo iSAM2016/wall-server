@@ -126,6 +126,7 @@ class NginxParse extends CommandsBase {
         // return true;
       });
     } catch (error) {
+      //TODO: 监控对接
       this.alert.sendMessage(
         String(this.config.get('ALERT_WATCH_UCID_LIST')),
         error.message,
@@ -133,43 +134,7 @@ class NginxParse extends CommandsBase {
       this.log(this.constructor.name + '运行异常 =>' + error.message);
     }
   }
-  /**
-   * 解析日志记录所在的时间戳, 取日志时间作为时间戳, 若日志时间不规范, 则返回0
-   * 客户端时间不可信, 故直接忽略, 以日志时间为准
-   * @param {String} data
-   * @return {Number}
-   */
-  parseLogCreateAt(data) {
-    let nowAt = moment().unix();
-    if (_.isString(data) === false) {
-      return nowAt;
-    }
-    const info = data.split(' ');
-    let url = _.get(info, [5], '');
-    const urlQS = queryString.parseUrl(url);
-    let record = _.get(urlQS, ['query', 'd'], '[]');
-    try {
-      record = JSON.parse(record);
-    } catch (err) {
-      return nowAt;
-    }
-    if (_.has(record, ['pub'])) {
-      // common是新sdk的字段值, pub是旧值, 这里做下兼容
-      record.common = record.pub;
-    }
-    // matc
-    let logAtMoment = moment(
-      info[3].match(/(?!\[).*(?<!])/)[0],
-      moment.ISO_8601,
-    );
-    let logAt = 0;
-    if (moment.isMoment(logAtMoment) && logAtMoment.isValid()) {
-      logAt = logAtMoment.unix();
-    } else {
-      this.log(`无法解析日志记录时间 => ${info[0]}, 自动跳过`);
-    }
-    return logAt;
-  }
+
   /**
    * 获取项目列表
    */
