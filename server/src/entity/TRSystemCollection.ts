@@ -1,6 +1,6 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-@Index('uniq_visit_at_month_uuid', ['visitAtMonth', 'uuid'], { unique: true })
+// @Index('uniq_visit_at_month_uuid', ['uuid'], { unique: true })TODO: // 删除
 @Entity('t_r_system_collection', { schema: 'nest' })
 export class TRSystemCollection {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id', unsigned: true })
@@ -11,6 +11,9 @@ export class TRSystemCollection {
 
   @Column('varchar', { name: 'browser', length: 50 })
   browser: string;
+
+  @Column('bigint', { name: 'project_id', default: () => "'0'" })
+  projectId: string;
 
   @Column('varchar', { name: 'browser_version', length: 100 })
   browserVersion: string;

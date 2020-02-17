@@ -34,9 +34,6 @@ export class NginxService {
   ) {}
 
   private readonly logger = new Logger(NginxService.name);
-
-  //  入册一分钟任务
-
   public projectMap = {};
   public logCounter = 0;
   public legalLogCounter = 0;

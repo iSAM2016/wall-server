@@ -8,7 +8,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { DATABASE_BY_MONTH, COMMAND_ARGUMENT_BY_MINUTE } from '@utils';
 import { InjectRepository } from '@nestjs/typeorm';
 /**
- *  设备分布
+ *  设备分布记录表
  */
 @Injectable()
 export class DeviceService extends ParseBase {
@@ -26,16 +26,12 @@ export class DeviceService extends ParseBase {
   private startAtMoment;
 
   // uv
-  @Cron('*/20 * * * * *')
-  // @Cron('30 15 * * * * *')
+  @Cron('30 15 * * * * *')
   async handle() {
     let nowByMinute = moment();
-    // let lastDayStartAtByMinute = moment()
-    //   .subtract(1, 'day')
-    //   .startOf('day');
     let lastDayStartAtByMinute = moment()
-      .subtract(1, 'minute')
-      .startOf('minute');
+      .subtract(1, 'day')
+      .startOf('day');
 
     this.startAtMoment = lastDayStartAtByMinute;
     this.endAtMoment = nowByMinute;
@@ -96,7 +92,6 @@ export class DeviceService extends ParseBase {
     // if (!this.dataCleaning.getData(deviceRecord)) {
     //   return false;
     // }
-    console.log(deviceRecord);
 
     let visitAtMap = new Map();
     let deviceMap = new Map();
@@ -165,7 +160,8 @@ export class DeviceService extends ParseBase {
             province: deviceRecord.province,
             city: deviceRecord.city,
             runtimeVersion: deviceRecord.runtimeVersion,
-            visitAtMonth: visitAtMonth,
+            visitAtMonth,
+            projectId,
             logAt: visitAt,
           };
           let oldListRest = await this.getOldList(
@@ -173,18 +169,17 @@ export class DeviceService extends ParseBase {
             visitAtMonth,
             uuid,
           );
-          console.log(oldListRest);
           let id = _.get(oldListRest, [0, 'id'], 0);
           let updateAt = moment().unix();
           let isSuccess = false;
           if (id > 0) {
             sqlParams['updateTime'] = String(updateAt);
-            let affectRows = await this.updataDevice(sqlParams, projectId, id);
+            let affectRows = await this.updataDevice(sqlParams, id);
             isSuccess = affectRows > 0;
           } else {
             sqlParams['createTime'] = String(updateAt);
             sqlParams['updateTime'] = String(updateAt);
-            const insertId = await this.createDevice(sqlParams, projectId);
+            const insertId = await this.createDevice(sqlParams);
             isSuccess = insertId > 0;
           }
           processRecordCount = processRecordCount + 1;
@@ -211,7 +206,7 @@ export class DeviceService extends ParseBase {
   async getOldList(projectId, visitAtMonth, uuid) {
     let oldListResult = await this.deviceRepository
       .createQueryBuilder()
-      .where({ visitAtMonth, uuid })
+      .where({ visitAtMonth, uuid, projectId })
       .getMany();
     return oldListResult;
   }
@@ -221,7 +216,7 @@ export class DeviceService extends ParseBase {
    * @param projectId
    * @param visitAtMonth
    */
-  async updataDevice(datas, projectId, id) {
+  async updataDevice(datas, id) {
     let result = await this.deviceRepository.createQueryBuilder().where({ id });
     let affectRows = await this.deviceRepository.save({
       ...result,
@@ -234,7 +229,7 @@ export class DeviceService extends ParseBase {
    * @param datas
    * @param projectId
    */
-  async createDevice(datas, projectId) {
+  async createDevice(datas) {
     let createResultId = await this.deviceRepository.save(datas);
     return createResultId;
   }

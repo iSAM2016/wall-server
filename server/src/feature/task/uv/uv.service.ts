@@ -30,8 +30,7 @@ export class UvService extends ParseBase {
   private startAtMoment;
 
   // uv
-  // @Cron('*/1 * * * * *')
-  // @Cron('15 */10 * * * *')
+  @Cron('15 */10 * * * *')
   async handle() {
     let nowByMinute = moment();
     let fifteenMinuteAgoByminute = moment().subtract(15, 'minute');
@@ -195,7 +194,7 @@ export class UvService extends ParseBase {
     let visitAtHour = moment.unix(visitAt).format(DATABASE_BY_HOUR);
     let rawRecordList = await this.uvRepository
       .createQueryBuilder()
-      .where({ visit_at_hour: visitAtHour })
+      .where({ visitAtHour, projectId })
       .getMany();
     let uuidSet = new Set();
     rawRecordList.forEach(rawRecord => {
@@ -230,7 +229,7 @@ export class UvService extends ParseBase {
     //返回值是一个列表
     let oldRecordList = await this.uvRepository
       .createQueryBuilder()
-      .where({ uuid, visitAtHour })
+      .where({ uuid, visitAtHour, projectId })
       .getMany();
     //利用get方法, 不存在直接返回0, 没毛病
     let id = _.get(oldRecordList, [0, 'id'], 0);
@@ -240,6 +239,7 @@ export class UvService extends ParseBase {
       province,
       city,
       visitAtHour,
+      projectId,
       pvCount,
       updateTime: String(updateAt),
     };
