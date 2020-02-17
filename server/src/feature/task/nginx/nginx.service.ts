@@ -65,7 +65,7 @@ export class NginxService {
     this.logger.log('registerTaskRepeatPer_1_Minute 命令分配完毕');
   }
   // nginx 读取日志文件
-  @Cron('0 */1 * * * *')
+  // @Cron('0 */1 * * * *')
   async nginxSaveLog() {
     // 获取项目列表
     this.projectMap = await this.getList();

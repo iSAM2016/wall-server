@@ -8,3 +8,5 @@ export * from './user.entity';
 export * from './projectItem.entity';
 export * from './TRUvRecord';
 export * from './TRProject';
+export * from './TRSystemDevice';
+export * from './TRSystemCollection';

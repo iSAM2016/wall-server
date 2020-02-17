@@ -31,7 +31,7 @@ export class UvService extends ParseBase {
 
   // uv
   // @Cron('*/1 * * * * *')
-  @Cron('15 */10 * * * *')
+  // @Cron('15 */10 * * * *')
   async handle() {
     let nowByMinute = moment();
     let fifteenMinuteAgoByminute = moment().subtract(15, 'minute');
