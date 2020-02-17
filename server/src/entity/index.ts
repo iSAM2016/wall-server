@@ -10,3 +10,5 @@ export * from './TRUvRecord';
 export * from './TRProject';
 export * from './TRSystemDevice';
 export * from './TRSystemCollection';
+export * from './TRBehaviorDistribution';
+export * from './TRCityDistribution';

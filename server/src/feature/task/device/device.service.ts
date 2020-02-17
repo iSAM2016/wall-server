@@ -1,3 +1,10 @@
+/* 解析分布设备
+ * @Author: isam2016
+ * @Date: 2020-01-14 10:30:17
+ * @Last Modified by: isam2016
+ * @Last Modified time: 2020-01-20 09:09:05
+ */
+
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../paseBase';
@@ -25,8 +32,8 @@ export class DeviceService extends ParseBase {
   private endAtMoment;
   private startAtMoment;
 
-  // uv
-  @Cron('30 15 * * * * *')
+  // 每小时15分30秒启动
+  @Cron('30 15 * * * *')
   async handle() {
     let nowByMinute = moment();
     let lastDayStartAtByMinute = moment()

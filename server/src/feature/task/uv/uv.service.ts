@@ -1,3 +1,11 @@
+/* 解析UV
+ * @Author: isam2016
+ * @Date: 2020-01-06 16:06:34
+ * @Last Modified by: isam2016
+ * @Last Modified time: 2020-01-20 18:07:10
+ * 独立访问用户数：即UniqueVisitor，访问网站的一台电脑客户端为一个访客。
+ * 00:00-24:00内相同的客户端只被计算一次。
+ */
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../paseBase';
@@ -30,6 +38,7 @@ export class UvService extends ParseBase {
   private startAtMoment;
 
   // uv
+  // 每10分15秒启动
   @Cron('15 */10 * * * *')
   async handle() {
     let nowByMinute = moment();
