@@ -5,7 +5,8 @@ services:
     image: node:${NODE_VERSION}
     working_dir: /home/app
     command: npm config set registry https://registry.npm.taobao.org
-    command: npm run build && npm run start:prod
+    command: npm run build 
+    command: npm run start:prod
     env_file: .env
     environment:
         TZ : 'Asia/Shanghai' # 东八区
@@ -22,7 +23,7 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     ports:
-      - ${MYSQL_PORT}:3306
+      - 3307:3306
 
   redis:
     env_file: .env
