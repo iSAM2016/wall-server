@@ -13,7 +13,7 @@ lerna-debug.log*
 
 # OS
 .DS_Store
-
+./dist/tsconfig.build.tsbuildinfo
 # Tests
 /coverage
 /.nyc_output

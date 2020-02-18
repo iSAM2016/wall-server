@@ -3698,7 +3698,7 @@
         "signature": "6575de5f94b6a47c3580738010d7b6f2f9528b2728463c014e18a31644e4991e"
       },
       "../src/feature/task/nginx/nginx.service.ts": {
-        "version": "3110cf68c587b4f7316cd9948896fa382d640a64026aecfe2b0be5fadafed575",
+        "version": "403a796f4837153b5dffdd0f607a25da3e5324fdf52b04ada031995321aa6433",
         "signature": "5e2f4b572f11e78b00f9fa4067fa30a26499ec32957e0b6e49b60f69358576d7"
       },
       "../src/feature/task/nginx/nginx.module.ts": {
@@ -3710,7 +3710,7 @@
         "signature": "369a5514b45958f978e092bd9b075fded603d5916bae763a83079385d81745d0"
       },
       "../src/feature/task/uv/uv.service.ts": {
-        "version": "a71bcd485e61524cbca33c242b1204169c26e3974ee43909713fd8f9eeec8c17",
+        "version": "595bf6f12180d6d7a7e3be80f10d70c33fcb37cfd512b4c1dc6310d7ecdb9835",
         "signature": "60fefbf388645b4ec76abdb2ca402a89bb5a5b96efa1a09493d57e7e57260259"
       },
       "../src/feature/task/uv/uv.module.ts": {
@@ -3718,7 +3718,7 @@
         "signature": "681d43dc30c1225606c12735559bc857406c12efc47daddea010b01d94140823"
       },
       "../src/feature/task/device/device.service.ts": {
-        "version": "97791e7eb95392e9f0f817aad3a64d32245b548ac3835dee3dffcc3583af3b63",
+        "version": "8a7a5bd011152d36101e84689162a6372d828c9973e4fedb86ad5f5f5e02fc99",
         "signature": "7bfc07fb8f305df019bb0fd91bfc12b4f54fa0b47b67eda4aa0e5f3374122f73"
       },
       "../src/feature/task/device/device.module.ts": {
@@ -3726,7 +3726,7 @@
         "signature": "77cb7c3b202515301b0a7bf8391b4dc2a9cbcb88f86f51f3a2618fccaf300c90"
       },
       "../src/feature/task/menu_click/menu_click.service.ts": {
-        "version": "4b683c6c5555b6f6f77f38ccc86259a38a89302eb74b754328069cceca76c6b4",
+        "version": "27c6445030dc0cc84d9ce2c2f8aae41a522c582bbb04da982f3fa39e52b08bee",
         "signature": "310975b5f9c8d79bdd2c9ea771cb17562a778594c160df7af744abcb6d40983c"
       },
       "../src/feature/task/menu_click/menu_click.module.ts": {
@@ -3734,7 +3734,7 @@
         "signature": "4239bba961d67592ab34f339802c99f2b552979752956f7d56b8422d4ed2fd5b"
       },
       "../src/feature/task/time_on_site/time_on_site.service.ts": {
-        "version": "52d9c548f9e4dbffac48f9c53f849a19bea7c02c4d10dc076d348bfa8e5f5cc3",
+        "version": "5d91443938f476d7d199212f9f75b15ced699a73c222e71344511066293dfe1d",
         "signature": "6e706dff099cf1d7c93143e0f8ba11a224a0af45f861acc4c448e4e17c6cba94"
       },
       "../src/feature/task/time_on_site/time_on_site.module.ts": {
@@ -3742,7 +3742,7 @@
         "signature": "0347bf3041b07343442343beee80f76c9fd3a2cd40c6c9932048b2540fcdeea6"
       },
       "../src/feature/task/user_first_login_at/user_first_login_at.service.ts": {
-        "version": "c05b0b24a086f9a8262349d84d74b87e70aaa0060fb4b56ac606f6550e99aca4",
+        "version": "e14dc57cecf2d61dd8a5805afff0c3136b9567c81191e7788212e553a59a0671",
         "signature": "186d7e2264e37c7dc158ad0706fc1635579258fb1f08f47397fcf8babca20d98"
       },
       "../src/feature/task/user_first_login_at/user_first_login_at.module.ts": {
@@ -21764,11 +21764,11 @@
       "../src/utils/nginx/index.ts",
       "../src/utils/dataformat.ts",
       "../src/utils/index.ts",
+      "../src/feature/task/nginx/nginx.service.ts",
       "../src/feature/task/nginx/nginx.module.ts",
       "../src/feature/task/pasebase.ts",
       "../src/feature/task/uv/uv.service.ts",
       "../src/feature/task/uv/uv.module.ts",
-      "../src/feature/task/device/device.service.ts",
       "../src/feature/task/device/device.module.ts",
       "../src/feature/task/menu_click/menu_click.service.ts",
       "../src/feature/task/menu_click/menu_click.module.ts",
@@ -21890,7 +21890,7 @@
       "../node_modules/@types/ws/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/feature/task/nginx/nginx.service.ts"
+      "../src/feature/task/device/device.service.ts"
     ]
   },
   "version": "3.7.5"
