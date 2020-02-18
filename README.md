@@ -44,27 +44,35 @@ wall-server 是监控系统的后台管理，单体应用。对[wall-sdk](https:
 
 ## 快速入门
 
-- 设置`env` 环境
-  - 请在 `.env`目录下设置三个环境的变量
+- 克隆项目
+  `git clone https://github.com/iSAM2016/wall-server.git`
+  `cd wall-server && npm i`
 
-* 建表
+* 设置`env` 环境
+  - 请在 `.env`目录下设置三个环境的变量
 
 - 启动`docker-compose`
 
-  - 进入项目根目录下
-  - 启动`docker-compose`
-    - `docker-compose up -d`
+  - `docker-compose up -d`
 
-- 暂时没有后台管理，我们在`t_r_project`，手动插入一个项目，
+  * 应用端口为 9090
+
+- 暂时没有后台管理，我们在`wall_t_r_project`，手动插入一个项目，
 
   - 第一条 `id:1, project_name:NtsGbhvxzDSm1ti2uffSue7u2UIFPVXo`, 其他数据任意
 
 - 设置`sdk`
-  进入`wall-sdk`,
-  - `npm i`
-  - `npm start`
-  - 打开"lohost"
-  - 调整`index.html 的注释进行测试`
+  配置`wall-sdk`,
+
+```js
+import Wall from 'wall_sdk';
+
+Wall.init({
+  origin: 'http://ip:9090',
+  project_id: 1, //项目的(project_id)
+  isTest: false,
+});
+```
 
 ## 开发
 
@@ -102,11 +110,10 @@ kill -USR1 `cat /var/run/nginx.pid`
    - docker-compose up -d 后台执行
    - docker-compose stop
    - docker-compose down
+   - docker-compose logs -f nest 查看 nest 日志
 
 # 创建 orm
 
 `typeorm-model-generator -h 127.0.0.1 -d nest -u root -x abc123456 -e mysql -p 3306 -o .`
 
 ## TODO
-
-1.  脚本分钟小于 10
