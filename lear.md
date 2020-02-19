@@ -18,18 +18,16 @@
 18. 开启 多线程读取文件
 19. 数据库索引
 
-20. ## TODO
-22. 测试
-23. 修改时间跨度
-24. 日志的存储位置改变
-25. 通知
-26. TRUvRecord
-27. TRCityDistribution
-28. TRSystemCollection
-30. TRBehaviorDistribution
-31. TRDurationDistribution
-32. 
-34. TRUserFirstLoginAt
+20. ## TODO:
+21. 日志的存储位置改变
+22. 通知
+23. TRUvRecord
+24. TRCityDistribution
+25. TRSystemCollection
+26. TRBehaviorDistribution
+27. TRDurationDistribution
+28.
+29. TRUserFirstLoginAt
 
 ## 配置
 
