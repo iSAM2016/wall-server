@@ -14,6 +14,7 @@
     "dev:env": "source ./env/env_dev.sh && sh ./env/dev.sh && nest start --watch",
     "dev": "source ./env/env_dev.sh && nest start --watch",
     "prod": "rm -rf ./dist &&  nest build && source ./env/env_prod.sh && sh ./env/prod.sh",
+    "log": "source ./env/env_prod.sh && docker-compose logs -f nest",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",
