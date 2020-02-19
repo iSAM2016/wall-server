@@ -46,16 +46,21 @@ wall-server 是监控系统的后台管理，单体应用。对[wall-sdk](https:
 
 - 克隆项目
   `git clone https://github.com/iSAM2016/wall-server.git`
+
   `cd wall-server && npm i`
 
 * 设置`env` 环境
-  - 请在 `.env`目录下设置三个环境的变量
+  - 请在 `env`目录下设置环境的变量
+    -  env_dev.sh 开发环境
+    -  env_prod.sh 生产环境
 
-- 启动`docker-compose`
+- 开发
+  `npm run dev`
 
-  - `docker-compose up -d`
+* 生产
+  `npm run build`
 
-  * 应用端口为 9090
+**对接sdk 的服务端口为 9090**
 
 - 暂时没有后台管理，我们在`wall_t_r_project`，手动插入一个项目，
 
@@ -115,5 +120,3 @@ kill -USR1 `cat /var/run/nginx.pid`
 # 创建 orm
 
 `typeorm-model-generator -h 127.0.0.1 -d nest -u root -x abc123456 -e mysql -p 3306 -o .`
-
-## TODO
