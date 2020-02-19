@@ -45,10 +45,11 @@ export class TimeOnSiteService extends ParseBase {
   private endAtMoment;
   private startAtMoment;
 
-  @Cron('15 */10 * * * *')
+  @Cron('0 */10 * * * *')
+  // @Cron('0 */3 * * * *')
   async handle() {
     let nowByMinute = moment();
-    let fifteenMinuteAgoByminute = moment().subtract(15, 'minute');
+    let fifteenMinuteAgoByminute = moment().subtract(10, 'minute');
     this.startAtMoment = fifteenMinuteAgoByminute;
     this.endAtMoment = nowByMinute;
     this.logger.log(

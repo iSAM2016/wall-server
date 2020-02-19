@@ -21,10 +21,7 @@ export class ConfigService {
     // const filePath: string = `${process.env.NODE_ENV || 'development'}.env`;
     const filePath: string = `.env`;
     const envFile: string = resolve(__dirname, '../', options.folder, filePath);
-    if (this.isFileExist(envFile)) {
-      config = dotenv.parse(fs.readFileSync(envFile));
-    }
-    ConfigService.envConfig = this.validateInpt(config);
+    ConfigService.envConfig = {};
   }
   /**
    *  检测文件是否存在

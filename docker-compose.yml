@@ -6,9 +6,27 @@ services:
     working_dir: /home/app
     command: npm config set registry https://registry.npm.taobao.org
     command: npm run start:prod
-    env_file: .env
     environment:
-        TZ : 'Asia/Shanghai' # 东八区
+      NODE_ENV: ${NODE_ENV}
+      SYSTEM_SECRET: ${SYSTEM_SECRET}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_SYNCHRONIZE:  ${MYSQL_SYNCHRONIZE} 
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD} 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_DB_HOST: ${MYSQL_DB_HOST} 
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT} 
+      MAIL_USER: ${MAIL_USER} 
+      MAIL_PASS: ${MAIL_PASS} 
+      MAXAGE_MS: ${MAXAGE_MS} 
+      ALERT_WATCH_UCID_LIST: ${ALERT_WATCH_UCID_LIST} 
+      ALERT_MAX_CONTENT_CHAR: ${ALERT_MAX_CONTENT_CHAR} 
+      ALERT_IS_USEING: ${ALERT_IS_USEING} 
+      ALERT_WXADDR: ${ALERT_WXADDR} 
+
+      TZ : 'Asia/Shanghai' # 东八区
     volumes:
       - .:/home/app
     depends_on:
@@ -17,15 +35,19 @@ services:
       - ${APP_PORT}:3000
 
   mysql:
-    env_file: .env
     image: mysql:${MYSQL_VERSION}
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
+    environment:  
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_SYNCHRONIZE:  ${MYSQL_SYNCHRONIZE} 
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD} 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
     ports:
       - 3307:3306
 
   redis:
-    env_file: .env
     image: redis:${REDIS_DB}
     ports:
       - ${REDIS_PORT}:6379

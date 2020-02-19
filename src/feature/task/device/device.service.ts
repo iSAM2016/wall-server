@@ -32,13 +32,14 @@ export class DeviceService extends ParseBase {
   private endAtMoment;
   private startAtMoment;
 
-  // 每小时15分30秒启动
-  @Cron('30 15 * * * *')
+  // 每15分0秒启动
+  @Cron('0 */15 * * * *')
+  // @Cron('0 */3  * * * *')
   async handle() {
     let nowByMinute = moment();
     let lastDayStartAtByMinute = moment()
-      .subtract(1, 'day')
-      .startOf('day');
+      .subtract(15, 'minute')
+      .startOf('minute');
 
     this.startAtMoment = lastDayStartAtByMinute;
     this.endAtMoment = nowByMinute;
