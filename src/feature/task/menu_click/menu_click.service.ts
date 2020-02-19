@@ -40,12 +40,13 @@ export class MenuClickService extends ParseBase {
   private endAtMoment;
   private startAtMoment;
 
-  @Cron('30 15 * * * *')
+  @Cron('30 */15 * * * *')
+  // @Cron('0 */3 * * * *')
   async handle() {
     let nowByMinute = moment();
     let lastDayStartAtByMinute = moment()
-      .subtract(1, 'day')
-      .startOf('day');
+      .subtract(15, 'minute')
+      .startOf('minute');
     this.startAtMoment = lastDayStartAtByMinute;
     this.endAtMoment = nowByMinute;
     this.logger.log(

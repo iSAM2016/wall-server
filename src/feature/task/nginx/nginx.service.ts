@@ -14,6 +14,7 @@ import { readLine, writeLine } from 'lei-stream';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConfigService } from '../../../core/configure/config.service';
+import { tasktime } from '@utils';
 import {
   ip2Locate,
   LOG_TYPE_RAW,
@@ -26,6 +27,7 @@ let rawLogWriteStreamPool = new Map();
 /**
  *  nginx 存储日志
  */
+console.log(tasktime[ConfigService.get('NODE_ENV')]['nginx']);
 @Injectable()
 export class NginxService {
   constructor(
@@ -61,9 +63,9 @@ export class NginxService {
     // this.logger.execCommand('Watct:Alarm', []); //TODO:
     this.logger.log('registerTaskRepeatPer_1_Minute 命令分配完毕');
   }
+
   // nginx 读取日志文件
   @Cron('0 */1 * * * *')
-  // @Cron('*/4 * * * * *')
   async nginxSaveLog() {
     // 获取项目列表
     this.projectMap = await this.getList();

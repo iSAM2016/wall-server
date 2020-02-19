@@ -19,19 +19,16 @@
 19. 数据库索引
 
 20. ## TODO
-21. 环境区分
 22. 测试
 23. 修改时间跨度
 24. 日志的存储位置改变
 25. 通知
 26. TRUvRecord
 27. TRCityDistribution
-28.
-29. TRSystemCollection
+28. TRSystemCollection
 30. TRBehaviorDistribution
 31. TRDurationDistribution
-32. TRUniqueView
-33.
+32. 
 34. TRUserFirstLoginAt
 
 ## 配置

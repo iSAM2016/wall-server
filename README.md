@@ -55,7 +55,8 @@ wall-server 是监控系统的后台管理，单体应用。对[wall-sdk](https:
     -  env_prod.sh 生产环境
 
 - 开发
-  `npm run dev`
+  * `npm run dev:env`
+  * `npm run dev`
 
 * 生产
   `npm run build`
