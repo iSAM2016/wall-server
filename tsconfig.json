@@ -12,6 +12,7 @@
     "baseUrl": ".", // 可以相对这个目录 import 文件
     "paths": {
       "@entity": ["src/entity"],
+      "@shared": ["src/shared"],
       "@utils": ["src/utils"],
       "@core": ["src/core"],
     }

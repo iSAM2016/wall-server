@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MenuClickService } from './menu_click.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TRBehaviorDistribution, TRCityDistribution } from '@entity';
+import { TRBehaviorDistribution } from '@entity';
+import { CityDistributionModule } from '../shard/cityDistribution/cityDistribution.module';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([TRBehaviorDistribution, TRCityDistribution]),
+    CityDistributionModule,
+    TypeOrmModule.forFeature([TRBehaviorDistribution]),
   ],
   exports: [MenuClickService],
   providers: [MenuClickService],

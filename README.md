@@ -118,6 +118,22 @@ kill -USR1 `cat /var/run/nginx.pid`
    - docker-compose down
    - docker-compose logs -f nest 查看 nest 日志
 
+### 
+
+统计周期
+
+uv 统计，  小时/天/月
+
+
+
+## 目录结构
+
+共享模块（共享mongodb、redis封装服务、通用服务）
+
+核心模块（申明过滤器、管道、拦截器、守卫、中间件、全局模块
+
+特性模块（主要业务模块）
+
 # 创建 orm
 
 `typeorm-model-generator -h 127.0.0.1 -d nest -u root -x abc123456 -e mysql -p 3306 -o .`

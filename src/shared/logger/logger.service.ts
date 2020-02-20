@@ -1,6 +1,28 @@
 import * as winston from 'winston';
+import { Logger } from '@nestjs/common';
 
-export class LoggerService {
+export class LoggerService extends Logger {
+  error(message: string, trace: string) {
+    // add your tailored logic here
+    console.log('9090');
+    super.error(message, trace);
+  }
+
+  log(message: string, trace: string) {
+    super.error(message, trace);
+  }
+  warn(message: string, trace: string) {
+    super.error(message, trace);
+  }
+  debug(message: string, trace: string) {
+    super.error(message, trace);
+  }
+  verbose(message: string, trace: string) {
+    super.error(message, trace);
+  }
+}
+
+class LoggerServices {
   private readonly instance: winston.Logger;
 
   public constructor() {

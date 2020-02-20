@@ -11,15 +11,14 @@ import { Repository } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable, Logger } from '@nestjs/common';
-import { TRBehaviorDistribution, TRCityDistribution } from '@entity';
+import { TRBehaviorDistribution } from '@entity';
 import {
   UNIT,
   DATABASE_BY_HOUR,
   COMMAND_ARGUMENT_BY_MINUTE,
   getFlattenCityRecordListInDistribution,
 } from '@utils';
-
-const DateFormat = 'YYYYMM';
+import { CityDistributionService } from '../shard/cityDistribution/cityDistribution.service';
 
 @Injectable()
 export class MenuClickService extends ParseBase {
@@ -28,8 +27,7 @@ export class MenuClickService extends ParseBase {
     private readonly behaviorDistributionRepository: Repository<
       TRBehaviorDistribution
     >,
-    @InjectRepository(TRCityDistribution)
-    private readonly cityDistributionRepository: Repository<TRCityDistribution>,
+    private readonly cityDistributionService: CityDistributionService,
   ) {
     super();
   }
@@ -243,7 +241,7 @@ export class MenuClickService extends ParseBase {
     cityDistributeIdInDb,
   ): Promise<boolean> {
     // 更新城市分布数据
-    let isUpdateSuccess = await this.updateCityDistributionRecord(
+    let isUpdateSuccess = await this.cityDistributionService.updateCityDistributionRecord(
       cityDistributeIdInDb,
       JSON.stringify(cityDistribute),
     );
@@ -262,7 +260,7 @@ export class MenuClickService extends ParseBase {
     updateAt,
   ): Promise<boolean> {
     // 首先插入城市分布数据
-    let cityDistributeId = await this.insertCityDistributionRecord(
+    let cityDistributeId = await this.cityDistributionService.insertCityDistributionRecord(
       JSON.stringify(cityDistribute),
       projectId,
       updateAt,
@@ -316,50 +314,5 @@ export class MenuClickService extends ParseBase {
   async insertDuration(data) {
     // 返回值是一个列表
     return await this.behaviorDistributionRepository.save(data);
-  }
-  /**
-   * 更新城市分布记录, 返回更新是否成功
-   * @param {number} id
-   * @param {string} cityDistributeJson
-   * @return {boolean}
-   */
-  async updateCityDistributionRecord(id, cityDistributeJson): Promise<boolean> {
-    let updateAt = moment().unix();
-    let data = {
-      cityDistributeJson,
-      updateTime: String(updateAt),
-    };
-    let result = await this.cityDistributionRepository.findOne({ id });
-    let affectRows = await this.cityDistributionRepository.save({
-      ...result,
-      ...data,
-    });
-
-    return Number(affectRows.id) > 0;
-  }
-  /**
-   * 插入城市分布记录, 返回插入id
-   * @param {string} cityDistributeJson
-   * @param {number} projectId
-   * @param {number} createTimeAt
-   * @return {number}
-   */
-  async insertCityDistributionRecord(
-    cityDistributeJson,
-    projectId,
-    createTimeAt,
-  ) {
-    let countAtTime = moment.unix(createTimeAt).format(DateFormat);
-    let updateAt = moment().unix();
-    let data = {
-      cityDistributeJson,
-      createTime: String(updateAt),
-      updateTime: String(updateAt),
-      projectId,
-      countAtTime,
-    };
-    let insertResult = await this.cityDistributionRepository.save(data);
-    let insertId = _.get(insertResult, 'id', 0);
-    return insertId;
   }
 }

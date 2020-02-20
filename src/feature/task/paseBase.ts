@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Logger } from '@nestjs/common';
-import { ConfigService } from '../../core/configure/config.service';
+import { ConfigService } from '@core';
 import appConfig from '../../../config/app';
 import {
   COMMAND_ARGUMENT_BY_MINUTE,
@@ -13,7 +13,7 @@ import {
 const readLine = require('lei-stream').readLine;
 
 class ParseBase {
-  private readonly loggers = new Logger(ParseBase.name);
+  private readonly loggers = new Logger(this.constructor.name);
 
   //存入数据库汇报进度
   reportProcess(

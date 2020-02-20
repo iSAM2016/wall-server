@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from './core/configure/config.service';
+import { ConfigService } from '@core';
 @Injectable()
 export class AppService {
   private helloMessage: string;

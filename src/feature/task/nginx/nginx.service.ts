@@ -6,15 +6,12 @@ import * as moment from 'moment';
 import * as queryString from 'query-string';
 import * as shell from 'shelljs';
 import * as parser from 'ua-parser-js';
-import { TRProject } from '@entity';
-import { Repository } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 import appConfig from '../../../../config/app';
 import { readLine, writeLine } from 'lei-stream';
 import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { ConfigService } from '../../../core/configure/config.service';
-import { tasktime } from '@utils';
+import { ConfigService } from '@core';
+import { ProjectService } from '../shard/project/project.service';
 import {
   ip2Locate,
   LOG_TYPE_RAW,
@@ -22,20 +19,18 @@ import {
   LOG_TYPE_TEST,
   getAbsoluteLogUriByType, //  生成对应日志绝对路径, 按分钟分隔
 } from '../../../utils';
+import { from } from 'rxjs';
 let jsonWriteStreamPool = new Map();
 let rawLogWriteStreamPool = new Map();
 /**
  *  nginx 存储日志
  */
-console.log(tasktime[ConfigService.get('NODE_ENV')]['nginx']);
 @Injectable()
 export class NginxService {
-  constructor(
-    @InjectRepository(TRProject)
-    private readonly projectRepository: Repository<TRProject>,
-  ) {}
+  constructor(private readonly projectService: ProjectService) {}
 
   private readonly logger = new Logger(NginxService.name);
+
   public projectMap = {};
   public logCounter = 0;
   public legalLogCounter = 0;
@@ -68,7 +63,7 @@ export class NginxService {
   @Cron('0 */1 * * * *')
   async nginxSaveLog() {
     // 获取项目列表
-    this.projectMap = await this.getList();
+    this.projectMap = await this.projectService.getList();
     this.logCounter = 0;
     this.legalLogCounter = 0;
     let nginxLogFilePath = appConfig.absoluteLogPath + '/nginx';
@@ -116,7 +111,7 @@ export class NginxService {
     // 检查日志格式, 只录入解析后, 符合规则的log
     let parseResult = await this.parseLog(content, this.projectMap);
     if (_.isEmpty(parseResult)) {
-      this.logger.log('日志格式不规范, 自动跳过, 原日志内容为 =>', content);
+      this.logger.log('日志格式不规范, 自动跳过, 原日志内容为 =>' + content);
       return false;
     }
 
@@ -348,23 +343,5 @@ export class NginxService {
     }
 
     return true;
-  }
-  /**
-   * 项目列表
-   */
-  async getList() {
-    let projectList = await this.projectRepository
-      .createQueryBuilder()
-      .where({ is_delete: 0 })
-      .getMany();
-    let projectMap = {};
-    for (let project of projectList) {
-      projectMap[project.projectName] = {
-        id: project.id,
-        rate: project.rate,
-      };
-    }
-    this.logger.log(`项目列表获取成功 => ${JSON.stringify(projectMap)}`);
-    return projectMap;
   }
 }

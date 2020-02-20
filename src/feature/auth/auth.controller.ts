@@ -17,7 +17,7 @@ import { Register, User } from '../../entity';
 import { ApiTags, ApiProperty } from '@nestjs/swagger';
 import { SignUpDto, SignInDto } from './dto';
 import { AuthService } from './auth.service';
-import { ConfigService } from '../../core/configure/config.service';
+import { ConfigService } from '@core';
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {

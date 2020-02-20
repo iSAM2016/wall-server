@@ -8,7 +8,7 @@ import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
 import * as cookieParser from 'cookie-parser';
 import { WsAdapter } from '@nestjs/platform-ws';
-import { ConfigService } from './core/configure/config.service';
+import { ConfigService } from '@core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { HttpExceptionFilter, RolesGuard } from './core/';
 import { ValidationPipe } from './core/pipes/validation.pipe';

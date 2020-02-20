@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { NginxService } from './nginx.service';
-import { TRProject } from '@entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProjectModule } from '../shard/project/project.module';
 @Module({
-  imports: [TypeOrmModule.forFeature([TRProject])],
+  imports: [ProjectModule],
   exports: [NginxService],
   providers: [NginxService],
 })

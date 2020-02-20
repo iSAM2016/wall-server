@@ -1,7 +1,6 @@
 export * from './nginx';
 export * from './dataFormat';
 import * as os from 'os';
-export * from './tasktime';
 import axios from 'axios'; // 引入axios组件
 import * as _ from 'lodash';
 import * as path from 'path';

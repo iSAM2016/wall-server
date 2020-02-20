@@ -9,7 +9,7 @@
 // import * as redis from 'redis';
 // import * as socketIoRedis from 'socket.io-redis';
 // import { Logger, UseFilters } from '@nestjs/common';
-// import { ConfigService } from './core/configure/config.service';
+// import { ConfigService } from '@core';
 
 // @WebSocketGateway()
 // // @UseFilters(new WebsocketsExceptionFilter())

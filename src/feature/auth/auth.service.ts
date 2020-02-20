@@ -14,7 +14,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { genSalt, hash, hashSync, compare } from 'bcryptjs';
 import { Register, Role, User, Profile } from '../../entity';
 import { sign } from 'jsonwebtoken';
-import { ConfigService } from '../../core/configure/config.service';
+import { ConfigService } from '@core';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 function encryptMD5(key: string): string {
   return utility.md5(key);
