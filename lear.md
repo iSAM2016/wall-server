@@ -18,6 +18,17 @@
 18. 开启 多线程读取文件
 19. 数据库索引
 
+20. ## TODO:
+21. 日志的存储位置改变
+22. 通知
+23. TRUvRecord
+24. TRCityDistribution
+25. TRSystemCollection
+26. TRBehaviorDistribution
+27. TRDurationDistribution
+28.
+29. TRUserFirstLoginAt
+
 ## 配置
 
 - service 中不要写 try catch 否则异常捕获不到 \*

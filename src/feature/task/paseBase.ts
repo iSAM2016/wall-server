@@ -78,7 +78,10 @@ class ParseBase {
               next();
             }
           } else {
-            this.loggers.log(`log 日志格式不正确=>` + data);
+            this.loggers.log(
+              `log 日志格类型不符合筛选标准，自动跳过=>` + JSON.stringify(data),
+            );
+            next();
           }
         };
         let onReadFinish = () => {

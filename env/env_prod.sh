@@ -1,0 +1,36 @@
+#!/bin/bash
+export NODE_ENV=prod
+
+export SYSTEM_SECRET=cat
+export NODE_VERSION=11.13
+export APP_PORT=3000
+
+export MYSQL_PORT=3306
+export MYSQL_VERSION=5.7
+export MYSQL_USER=root
+export MYSQL_DATABASE=nest
+export MYSQL_SYNCHRONIZE=true
+export MYSQL_PASSWORD=abc123456
+export MYSQL_ROOT_PASSWORD=abc123456
+export MYSQL_DB_HOST=mysql
+
+export REDIS_HOST=127.0.0.1
+export REDIS_PORT=6379
+export REDIS_DB=4
+
+export MAIL_HOST=128.0.01
+export MAIL_PORT=8989
+export MAIL_USER=root
+export MAIL_PASS=9
+ 
+#24 * 3600 * 1000 毫秒
+export MAXAGE_MS=86400000
+
+#  alarm 
+export ALERT_WATCH_UCID_LIST=123456,999
+export ALERT_MAX_CONTENT_CHAR=1500
+export ALERT_IS_USEING=true
+export ALERT_WXADDR=true
+
+
+
