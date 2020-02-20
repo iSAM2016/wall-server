@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { TimeOnSiteService } from './time_on_site.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TimeOnSiteService } from './time_on_site.service';
+import { UniqueViewModule, CityDistributionModule } from '../shard/';
 import {
   TRDurationDistribution,
   TRCityDistribution,
@@ -8,6 +9,8 @@ import {
 } from '@entity';
 @Module({
   imports: [
+    UniqueViewModule,
+    CityDistributionModule,
     TypeOrmModule.forFeature([
       TRDurationDistribution,
       TRCityDistribution,

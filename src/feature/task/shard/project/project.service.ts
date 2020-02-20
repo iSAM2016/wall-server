@@ -26,15 +26,12 @@ export class ProjectService {
       .createQueryBuilder()
       .where({ is_delete: 0 })
       .getMany();
-    let projectMap = {};
+    let projectMapSet = new Map();
     for (let project of projectList) {
-      projectMap[project.projectName] = {
-        id: project.id,
-        rate: project.rate,
-      };
+      projectMapSet.set(project.projectName, project);
     }
-    this.logger.log(`项目列表获取成功 => ${JSON.stringify(projectMap)}`);
-    return projectMap;
+    this.logger.log(`项目列表获取成功 => ${JSON.stringify(projectList)}`);
+    return projectMapSet;
   }
   // /**
   //  * 获取总uv, 记录不存在返回0

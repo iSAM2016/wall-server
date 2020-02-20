@@ -9,7 +9,7 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../paseBase';
-import { Repository } from 'typeorm';
+import { Repository, MoreThan, LessThan, Between } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 import { TRUvRecord } from '@entity';
 import { Injectable, Logger } from '@nestjs/common';
@@ -59,7 +59,6 @@ export class UvService extends ParseBase {
     );
     await this.saveTODB();
   }
-
   /**
    *  2.将日志存储到MAP 集合当中
    */
@@ -267,4 +266,40 @@ export class UvService extends ParseBase {
     }
     return isSuccess;
   };
+  /**
+   * 获取一段时间范围内的按城市分布uv数
+   * @param {*} projectId
+   * @param {*} startAt
+   * @param {*} finishAt
+   * @returns {Array}
+   */
+  async getCityDistributeInRange(projectId, startAt, finishAt) {
+    let startAtMoment = moment.unix(startAt);
+    let finishAtMoment = moment.unix(finishAt);
+    let cityDistribute = {};
+    // uv记录表按月分表, 因此需要分月计算总uv
+    for (
+      let currentAtMoment = startAtMoment;
+      currentAtMoment.isBefore(finishAtMoment);
+      currentAtMoment = currentAtMoment.clone().add(1, 'months')
+    ) {
+      let rawRecordList = await this.uvRepository.find({
+        createTime: Between(startAt, finishAt),
+        projectId,
+      });
+      for (let rawRecord of rawRecordList) {
+        let country = _.get(rawRecord, ['country'], '');
+        let province = _.get(rawRecord, ['province'], '');
+        let city = _.get(rawRecord, ['city'], '');
+        let uvCount = _.get(rawRecord, ['uv_count'], '');
+
+        let locationPath = [country, province, city];
+        if (_.has(cityDistribute, locationPath)) {
+          uvCount = uvCount + _.get(cityDistribute, locationPath, 0);
+        }
+        _.set(cityDistribute, locationPath, uvCount);
+      }
+    }
+    return cityDistribute;
+  }
 }

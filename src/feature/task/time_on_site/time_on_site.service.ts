@@ -11,17 +11,15 @@ import { Repository } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable, Logger } from '@nestjs/common';
-import {
-  TRDurationDistribution,
-  TRCityDistribution,
-  TRUniqueView,
-} from '@entity';
+import { TRDurationDistribution } from '@entity';
 import {
   UNIT,
   DATABASE_BY_HOUR,
   COMMAND_ARGUMENT_BY_MINUTE,
   getFlattenCityRecordListInDistribution,
 } from '@utils';
+import { CityDistributionService } from '../shard/cityDistribution/cityDistribution.service';
+import { UniqueViewService } from '../shard/uniqueView/uniqueView.service';
 
 const DateFormat = 'YYYYMM';
 
@@ -32,10 +30,8 @@ export class TimeOnSiteService extends ParseBase {
     private readonly durationDistributionRepository: Repository<
       TRDurationDistribution
     >,
-    @InjectRepository(TRCityDistribution)
-    private readonly cityDistributionRepository: Repository<TRCityDistribution>,
-    @InjectRepository(TRUniqueView)
-    private readonly uniqueViewRepository: Repository<TRUniqueView>,
+    private readonly uniqueViewService: UniqueViewService,
+    private readonly cityDistributionService: CityDistributionService,
   ) {
     super();
   }
@@ -138,7 +134,11 @@ export class TimeOnSiteService extends ParseBase {
           totalStayMs = totalStayMs + record;
         }
         //获取当前项目，当前时间段 uv 记录数
-        let totalUv = await this.getTotalUv(projectId, countAtTime, UNIT.HOUR);
+        let totalUv = await this.uniqueViewService.getTotalUv(
+          projectId,
+          countAtTime,
+          UNIT.HOUR,
+        );
         //当前项目 当前时用户停留记录
         let oldRecordList = await this.replaceUvRecord(
           projectId,
@@ -217,7 +217,7 @@ export class TimeOnSiteService extends ParseBase {
     cityDistributeIdInDb,
   ): Promise<boolean> {
     // 更新城市分布数据
-    let isUpdateSuccess = await this.updateCityDistributionRecord(
+    let isUpdateSuccess = await this.cityDistributionService.updateCityDistributionRecord(
       cityDistributeIdInDb,
       JSON.stringify(cityDistribute),
     );
@@ -235,7 +235,7 @@ export class TimeOnSiteService extends ParseBase {
     updateAt,
   ): Promise<boolean> {
     // 首先插入城市分布数据
-    let cityDistributeId = await this.insertCityDistributionRecord(
+    let cityDistributeId = await this.cityDistributionService.insertCityDistributionRecord(
       JSON.stringify(cityDistribute),
       projectId,
       updateAt,
@@ -265,21 +265,7 @@ export class TimeOnSiteService extends ParseBase {
       .getMany();
     return oldRecordList;
   };
-  /**
-   * 获取总uv, 记录不存在返回0
-   * @param {number} projectId
-   * @param {string} countAtTime
-   * @param {string} countType
-   * @return {number}
-   */
-  async getTotalUv(projectId, countAtTime, countType) {
-    let recordList = await this.uniqueViewRepository
-      .createQueryBuilder()
-      .where({ projectId, countAtTime, countType })
-      .getMany();
-    let record = _.get(recordList, [0], {});
-    return _.get(record, ['total_count'], 0);
-  }
+
   /**
    *更新
    *
@@ -304,51 +290,5 @@ export class TimeOnSiteService extends ParseBase {
   async insertDuration(data) {
     // 返回值是一个列表
     return await this.durationDistributionRepository.save(data);
-  }
-
-  /**
-   * 更新城市分布记录, 返回更新是否成功
-   * @param {number} id
-   * @param {string} cityDistributeJson
-   * @return {boolean}
-   */
-  async updateCityDistributionRecord(id, cityDistributeJson): Promise<boolean> {
-    let updateAt = moment().unix();
-    let data = {
-      cityDistributeJson,
-      updateTime: String(updateAt),
-    };
-    let result = await this.cityDistributionRepository.findOne({ id });
-    let affectRows = await this.cityDistributionRepository.save({
-      ...result,
-      ...data,
-    });
-
-    return Number(affectRows.id) > 0;
-  }
-  /**
-   * 插入城市分布记录, 返回插入id
-   * @param {string} cityDistributeJson
-   * @param {number} projectId
-   * @param {number} createTimeAt
-   * @return {number}
-   */
-  async insertCityDistributionRecord(
-    cityDistributeJson,
-    projectId,
-    createTimeAt,
-  ) {
-    let countAtTime = moment.unix(createTimeAt).format(DateFormat);
-    let updateAt = moment().unix();
-    let data = {
-      cityDistributeJson,
-      createTime: String(updateAt),
-      updateTime: String(updateAt),
-      projectId,
-      countAtTime,
-    };
-    let insertResult = await this.cityDistributionRepository.save(data);
-    let insertId = _.get(insertResult, 'id', 0);
-    return insertId;
   }
 }

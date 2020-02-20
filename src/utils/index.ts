@@ -1,5 +1,6 @@
 export * from './nginx';
 export * from './dataFormat';
+export * from './database';
 import * as os from 'os';
 import axios from 'axios'; // 引入axios组件
 import * as _ from 'lodash';
