@@ -63,7 +63,10 @@ export class NginxService {
   @Cron('0 */1 * * * *')
   async nginxSaveLog() {
     // 获取项目列表
-    this.projectMap = await this.projectService.getList();
+    let projectMap = await this.projectService.getList();
+    for (let [projectName, { id, rate }] of projectMap) {
+      this.projectMap[projectName] = { id, rate };
+    }
     this.logCounter = 0;
     this.legalLogCounter = 0;
     let nginxLogFilePath = appConfig.absoluteLogPath + '/nginx';

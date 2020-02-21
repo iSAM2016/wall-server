@@ -1,3 +1,4 @@
+"use strict";
 // // function f() {
 // //   console.log('f(): evaluated');
 // //   return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -12,7 +13,7 @@
 // //     };
 // //   };
 // // }
-
+exports.__esModule = true;
 // // function g() {
 // //   console.log('g(): evaluated');
 // //   return function(target, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -41,7 +42,6 @@
 // //     };
 // //   };
 // // }
-
 // // class C {
 // //   @f()
 // //   @g()
@@ -52,9 +52,7 @@
 // //   }
 // // }
 // // let c = new C();
-
 // // c.method();
-
 // // class PersonDAO {
 // //   email: string;
 // //   password: string;
@@ -85,7 +83,6 @@
 // //     this.personService.setEmail(value);
 // //   }
 // // }
-
 // // let controller1: PersonController = new PersonController();
 // // let controller2: PersonController = new PersonController();
 // // controller1.getEmail();
@@ -93,11 +90,9 @@
 // // controller1.setEmail('9090');
 // // controller1.getEmail();
 // // controller2.getEmail();
-
 // // abstract class IBaseType {
 // //   public abstract method1(): void;
 // // }
-
 // // @Provides(IBaseType)
 // // export default class ChildType implements IBaseType {
 // //   public method1(): void {
@@ -105,10 +100,8 @@
 // //     console.log('Foo bar');
 // //   }
 // // }
-
 // // export class Worker {
 // //   @Inject public type: IBaseType;
-
 // //   public work() {
 // //     this.type.method1();
 // //   }
@@ -116,19 +109,15 @@
 // // let work1: Worker = new Worker();
 // // work1.work();
 // /////////////////////////////////////////////
-
 // var redis = require('redis');
-
 // var path = require('path');
 // var express = require('express');
 // var cookieParser = require('cookie-parser');
 // var session = require('express-session');
 // var redisStore = require('connect-redis')(session);
 // var app = express();
-
 // // 使用 cookieParser 中间件;
 // // app.use(cookieParser());
-
 // // // session
 // // app.use(session({
 // //     name: 'session-name', // 这里是cookie的name，默认是connect.sid
@@ -145,7 +134,6 @@
 // //         })
 // //     })
 // // }));
-
 // // app.get('/', function (req, res, next) {
 // //     //我们往往需要signedCookies的长期保存特性，又需要session的不可见不可修改的特性。
 // //     if (req.session.isFirst || req.cookies.isFirst) {
@@ -161,11 +149,9 @@
 // //         res.send("欢迎第一次访问。");
 // //     }
 // // });
-
 // // app.listen(3030, function () {
 // //     console.log('express start on: ' + 3030)
 // // });
-
 // const ace = require('@adonisjs/ace');
 // ace.command(
 //   'greet {name: Name of the user to greet}',
@@ -174,11 +160,9 @@
 //     console.log(`Hello ${name}`);
 //   },
 // );
-
 // // Boot ace to execute commands
 // ace.wireUpWithCommander();
 // ace.invoke();
-import * as queryString from 'query-string';
-let url =
-  '%7B%22type%22%3A%22BEHAVIOR_XPATH%22%2C%22info%22%3A%7B%22message%22%3A%22%E7%94%A8%E6%88%B7%E8%B7%AF%E5%BE%84%22%2C%22xpath%22%3A%22%2Fhtml%2Fbody%2Fdiv%2Fdiv%2Fdiv%2Ful%2Fli%2Fa%22%2C%22inputValue%22%3A%22%22%2C%22placeholder%22%3A%22%22%2C%22className%22%3A%22%22%2C%22code%22%3A1%7D%2C%22options%22%3A%7B%22project_id%22%3A1%2C%22origin%22%3A%22http%3A%2F%2F101.200.123.5%3A9090%22%2C%22isTest%22%3Afalse%2C%22frequency%22%3A1%2C%22userId%22%3A%22wall_cb1oAPCsGr9HptAaQiMEYyFMv2Hbb7eO%22%2C%22uuid%22%3A%22wall_uuid6NUxfLvFFRxqsCpFiEQv75JF9eEKW51S%22%7D%2C%22userId%22%3A%22wall_cb1oAPCsGr9HptAaQiMEYyFMv2Hbb7eO%22%2C%22uuid%22%3A%22wall_uuid6NUxfLvFFRxqsCpFiEQv75JF9eEKW51S%22%2C%22key%22%3A%222S47t2lxi2oPD3cWe2ENG0nOeurXMbZb%22%2C%22project_id%22%3A1%2C%22version%22%3A%220.2.6%22%2C%22createTime%22%3A1582252614168%2C%22currentUrl%22%3A%22http%253A%252F%252Fszgl.shouzan365.com%252F%2523%252Foperation%252Frecording%22%7D';
-console.log(queryString.parseUrl(url));
+var queryString = require("query-string");
+var url = '/data.gif?d=%7B%22type%22%3A%22BEHAVIOR_XHR%22%2C%22info%22%3A%7B%22message%22%3A%22%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%22%2C%22url%22%3A%22http%3A%2F%2Fcsszgl.shouzan365.com%3A80%2Fback%2Foperate%2Fpage%3Fkeywords%3D%26current%3D1%26pageSize%3D10%26types%3D0%22%2C%22method%22%3A%22GET%22%2C%22status%22%3A200%2C%22code%22%3A0%2C%22responseSize%22%3Anull%2C%22statusText%22%3A%22%22%2C%22success%22%3Atrue%2C%22duration%22%3A601%2C%22requestDate%22%3Anull%7D%2C%22options%22%3A%7B%22project_id%22%3A1%2C%22origin%22%3A%22http%3A%2F%2F101.200.123.5%3A9090%22%2C%22isTest%22%3Afalse%2C%22frequency%22%3A1%2C%22userId%22%3A%22wall_l5kGrBt7lS8iDGVxxu9vsDhhEY2M90Qj%22%2C%22uuid%22%3A%22wall_uuidFm1aIQuJPkLinppNpytWkFte6aZzi9Ah%22%7D%2C%22userId%22%3A%22wall_l5kGrBt7lS8iDGVxxu9vsDhhEY2M90Qj%22%2C%22uuid%22%3A%22wall_uuidFm1aIQuJPkLinppNpytWkFte6aZzi9Ah%22%2C%22key%22%3A%22tY0VS2qYgtKJ8PVPRy6rAN3ed5uY4nbz%22%2C%22project_id%22%3A1%2C%22version%22%3A%220.2.7%22%2C%22createTime%22%3A1582252529679%2C%22currentUrl%22%3A%22http%253A%252F%252Fcsszgl.shouzan365.com%252F%2523%252Foperation%252Fmange%22%7D';
+console.log(queryString.parseUrl(url).query.d);
