@@ -35,11 +35,8 @@ export class UserFirstLoginAtService extends ParseBase {
   // @Cron('*/4 * * * * *')
   async handle() {
     let nowByMinute = moment();
-    // let lastDayStartAtByMinute = moment()
-    //   .subtract(1, 'day')
-    //   .startOf('day');
     let lastDayStartAtByMinute = moment()
-      .subtract(1, 'minute')
+      .subtract(15, 'minute')
       .startOf('minute');
 
     this.startAtMoment = lastDayStartAtByMinute;
