@@ -178,7 +178,3 @@
 // // Boot ace to execute commands
 // ace.wireUpWithCommander();
 // ace.invoke();
-import * as queryString from 'query-string';
-let url =
-  '%7B%22type%22%3A%22BEHAVIOR_XPATH%22%2C%22info%22%3A%7B%22message%22%3A%22%E7%94%A8%E6%88%B7%E8%B7%AF%E5%BE%84%22%2C%22xpath%22%3A%22%2Fhtml%2Fbody%2Fdiv%2Fdiv%2Fdiv%2Ful%2Fli%2Fa%22%2C%22inputValue%22%3A%22%22%2C%22placeholder%22%3A%22%22%2C%22className%22%3A%22%22%2C%22code%22%3A1%7D%2C%22options%22%3A%7B%22project_id%22%3A1%2C%22origin%22%3A%22http%3A%2F%2F101.200.123.5%3A9090%22%2C%22isTest%22%3Afalse%2C%22frequency%22%3A1%2C%22userId%22%3A%22wall_cb1oAPCsGr9HptAaQiMEYyFMv2Hbb7eO%22%2C%22uuid%22%3A%22wall_uuid6NUxfLvFFRxqsCpFiEQv75JF9eEKW51S%22%7D%2C%22userId%22%3A%22wall_cb1oAPCsGr9HptAaQiMEYyFMv2Hbb7eO%22%2C%22uuid%22%3A%22wall_uuid6NUxfLvFFRxqsCpFiEQv75JF9eEKW51S%22%2C%22key%22%3A%222S47t2lxi2oPD3cWe2ENG0nOeurXMbZb%22%2C%22project_id%22%3A1%2C%22version%22%3A%220.2.6%22%2C%22createTime%22%3A1582252614168%2C%22currentUrl%22%3A%22http%253A%252F%252Fszgl.shouzan365.com%252F%2523%252Foperation%252Frecording%22%7D';
-console.log(queryString.parseUrl(url));

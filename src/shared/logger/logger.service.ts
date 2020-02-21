@@ -4,7 +4,6 @@ import { Logger } from '@nestjs/common';
 export class LoggerService extends Logger {
   error(message: string, trace: string) {
     // add your tailored logic here
-    console.log('9090');
     super.error(message, trace);
   }
 

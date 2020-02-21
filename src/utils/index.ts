@@ -1,6 +1,7 @@
 export * from './nginx';
 export * from './dataFormat';
 export * from './database';
+export * from './alert';
 import * as os from 'os';
 import axios from 'axios'; // 引入axios组件
 import * as _ from 'lodash';
@@ -54,7 +55,7 @@ const getLocalIpList = () => {
 export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // 创建axios实例
-// let http = axios.create();
+let http = axios.create();
 
 /**
  * post form表单
@@ -107,7 +108,7 @@ async function ip2Locate(ip) {
 }
 
 export {
-  // http,
+  http,
   ip2Locate,
   getLocalIpList,
   getFlattenCityRecordListInDistribution,

@@ -14,12 +14,16 @@ import { TRUserFirstLoginAt } from '@entity';
 import { Injectable, Logger } from '@nestjs/common';
 import { COMMAND_ARGUMENT_BY_MINUTE } from '@utils';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AlertService } from '@shared';
+import { ConfigService } from '@core';
 
 @Injectable()
 export class UserFirstLoginAtService extends ParseBase {
   constructor(
     @InjectRepository(TRUserFirstLoginAt)
     private readonly userFirstLoginAtRepository: Repository<TRUserFirstLoginAt>,
+    private readonly alertService: AlertService,
+    private readonly config: ConfigService,
   ) {
     super();
   }
@@ -32,7 +36,6 @@ export class UserFirstLoginAtService extends ParseBase {
 
   // 每小时15分30秒启动
   @Cron('30 */15 * * * *')
-  // @Cron('*/4 * * * * *')
   async handle() {
     let nowByMinute = moment();
     let lastDayStartAtByMinute = moment()
@@ -186,6 +189,10 @@ export class UserFirstLoginAtService extends ParseBase {
       })
       .getMany()
       .catch(e => {
+        this.alertService.sendMessage(
+          this.config.get('ALERT_WATCH_UCID_LIST'),
+          e.mssage,
+        );
         return [];
       });
     let existUcidSet = new Set();
@@ -206,6 +213,10 @@ export class UserFirstLoginAtService extends ParseBase {
       .where({ projectId, ucid })
       .getMany()
       .catch(e => {
+        this.alertService.sendMessage(
+          this.config.get('ALERT_WATCH_UCID_LIST'),
+          e.mssage,
+        );
         return [];
       });
     return oldRecordList;
