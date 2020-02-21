@@ -1,6 +1,6 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-// @Index('uniq_visit_at_hour_uuid', ['visitAtHour', 'uuid'], { unique: true })
+// @Index('uniq_visit_at_hour_uuid', ['visitAtHour', 'uuid'], { unique: true })//TODO:
 @Entity('t_r_uv_record', { schema: 'nest' })
 export class TRUvRecord {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id', unsigned: true })

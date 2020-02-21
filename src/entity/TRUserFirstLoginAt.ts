@@ -7,7 +7,7 @@ export class TRUserFirstLoginAt {
   @PrimaryGeneratedColumn({ type: 'bigint', name: 'id', unsigned: true })
   id: string;
 
-  @Column('varchar', { name: 'ucid', unique: true, length: 20 })
+  @Column('varchar', { name: 'ucid', unique: true, length: 80 })
   ucid: string;
 
   @Column('bigint', { name: 'project_id', default: () => "'0'" })

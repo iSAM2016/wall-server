@@ -19,15 +19,6 @@
 19. 数据库索引
 
 20. ## TODO:
-21. 日志的存储位置改变
-22. 通知
-23. TRUvRecord
-24. TRCityDistribution
-25. TRSystemCollection
-26. TRBehaviorDistribution
-27. TRDurationDistribution
-28.
-29. TRUserFirstLoginAt
 
 ## 配置
 
@@ -165,14 +156,18 @@ spring 是一个 ioc(DI) 和 AOP 容器框架
 
 全称数据传输对象（DTO)(Data Transfer Object)，简单来说 DTO 是面向界面 UI，是通过 UI 的需求来定义的。通过 DTO 我们实现了控制器与数据验证转化解耦。
 
-## docker-compose
+## 执行顺序：
 
-## todo
+// 类装饰器总是最后执行。
+// 有多个方法参数装饰器时：从最后一个参数依次向前执行。
+// 方法参数装饰器中参数装饰器先执行，方法参数装饰器执行完以后，方法装饰器执。
+// 方法和属性装饰器，谁在前面谁先执行。（ps：方法参数属于方法一部分，参数会一直紧紧挨着方法执行。）
 
-//TODO:
+//在自定义提供者一章中，提供者可以包含任何值，而不仅仅是服务，所以我们可以使用依赖项注入来处理简单的 options 对象。
+
+## TODO:
 
 1. process 的具体用法
-2. 在 controller 总添加 trycatch
 3. 基本实现思路
    1. 错误监控，
    2. 性能监控，

@@ -31,17 +31,13 @@ export class UserFirstLoginAtService extends ParseBase {
   private startAtMoment;
 
   // 每小时15分30秒启动
-  @Cron('30 15 * * * *')
+  @Cron('30 */15 * * * *')
   // @Cron('*/4 * * * * *')
   async handle() {
     let nowByMinute = moment();
-    // let lastDayStartAtByMinute = moment()
-    //   .subtract(1, 'day')
-    //   .startOf('day');
     let lastDayStartAtByMinute = moment()
-      .subtract(1, 'minute')
+      .subtract(15, 'minute')
       .startOf('minute');
-
     this.startAtMoment = lastDayStartAtByMinute;
     this.endAtMoment = nowByMinute;
     this.logger.log(
@@ -81,7 +77,7 @@ export class UserFirstLoginAtService extends ParseBase {
       dbRecordMap = this.projectMap.get(projectId);
       if (dbRecordMap.has(ucid)) {
         let existRecord = dbRecordMap.get(ucid);
-        if (existRecord['first_visit_at'] > dbRecord['first_visit_at']) {
+        if (existRecord['firstVisitAt'] > dbRecord['firstVisitAt']) {
           dbRecordMap.set(ucid, dbRecord);
         }
       }
@@ -135,7 +131,6 @@ export class UserFirstLoginAtService extends ParseBase {
           let updateAt = moment().unix();
           // 只有ucid不存在的时候, 才需要插入
           let oldRecordList = await this.getOldRecordList(projectId, ucid);
-          console.log(oldRecordList);
           // 利用get方法, 不存在直接返回0, 没毛病
           let id = _.get(oldRecordList, [0, 'id'], 0);
           let oldFirstVisitAt = _.get(oldRecordList, [0, 'firstVisitAt'], 0);
@@ -183,13 +178,16 @@ export class UserFirstLoginAtService extends ParseBase {
    * @returns {object}
    */
   async filterExistUcidSetInDb(projectId, allUcidList) {
-    //TODO: whereIn
     let rawRecordList = await this.userFirstLoginAtRepository
-      .createQueryBuilder()
-      .where({ projectId })
-      .getMany();
-
-    // .whereIn('ucid', allUcidList);
+      .createQueryBuilder('TRUserFirstLoginAt')
+      .where('TRUserFirstLoginAt.projectId=:projectId', { projectId })
+      .andWhere('TRUserFirstLoginAt.ucid IN (:...allUcidList)', {
+        allUcidList,
+      })
+      .getMany()
+      .catch(e => {
+        return [];
+      });
     let existUcidSet = new Set();
     for (let rawRecord of rawRecordList) {
       let ucid = _.get(rawRecord, ['ucid'], '');
@@ -201,12 +199,15 @@ export class UserFirstLoginAtService extends ParseBase {
    * 获取老记录
    */
   async getOldRecordList(projectId, ucid) {
-    // 返回值是一个列表
+    // 返回值是一个列表s
+
     let oldRecordList = await this.userFirstLoginAtRepository
       .createQueryBuilder()
       .where({ projectId, ucid })
-      .getMany();
-    console.log(oldRecordList);
+      .getMany()
+      .catch(e => {
+        return [];
+      });
     return oldRecordList;
   }
   /**
@@ -215,7 +216,6 @@ export class UserFirstLoginAtService extends ParseBase {
    * @memberof DurationDistributionService
    */
   updateUserFirstLoginAt = async (id, data) => {
-    console.log(999);
     let result = await this.userFirstLoginAtRepository.findOne({
       id,
     });
