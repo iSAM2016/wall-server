@@ -9,6 +9,7 @@ import {
   COMMAND_ARGUMENT_BY_MONTH,
   COMMAND_ARGUMENT_BY_HOUR,
   COMMAND_ARGUMENT_BY_DAY,
+  COMMAND_ARGUMENT_BY_UNIT,
 } from '@utils';
 import { Injectable, Logger } from '@nestjs/common';
 import {
@@ -37,50 +38,24 @@ export class SummaryUvService {
   // 每小时分析uv
   @Cron('0 0 */1 * * *')
   async summaryUvByHour() {
-    let nowByDay = moment().format(COMMAND_ARGUMENT_BY_DAY);
+    let countType = UNIT.HOUR;
     this.logger.log(`所统计时间, ${UNIT.HOUR} 为 ${COMMAND_ARGUMENT_BY_HOUR}`);
-    // `所统计时间, ${UNIT.HOUR} 为 ${COMMAND_ARGUMENT_BY_HOUR}, ${UNIT.DAY} 为 ${COMMAND_ARGUMENT_BY_DAY}, ${UNIT.MONTH} 为 ${COMMAND_ARGUMENT_BY_MONTH}`,
-    let countAtMoment = moment();
-    let startAt = countAtMoment.unix();
-    let endAt =
-      countAtMoment
-        .clone()
-        .add(1, 'hours')
-        .unix() - 1;
-
-    this.beginExecute(startAt, endAt, UNIT.HOUR, countAtMoment);
+    this.beginExecute(countType);
   }
   // 每日分析uv
   @Cron('0 0 0 * * *')
   async summaryUvByDay() {
-    this.logger.log(`所统计时间, ${UNIT.DAY} 为 ${COMMAND_ARGUMENT_BY_DAY}`);
-    let countAtMoment = moment();
-    let startAt = countAtMoment.unix();
-    let endAt =
-      countAtMoment
-        .clone()
-        .add(1, 'day')
-        .unix() - 1;
-
-    this.beginExecute(startAt, endAt, UNIT.DAY, countAtMoment);
+    let countType = UNIT.DAY;
+    this.logger.log(`所统计时间, ${countType} 为 ${COMMAND_ARGUMENT_BY_DAY}`);
+    this.beginExecute(countType);
   }
   // 每月分析uv
   // 每月的1日0点0分0秒触发
   @Cron('0 0 0 1 * *')
   async summaryUvByMonth() {
-    this.logger.log(
-      `所统计时间, ${UNIT.MONTH} 为 ${COMMAND_ARGUMENT_BY_MONTH}`,
-    );
-    // `所统计时间, ${UNIT.HOUR} 为 ${COMMAND_ARGUMENT_BY_HOUR}, ${UNIT.DAY} 为 ${COMMAND_ARGUMENT_BY_DAY}, ${UNIT.MONTH} 为 ${COMMAND_ARGUMENT_BY_MONTH}`,
-    let countAtMoment = moment();
-    let startAt = countAtMoment.unix();
-    let endAt =
-      countAtMoment
-        .clone()
-        .add(1, 'month')
-        .unix() - 1;
-
-    this.beginExecute(startAt, endAt, UNIT.MONTH, countAtMoment);
+    let countType = UNIT.MONTH;
+    this.logger.log(`所统计时间, ${countType} 为 ${COMMAND_ARGUMENT_BY_MONTH}`);
+    this.beginExecute(countType);
   }
 
   /**
@@ -90,7 +65,19 @@ export class SummaryUvService {
    * @param countType  统计类型
    * countAtMoment 当前时间
    */
-  async beginExecute(startAt, endAt, countType, countAtMoment) {
+  async beginExecute(countType) {
+    let agoByTime = moment()
+      .subtract(1, countType as any)
+      .unix();
+    let endAt =
+      moment()
+        .clone()
+        .unix() - 1;
+    let countAtMoment = moment
+      .unix(agoByTime)
+      .format(COMMAND_ARGUMENT_BY_UNIT[countType]);
+    let startAt = agoByTime;
+
     let startAtMoment = moment.unix(startAt);
     let endAtMoment = moment.unix(endAt);
     let rawProjectList = await this.projectService.getList();
@@ -178,7 +165,7 @@ export class SummaryUvService {
     let rawCityRecordList = await this.cityDistributionService.getByIdListInOneMonth(
       projectId,
       cityIdList,
-      moment(countAtMoment).format('YYYYMM'),
+      countAtMoment,
     );
     for (let rawCityRecord of rawCityRecordList) {
       let cityDistributeString = _.get(
@@ -206,7 +193,7 @@ export class SummaryUvService {
     this.uniqueViewService.replaceUvRecord(
       projectId,
       totalUv,
-      countAtMoment.format(DATABASE_BY_UNIT[countType]),
+      countAtMoment,
       countType,
       cityDistribute,
     );
@@ -239,7 +226,7 @@ export class SummaryUvService {
     this.uniqueViewService.replaceUvRecord(
       projectId,
       totalUv,
-      countAtMoment.format(DATABASE_BY_UNIT[countType]),
+      countAtMoment,
       countType,
       cityDistribute,
     );

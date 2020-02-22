@@ -9,6 +9,7 @@ import {
   COMMAND_ARGUMENT_BY_MONTH,
   COMMAND_ARGUMENT_BY_HOUR,
   COMMAND_ARGUMENT_BY_DAY,
+  COMMAND_ARGUMENT_BY_UNIT,
 } from '@utils';
 import { Injectable, Logger } from '@nestjs/common';
 import {
@@ -38,29 +39,13 @@ export class SummaryTimeOnSiteService {
   @Cron('0 0 */1 * * *')
   async summaryUvByHour() {
     this.logger.log(`所统计时间, ${UNIT.HOUR} 为 ${COMMAND_ARGUMENT_BY_HOUR}`);
-    let countAtMoment = moment();
-    let startAt = countAtMoment.unix();
-    let endAt =
-      countAtMoment
-        .clone()
-        .add(1, 'hours')
-        .unix() - 1;
-
-    this.beginExecute(startAt, endAt, UNIT.HOUR, countAtMoment);
+    this.beginExecute(UNIT.HOUR);
   }
   // 每日分析uv
   @Cron('0 0 0 * * *')
   async summaryUvByDay() {
     this.logger.log(`所统计时间, ${UNIT.DAY} 为 ${COMMAND_ARGUMENT_BY_DAY}`);
-    let countAtMoment = moment();
-    let startAt = countAtMoment.unix();
-    let endAt =
-      countAtMoment
-        .clone()
-        .add(1, 'day')
-        .unix() - 1;
-
-    this.beginExecute(startAt, endAt, UNIT.DAY, countAtMoment);
+    this.beginExecute(UNIT.DAY);
   }
   // 每月分析uv
   // 每月的1日0点0分0秒触发
@@ -69,16 +54,8 @@ export class SummaryTimeOnSiteService {
     this.logger.log(
       `所统计时间, ${UNIT.MONTH} 为 ${COMMAND_ARGUMENT_BY_MONTH}`,
     );
-    // `所统计时间, ${UNIT.HOUR} 为 ${COMMAND_ARGUMENT_BY_HOUR}, ${UNIT.DAY} 为 ${COMMAND_ARGUMENT_BY_DAY}, ${UNIT.MONTH} 为 ${COMMAND_ARGUMENT_BY_MONTH}`,
-    let countAtMoment = moment();
-    let startAt = countAtMoment.unix();
-    let endAt =
-      countAtMoment
-        .clone()
-        .add(1, 'month')
-        .unix() - 1;
 
-    this.beginExecute(startAt, endAt, UNIT.MONTH, countAtMoment);
+    this.beginExecute(UNIT.MONTH);
   }
 
   /**
@@ -88,7 +65,19 @@ export class SummaryTimeOnSiteService {
    * @param countType  统计类型
    * countAtMoment 当前时间
    */
-  async beginExecute(startAt, endAt, countType, countAtMoment) {
+  async beginExecute(countType) {
+    let agoByTime = moment()
+      .subtract(1, countType as any)
+      .unix();
+    let endAt =
+      moment()
+        .clone()
+        .unix() - 1;
+    let countAtMoment = moment
+      .unix(agoByTime)
+      .format(COMMAND_ARGUMENT_BY_UNIT[countType]);
+    let startAt = agoByTime;
+
     let startAtMoment = moment.unix(startAt);
     let endAtMoment = moment.unix(endAt);
     let rawProjectList = await this.projectService.getList();
@@ -127,24 +116,23 @@ export class SummaryTimeOnSiteService {
           cityDistribute,
         );
       }
-      let countAtTime = countAtMoment.format(DATABASE_BY_UNIT[countType]);
       // 获取总uv, 记录不存在返回0
       let totalUv = await this.uniqueViewService.getTotalUv(
         projectId,
-        moment(countAtMoment).format(DATABASE_BY_UNIT[countType]),
+        countAtMoment,
         countType,
       );
       // 录入数据
       let oldRecordList = await this.timeOnSiteService.replaceUvRecord(
         projectId,
-        countAtTime,
+        countAtMoment,
         UNIT.HOUR,
       );
       let isSuccess = await this.checkSaveCount(
         totalUv,
         oldRecordList,
         projectId,
-        countAtTime,
+        countAtMoment,
         cityDistribute,
         totalStayMs,
       );

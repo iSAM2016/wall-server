@@ -274,6 +274,7 @@ export class UvService extends ParseBase {
    * @returns {Array}
    */
   async getCityDistributeInRange(projectId, startAt, finishAt) {
+    console.log(projectId, startAt, finishAt);
     let startAtMoment = moment.unix(startAt);
     let finishAtMoment = moment.unix(finishAt);
     let cityDistribute = {};
