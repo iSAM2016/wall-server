@@ -27,10 +27,13 @@ export MAIL_PASS=9
 export MAXAGE_MS=86400000
 
 #  alarm 
-export ALERT_WATCH_UCID_LIST=123456,999
+#  通知的对象
+export ALERT_WATCH_UCID_LIST=123456000000000000
+# 内容长度
 export ALERT_MAX_CONTENT_CHAR=1500
+#  警告系统是否启用 true  启用
 export ALERT_IS_USEING=true
-export ALERT_WXADDR=true
+export ALERT_WXADDR=https://oapi.dingtalk.com/robot/send?access_token=1eba276aa954be35807b71e52a65828b3a969193ee38a0f7dbc32cfd1511b550
 
 
 

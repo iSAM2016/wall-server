@@ -28,7 +28,9 @@ function getTableNameListInRange(
   for (
     let currentAtMoment = startAtMoment;
     currentAtMoment.isBefore(finishAtMoment);
-    currentAtMoment = currentAtMoment //TODO: //   .clone() //   .add(1, timeSplitUnit) //   .startOf(timeSplitUnit)
+    currentAtMoment = (currentAtMoment.clone() as any)
+      .add(1, timeSplitUnit)
+      .startOf(timeSplitUnit)
   ) {
     let currentAt = currentAtMoment.unix();
     let tableName = getTableFunc(projectId, currentAt);

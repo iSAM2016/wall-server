@@ -16,7 +16,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { getDatabaseTimeList } from '@utils';
 import { CityDistributionService } from '../cityDistribution/cityDistribution.service';
 /**
- *  uv 记录
+ *  uv 记录不熬
  */
 @Injectable()
 export class UniqueViewService {

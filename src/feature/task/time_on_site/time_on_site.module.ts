@@ -9,13 +9,13 @@ import {
 } from '@entity';
 @Module({
   imports: [
-    UniqueViewModule,
-    CityDistributionModule,
     TypeOrmModule.forFeature([
       TRDurationDistribution,
       TRCityDistribution,
       TRUniqueView,
     ]),
+    UniqueViewModule,
+    CityDistributionModule,
   ],
   exports: [TimeOnSiteService],
   providers: [TimeOnSiteService],

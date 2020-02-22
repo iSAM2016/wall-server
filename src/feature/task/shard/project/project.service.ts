@@ -30,7 +30,8 @@ export class ProjectService {
     for (let project of projectList) {
       projectMapSet.set(project.projectName, project);
     }
-    this.logger.log(`项目列表获取成功 => ${JSON.stringify(projectList)}`);
+    let projectIdList = projectList.map(_ => _.id);
+    this.logger.log(`项目列表ID获取成功 => ${projectIdList.join(',')}`);
     return projectMapSet;
   }
   // /**

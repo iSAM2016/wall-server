@@ -107,4 +107,81 @@ export class CityDistributionService {
     }
     return recordList;
   }
+  /**
+   * 获取解析后的城市分布记录, 解析失败返回空对象({})
+   * @param {number} id
+   * @return {object}
+   */
+  async getCityDistributionRecord(id) {
+    let recordList = await this.cityDistributionRepository
+      .createQueryBuilder('TRCityDistribution')
+      .where('TRCityDistribution.id=:id', { id })
+      .getOne()
+      .catch(e => {
+        return {};
+      });
+    let resultJson = _.get(recordList, ['cityDistributeJson'], '{}');
+    let result = {};
+    try {
+      result = JSON.parse(resultJson);
+      return result;
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /**
+   * 合并分布数据中, 相同城市的数据, 默认直接相加
+   * @param {Object} distributionSource   (来源)从数据库中新查出来的数据
+   * @param {Object} distributionDist     (目的地)过往累加计入的结果集
+   * @param {Function} processCityData
+   */
+  mergeDistributionData(
+    distributionSource,
+    distributionDist,
+    processCityData = (cityDataDist, cityDataSource) => {
+      return cityDataDist + cityDataSource;
+    },
+  ) {
+    let finalDistribution = _.clone(distributionDist);
+    for (let country of Object.keys(distributionSource)) {
+      if (_.has(distributionDist, country) === false) {
+        // 没有就直接更新上
+        _.set(finalDistribution, [country], distributionSource[country]);
+        continue;
+      }
+      let countryDistributionSource = distributionSource[country];
+      let countryDistributionDist = distributionDist[country];
+      for (let province of Object.keys(countryDistributionSource)) {
+        if (_.has(countryDistributionDist, province) === false) {
+          _.set(
+            finalDistribution,
+            [country, province],
+            distributionSource[country][province],
+          );
+          continue;
+        }
+        let provinceDistributionSource = countryDistributionSource[province];
+        let provinceDistributionDist = countryDistributionDist[province];
+        for (let city of Object.keys(provinceDistributionSource)) {
+          if (_.has(provinceDistributionDist, city) === false) {
+            _.set(
+              finalDistribution,
+              [country, province, city],
+              distributionSource[country][province][city],
+            );
+            continue;
+          }
+          let cityDistributionSource = provinceDistributionSource[city];
+          let cityDistributionDist = provinceDistributionDist[city];
+          _.set(
+            finalDistribution,
+            [country, province, city],
+            processCityData(cityDistributionDist, cityDistributionSource),
+          );
+        }
+      }
+    }
+    return finalDistribution;
+  }
 }

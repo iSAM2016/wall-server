@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Cron } from '@nestjs/schedule';
-import { UvService } from '../uv/uv.service';
+import { UvService } from '../../uv/uv.service';
 import {
   UNIT,
   DISPLAY_BY_MINUTE,
@@ -15,7 +15,7 @@ import {
   ProjectService,
   UniqueViewService,
   CityDistributionService,
-} from '../shard';
+} from '../../shard';
 /**
  *  分析uv 按 小时/天/月
  */

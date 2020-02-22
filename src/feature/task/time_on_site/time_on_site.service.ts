@@ -8,18 +8,22 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import ParseBase from '../paseBase';
 import { Repository } from 'typeorm';
+import { ConfigService } from '@core';
+import { AlertService } from '@shared';
 import { Cron } from '@nestjs/schedule';
+import { TRDurationDistribution } from '@entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable, Logger } from '@nestjs/common';
-import { TRDurationDistribution } from '@entity';
+import { UniqueViewService } from '../shard/uniqueView/uniqueView.service';
+import { CityDistributionService } from '../shard/cityDistribution/cityDistribution.service';
+
 import {
   UNIT,
   DATABASE_BY_HOUR,
+  DATABASE_BY_UNIT,
   COMMAND_ARGUMENT_BY_MINUTE,
   getFlattenCityRecordListInDistribution,
 } from '@utils';
-import { CityDistributionService } from '../shard/cityDistribution/cityDistribution.service';
-import { UniqueViewService } from '../shard/uniqueView/uniqueView.service';
 
 const DateFormat = 'YYYYMM';
 
@@ -30,6 +34,8 @@ export class TimeOnSiteService extends ParseBase {
     private readonly durationDistributionRepository: Repository<
       TRDurationDistribution
     >,
+    private readonly config: ConfigService,
+    private readonly alertService: AlertService,
     private readonly uniqueViewService: UniqueViewService,
     private readonly cityDistributionService: CityDistributionService,
   ) {
@@ -167,7 +173,7 @@ export class TimeOnSiteService extends ParseBase {
     return { totalRecordCount, processRecordCount, successSaveCount };
   }
   /**
-   * 更新城市分布图
+   * 更新城市分布图并插入数据
    */
   async checkSaveCount(
     totalUv,
@@ -250,7 +256,6 @@ export class TimeOnSiteService extends ParseBase {
     let insertId = _.get(insertResult, 'id', 0);
     return insertId > 0;
   }
-
   /**
    * 自动创建 停留记录
    */
@@ -265,9 +270,8 @@ export class TimeOnSiteService extends ParseBase {
       .getMany();
     return oldRecordList;
   };
-
   /**
-   *更新
+   *更新 停留时间
    *
    * @memberof DurationDistributionService
    */
@@ -290,5 +294,57 @@ export class TimeOnSiteService extends ParseBase {
   async insertDuration(data) {
     // 返回值是一个列表
     return await this.durationDistributionRepository.save(data);
+  }
+  /**
+   *  按时间格式类别获取 停留时间数据
+   * @param projectId
+   * @param startAt
+   * @param finishAt
+   * @param countType  时间格式
+   */
+  async getRecordList(projectId, startAt, finishAt, countType) {
+    let countAtTimeList = [];
+    let dateFormat = DATABASE_BY_UNIT[countType];
+    let addDateRange = 'day';
+    switch (countType) {
+      case UNIT.HOUR:
+        addDateRange = 'hour';
+        break;
+      case UNIT.DAY:
+        addDateRange = 'day';
+        break;
+      case UNIT.MONTH:
+        addDateRange = 'month';
+        break;
+      default:
+        addDateRange = 'month';
+    }
+    let finishAtMoment = moment.unix(finishAt);
+
+    for (
+      let currentAtMoment = moment.unix(startAt);
+      currentAtMoment.isBefore(finishAtMoment);
+      currentAtMoment = (currentAtMoment.clone() as any).add(1, addDateRange)
+    ) {
+      let currentAtFormated = currentAtMoment.format(dateFormat);
+      countAtTimeList.push(currentAtFormated);
+    }
+    let recordList = await this.durationDistributionRepository
+      .createQueryBuilder('TRDurationDistribution')
+      .where('TRDurationDistribution.projectId=:projectId', { projectId })
+      .andWhere('TRDurationDistribution.countType=:countType', { countType })
+      .andWhere('TRDurationDistribution.countAtTime IN (:...countAtTimeList)', {
+        countAtTimeList,
+      })
+      .orderBy('TRDurationDistribution.countAtTime', 'ASC')
+      .getMany()
+      .catch(e => {
+        this.alertService.sendMessage(
+          this.config.get('ALERT_WATCH_UCID_LIST'),
+          e.mssage,
+        );
+        return [];
+      });
+    return recordList;
   }
 }
