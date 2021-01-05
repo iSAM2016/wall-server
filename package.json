@@ -78,7 +78,7 @@
     "@types/socket.io-redis": "1.0.25",
     "@types/supertest": "^2.0.8",
     "@types/ws": "6.0.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "chai": "^4.2.0",
     "futility": "^1.1.2",
