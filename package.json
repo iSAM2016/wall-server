@@ -59,7 +59,7 @@
     "typeorm": "^0.2.20",
     "typeorm-model-generator": "^0.4.0",
     "ua-parser-js": "^0.7.21",
-    "ws": "7.2.0"
+    "ws": "7.4.6"
   },
   "devDependencies": {
     "@hapi/joi": "^17.1.0",
